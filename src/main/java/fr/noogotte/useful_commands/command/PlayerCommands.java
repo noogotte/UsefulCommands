@@ -19,10 +19,10 @@ public class PlayerCommands extends UsefulCommands {
 		if(args.length() == 0) {
 			if(player.getGameMode() == GameMode.CREATIVE) {
 				player.setGameMode(GameMode.SURVIVAL);
-				player.sendMessage(ChatColor.GREEN + "Vous vous étes mis en" + ChatColor.AQUA + player.getGameMode());
+				player.sendMessage(ChatColor.GREEN + "Vous vous étes mis en " + ChatColor.AQUA + player.getGameMode());
 			} else {
 				player.setGameMode(GameMode.CREATIVE);
-				player.sendMessage(ChatColor.GREEN + "Vous vous étes mis en" + ChatColor.AQUA + player.getGameMode());
+				player.sendMessage(ChatColor.GREEN + "Vous vous étes mis en " + ChatColor.AQUA + player.getGameMode());
 			}
 		} else if (args.length() == 1) {
 			Player target = Bukkit.getPlayer(args.get(0));
