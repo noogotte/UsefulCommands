@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.aumgn.bukkitutils.command.CommandsRegistration;
 import fr.aumgn.bukkitutils.command.messages.FrenchMessages;
+import fr.noogotte.useful_commands.command.PlayerCommands;
 import fr.noogotte.useful_commands.command.WorldCommands;
 
 public class UsefulCommandPlugin extends JavaPlugin {
@@ -13,5 +14,6 @@ public class UsefulCommandPlugin extends JavaPlugin {
 		CommandsRegistration registration = new CommandsRegistration(
                 this, new FrenchMessages());
 		registration.register(new WorldCommands());
+		registration.register(new PlayerCommands());
 	}
 }

@@ -2,7 +2,7 @@ name: UsefulCommands
 version: 1.0.0
 description: Useful Commands for Server
 author: noogotte
-main: fr.noogotte.usefulCommands.UsefulCommandPlugin
+main: fr.noogotte.useful_commands.UsefulCommandPlugin
 
 commands:
     useful:
@@ -19,4 +19,7 @@ commands:
         usage: "sun | storm"
         permission: "useful.weather"
         aliases: ["weather"]
-permission:
+    "useful gamemode":
+        description: "Change le temps."
+        usage: ""
+        aliases: ["gm"]
