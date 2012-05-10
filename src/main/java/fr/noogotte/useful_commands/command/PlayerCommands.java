@@ -43,4 +43,27 @@ public class PlayerCommands extends UsefulCommands {
 			throw new CommandUsageError("Argument " + args.get(0) + " inconnu.");
 		}
 	}
+	
+	@Command(name = "heal", min = 0, max = 1)
+	public void heal(Player player, CommandArgs args) {
+		if(args.length() == 0) {
+			player.setHealth(20);
+			player.setFoodLevel(20);
+			player.sendMessage("Vous voila soigné et nourris");
+		} else if (args.length() == 1) {
+			Player target = Bukkit.getPlayer(args.get(0));
+			if(target == null) {
+				throw new PlayerNotInServer();
+			} else {		
+					target.setHealth(20);	
+					target.setFoodLevel(20);		
+					player.sendMessage(ChatColor.GREEN + "Vous vous avez soignés et nourris" + ChatColor.BLUE + target.getName());
+					target.sendMessage(ChatColor.YELLOW + "Vous êtes soignés et nourris");
+					
+			}
+		} else {
+		
+			throw new CommandUsageError("Argument " + args.get(0) + " inconnu.");	
+		}
+	}
 }
