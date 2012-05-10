@@ -7,7 +7,7 @@ public class PlayerNotInServer extends CommandError {
     private static final long serialVersionUID = -3139364881212075182L;
 
     public PlayerNotInServer() {
-        super("Ce joueur n'est pas dans la partie.");
+        super("Ce joueur n'est pas sur le serveur.");
     }
 
 }
