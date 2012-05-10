@@ -9,5 +9,4 @@ public class PlayerNotInServer extends CommandError {
     public PlayerNotInServer() {
         super("Ce joueur n'est pas sur le serveur.");
     }
-
 }

@@ -13,7 +13,6 @@ commands:
         usage: "day | night"
         permission: "useful.time"
         aliases: ["time"]
-
     "useful weather":
         description: "Change le temps."
         usage: "sun | storm"
@@ -23,3 +22,7 @@ commands:
         description: "Change le temps."
         usage: ""
         aliases: ["gm"]
+    "useful god":
+        description: "Met en mode dieux"
+        usage: ""
+        aliases: ["god"]
