@@ -9,6 +9,7 @@ import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.CommandArgs;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.exception.CommandUsageError;
+import fr.noogotte.useful_commands.exception.PlayerNotInServer;
 
 @NestedCommands(name = "useful")
 public class PlayerCommands extends UsefulCommands {

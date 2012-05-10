@@ -1,4 +1,4 @@
-package fr.noogotte.useful_commands.command;
+package fr.noogotte.useful_commands.exception;
 
 import fr.aumgn.bukkitutils.command.exception.CommandError;
 
