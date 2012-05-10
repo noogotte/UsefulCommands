@@ -1,4 +1,4 @@
-package fr.noogotte.usefulCommands.command;
+package fr.noogotte.useful_commands.command;
 
 import fr.aumgn.bukkitutils.command.Commands;
 

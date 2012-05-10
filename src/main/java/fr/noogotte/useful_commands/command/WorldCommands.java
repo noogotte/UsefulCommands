@@ -1,9 +1,6 @@
-package fr.noogotte.usefulCommands.command;
-
-import javax.rmi.CORBA.Util;
+package fr.noogotte.useful_commands.command;
 
 import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.aumgn.bukkitutils.command.Command;
