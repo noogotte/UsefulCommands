@@ -2,34 +2,21 @@ name: UsefulCommands
 version: 1.0.0
 description: Useful Commands for Server
 author: noogotte
-main: fr.noogotte.usefulCommands.UsefulCommandsMain
+main: fr.noogotte.usefulCommands.UsefulCommandPlugin
 
 commands:
-    gamemode:
-        description: "Change le mode de jeu"
-        aliases: ["gm"]
-    sun:
-        description: "Met le le soleil"
-    storm:
-        description: "Met la pluit dans le monde"
-    day:
-        description: "Met le jour dans le monde"
-    out:
-        description: "Stoppe le serveur"
-    id:
-        description: "Donne l'Id de l'objet tenus en main"
-    clear:
-        description: "Vide l'inventaire"
-    heal:
-        description: "Soigne et nouuris le joueure"
-    suicide:
-        description: "Tue le joueure"
-    tphere:
-        description: "Tp du joueure vers le player"
-    teleporte:
-        description: "Tp le joueure 1 au 2"
-        aliases: ["tp"]
-    tpto:
-        description: "Se tp aux 2eme args"
-    potion:
-    spawnmob:
+    useful:
+        description: "Commande principale."
+        usage: "time | weather"
+    "useful time":
+        description: "Change ."
+        usage: "day | night"
+        permission: "useful.time"
+        aliases: ["time"]
+
+    "useful weather":
+        description: "Change le temps."
+        usage: "sun | storm"
+        permission: "useful.weather"
+        aliases: ["weather"]
+permission:
