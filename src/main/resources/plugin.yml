@@ -30,3 +30,7 @@ commands:
         description: "Soigne et nourris"
         usage: ""
         aliases: ["heal"]
+    "useful clear":
+        description: "Vide l'inventaire"
+        usage: ""
+        aliases: ["clear"]

@@ -19,10 +19,10 @@ public class PlayerCommands extends UsefulCommands {
 		if(args.length() == 0) {
 			if(player.getGameMode() == GameMode.CREATIVE) {
 				player.setGameMode(GameMode.SURVIVAL);
-				player.sendMessage(ChatColor.GREEN + "Vous vous étes mis en " + ChatColor.AQUA + player.getGameMode());
+				player.sendMessage(ChatColor.GREEN + "Vous vous êtes mis en " + ChatColor.AQUA + player.getGameMode());
 			} else {
 				player.setGameMode(GameMode.CREATIVE);
-				player.sendMessage(ChatColor.GREEN + "Vous vous étes mis en " + ChatColor.AQUA + player.getGameMode());
+				player.sendMessage(ChatColor.GREEN + "Vous vous êtes mis en " + ChatColor.AQUA + player.getGameMode());
 			}
 		} else if (args.length() == 1) {
 			Player target = Bukkit.getPlayer(args.get(0));
@@ -59,11 +59,32 @@ public class PlayerCommands extends UsefulCommands {
 					target.setFoodLevel(20);		
 					player.sendMessage(ChatColor.GREEN + "Vous vous avez soignés et nourris" + ChatColor.BLUE + target.getName());
 					target.sendMessage(ChatColor.YELLOW + "Vous êtes soignés et nourris");
-					
 			}
 		} else {
-		
 			throw new CommandUsageError("Argument " + args.get(0) + " inconnu.");	
+		}
+	}
+	
+	@Command(name = "clear", min = 0, max = 1)
+	public void clear(Player player, CommandArgs args) {
+		if(args.length() == 0) {
+			for (int j = 0; j <= 39; j++) {
+                player.getInventory().setItem(j, null);
+            }
+			player.sendMessage(ChatColor.YELLOW + "Clear !");
+		} else if (args.length() == 1) {
+			Player target = Bukkit.getPlayer(args.get(0));
+			if(target == null) {
+				throw new PlayerNotInServer();
+			} else {
+				for (int j = 0; j <= 39; j++) {
+	                target.getInventory().setItem(j, null);
+	            }		
+				player.sendMessage(ChatColor.GREEN + "Vous avez vidés l'inventaire de " + ChatColor.BLUE + target.getName());
+				target.sendMessage(ChatColor.YELLOW + "Inventaire vidé !");
+			}
+		} else {
+			
 		}
 	}
 }

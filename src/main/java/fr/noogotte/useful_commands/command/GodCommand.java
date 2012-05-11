@@ -19,7 +19,7 @@ import fr.noogotte.useful_commands.exception.PlayerNotInServer;
 import fr.noogotte.useful_commands.listener.GodComponent;
 
 @NestedCommands(name = "useful")
-public class GodCommand extends UsefulCommands implements Listener {
+public class GodCommand extends UsefulCommands {
 
 	private GodComponent godComponent;
 

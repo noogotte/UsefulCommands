@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>fr.noogotte</groupId>
-	<artifactId>usefulcommans</artifactId>
+	<artifactId>usefulcommands</artifactId>
 	<version>1.0.0</version>
 
 	<name>Useful Commands</name>
