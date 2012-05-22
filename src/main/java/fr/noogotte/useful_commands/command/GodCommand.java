@@ -25,7 +25,7 @@ public class GodCommand extends UsefulCommands {
 
 	public GodCommand(GodComponent godComponent) {
 		this.godComponent = godComponent;
-    }
+	}
 	
 	@Command(name = "god", min = 0, max = 1)
 	public void godCommand(Player player, CommandArgs args) {
@@ -33,7 +33,7 @@ public class GodCommand extends UsefulCommands {
 			if(godComponent.isGod(player)) {
 				player.sendMessage(ChatColor.AQUA + "Mode dieux arreté ");
 				godComponent.removeGod(player);
-			} else {		
+			} else {
 				godComponent.setGod(player);
 				player.sendMessage(ChatColor.GREEN + "Vous êtes en mode Dieux tapez " + ChatColor.BLUE + " /god " + ChatColor.GREEN + " pour en resortir");
 			}

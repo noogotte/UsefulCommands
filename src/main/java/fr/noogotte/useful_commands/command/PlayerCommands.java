@@ -1,5 +1,7 @@
 package fr.noogotte.useful_commands.command;
 
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
