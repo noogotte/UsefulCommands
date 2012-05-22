@@ -22,10 +22,10 @@ public class GodCommand extends UsefulCommands {
         if (args.length() == 0) {
             if (godComponent.isGod(player)) {
                 godComponent.removeGod(player);
-                player.sendMessage(ChatColor.AQUA + "Mode dieux arreté.");
+                player.sendMessage(ChatColor.AQUA + "Mode dieu arreté.");
             } else {
                 godComponent.setGod(player);
-                player.sendMessage(ChatColor.GREEN + "Vous êtes en mode Dieux tapez " +
+                player.sendMessage(ChatColor.GREEN + "Vous êtes en mode Dieu tapez " +
                         ChatColor.BLUE + " /god " + ChatColor.GREEN + " pour en resortir.");
             }
         } else {

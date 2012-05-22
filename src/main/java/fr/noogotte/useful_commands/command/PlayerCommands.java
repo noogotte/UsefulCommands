@@ -46,7 +46,7 @@ public class PlayerCommands extends UsefulCommands {
             heal(target);
             player.sendMessage(ChatColor.GREEN + "Vous vous avez soignés et nourris " +
                     ChatColor.BLUE + target.getName());
-            target.sendMessage(ChatColor.YELLOW + "Vous êtes soignés et nourris");
+            target.sendMessage(ChatColor.YELLOW + "Vous êtes soignés et nourrit");
         }
     }
 
@@ -79,7 +79,7 @@ public class PlayerCommands extends UsefulCommands {
     public void clearAll(Player player, CommandArgs args) {
     	for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
     		clear(onlinePlayer);
-    		onlinePlayer.sendMessage("Clear !");
+    		onlinePlayer.sendMessage(ChatColor.YELLOW + "Clear !");
     	}
     }
     
