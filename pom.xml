@@ -95,7 +95,7 @@
 							<artifactSet>
 								<includes>
 									<include>fr.aumgn.bukkitutils:core</include>
-									<include>fr.aumgn.bukkitutils:commands</include>
+									<include>fr.aumgn.bukkitutils:command</include>
 								</includes>
 							</artifactSet>
 						</configuration>

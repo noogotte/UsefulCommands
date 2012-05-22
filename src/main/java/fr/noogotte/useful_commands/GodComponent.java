@@ -1,4 +1,4 @@
-package fr.noogotte.useful_commands.listener;
+package fr.noogotte.useful_commands;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -30,18 +30,6 @@ public class GodComponent implements Listener {
 
     public void removeGod(Player player) {
         gods.remove(player);
-    }
-
-    public void setGodOther(Player target) {
-        gods.add(target);
-    }
-
-    public boolean isGodOther(Player target) {
-        return gods.contains(target);
-    }
-
-    public void removeGodOther(Player target) {
-        gods.remove(target);
     }
 
     @EventHandler()

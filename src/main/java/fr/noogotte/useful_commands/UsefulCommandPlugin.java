@@ -7,7 +7,6 @@ import fr.aumgn.bukkitutils.command.messages.FrenchMessages;
 import fr.noogotte.useful_commands.command.GodCommand;
 import fr.noogotte.useful_commands.command.PlayerCommands;
 import fr.noogotte.useful_commands.command.WorldCommands;
-import fr.noogotte.useful_commands.listener.GodComponent;
 
 public class UsefulCommandPlugin extends JavaPlugin {
 
