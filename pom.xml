@@ -25,16 +25,16 @@
 
 	<repositories>
 		<repository>
-			<id>bukkit-repo</id>
-			<url>http://repo.bukkit.org/content/groups/public</url>
+			<id>aumgn-repo</id>
+			<url>https://repository-aumgn.forge.cloudbees.com/snapshot/</url>
 		</repository>
 	</repositories>
 
 	<dependencies>
 		<dependency>
-			<groupId>fr.aumgn</groupId>
-			<artifactId>bukkitutils</artifactId>
-			<version>0.1.0</version>
+			<groupId>fr.aumgn.bukkitutils</groupId>
+			<artifactId>command</artifactId>
+			<version>0.3.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
@@ -94,7 +94,8 @@
 						<configuration>
 							<artifactSet>
 								<includes>
-									<include>fr.aumgn:bukkitutils</include>
+									<include>fr.aumgn.bukkitutils:core</include>
+									<include>fr.aumgn.bukkitutils:commands</include>
 								</includes>
 							</artifactSet>
 						</configuration>
