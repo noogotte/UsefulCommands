@@ -34,3 +34,7 @@ commands:
         description: "Vide l'inventaire"
         usage: ""
         aliases: ["clear"]
+    "useful clearall":
+        description: "Vide l'inventaire de tous les joueures"
+        usage: ""
+        aliases: ["clearall"]

@@ -1,7 +1,9 @@
 package fr.noogotte.useful_commands.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Server;
 import org.bukkit.entity.Player;
 
 import fr.aumgn.bukkitutils.command.Command;
@@ -59,7 +61,7 @@ public class PlayerCommands extends UsefulCommands {
             clear(player);
             player.sendMessage(ChatColor.YELLOW + "Clear !");
         } else {
-            Player target = args.getPlayer(0);
+        	Player target = args.getPlayer(0);
             clear(player);
             player.sendMessage(ChatColor.GREEN + "Vous avez vidés l'inventaire de " +
                     ChatColor.BLUE + target.getName());
@@ -72,4 +74,13 @@ public class PlayerCommands extends UsefulCommands {
             target.getInventory().setItem(j, null);
         }
     }
+    
+    @Command(name = "clearall", min = 0, max = 0)
+    public void clearAll(Player player, CommandArgs args) {
+    	for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+    		clear(onlinePlayer);
+    		onlinePlayer.sendMessage("Clear !");
+    	}
+    }
+    
 }
