@@ -10,10 +10,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.MaterialData;
 
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.CommandArgs;
 import fr.aumgn.bukkitutils.command.NestedCommands;
+import fr.aumgn.bukkitutils.util.MaterialAndData;
 
 @NestedCommands(name = "useful")
 public class PlayerCommands extends UsefulCommands {
@@ -114,21 +116,23 @@ public class PlayerCommands extends UsefulCommands {
 	
 	@Command(name = "give", min = 1, max = 3)
 	public void give(Player player, CommandArgs args) {
-		Material item = args.getMaterial(0);
+		ItemStack item = args.getMaterialAndData(0).toItemStack(64, (short) 0);
+		MaterialAndData materialAndData = args.getMaterialAndData(0);
+		item = materialAndData.toItemStack(64, (short) 0);
 		if(args.length() == 1) {
-			player.getInventory().addItem(new ItemStack(item, 64));
-			player.sendMessage(ChatColor.GREEN + "Vous vous êtes donnés un stack de " + ChatColor.AQUA + item);
+			player.getInventory().addItem(new ItemStack (args.getMaterialAndData(0).toItemStack(64, (short) 0)));
+			player.sendMessage(ChatColor.GREEN + "Vous vous êtes donnés un stack de " + ChatColor.AQUA + materialAndData.getMaterial());
 		} else if (args.length() == 2) {
 			Integer amount = args.getInteger(1);
-			player.getInventory().addItem(new ItemStack(item, amount));
+			player.getInventory().addItem(new ItemStack (args.getMaterialAndData(0).toItemStack(amount, (short) 0)));
 			player.sendMessage(ChatColor.GREEN + "Vous vous êtes donnés "  + ChatColor.AQUA 
-					+ amount + ChatColor.GREEN + " de " + ChatColor.AQUA + item);
+					+ amount + ChatColor.GREEN + " de " + ChatColor.AQUA + materialAndData.getMaterial());
 		} else if (args.length() == 3) {
 			Integer amount = args.getInteger(1);
 			for (Player target : args.getPlayers(2)) {
-				target.getInventory().addItem(new ItemStack(item, amount));
+				target.getInventory().addItem(new ItemStack (args.getMaterialAndData(0).toItemStack(amount, (short) 0)));
 				player.sendMessage(ChatColor.GREEN + "Vous avez donnez à " + target.getName() 
-						+ ChatColor.GREEN + ": " + ChatColor.AQUA + amount + ChatColor.GREEN + " de " + ChatColor.AQUA + item);
+						+ ChatColor.GREEN + ": " + ChatColor.AQUA + amount + ChatColor.GREEN + " de " + ChatColor.AQUA + materialAndData.getMaterial());
 			}
 		}
 	}
@@ -143,6 +147,5 @@ public class PlayerCommands extends UsefulCommands {
 				player.openInventory(inventory);
 			}
 		}
-			
 	}
 }
