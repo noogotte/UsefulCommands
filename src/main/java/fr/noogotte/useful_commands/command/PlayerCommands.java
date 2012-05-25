@@ -4,8 +4,10 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.CommandArgs;
@@ -106,5 +108,26 @@ public class PlayerCommands extends UsefulCommands {
 		Location playerloc = player.getLocation();
 		player.getWorld().setSpawnLocation(playerloc.getBlockX(), playerloc.getBlockY(), playerloc.getBlockZ());
 		player.sendMessage(ChatColor.GREEN + "Vous avez mis le spawn !");
+	}
+	
+	@Command(name = "give", min = 1, max = 3)
+	public void give(Player player, CommandArgs args) {
+		Material item = args.getMaterial(0);
+		if(args.length() == 1) {
+			player.getInventory().addItem(new ItemStack(item, 64));
+			player.sendMessage(ChatColor.GREEN + "Vous vous êtes donnés un stack de " + ChatColor.AQUA + item);
+		} else if (args.length() == 2) {
+			Integer amount = args.getInteger(1);
+			player.getInventory().addItem(new ItemStack(item, amount));
+			player.sendMessage(ChatColor.GREEN + "Vous vous êtes donnés "  + ChatColor.AQUA 
+					+ amount + ChatColor.GREEN + " de " + ChatColor.AQUA + item);
+		} else if (args.length() == 3) {
+			Integer amount = args.getInteger(1);
+			for (Player target : args.getPlayers(2)) {
+				target.getInventory().addItem(new ItemStack(item, amount));
+				player.sendMessage(ChatColor.GREEN + "Vous avez donnez à " + target.getName() 
+						+ ChatColor.GREEN + ": " + ChatColor.AQUA + amount + ChatColor.GREEN + " de " + ChatColor.AQUA + item);
+			}
+		}
 	}
 }

@@ -50,3 +50,7 @@ commands:
         description: "Definis au spawn"
         usage: ""
         aliases: ["setspawn"]
+    "useful give":
+        description: "Donne x objet"
+        usage: ""
+        aliases: ["give"]
