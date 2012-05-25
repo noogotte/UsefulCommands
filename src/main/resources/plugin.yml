@@ -7,7 +7,7 @@ main: fr.noogotte.useful_commands.UsefulCommandPlugin
 commands:
     useful:
         description: "Commande principale."
-        usage: "time | weather | gamemode | god | heal | clear | teleportation | seed"
+        usage: "time | weather | gamemode | god | heal | clear | teleportation | seed | spawn"
     "useful time":
         description: "Change l'heure"
         usage: "day | night"
@@ -42,3 +42,7 @@ commands:
         description: "Montre le seed du monde"
         usage: ""
         aliases: ["seed"]
+    "useful spawn":
+        description: "Teleport au spawn"
+        usage: ""
+        aliases: ["spawn"]

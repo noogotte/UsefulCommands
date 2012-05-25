@@ -81,4 +81,22 @@ public class PlayerCommands extends UsefulCommands {
 	public void seed(Player player, CommandArgs args) {
 		player.sendMessage(ChatColor.GREEN + "Seed : " + ChatColor.BLUE + player.getWorld().getSeed());
 	}
+	
+	@Command(name = "spawn", min = 0, max = 1)
+	public void spawn(Player player, CommandArgs args) {
+		if (args.length() == 0) {
+			this.teleporteSpawn(player);
+			player.sendMessage(ChatColor.GREEN + "Vous êtes au spawn !");
+		} else {
+			for (Player target : args.getPlayers(0)) {
+				this.teleporteSpawn(target);
+				target.sendMessage(ChatColor.GREEN + "Vous avez été téléporté au spawn !");
+				player.sendMessage(ChatColor.GREEN + "Vous avez été téléporté au spawn : " + ChatColor.BLUE + target.getName());
+			}
+		}
+	}
+	
+	private void teleporteSpawn(Player target) {
+		target.teleport(target.getWorld().getSpawnLocation());
+	}
 }
