@@ -34,15 +34,7 @@ commands:
         description: "Vide l'inventaire"
         usage: ""
         aliases: ["clear"]
-    "useful clearall":
-        description: "Vide l'inventaire de tous les joueures"
-        usage: ""
-        aliases: ["clearall"]
     "useful teleportation":
         description: "Teleportation"
         usage: ""
         aliases: ["tp"]
-    "useful teleportationall":
-        description: "Teleportation de tous les joueures"
-        usage: ""
-        aliases: ["tpall"]

@@ -29,15 +29,16 @@ public class GodCommand extends UsefulCommands {
                         ChatColor.BLUE + " /god " + ChatColor.GREEN + " pour en resortir.");
             }
         } else {
-            Player target = args.getPlayer(0);
-            if (godComponent.isGod(target)) {
-                godComponent.removeGod(target);
-                player.sendMessage(ChatColor.AQUA + "Mode dieux arreté pour " +
-                        ChatColor.BLUE + target.getName());
-            } else {
-                godComponent.setGod(target);
-                player.sendMessage(ChatColor.AQUA + "Vous avez mis le mode Dieux pour " +
-                        ChatColor.BLUE + target.getName());
+            for (Player target : args.getPlayers(0)) {
+            	if (godComponent.isGod(target)) {
+                	godComponent.removeGod(target);
+                	player.sendMessage(ChatColor.AQUA + "Mode dieux arreté pour " +
+                			ChatColor.BLUE + target.getName());
+            	} else {
+                	godComponent.setGod(target);
+                	player.sendMessage(ChatColor.AQUA + "Vous avez mis le mode Dieux pour " +
+                        	ChatColor.BLUE + target.getName());
+            	}
             }
         }
     }
