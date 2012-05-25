@@ -54,3 +54,7 @@ commands:
         description: "Donne x objet"
         usage: ""
         aliases: ["give"]
+    "useful open":
+        description: "Ouvre l'inventaire"
+        usage: ""
+        aliases: ["open"]

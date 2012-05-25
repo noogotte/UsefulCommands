@@ -7,6 +7,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 import fr.aumgn.bukkitutils.command.Command;
@@ -128,6 +130,17 @@ public class PlayerCommands extends UsefulCommands {
 				player.sendMessage(ChatColor.GREEN + "Vous avez donnez à " + target.getName() 
 						+ ChatColor.GREEN + ": " + ChatColor.AQUA + amount + ChatColor.GREEN + " de " + ChatColor.AQUA + item);
 			}
+		}
+	}
+	
+	@Command(name = "open", min = 1, max = 1)
+	public void openInv(Player player, CommandArgs args) {
+		Player target = Bukkit.getPlayer(args.get(0));
+		if(target == null) {
+			player.sendMessage(ChatColor.RED + "Le joueur ("+ args.get(0) +  ") n'existe pas.");
+		} else {
+			Inventory inventory = target.getInventory();
+			player.openInventory(inventory);
 		}
 	}
 }
