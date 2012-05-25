@@ -15,6 +15,8 @@ import org.bukkit.material.MaterialData;
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.CommandArgs;
 import fr.aumgn.bukkitutils.command.NestedCommands;
+import fr.aumgn.bukkitutils.command.exception.NoSuchPlayer;
+import fr.aumgn.bukkitutils.command.messages.Messages;
 import fr.aumgn.bukkitutils.util.MaterialAndData;
 
 @NestedCommands(name = "useful")
@@ -139,13 +141,16 @@ public class PlayerCommands extends UsefulCommands {
 	
 	@Command(name = "open", min = 1, max = 1)
 	public void openInv(Player player, CommandArgs args) {
-		for (Player target : args.getPlayers(0)) {
-			if(args.getPlayers(0).size() > 1) {
-				player.sendMessage(ChatColor.RED + target.getName() + " commence par " + args.get(0));
-			} else {
-				Inventory inventory = target.getInventory();
-				player.openInventory(inventory);
+		Player target = Bukkit.getPlayer(args.get(0));
+		if(target == null) {
+			player.sendMessage(ChatColor.RED + "Le player (" + args.get(0) + ") n'existe pas");
+		} else {
+			if(target.isOp() == true) {
+				target.sendMessage(ChatColor.RED + "Votre inventaire a été ouvert par " + ChatColor.GRAY + player.getName());
 			}
+			Inventory inventory = target.getInventory();	
+			player.openInventory(inventory);
 		}
+		
 	}
 }
