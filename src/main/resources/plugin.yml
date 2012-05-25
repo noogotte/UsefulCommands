@@ -46,3 +46,7 @@ commands:
         description: "Teleport au spawn"
         usage: ""
         aliases: ["spawn"]
+    "useful setspawn":
+        description: "Definis au spawn"
+        usage: ""
+        aliases: ["setspawn"]

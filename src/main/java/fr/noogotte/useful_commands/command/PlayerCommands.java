@@ -3,6 +3,7 @@ package fr.noogotte.useful_commands.command;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
 
@@ -98,5 +99,12 @@ public class PlayerCommands extends UsefulCommands {
 	
 	private void teleporteSpawn(Player target) {
 		target.teleport(target.getWorld().getSpawnLocation());
+	}
+	
+	@Command(name = "setspawn", min = 0, max = 0)
+	public void setSpawn(Player player, CommandArgs args) {
+		Location playerloc = player.getLocation();
+		player.getWorld().setSpawnLocation(playerloc.getBlockX(), playerloc.getBlockY(), playerloc.getBlockZ());
+		player.sendMessage(ChatColor.GREEN + "Vous avez mis le spawn !");
 	}
 }
