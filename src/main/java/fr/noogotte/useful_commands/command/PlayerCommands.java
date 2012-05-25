@@ -76,4 +76,9 @@ public class PlayerCommands extends UsefulCommands {
 			target.getInventory().setItem(j, null);
 		}
 	}
+	
+	@Command(name = "seed", min = 0, max = 0)
+	public void seed(Player player, CommandArgs args) {
+		player.sendMessage(ChatColor.GREEN + "Seed : " + ChatColor.BLUE + player.getWorld().getSeed());
+	}
 }
