@@ -135,12 +135,14 @@ public class PlayerCommands extends UsefulCommands {
 	
 	@Command(name = "open", min = 1, max = 1)
 	public void openInv(Player player, CommandArgs args) {
-		Player target = Bukkit.getPlayer(args.get(0));
-		if(target == null) {
-			player.sendMessage(ChatColor.RED + "Le joueur ("+ args.get(0) +  ") n'existe pas.");
-		} else {
-			Inventory inventory = target.getInventory();
-			player.openInventory(inventory);
+		for (Player target : args.getPlayers(0)) {
+			if(args.getPlayers(0).size() > 1) {
+				player.sendMessage(ChatColor.RED + target.getName() + " commence par " + args.get(0));
+			} else {
+				Inventory inventory = target.getInventory();
+				player.openInventory(inventory);
+			}
 		}
+			
 	}
 }
