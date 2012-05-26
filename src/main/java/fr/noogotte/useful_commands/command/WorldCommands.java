@@ -42,7 +42,7 @@ public class WorldCommands extends UsefulCommands {
                     + "Vous avez mis le jour dans "
                     + ChatColor.AQUA + world.getName());
         } else if (arg.equalsIgnoreCase("night")) {
-            world.setTime(20 * 60 * 11);                
+            world.setTime(20 * 60 * 11);
             player.sendMessage(ChatColor.GOLD
                     +"Vous avez mis la nuit dans "
                     + ChatColor.AQUA + world.getName());

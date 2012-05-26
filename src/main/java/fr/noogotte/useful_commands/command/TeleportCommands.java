@@ -43,7 +43,7 @@ public class TeleportCommands extends UsefulCommands {
 
         for (Player target : targets) {
             Vector currentPos = new Vector(target.getLocation());
-            Direction dir = currentPos.toDirection(teleportPos);
+            Direction dir = teleportPos.towards(currentPos);
             Location location = teleportPos.toLocation(world, dir);
             target.teleport(location);
 
