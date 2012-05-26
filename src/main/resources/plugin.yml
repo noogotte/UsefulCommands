@@ -58,6 +58,10 @@ commands:
         description: "Affiche les infos de la cible"
         usage: "[target]"
         aliases: ["pinfo", "player-info"]
+    "useful id":
+        description: "Affiche l id de l objet tenus en main"
+        usage: ""
+        aliases: ["id"]
 
     # Teleport commands
     "useful teleportation":

@@ -147,4 +147,11 @@ public class PlayerCommands extends UsefulCommands {
     	player.sendMessage("Gamemode: " + target.getGameMode());
     	player.sendMessage("Experience: " + target.getLevel());
     }
+    
+    
+    @Command(name = "id", min = 0, max = 0)
+    public void id(Player player, CommandArgs args) {
+    	player.sendMessage("Vous tenez :" + player.getItemInHand().getData());
+    	player.sendMessage("Son id est :" + player.getItemInHand().getTypeId());
+    }
 }
