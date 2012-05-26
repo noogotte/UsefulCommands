@@ -137,7 +137,7 @@ public class PlayerCommands extends UsefulCommands {
     
     @Command(name = "playerinfo", min = 1, max = 1)
     public void playerInfo(Player player, CommandArgs args) {
-    	Player target = args.getPlayer(0, player);
+    	Player target = args.getPlayer(0);
     	
     	player.sendMessage(ChatColor.UNDERLINE + "Info de " + target.getName());
     	player.sendMessage("Vie: " + target.getHealth());

@@ -57,7 +57,7 @@ commands:
     "useful playerinfo":
         description: "Affiche les infos de la cible"
         usage: "[target]"
-        aliases: ["pinfo", "info"]
+        aliases: ["pinfo", "player-info"]
 
     # Teleport commands
     "useful teleportation":
