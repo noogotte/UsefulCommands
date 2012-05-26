@@ -3,11 +3,15 @@ package fr.noogotte.useful_commands.command;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.CommandArgs;
 import fr.aumgn.bukkitutils.command.NestedCommands;
+import fr.aumgn.bukkitutils.geom.Direction;
+import fr.aumgn.bukkitutils.geom.Vector;
 
 @NestedCommands(name = "useful")
 public class TeleportCommands extends UsefulCommands {
@@ -27,6 +31,27 @@ public class TeleportCommands extends UsefulCommands {
                         + ChatColor.GREEN + player.getName() 
                         + ChatColor.AQUA + " à "
                         + ChatColor.GREEN + target.getName());
+            }
+        }
+    }
+
+    @Command(name = "teleport-to", min = 1, max = 3)
+    public void teleportTo(Player player, CommandArgs args) {
+        Vector teleportPos = args.getVector(0);
+        World world = args.getWorld(1, player.getWorld());
+        List<Player> targets = args.getPlayers(2, player);
+
+        for (Player target : targets) {
+            Vector currentPos = new Vector(target.getLocation());
+            Direction dir = currentPos.toDirection(teleportPos);
+            Location location = teleportPos.toLocation(world, dir);
+            target.teleport(location);
+
+            player.sendMessage(ChatColor.GREEN + "Poof !");
+            if (!player.equals(target)) {
+                player.sendMessage(ChatColor.GREEN
+                        + "Vous avez téléporté "
+                        + ChatColor.BLUE + target.getName());
             }
         }
     }

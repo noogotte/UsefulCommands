@@ -60,6 +60,10 @@ commands:
         description: "Teleportation."
         usage: "<target> | <player> <target>"
         aliases: ["tp"]
+    "useful teleport-to":
+        description: "Teleporte aux coordonnées données."
+        usage: "<x>,<y>,<z> [world] [target]"
+        aliases: ["tpto"]
     "useful spawn":
         description: "Teleport au spawn."
         usage: "[target]"
