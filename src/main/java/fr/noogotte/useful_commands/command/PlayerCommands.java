@@ -13,6 +13,7 @@ import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.CommandArgs;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.itemtype.ItemType;
+import fr.aumgn.bukkitutils.util.Util;
 
 @NestedCommands(name = "useful")
 public class PlayerCommands extends UsefulCommands {
@@ -158,5 +159,16 @@ public class PlayerCommands extends UsefulCommands {
     public void id(Player player, CommandArgs args) {
     	player.sendMessage(ChatColor.GREEN + "Vous tenez : " + ChatColor.AQUA + player.getItemInHand().getData());
     	player.sendMessage(ChatColor.GREEN + "Son id est : " + ChatColor.AQUA + player.getItemInHand().getTypeId());
+    }
+    
+    @Command(name = "kick", min = 1, max = 1)
+    public void kick(Player player, CommandArgs args) {
+    	Player target = args.getPlayer(0);
+    	if(target.isOp() == true) {
+    		player.sendMessage(ChatColor.RED + "(" + target.getName() + ")"+ " est OP vous ne pouvez pas le kicker.");
+    	} else {
+    		target.kickPlayer("Kicked by admin !");
+    		Util.broadcast(ChatColor.AQUA + target.getName() + ChatColor.GREEN + "a été kicker !");
+    	}
     }
 }

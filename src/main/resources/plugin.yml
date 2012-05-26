@@ -62,6 +62,10 @@ commands:
         description: "Affiche l id de l objet tenus en main"
         usage: ""
         aliases: ["id"]
+    "useful kick":
+        description: "Kick un joueure"
+        usage: ""
+        aliases: ["kick"]
 
     # Teleport commands
     "useful teleportation":
