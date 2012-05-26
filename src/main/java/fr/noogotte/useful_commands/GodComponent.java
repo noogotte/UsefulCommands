@@ -35,7 +35,8 @@ public class GodComponent implements Listener {
     @EventHandler()
     public void healthChange(EntityDamageEvent event) {
         Entity entity = event.getEntity();
-        if(entity instanceof Player && gods.contains((Player) entity)) {
+        if(entity instanceof Player
+                && gods.contains((Player) entity)) {
             event.setCancelled(true);
         }
     }

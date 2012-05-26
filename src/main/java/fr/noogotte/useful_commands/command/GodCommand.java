@@ -22,23 +22,28 @@ public class GodCommand extends UsefulCommands {
         if (args.length() == 0) {
             if (godComponent.isGod(player)) {
                 godComponent.removeGod(player);
-                player.sendMessage(ChatColor.AQUA + "Mode dieu arreté.");
+                player.sendMessage(ChatColor.AQUA
+                        + "Mode dieu arreté.");
             } else {
                 godComponent.setGod(player);
-                player.sendMessage(ChatColor.GREEN + "Vous êtes en mode Dieu tapez " +
-                        ChatColor.BLUE + " /god " + ChatColor.GREEN + " pour en resortir.");
+                player.sendMessage(ChatColor.GREEN
+                        + "Vous êtes en mode Dieu, tapez "
+                        + ChatColor.BLUE + " /god "
+                        + ChatColor.GREEN + " pour en resortir.");
             }
         } else {
             for (Player target : args.getPlayers(0)) {
-            	if (godComponent.isGod(target)) {
-                	godComponent.removeGod(target);
-                	player.sendMessage(ChatColor.AQUA + "Mode dieux arreté pour " +
-                			ChatColor.BLUE + target.getName());
-            	} else {
-                	godComponent.setGod(target);
-                	player.sendMessage(ChatColor.AQUA + "Vous avez mis le mode Dieux pour " +
-                        	ChatColor.BLUE + target.getName());
-            	}
+                if (godComponent.isGod(target)) {
+                    godComponent.removeGod(target);
+                    player.sendMessage(ChatColor.AQUA
+                            + "Mode dieux arreté pour "
+                            + ChatColor.BLUE + target.getName());
+                } else {
+                    godComponent.setGod(target);
+                    player.sendMessage(ChatColor.AQUA
+                            + "Vous avez mis le mode Dieux pour "
+                            + ChatColor.BLUE + target.getName());
+                }
             }
         }
     }
