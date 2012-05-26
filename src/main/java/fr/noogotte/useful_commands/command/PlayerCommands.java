@@ -2,8 +2,10 @@ package fr.noogotte.useful_commands.command;
 
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -131,5 +133,19 @@ public class PlayerCommands extends UsefulCommands {
         }
         Inventory inventory = target.getInventory();
         player.openInventory(inventory);
+    }
+    
+    @Command(name = "playerinfo", min = 1, max = 1)
+    public void playerInfo(Player player, CommandArgs args) {
+    	Player target = args.getPlayer(0, player);
+    	
+    	player.sendMessage(ChatColor.UNDERLINE + "Info de " + target.getName());
+    	player.sendMessage("Vie: " + target.getHealth());
+    	player.sendMessage("Faim: " + target.getFoodLevel());
+    	player.sendMessage("IP: " + target.getAddress());
+    	Location loc = target.getLocation();
+    	player.sendMessage("Cordonnées: " + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + " Monde: " + target.getWorld().getName());
+    	player.sendMessage("Gamemode: " + target.getGameMode());
+    	player.sendMessage("Experience: " + target.getLevel());
     }
 }
