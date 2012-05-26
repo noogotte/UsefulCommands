@@ -1,5 +1,7 @@
 package fr.noogotte.useful_commands.command;
 
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -10,22 +12,39 @@ import fr.aumgn.bukkitutils.command.NestedCommands;
 @NestedCommands(name = "useful")
 public class TeleportCommands extends UsefulCommands {
 
-    @Command(name = "teleportation", min = 1, max = 3)
-    public void gamemode(Player player, CommandArgs args) {
+    @Command(name = "teleportation", min = 1, max = 2)
+    public void telportation(Player sender, CommandArgs args) {
         if(args.length() == 1) {
-            for (Player target : args.getPlayers(0)) {
+            Player target = args.getPlayer(0);
+            sender.teleport(target);
+            sender.sendMessage(ChatColor.GREEN + "Poof !");
+        } else {
+            Player target = args.getPlayer(1);
+            for (Player player : args.getPlayers(0)) {
                 player.teleport(target);
-                player.sendMessage(ChatColor.GREEN + "Poof !");
-            }
-        } else if (args.length() == 2) {
-            for (Player target1 : args.getPlayers(0)) {
-                Player target2 = args.getPlayer(1);
-                target1.teleport(target2);
-                player.sendMessage(ChatColor.AQUA +
+                sender.sendMessage(ChatColor.AQUA +
                         "Vous avez téléportés "
-                        + ChatColor.GREEN + target1.getName() 
+                        + ChatColor.GREEN + player.getName() 
                         + ChatColor.AQUA + " à "
-                        + ChatColor.GREEN + target2.getName());
+                        + ChatColor.GREEN + target.getName());
+            }
+        }
+    }
+
+    @Command(name = "spawn", min = 0, max = 1)
+    public void spawn(Player player, CommandArgs args) {
+        List<Player> targets = args.getPlayers(0, player);
+
+        for (Player target : targets) {
+            target.teleport(
+                    target.getWorld().getSpawnLocation());
+
+            target.sendMessage(ChatColor.GREEN + "Vous êtes au spawn !");
+            if (!player.equals(target)) {
+                player.sendMessage(ChatColor.GREEN
+                        + "Vous avez téléporté "
+                        + ChatColor.BLUE + target.getName()
+                        + ChatColor.GREEN + " au spawn.");
             }
         }
     }

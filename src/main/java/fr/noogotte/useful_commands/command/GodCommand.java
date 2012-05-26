@@ -1,5 +1,7 @@
 package fr.noogotte.useful_commands.command;
 
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -19,27 +21,25 @@ public class GodCommand extends UsefulCommands {
 
     @Command(name = "god", min = 0, max = 1)
     public void god(Player player, CommandArgs args) {
-        if (args.length() == 0) {
-            if (godComponent.isGod(player)) {
-                godComponent.removeGod(player);
-                player.sendMessage(ChatColor.AQUA
+        List<Player> targets = args.getPlayers(0, player);
+
+        for (Player target : targets) {
+            if (godComponent.isGod(target)) {
+                godComponent.removeGod(target);
+                target.sendMessage(ChatColor.AQUA
                         + "Mode dieu arreté.");
-            } else {
-                godComponent.setGod(player);
-                player.sendMessage(ChatColor.GREEN
-                        + "Vous êtes en mode Dieu, tapez "
-                        + ChatColor.BLUE + " /god "
-                        + ChatColor.GREEN + " pour en resortir.");
-            }
-        } else {
-            for (Player target : args.getPlayers(0)) {
-                if (godComponent.isGod(target)) {
-                    godComponent.removeGod(target);
+                if (!player.equals(target)) {
                     player.sendMessage(ChatColor.AQUA
                             + "Mode dieux arreté pour "
                             + ChatColor.BLUE + target.getName());
-                } else {
-                    godComponent.setGod(target);
+                }
+            } else {
+                godComponent.setGod(target);
+                target.sendMessage(ChatColor.GREEN
+                        + "Vous êtes en mode Dieu, tapez "
+                        + ChatColor.BLUE + " /god "
+                        + ChatColor.GREEN + " pour en resortir.");
+                if (!player.equals(target)) {
                     player.sendMessage(ChatColor.AQUA
                             + "Vous avez mis le mode Dieux pour "
                             + ChatColor.BLUE + target.getName());

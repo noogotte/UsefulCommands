@@ -8,53 +8,60 @@ commands:
     useful:
         description: "Commande principale."
         usage: "time | weather | gamemode | god | heal | clear | teleportation | seed | spawn"
+
+    # World commands
+    "useful seed":
+        description: "Montre le seed du monde."
+        usage: "[world]"
+        aliases: ["seed"]
+    "useful setspawn":
+        description: "Definis le spawn."
+        usage: ""
+        aliases: ["setspawn"]
     "useful time":
-        description: "Change l'heure"
-        usage: "day | night"
+        description: "Change l'heure."
+        usage: "day | night [world]"
         permission: "useful.time"
         aliases: ["time"]
     "useful weather":
         description: "Change le temps."
-        usage: "sun | storm"
+        usage: "sun | storm [world]"
         permission: "useful.weather"
         aliases: ["weather"]
+
+    # Player commands
     "useful gamemode":
-        description: "Change le temps."
-        usage: ""
+        description: "Change le gamemode."
+        usage: "[target]"
         aliases: ["gm"]
     "useful god":
-        description: "Met en mode dieux"
-        usage: ""
+        description: "Met en mode dieu."
+        usage: "[target]"
         aliases: ["god"]
     "useful heal":
-        description: "Soigne et nourris"
-        usage: ""
+        description: "Soigne et nourris."
+        usage: "[target]"
         aliases: ["heal"]
     "useful clear":
-        description: "Vide l'inventaire"
-        usage: ""
+        description: "Vide l'inventaire."
+        usage: "[target]"
         aliases: ["clear"]
-    "useful teleportation":
-        description: "Teleportation"
-        usage: ""
-        aliases: ["tp"]
-    "useful seed":
-        description: "Montre le seed du monde"
-        usage: ""
-        aliases: ["seed"]
-    "useful spawn":
-        description: "Teleport au spawn"
-        usage: ""
-        aliases: ["spawn"]
-    "useful setspawn":
-        description: "Definis au spawn"
-        usage: ""
-        aliases: ["setspawn"]
     "useful give":
-        description: "Donne x objet"
-        usage: ""
+        description: "Donne x objet."
+        usage: "<type> [amount] [target]"
         aliases: ["give"]
     "useful open":
-        description: "Ouvre l'inventaire"
-        usage: ""
+        description: "Ouvre l'inventaire."
+        usage: "[target]"
         aliases: ["open"]
+
+    # Teleport commands
+    "useful teleportation":
+        description: "Teleportation."
+        usage: "<target> | <player> <target>"
+        aliases: ["tp"]
+    "useful spawn":
+        description: "Teleport au spawn."
+        usage: "[target]"
+        aliases: ["spawn"]
+
