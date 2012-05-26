@@ -40,12 +40,12 @@ public class WorldCommands extends UsefulCommands {
             world.setTime(20 * 60);
             player.sendMessage(ChatColor.GOLD
                     + "Vous avez mis le jour dans "
-                    + ChatColor.AQUA + player.getWorld().getName());
+                    + ChatColor.AQUA + world.getName());
         } else if (arg.equalsIgnoreCase("night")) {
-            world.setTime(20 * 60 * 11);
+            world.setTime(20 * 60 * 11);                
             player.sendMessage(ChatColor.GOLD
                     +"Vous avez mis la nuit dans "
-                    + ChatColor.AQUA + player.getWorld().getName());
+                    + ChatColor.AQUA + world.getName());
         } else {
             throw new CommandUsageError(
                     "Argument " + arg + " inconnu.");
@@ -61,12 +61,12 @@ public class WorldCommands extends UsefulCommands {
             world.setStorm(false);
             player.sendMessage(ChatColor.GOLD
                     + "Vous avez mis le soleil dans "
-                    + ChatColor.AQUA + player.getWorld().getName());
+                    + ChatColor.AQUA + world.getName());
         } else if(arg.equalsIgnoreCase("storm")) {
             world.setStorm(true);
             player.sendMessage(ChatColor.GOLD
                     + "Vous avez mis la pluie dans "
-                    + ChatColor.AQUA + player.getWorld().getName());
+                    + ChatColor.AQUA + world.getName());
         } else {
             throw new CommandUsageError(
                     "Argument " + arg + " inconnu.");
