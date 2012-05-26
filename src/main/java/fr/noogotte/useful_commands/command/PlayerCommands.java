@@ -40,13 +40,19 @@ public class PlayerCommands extends UsefulCommands {
         }
     }
 
-    @Command(name = "heal", min = 0, max = 1)
+    @Command(name = "heal", flags = "hf", min = 0, max = 1)
     public void heal(Player player, CommandArgs args) {
         List<Player> targets = args.getPlayers(0, player);
+        boolean health = !args.hasFlags() || args.hasFlag('h');
+        boolean food = !args.hasFlags() || args.hasFlag('f');
 
         for (Player target : targets) {
-            target.setHealth(20);
-            target.setFoodLevel(20);
+            if (health) {
+                target.setHealth(20);
+            }
+            if (food) {
+                target.setFoodLevel(20);
+            }
 
             target.sendMessage(ChatColor.YELLOW
                     + "Vous voila soignés et nourris");
@@ -58,13 +64,21 @@ public class PlayerCommands extends UsefulCommands {
         }
     }
 
-    @Command(name = "clear", min = 0, max = 1)
+    @Command(name = "clear", flags = "qra", min = 0, max = 1)
     public void clear(Player player, CommandArgs args) {
         List<Player> targets = args.getPlayers(0, player);
+        int from = args.hasFlag('q') ? 10 : 0;
+        int to = args.hasFlag('r') ? 9 : 35;
+        boolean armor = !args.hasFlag('a');
 
         for (Player target : targets) {
-            for (int j = 0; j <= 39; j++) {
+            for (int j = from; j <= to; j++) {
                 target.getInventory().setItem(j, null);
+            }
+            if (armor) {
+                for (int j = 36; j <= 39; j++) {
+                    target.getInventory().setItem(j, null);
+                }
             }
             target.sendMessage(ChatColor.YELLOW
                     + "Inventaire vidé !");

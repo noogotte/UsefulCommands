@@ -40,11 +40,11 @@ commands:
         aliases: ["god"]
     "useful heal":
         description: "Soigne et nourris."
-        usage: "[target]"
+        usage: "[-hf] [target]"
         aliases: ["heal"]
     "useful clear":
         description: "Vide l'inventaire."
-        usage: "[target]"
+        usage: "[-qra] [target]"
         aliases: ["clear"]
     "useful give":
         description: "Donne x objet."
