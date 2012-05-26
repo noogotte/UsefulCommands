@@ -4,20 +4,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.MaterialData;
 
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.CommandArgs;
 import fr.aumgn.bukkitutils.command.NestedCommands;
-import fr.aumgn.bukkitutils.command.exception.NoSuchPlayer;
-import fr.aumgn.bukkitutils.command.messages.Messages;
-import fr.aumgn.bukkitutils.util.MaterialAndData;
+import fr.aumgn.bukkitutils.itemtype.ItemType;
 
 @NestedCommands(name = "useful")
 public class PlayerCommands extends UsefulCommands {
@@ -118,23 +111,21 @@ public class PlayerCommands extends UsefulCommands {
 	
 	@Command(name = "give", min = 1, max = 3)
 	public void give(Player player, CommandArgs args) {
-		ItemStack item = args.getMaterialAndData(0).toItemStack(64, (short) 0);
-		MaterialAndData materialAndData = args.getMaterialAndData(0);
-		item = materialAndData.toItemStack(64, (short) 0);
+		ItemType itemType = args.getItemType(0);
 		if(args.length() == 1) {
-			player.getInventory().addItem(new ItemStack (args.getMaterialAndData(0).toItemStack(64, (short) 0)));
-			player.sendMessage(ChatColor.GREEN + "Vous vous êtes donnés un stack de " + ChatColor.AQUA + materialAndData.getMaterial());
+			player.getInventory().addItem(itemType.toItemStack(64));
+			player.sendMessage(ChatColor.GREEN + "Vous vous êtes donnés un stack de " + ChatColor.AQUA + itemType.getMaterial());
 		} else if (args.length() == 2) {
 			Integer amount = args.getInteger(1);
-			player.getInventory().addItem(new ItemStack (args.getMaterialAndData(0).toItemStack(amount, (short) 0)));
-			player.sendMessage(ChatColor.GREEN + "Vous vous êtes donnés "  + ChatColor.AQUA 
-					+ amount + ChatColor.GREEN + " de " + ChatColor.AQUA + materialAndData.getMaterial());
+			player.getInventory().addItem(itemType.toItemStack(amount));
+			player.sendMessage(ChatColor.GREEN + "Vous vous êtes donnés " + ChatColor.AQUA
+					+ amount + ChatColor.GREEN + " de " + ChatColor.AQUA + itemType.getMaterial());
 		} else if (args.length() == 3) {
 			Integer amount = args.getInteger(1);
 			for (Player target : args.getPlayers(2)) {
-				target.getInventory().addItem(new ItemStack (args.getMaterialAndData(0).toItemStack(amount, (short) 0)));
-				player.sendMessage(ChatColor.GREEN + "Vous avez donnez à " + target.getName() 
-						+ ChatColor.GREEN + ": " + ChatColor.AQUA + amount + ChatColor.GREEN + " de " + ChatColor.AQUA + materialAndData.getMaterial());
+				target.getInventory().addItem(itemType.toItemStack(amount, (short) 0));
+				player.sendMessage(ChatColor.GREEN + "Vous avez donnez à " + target.getName()
+						+ ChatColor.GREEN + ": " + ChatColor.AQUA + amount + ChatColor.GREEN + " de " + ChatColor.AQUA + itemType.getMaterial());
 			}
 		}
 	}
