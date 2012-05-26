@@ -138,20 +138,25 @@ public class PlayerCommands extends UsefulCommands {
     public void playerInfo(Player player, CommandArgs args) {
     	Player target = args.getPlayer(0);
     	
-    	player.sendMessage(ChatColor.UNDERLINE + "Info de " + target.getName());
-    	player.sendMessage("Vie: " + target.getHealth());
-    	player.sendMessage("Faim: " + target.getFoodLevel());
-    	player.sendMessage("IP: " + target.getAddress());
+    	player.sendMessage(ChatColor.GREEN + "" + ChatColor.UNDERLINE + "Info de " +  target.getName());
+    	player.sendMessage(ChatColor.GREEN +"Vie: " + ChatColor.AQUA + target.getHealth());
+    	player.sendMessage(ChatColor.GREEN +"Faim: " + ChatColor.AQUA + target.getFoodLevel());
+    	player.sendMessage(ChatColor.GREEN +"IP: " + ChatColor.AQUA + target.getAddress());
     	Location loc = target.getLocation();
-    	player.sendMessage("Cordonnées: " + loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ() + " Monde: " + target.getWorld().getName());
-    	player.sendMessage("Gamemode: " + target.getGameMode());
-    	player.sendMessage("Experience: " + target.getLevel());
+    	player.sendMessage(ChatColor.GREEN +"Cordonnées: " + ChatColor.AQUA + loc.getBlockX() 
+    			+ ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockY() 
+    			+ ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockZ() 
+    			+ ChatColor.GREEN + " Monde: " + ChatColor.AQUA + target.getWorld().getName());
+    	player.sendMessage(ChatColor.GREEN +"Gamemode: " + 
+    			ChatColor.AQUA + target.getGameMode());
+    	player.sendMessage(ChatColor.GREEN +"Experience: " + 
+    			ChatColor.AQUA + target.getLevel());
     }
     
     
     @Command(name = "id", min = 0, max = 0)
     public void id(Player player, CommandArgs args) {
-    	player.sendMessage("Vous tenez :" + player.getItemInHand().getData());
-    	player.sendMessage("Son id est :" + player.getItemInHand().getTypeId());
+    	player.sendMessage(ChatColor.GREEN + "Vous tenez : " + ChatColor.AQUA + player.getItemInHand().getData());
+    	player.sendMessage(ChatColor.GREEN + "Son id est : " + ChatColor.AQUA + player.getItemInHand().getTypeId());
     }
 }
