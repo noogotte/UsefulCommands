@@ -34,10 +34,10 @@ public class PlayerCommands extends UsefulCommands {
                     + ChatColor.AQUA + target.getGameMode());
             if (!player.equals(target)) {
                 player.sendMessage(ChatColor.GREEN
-                    + "Vous avez mis "
-                    + ChatColor.AQUA + target.getName()
-                    + ChatColor.GREEN + " en "
-                    + ChatColor.AQUA +  target.getGameMode());
+                        + "Vous avez mis "
+                        + ChatColor.AQUA + target.getName()
+                        + ChatColor.GREEN + " en "
+                        + ChatColor.AQUA +  target.getGameMode());
             }
         }
     }
@@ -114,11 +114,11 @@ public class PlayerCommands extends UsefulCommands {
                     + ChatColor.AQUA + itemType.getMaterial());
             if (!player.equals(target)) {
                 player.sendMessage(ChatColor.GREEN
-                    + "Vous avez donnez à " + target.getName()
-                    + ChatColor.GREEN + ": "
-                    + ChatColor.AQUA + item.getAmount()
-                    + ChatColor.GREEN + " de "
-                    + ChatColor.AQUA + itemType.getMaterial());
+                        + "Vous avez donnez à " + target.getName()
+                        + ChatColor.GREEN + ": "
+                        + ChatColor.AQUA + item.getAmount()
+                        + ChatColor.GREEN + " de "
+                        + ChatColor.AQUA + itemType.getMaterial());
             }
         }
     }
@@ -134,41 +134,40 @@ public class PlayerCommands extends UsefulCommands {
         Inventory inventory = target.getInventory();
         player.openInventory(inventory);
     }
-    
+
     @Command(name = "playerinfo", min = 1, max = 1)
     public void playerInfo(Player player, CommandArgs args) {
-    	Player target = args.getPlayer(0);
-    	
-    	player.sendMessage(ChatColor.GREEN + "" + ChatColor.UNDERLINE + "Info de " +  target.getName());
-    	player.sendMessage(ChatColor.GREEN +"Vie: " + ChatColor.AQUA + target.getHealth());
-    	player.sendMessage(ChatColor.GREEN +"Faim: " + ChatColor.AQUA + target.getFoodLevel());
-    	player.sendMessage(ChatColor.GREEN +"IP: " + ChatColor.AQUA + target.getAddress());
-    	Location loc = target.getLocation();
-    	player.sendMessage(ChatColor.GREEN +"Cordonnées: " + ChatColor.AQUA + loc.getBlockX() 
-    			+ ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockY() 
-    			+ ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockZ() 
-    			+ ChatColor.GREEN + " Monde: " + ChatColor.AQUA + target.getWorld().getName());
-    	player.sendMessage(ChatColor.GREEN +"Gamemode: " + 
-    			ChatColor.AQUA + target.getGameMode());
-    	player.sendMessage(ChatColor.GREEN +"Experience: " + 
-    			ChatColor.AQUA + target.getLevel());
+        Player target = args.getPlayer(0);
+
+        player.sendMessage(ChatColor.GREEN + "" + ChatColor.UNDERLINE + "Info de " +  target.getName());
+        player.sendMessage(ChatColor.GREEN +"Vie: " + ChatColor.AQUA + target.getHealth());
+        player.sendMessage(ChatColor.GREEN +"Faim: " + ChatColor.AQUA + target.getFoodLevel());
+        player.sendMessage(ChatColor.GREEN +"IP: " + ChatColor.AQUA + target.getAddress());
+        Location loc = target.getLocation();
+        player.sendMessage(ChatColor.GREEN +"Cordonnées: " + ChatColor.AQUA + loc.getBlockX() 
+                + ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockY() 
+                + ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockZ() 
+                + ChatColor.GREEN + " Monde: " + ChatColor.AQUA + target.getWorld().getName());
+        player.sendMessage(ChatColor.GREEN +"Gamemode: " + 
+                ChatColor.AQUA + target.getGameMode());
+        player.sendMessage(ChatColor.GREEN +"Experience: " + 
+                ChatColor.AQUA + target.getLevel());
     }
-    
-    
+
     @Command(name = "id", min = 0, max = 0)
     public void id(Player player, CommandArgs args) {
-    	player.sendMessage(ChatColor.GREEN + "Vous tenez : " + ChatColor.AQUA + player.getItemInHand().getData());
-    	player.sendMessage(ChatColor.GREEN + "Son id est : " + ChatColor.AQUA + player.getItemInHand().getTypeId());
+        player.sendMessage(ChatColor.GREEN + "Vous tenez : " + ChatColor.AQUA + player.getItemInHand().getData());
+        player.sendMessage(ChatColor.GREEN + "Son id est : " + ChatColor.AQUA + player.getItemInHand().getTypeId());
     }
-    
+
     @Command(name = "kick", min = 1, max = 1)
     public void kick(Player player, CommandArgs args) {
-    	Player target = args.getPlayer(0);
-    	if(target.isOp() == true) {
-    		player.sendMessage(ChatColor.RED + "(" + target.getName() + ")"+ " est OP vous ne pouvez pas le kicker.");
-    	} else {
-    		target.kickPlayer("Kicked by admin !");
-    		Util.broadcast(ChatColor.AQUA + target.getName() + ChatColor.GREEN + "a été kicker !");
-    	}
+        Player target = args.getPlayer(0);
+        if(target.isOp() == true) {
+            player.sendMessage(ChatColor.RED + "(" + target.getName() + ")"+ " est OP vous ne pouvez pas le kicker.");
+        } else {
+            target.kickPlayer("Kicked by admin !");
+            Util.broadcast(ChatColor.AQUA + target.getName() + ChatColor.GREEN + "a été kicker !");
+        }
     }
 }
