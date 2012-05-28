@@ -13,10 +13,12 @@ commands:
     "useful seed":
         description: "Montre le seed du monde."
         usage: "[world]"
+        permission: "useful.seed"
         aliases: ["seed"]
     "useful setspawn":
         description: "Definis le spawn."
         usage: ""
+        permission: "useful.setspawn"
         aliases: ["setspawn"]
     "useful time":
         description: "Change l'heure."
@@ -33,50 +35,67 @@ commands:
     "useful gamemode":
         description: "Change le gamemode."
         usage: "[target]"
+        permission: "useful.gamemode"
         aliases: ["gm"]
     "useful god":
         description: "Met en mode dieu."
         usage: "[target]"
+        permission: "useful.god"
         aliases: ["god"]
     "useful heal":
         description: "Soigne et nourris."
         usage: "[-hf] [target]"
+        permission: "useful.heal"
         aliases: ["heal"]
     "useful clear":
         description: "Vide l'inventaire."
         usage: "[-qra] [target]"
+        permission: "useful.clear"
         aliases: ["clear"]
     "useful give":
         description: "Donne x objet."
         usage: "<type> [amount] [target]"
+        permission: "useful.give"
         aliases: ["give"]
     "useful open":
         description: "Ouvre l'inventaire."
         usage: "[target]"
+        permission: "useful.openinv"
         aliases: ["open"]
     "useful playerinfo":
         description: "Affiche les infos de la cible"
         usage: "[target]"
+        permission: "useful.playerinfo"
         aliases: ["pinfo", "player-info"]
     "useful id":
         description: "Affiche l id de l objet tenus en main"
         usage: ""
+        permission: "useful.id"
         aliases: ["id"]
     "useful kick":
         description: "Kick un joueure"
         usage: ""
+        permission: "useful.kick"
         aliases: ["kick"]
+    "useful tell":
+        description: "Envoie un msg prive"
+        usage: "[target]"
+        permission: "useful.tell"
+        aliases: ["tell"]
 
     # Teleport commands
     "useful teleportation":
         description: "Teleportation."
         usage: "<target> | <player> <target>"
+        permission: "useful.teleportation"
         aliases: ["tp"]
     "useful teleport-to":
         description: "Teleporte aux coordonnées données."
         usage: "<x>,<y>,<z> [world] [target]"
+        permission: "useful.teleportto"
         aliases: ["tpto"]
     "useful spawn":
         description: "Teleport au spawn."
         usage: "[target]"
+        permission: "useful.spawn"
         aliases: ["spawn"]

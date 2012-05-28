@@ -160,14 +160,28 @@ public class PlayerCommands extends UsefulCommands {
         player.sendMessage(ChatColor.GREEN + "Son id est : " + ChatColor.AQUA + player.getItemInHand().getTypeId());
     }
 
-    @Command(name = "kick", min = 1, max = 1)
+    @Command(name = "kick", min = 1, max = -1)
     public void kick(Player player, CommandArgs args) {
         Player target = args.getPlayer(0);
         if(target.isOp() == true) {
             player.sendMessage(ChatColor.RED + "(" + target.getName() + ")"+ " est OP vous ne pouvez pas le kicker.");
         } else {
-            target.kickPlayer("Kicked by admin !");
-            Util.broadcast(ChatColor.AQUA + target.getName() + ChatColor.GREEN + "a été kicker !");
+            target.kickPlayer(args.get(1, -1));
+            Util.broadcast(ChatColor.AQUA + target.getName() + ChatColor.GREEN + " a été kicker par " + ChatColor.AQUA + player.getName());
         }
+    }
+    
+    @Command(name = "tell", min = 1, max = -1)
+    public void tell(Player player, CommandArgs args) {
+    	List<Player> targets = args.getPlayers(0);
+    	
+    	for (Player target : targets) {
+    		target.sendMessage(ChatColor.GREEN + "(" + ChatColor.RED + 
+    				"From " + player.getName() 
+    				+ ChatColor.GREEN + ") " 
+    				+ ChatColor.WHITE + args.get(1, -1));
+        	player.sendMessage(ChatColor.GREEN + "Message send to " 
+    				+ ChatColor.BOLD + target.getName() + "");
+    	}
     }
 }
