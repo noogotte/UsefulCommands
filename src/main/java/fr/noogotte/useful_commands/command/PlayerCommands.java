@@ -171,7 +171,7 @@ public class PlayerCommands extends UsefulCommands {
         }
     }
     
-    @Command(name = "tell", min = 1, max = -1)
+    @Command(name = "tell", min = 2, max = -1)
     public void tell(Player player, CommandArgs args) {
     	List<Player> targets = args.getPlayers(0);
     	
@@ -180,8 +180,7 @@ public class PlayerCommands extends UsefulCommands {
     				"From " + player.getName() 
     				+ ChatColor.GREEN + ") " 
     				+ ChatColor.WHITE + args.get(1, -1));
-        	player.sendMessage(ChatColor.GREEN + "Message send to " 
-    				+ ChatColor.BOLD + target.getName() + "");
     	}
+    	player.sendMessage(ChatColor.GREEN + "Message send.");
     }
 }

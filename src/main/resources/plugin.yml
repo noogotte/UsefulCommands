@@ -4,6 +4,7 @@ description: Useful Commands for Server
 author: noogotte
 main: fr.noogotte.useful_commands.UsefulCommandPlugin
 
+# Commandes
 commands:
     useful:
         description: "Commande principale."
@@ -79,7 +80,7 @@ commands:
         aliases: ["kick"]
     "useful tell":
         description: "Envoie un msg prive"
-        usage: "[target]"
+        usage: "[target]  [msg]"
         permission: "useful.tell"
         aliases: ["tell"]
 
@@ -99,3 +100,7 @@ commands:
         usage: "[target]"
         permission: "useful.spawn"
         aliases: ["spawn"]
+#¨Permissions
+permissions:
+    useful.tell:
+        default: true
