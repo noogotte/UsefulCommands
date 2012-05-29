@@ -37,7 +37,7 @@ commands:
         description: "Change le gamemode."
         usage: "[target]"
         permission: "useful.gamemode"
-        aliases: ["gm"]
+        aliases: ["gm", "gamemode"]
     "useful god":
         description: "Met en mode dieu."
         usage: "[target]"
@@ -57,7 +57,7 @@ commands:
         description: "Donne x objet."
         usage: "<type> [amount] [target]"
         permission: "useful.give"
-        aliases: ["give"]
+        aliases: ["give", "i", "item"]
     "useful open":
         description: "Ouvre l'inventaire."
         usage: "[target]"
@@ -82,7 +82,12 @@ commands:
         description: "Envoie un msg prive"
         usage: "[target]  [msg]"
         permission: "useful.tell"
-        aliases: ["tell"]
+        aliases: ["tell", "say"]
+    "useful fly":
+        description: "Mais en vole"
+        usage: "[target]"
+        permission: "useful.fly"
+        aliases: ["fly"]
 
     # Teleport commands
     "useful teleportation":

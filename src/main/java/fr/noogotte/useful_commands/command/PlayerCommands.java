@@ -183,4 +183,30 @@ public class PlayerCommands extends UsefulCommands {
     	}
     	player.sendMessage(ChatColor.GREEN + "Message send.");
     }
+    
+    @Command(name = "fly", min = 0, max = 1)
+    public void fly(Player player, CommandArgs args) {
+    	List<Player> targets = args.getPlayers(0, player);
+    	for (Player target : targets) {
+    		if(target.isFlying() == true) {
+    			target.setFlying(false);
+    		} else {
+    			target.setFlying(true);
+    		}
+    		if(target.isFlying() == true) {
+				player.sendMessage(ChatColor.GREEN + " Vous volez maintenant !");
+			} else {
+				player.sendMessage(ChatColor.GREEN + " Vous ne volez plus !");
+			}
+    		
+    		if (!player.equals(target)) {
+    			if(target.isFlying() == true) {
+    				player.sendMessage(ChatColor.GOLD + target.getName() + ChatColor.GREEN + " vole maintenant !");
+    			} else {
+    				player.sendMessage(ChatColor.GOLD + target.getName() + ChatColor.GREEN + " ne vole plus !");
+    			}
+            }
+    	}
+    }
+    
 }
