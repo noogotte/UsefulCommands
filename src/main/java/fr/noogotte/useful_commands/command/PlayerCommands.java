@@ -2,6 +2,7 @@ package fr.noogotte.useful_commands.command;
 
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -209,4 +210,12 @@ public class PlayerCommands extends UsefulCommands {
     	}
     }
     
+    @Command(name = "kill", min = 1, max = 1)
+    public void kill(Player player, CommandArgs args) {
+    	List<Player> targets = args.getPlayers(0);
+    	for (Player target : targets) {
+    		target.setHealth(0);
+    		player.sendMessage(ChatColor.GREEN + "Vous avez tués " + ChatColor.WHITE + target.getName());
+    	}
+    }
 }

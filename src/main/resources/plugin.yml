@@ -88,7 +88,11 @@ commands:
         usage: "[target]"
         permission: "useful.fly"
         aliases: ["fly"]
-
+    "useful kill":
+        description: "Kill"
+        usage: "[target]"
+        permission: "useful.kill"
+        aliases: ["kill"]
     # Teleport commands
     "useful teleportation":
         description: "Teleportation."
