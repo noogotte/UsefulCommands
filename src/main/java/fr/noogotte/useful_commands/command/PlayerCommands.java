@@ -22,30 +22,24 @@ public class PlayerCommands extends UsefulCommands {
     @Command(name = "gamemode", min = 0, max = 1)
     public void gamemode(Player player, CommandArgs args) {
         List<Player> targets = args.getPlayers(0, player);
-        if(args.length() == 0) {
-        	if (player.getGameMode() == GameMode.CREATIVE) {
-                player.setGameMode(GameMode.SURVIVAL);
+
+        for (Player target : targets) {
+            if (target.getGameMode() == GameMode.CREATIVE) {
+                target.setGameMode(GameMode.SURVIVAL);
             } else {
-                player.setGameMode(GameMode.CREATIVE);
+                target.setGameMode(GameMode.CREATIVE);
             }
-        	player.sendMessage(ChatColor.GREEN + "Vous êtes maintenant en "
-                    + ChatColor.AQUA + player.getGameMode());
-        } else if (args.length() == 1) {
-        	for (Player target : targets) {
-                if (target.getGameMode() == GameMode.CREATIVE) {
-                    target.setGameMode(GameMode.SURVIVAL);
-                } else {
-                    target.setGameMode(GameMode.CREATIVE);
-                }
+
+            target.sendMessage(ChatColor.GREEN
+                    + "Vous êtes maintenant en "
+                    + ChatColor.AQUA + target.getGameMode());
+            if (!player.equals(target)) {
                 player.sendMessage(ChatColor.GREEN
-                        + "Vous avez mis " 
-                		+ ChatColor.AQUA + target.getName() 
-                		+ ChatColor.GREEN + " en " 
-                		+ ChatColor.AQUA + target.getGameMode());
-                target.sendMessage(ChatColor.GREEN + "Vous êtes maintenant en "
-                        + ChatColor.AQUA + target.getGameMode());
-        
-        	}
+                        + "Vous avez mis "
+                        + ChatColor.AQUA + target.getName()
+                        + ChatColor.GREEN + " en "
+                        + ChatColor.AQUA +  target.getGameMode());
+            }
         }
     }
 
@@ -55,23 +49,20 @@ public class PlayerCommands extends UsefulCommands {
         boolean health = !args.hasFlags() || args.hasFlag('h');
         boolean food = !args.hasFlags() || args.hasFlag('f');
 
-        if(args.length() == 0) {
-        	if (health) {
-                player.setHealth(20);
+        for (Player target : targets) {
+            if (health) {
+                target.setHealth(20);
             }
             if (food) {
-                player.setFoodLevel(20);
+                target.setFoodLevel(20);
             }
-            player.sendMessage("Vous avez été nourri et soigné");
-        } else if (args.length() == 1) {
-        	for (Player target : targets) {
-                if (health) {
-                    target.setHealth(20);
-                }
-                if (food) {
-                    target.setFoodLevel(20);
-                }
-                player.sendMessage("Vous avez soigné et nourri " + target.getName());
+
+            target.sendMessage(ChatColor.YELLOW
+                    + "Vous voila soignés et nourris");
+            if (!player.equals(target)) {
+                player.sendMessage(ChatColor.GREEN
+                        + "Vous vous avez soignés et nourris "
+                        + ChatColor.BLUE + target.getName());
             }
         }
     }
@@ -82,34 +73,24 @@ public class PlayerCommands extends UsefulCommands {
         int from = args.hasFlag('q') ? 10 : 0;
         int to = args.hasFlag('r') ? 9 : 35;
         boolean armor = !args.hasFlag('a');
-        
-        if(args.length() == 0) {
-        	for (int j = from; j <= to; j++) {
-                player.getInventory().setItem(j, null);
+
+        for (Player target : targets) {
+            for (int j = from; j <= to; j++) {
+                target.getInventory().setItem(j, null);
             }
             if (armor) {
                 for (int j = 36; j <= 39; j++) {
-                    player.getInventory().setItem(j, null);
-                }
-            }
-            player.sendMessage(ChatColor.YELLOW
-                    + "Inventaire vidé !");
-        } else if (args.length() == 1) {
-        	for (Player target : targets) {
-                for (int j = from; j <= to; j++) {
                     target.getInventory().setItem(j, null);
                 }
-                if (armor) {
-                    for (int j = 36; j <= 39; j++) {
-                        target.getInventory().setItem(j, null);
-                    }
-                }
-                target.sendMessage(ChatColor.YELLOW
-                        + "Inventaire vidé !");
+            }
+            target.sendMessage(ChatColor.YELLOW
+                    + "Inventaire vidé !");
+
+            if (!player.equals(target)) {
                 player.sendMessage(ChatColor.GREEN
-                        + "Vous avez vidé l'inventaire de "
+                        + "Vous avez vidés l'inventaire de "
                         + ChatColor.BLUE + target.getName());
-        	}
+            }
         }
     }
 
@@ -206,26 +187,26 @@ public class PlayerCommands extends UsefulCommands {
     
     @Command(name = "fly", min = 0, max = 1)
     public void fly(Player player, CommandArgs args) {
-    	
-    	if(args.length() == 0) {
-    		if(player.isFlying() == true) {
-				player.setFlying(false);
-				player.sendMessage("Vous ne volez plus maintenant !");
-			} else {
-				player.setFlying(true);
-				player.sendMessage("Vous volez maintenant !");
-			}
-    	} else if (args.length() == 1) {
-    	   	List<Player> targets = args.getPlayers(0);
-    		for (Player target : targets) {
-    			if(target.isFlying() == true) {
-    				target.setFlying(false);
-    				target.sendMessage(target.getName() + " ne vole plus.");
-    			} else {
-    				target.setFlying(true);
-    				target.sendMessage(target.getName() + " vole.");
-    			}
+    	List<Player> targets = args.getPlayers(0, player);
+    	for (Player target : targets) {
+    		if(target.isFlying() == true) {
+    			target.setFlying(false);
+    		} else {
+    			target.setFlying(true);
     		}
+    		if(target.isFlying() == true) {
+				player.sendMessage(ChatColor.GREEN + " Vous volez maintenant !");
+			} else {
+				player.sendMessage(ChatColor.GREEN + " Vous ne volez plus !");
+			}
+    		
+    		if (!player.equals(target)) {
+    			if(target.isFlying() == true) {
+    				player.sendMessage(ChatColor.GOLD + target.getName() + ChatColor.GREEN + " vole maintenant !");
+    			} else {
+    				player.sendMessage(ChatColor.GOLD + target.getName() + ChatColor.GREEN + " ne vole plus !");
+    			}
+            }
     	}
     }
     
