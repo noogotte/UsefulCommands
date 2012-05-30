@@ -22,24 +22,30 @@ public class PlayerCommands extends UsefulCommands {
     @Command(name = "gamemode", min = 0, max = 1)
     public void gamemode(Player player, CommandArgs args) {
         List<Player> targets = args.getPlayers(0, player);
-
-        for (Player target : targets) {
-            if (target.getGameMode() == GameMode.CREATIVE) {
-                target.setGameMode(GameMode.SURVIVAL);
+        if(args.length() == 0) {
+        	if (player.getGameMode() == GameMode.CREATIVE) {
+                player.setGameMode(GameMode.SURVIVAL);
             } else {
-                target.setGameMode(GameMode.CREATIVE);
+                player.setGameMode(GameMode.CREATIVE);
             }
-
-            target.sendMessage(ChatColor.GREEN
-                    + "Vous êtes maintenant en "
-                    + ChatColor.AQUA + target.getGameMode());
-            if (!player.equals(target)) {
+        	player.sendMessage(ChatColor.GREEN + "Vous êtes maintenant en "
+                    + ChatColor.AQUA + player.getGameMode());
+        } else if (args.length() == 1) {
+        	for (Player target : targets) {
+                if (target.getGameMode() == GameMode.CREATIVE) {
+                    target.setGameMode(GameMode.SURVIVAL);
+                } else {
+                    target.setGameMode(GameMode.CREATIVE);
+                }
                 player.sendMessage(ChatColor.GREEN
-                        + "Vous avez mis "
-                        + ChatColor.AQUA + target.getName()
-                        + ChatColor.GREEN + " en "
-                        + ChatColor.AQUA +  target.getGameMode());
-            }
+                        + "Vous avez mis " 
+                		+ ChatColor.AQUA + target.getName() 
+                		+ ChatColor.GREEN + " en " 
+                		+ ChatColor.AQUA + target.getGameMode());
+                target.sendMessage(ChatColor.GREEN + "Vous êtes maintenant en "
+                        + ChatColor.AQUA + target.getGameMode());
+        
+        	}
         }
     }
 
@@ -56,7 +62,7 @@ public class PlayerCommands extends UsefulCommands {
             if (food) {
                 player.setFoodLevel(20);
             }
-            player.sendMessage("Vous avez étés nourris et soigné");
+            player.sendMessage("Vous avez été nourri et soigné");
         } else if (args.length() == 1) {
         	for (Player target : targets) {
                 if (health) {
@@ -65,7 +71,7 @@ public class PlayerCommands extends UsefulCommands {
                 if (food) {
                     target.setFoodLevel(20);
                 }
-                player.sendMessage("Vous avez soignés et nourris " + target.getName());
+                player.sendMessage("Vous avez soigné et nourri " + target.getName());
             }
         }
     }
@@ -76,24 +82,34 @@ public class PlayerCommands extends UsefulCommands {
         int from = args.hasFlag('q') ? 10 : 0;
         int to = args.hasFlag('r') ? 9 : 35;
         boolean armor = !args.hasFlag('a');
-
-        for (Player target : targets) {
-            for (int j = from; j <= to; j++) {
-                target.getInventory().setItem(j, null);
+        
+        if(args.length() == 0) {
+        	for (int j = from; j <= to; j++) {
+                player.getInventory().setItem(j, null);
             }
             if (armor) {
                 for (int j = 36; j <= 39; j++) {
-                    target.getInventory().setItem(j, null);
+                    player.getInventory().setItem(j, null);
                 }
             }
-            target.sendMessage(ChatColor.YELLOW
+            player.sendMessage(ChatColor.YELLOW
                     + "Inventaire vidé !");
-
-            if (!player.equals(target)) {
+        } else if (args.length() == 1) {
+        	for (Player target : targets) {
+                for (int j = from; j <= to; j++) {
+                    target.getInventory().setItem(j, null);
+                }
+                if (armor) {
+                    for (int j = 36; j <= 39; j++) {
+                        target.getInventory().setItem(j, null);
+                    }
+                }
+                target.sendMessage(ChatColor.YELLOW
+                        + "Inventaire vidé !");
                 player.sendMessage(ChatColor.GREEN
-                        + "Vous avez vidés l'inventaire de "
+                        + "Vous avez vidé l'inventaire de "
                         + ChatColor.BLUE + target.getName());
-            }
+        	}
         }
     }
 
