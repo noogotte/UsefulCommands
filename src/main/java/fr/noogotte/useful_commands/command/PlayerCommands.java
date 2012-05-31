@@ -152,7 +152,7 @@ public class PlayerCommands extends UsefulCommands {
         player.sendMessage(ChatColor.GREEN +"Gamemode: " + 
                 ChatColor.AQUA + target.getGameMode());
         player.sendMessage(ChatColor.GREEN +"Experience: " + 
-                ChatColor.AQUA + target.getLevel());
+                ChatColor.AQUA + target.getExp());
     }
 
     @Command(name = "id", min = 0, max = 0)
@@ -210,12 +210,16 @@ public class PlayerCommands extends UsefulCommands {
     	}
     }
     
-    @Command(name = "kill", min = 1, max = 1)
+    @Command(name = "kill", min = 0, max = 1)
     public void kill(Player player, CommandArgs args) {
-    	List<Player> targets = args.getPlayers(0);
+    	List<Player> targets = args.getPlayers(0, player);
     	for (Player target : targets) {
     		target.setHealth(0);
-    		player.sendMessage(ChatColor.GREEN + "Vous avez tués " + ChatColor.WHITE + target.getName());
+    		player.sendMessage(ChatColor.GREEN + "Vous vous êtes suicider !");
+    		
+    		if (!player.equals(target)) {
+    			player.sendMessage(ChatColor.GREEN + "Vous avez tués " + ChatColor.WHITE + target.getName());
+            }
     	}
     }
 }
