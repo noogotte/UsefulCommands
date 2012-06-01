@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -242,10 +243,28 @@ public class PlayerCommands extends UsefulCommands {
     		if (!player.equals(target)) {
     			player.sendMessage(ChatColor.GOLD + target.getName() + 
     					ChatColor.GREEN + " est désormé sous l'effet de " + 
-    					ChatColor.GOLD +effect.getName() + 
+    					ChatColor.GOLD + effect.getName() + 
     					ChatColor.GREEN + " pour " + effect.getDurationModifier());
             }
     	}
     }
     
+    @Command(name = "enchantment", min = 1, max = 2)
+    public void enchantment(Player player, CommandArgs args) {
+    	Enchantment enchantment = args.getEnchantment(0);
+    	Integer level = args.getInteger(1, 1);
+    	if(!enchantment.canEnchantItem(player.getItemInHand())) {
+    		player.sendMessage(ChatColor.GREEN + "L'enchantement " 
+    	+ ChatColor.GOLD + enchantment.getName() 
+    	+ ChatColor.GREEN + " ne peux pas être apliqué à " 
+    	+ ChatColor.GOLD + player.getItemInHand().getType());
+    	} else {
+    		player.getItemInHand().addEnchantment(enchantment, level);
+    		player.sendMessage(ChatColor.GREEN + "Vous avez ajouté " + 
+        			ChatColor.GOLD + enchantment.getName() 
+        			+ ChatColor.GOLD + " : " 
+        			+ ChatColor.GREEN + player.getItemInHand().getEnchantmentLevel(enchantment));
+    	}
+    	
+    }
 }

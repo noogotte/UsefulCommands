@@ -98,6 +98,11 @@ commands:
         usage: "[potion] [duration] [target]"
         permission: "useful.effect"
         aliases: ["effect"]
+    "useful enchantment":
+        description: "Enchante un objet"
+        usage: "[enchantment] [level]"
+        permission: "useful.enchant"
+        aliases: ["enchant"]
     # Teleport commands
     "useful teleportation":
         description: "Teleportation."
