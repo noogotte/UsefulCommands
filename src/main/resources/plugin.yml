@@ -93,6 +93,11 @@ commands:
         usage: "[target]"
         permission: "useful.kill"
         aliases: ["kill"]
+    "useful effect":
+        description: "Mais un effet de potion"
+        usage: "[potion] [duration] [target]"
+        permission: "useful.effect"
+        aliases: ["effect"]
     # Teleport commands
     "useful teleportation":
         description: "Teleportation."

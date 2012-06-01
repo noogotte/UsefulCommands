@@ -9,6 +9,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
@@ -152,7 +154,7 @@ public class PlayerCommands extends UsefulCommands {
         player.sendMessage(ChatColor.GREEN +"Gamemode: " + 
                 ChatColor.AQUA + target.getGameMode());
         player.sendMessage(ChatColor.GREEN +"Experience: " + 
-                ChatColor.AQUA + target.getExp());
+                ChatColor.AQUA + target.getLevel());
     }
 
     @Command(name = "id", min = 0, max = 0)
@@ -222,4 +224,28 @@ public class PlayerCommands extends UsefulCommands {
             }
     	}
     }
+    
+    @Command(name = "effect", min = 0, max = 3)
+    public void effect(Player player, CommandArgs args) {
+    	PotionEffectType effect = args.getPotionEffectType(0);
+    	Integer duration = args.getInteger(1, 60);
+    	PotionEffect newEffect = new PotionEffect(
+                effect, duration*20, 1);
+    	
+    	List<Player> targets = args.getPlayers(2, player);
+    	
+    	for (Player target : targets) {
+    		target.addPotionEffect(newEffect, true);
+    		player.sendMessage(ChatColor.GREEN +"Vous êtes sous influence de " +
+    				ChatColor.GOLD + effect.getName());
+    		
+    		if (!player.equals(target)) {
+    			player.sendMessage(ChatColor.GOLD + target.getName() + 
+    					ChatColor.GREEN + " est désormé sous l'effet de " + 
+    					ChatColor.GOLD +effect.getName() + 
+    					ChatColor.GREEN + " pour " + effect.getDurationModifier());
+            }
+    	}
+    }
+    
 }
