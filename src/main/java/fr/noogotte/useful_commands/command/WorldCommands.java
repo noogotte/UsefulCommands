@@ -1,17 +1,24 @@
 package fr.noogotte.useful_commands.command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
+import fr.aumgn.bukkitutils.command.exception.CommandError;
 import fr.aumgn.bukkitutils.command.exception.CommandUsageError;
+import fr.aumgn.bukkitutils.geom.Direction;
+import fr.aumgn.bukkitutils.geom.Vector;
+import fr.aumgn.bukkitutils.geom.Vector2D;
+import fr.aumgn.bukkitutils.geom.direction.HorizontalDirection;
 
 @NestedCommands(name = "useful")
 public class WorldCommands extends UsefulCommands {
@@ -75,19 +82,50 @@ public class WorldCommands extends UsefulCommands {
                     "Argument " + arg + " inconnu.");
         }
     }
-    
-    @Command(name = "spawnmob", min = 1, max = 2)
+
+    @Command(name = "spawnmob", flags = "tdp", min = 1, max = 3)
     public void spawnmob(Player player, CommandArgs args) {
-    	EntityType entity = args.getEntityType(0);
-    	List<Player> targets = args.getPlayers(1, player);
-    	
-    	for (Player target : targets) {
-    		World targetWorld = target.getWorld();
-    		targetWorld.spawnCreature(target.getLocation(), entity);
-    		
-    		if(!player.equals(target)) {
-    			player.sendMessage("Vous avez spawn " + entity.getName());
-    		}
-    	}
+        EntityType entity = args.getEntityType(0);
+        if (!entity.isSpawnable()) {
+            throw new CommandError("Vous ne pouvez pas spawner ce type d'entité.");
+        }
+
+        int count = args.getInteger(1, 1);
+        List<Location> locations = new ArrayList<Location>();
+        if (args.hasFlag('t')) {
+            for (Player targetPlayer : args.getPlayers(2, player)) {
+                Block target = targetPlayer.getTargetBlock(null, 180);
+                Vector2D pos2D = new Vector(target.getLocation()).to2D();
+                Vector pos = pos2D.toHighest(targetPlayer.getWorld());
+                locations.add(pos.toLocation(player.getWorld()));
+            }
+        } else if (args.hasFlag('d')) {
+            int distance = args.getInteger(2);
+            Vector pos = new Vector(player.getLocation());
+            Direction dir = new HorizontalDirection(player.getLocation().getYaw());
+            Vector dirVector = dir.getVector2D().multiply(distance).to3D();
+
+            locations.add(pos.add(dirVector).to2D().
+                    toHighest(player.getWorld()).
+                    toLocation(player.getWorld()));
+        } else if (args.hasFlag('p')) {
+            Vector2D pos2D = args.getVector2D(2);
+            Vector pos = pos2D.toHighest(player.getWorld());
+            locations.add(pos.toLocation(player.getWorld()));
+        } else {
+            for (Player target : args.getPlayers(2, player)) {
+                locations.add(target.getLocation());
+            }
+        }
+
+        int totalCount = 0;
+        for (int i = 0; i < count; i++) {
+            for (Location location : locations) {
+                location.getWorld().spawnCreature(location, entity);
+                totalCount++;
+            }
+        }
+
+        player.sendMessage("Vous avez spawn " + totalCount + " " + entity.getName());
     }
 }
