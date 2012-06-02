@@ -208,8 +208,10 @@ public class PlayerCommands extends UsefulCommands {
         List<Player> targets = args.getPlayers(0, player);
         for (Player target : targets) {
             if (target.isFlying()) {
+                target.setAllowFlight(false);
                 target.setFlying(false);
             } else {
+                target.setAllowFlight(true);
                 target.setFlying(true);
             }
             if (target.isFlying()) {
