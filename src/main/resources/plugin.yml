@@ -33,7 +33,7 @@ commands:
         aliases: ["weather"]
     "useful spawnmob":
         description: "Spawn un mob"
-        usage: "[mob] [target]"
+        usage: "[-tdp] [mob] [target]"
         permission: "useful.spawnmob"
         aliases: ["spawnmob", "mob"]
     # Player commands

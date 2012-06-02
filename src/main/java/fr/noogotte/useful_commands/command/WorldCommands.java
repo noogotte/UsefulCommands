@@ -89,7 +89,18 @@ public class WorldCommands extends UsefulCommands {
         if (!entity.isSpawnable()) {
             throw new CommandError("Vous ne pouvez pas spawner ce type d'entité.");
         }
-
+        
+        if(entity.equals(entity.ARROW) || entity.equals(entity.BOAT) || entity.equals(entity.COMPLEX_PART) 
+        		|| entity.equals(entity.DROPPED_ITEM) || entity.equals(entity.EGG) || entity.equals(entity.ENDER_CRYSTAL) 
+        		|| entity.equals(entity.ENDER_PEARL) || entity.equals(entity.ENDER_SIGNAL) || entity.equals(entity.EXPERIENCE_ORB)
+        		|| entity.equals(entity.FALLING_BLOCK) || entity.equals(entity.FIREBALL) || entity.equals(entity.FISHING_HOOK)
+        		|| entity.equals(entity.LIGHTNING) || entity.equals(entity.MINECART) || entity.equals(entity.PAINTING) 
+        		|| entity.equals(entity.PLAYER) || entity.equals(entity.PRIMED_TNT) || entity.equals(entity.SMALL_FIREBALL)
+        		|| entity.equals(entity.SNOWBALL) || entity.equals(entity.SPLASH_POTION) || entity.equals(entity.THROWN_EXP_BOTTLE)
+        		|| entity.equals(entity.UNKNOWN) || entity.equals(entity.WEATHER)) {
+        	throw new CommandError("Vous ne pouvez pas spawner ce type d'entité");
+        	
+        }
         int count = args.getInteger(1, 1);
         List<Location> locations = new ArrayList<Location>();
         if (args.hasFlag('t')) {
@@ -126,6 +137,6 @@ public class WorldCommands extends UsefulCommands {
             }
         }
 
-        player.sendMessage("Vous avez spawn " + totalCount + " " + entity.getName());
+        player.sendMessage(ChatColor.GREEN + "Vous avez spawn " + ChatColor.GOLD + totalCount + " " + entity.getName());
     }
 }
