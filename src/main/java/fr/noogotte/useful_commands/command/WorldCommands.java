@@ -1,8 +1,11 @@
 package fr.noogotte.useful_commands.command;
 
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 import fr.aumgn.bukkitutils.command.Command;
@@ -71,5 +74,20 @@ public class WorldCommands extends UsefulCommands {
             throw new CommandUsageError(
                     "Argument " + arg + " inconnu.");
         }
+    }
+    
+    @Command(name = "spawnmob", min = 1, max = 2)
+    public void spawnmob(Player player, CommandArgs args) {
+    	EntityType entity = args.getEntityType(0);
+    	List<Player> targets = args.getPlayers(1, player);
+    	
+    	for (Player target : targets) {
+    		World targetWorld = target.getWorld();
+    		targetWorld.spawnCreature(target.getLocation(), entity);
+    		
+    		if(!player.equals(target)) {
+    			player.sendMessage("Vous avez spawn " + entity.getName());
+    		}
+    	}
     }
 }

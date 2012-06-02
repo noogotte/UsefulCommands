@@ -31,7 +31,11 @@ commands:
         usage: "sun | storm [world]"
         permission: "useful.weather"
         aliases: ["weather"]
-
+    "useful spawnmob":
+        description: "Spawn un mob"
+        usage: "[mob] [target]"
+        permission: "useful.spawnmob"
+        aliases: ["spawnmob", "mob"]
     # Player commands
     "useful gamemode":
         description: "Change le gamemode."
@@ -84,7 +88,7 @@ commands:
         permission: "useful.tell"
         aliases: ["tell", "say"]
     "useful fly":
-        description: "Mais en vole"
+        description: "Met en vole"
         usage: "[target]"
         permission: "useful.fly"
         aliases: ["fly"]
