@@ -129,7 +129,7 @@ public class PlayerCommands extends UsefulCommands {
     @Command(name = "open", min = 0, max = 1)
     public void openInv(Player player, CommandArgs args) {
         Player target = args.getPlayer(0, player);
-        if(target.isOp() == true) {
+        if (target.isOp()) {
             target.sendMessage(ChatColor.RED
                     + "Votre inventaire a été ouvert par "
                     + ChatColor.GRAY + player.getName());
@@ -163,17 +163,24 @@ public class PlayerCommands extends UsefulCommands {
         player.sendMessage(ChatColor.GREEN + "Son id est : " + ChatColor.AQUA + player.getItemInHand().getTypeId());
     }
 
-    @Command(name = "kick", min = 1, max = -1)
+    @Command(name = "kick", flags = "o", min = 1, max = -1)
     public void kick(Player player, CommandArgs args) {
-        Player target = args.getPlayer(0);
-        if(target.isOp() == true) {
-            player.sendMessage(ChatColor.RED + "(" + target.getName() + ")"+ " est OP vous ne pouvez pas le kicker.");
-        } else {
-            target.kickPlayer(args.get(1, -1));
-            Util.broadcast(ChatColor.AQUA + target.getName() + ChatColor.GREEN + " a été kicker par " + ChatColor.AQUA + player.getName());
+        String reason = args.get(1, -1);
+        boolean dontKickOps = !args.hasFlag('o');
+
+        for (Player target : args.getPlayers(0)) {
+            if (dontKickOps && target.isOp()) {
+                player.sendMessage(ChatColor.RED + target.getName()
+                        + " est OP vous ne pouvez pas le kicker.");
+            } else {
+                target.kickPlayer(reason);
+                Util.broadcast(ChatColor.AQUA + target.getName()
+                        + ChatColor.GREEN + " a été kicker par "
+                        + ChatColor.AQUA + player.getName());
+            }
         }
     }
-    
+
     @Command(name = "tell", min = 2, max = -1)
     public void tell(Player player, CommandArgs args) {
     	List<Player> targets = args.getPlayers(0);
@@ -191,19 +198,19 @@ public class PlayerCommands extends UsefulCommands {
     public void fly(Player player, CommandArgs args) {
     	List<Player> targets = args.getPlayers(0, player);
     	for (Player target : targets) {
-    		if(target.isFlying() == true) {
+    		if (target.isFlying()) {
     			target.setFlying(false);
     		} else {
     			target.setFlying(true);
     		}
-    		if(target.isFlying() == true) {
+    		if (target.isFlying()) {
 				player.sendMessage(ChatColor.GREEN + " Vous volez maintenant !");
 			} else {
 				player.sendMessage(ChatColor.GREEN + " Vous ne volez plus !");
 			}
     		
     		if (!player.equals(target)) {
-    			if(target.isFlying() == true) {
+    			if (target.isFlying()) {
     				player.sendMessage(ChatColor.GOLD + target.getName() + ChatColor.GREEN + " vole maintenant !");
     			} else {
     				player.sendMessage(ChatColor.GOLD + target.getName() + ChatColor.GREEN + " ne vole plus !");
