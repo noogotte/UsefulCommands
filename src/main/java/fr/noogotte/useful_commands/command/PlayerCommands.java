@@ -142,25 +142,34 @@ public class PlayerCommands extends UsefulCommands {
     public void playerInfo(Player player, CommandArgs args) {
         Player target = args.getPlayer(0);
 
-        player.sendMessage(ChatColor.GREEN + "" + ChatColor.UNDERLINE + "Info de " +  target.getName());
-        player.sendMessage(ChatColor.GREEN +"Vie: " + ChatColor.AQUA + target.getHealth());
-        player.sendMessage(ChatColor.GREEN +"Faim: " + ChatColor.AQUA + target.getFoodLevel());
-        player.sendMessage(ChatColor.GREEN +"IP: " + ChatColor.AQUA + target.getAddress());
+        player.sendMessage(ChatColor.GREEN + ""
+                + ChatColor.UNDERLINE + "Info de "
+                +  target.getName());
+        player.sendMessage(ChatColor.GREEN +"Vie: "
+                + ChatColor.AQUA + target.getHealth());
+        player.sendMessage(ChatColor.GREEN +"Faim: "
+                + ChatColor.AQUA + target.getFoodLevel());
+        player.sendMessage(ChatColor.GREEN +"IP: "
+                + ChatColor.AQUA + target.getAddress());
         Location loc = target.getLocation();
-        player.sendMessage(ChatColor.GREEN +"Cordonnées: " + ChatColor.AQUA + loc.getBlockX() 
-                + ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockY() 
-                + ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockZ() 
-                + ChatColor.GREEN + " Monde: " + ChatColor.AQUA + target.getWorld().getName());
-        player.sendMessage(ChatColor.GREEN +"Gamemode: " + 
-                ChatColor.AQUA + target.getGameMode());
-        player.sendMessage(ChatColor.GREEN +"Experience: " + 
-                ChatColor.AQUA + target.getLevel());
+        player.sendMessage(ChatColor.GREEN + "Cordonnées: "
+                + ChatColor.AQUA + loc.getBlockX()
+                + ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockY()
+                + ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockZ()
+                + ChatColor.GREEN + " Monde: "
+                + ChatColor.AQUA + target.getWorld().getName());
+        player.sendMessage(ChatColor.GREEN +"Gamemode: "
+                + ChatColor.AQUA + target.getGameMode());
+        player.sendMessage(ChatColor.GREEN +"Experience: "
+                + ChatColor.AQUA + target.getLevel());
     }
 
     @Command(name = "id", min = 0, max = 0)
     public void id(Player player, CommandArgs args) {
-        player.sendMessage(ChatColor.GREEN + "Vous tenez : " + ChatColor.AQUA + player.getItemInHand().getData());
-        player.sendMessage(ChatColor.GREEN + "Son id est : " + ChatColor.AQUA + player.getItemInHand().getTypeId());
+        player.sendMessage(ChatColor.GREEN + "Vous tenez : "
+                + ChatColor.AQUA + player.getItemInHand().getData());
+        player.sendMessage(ChatColor.GREEN + "Son id est : "
+                + ChatColor.AQUA + player.getItemInHand().getTypeId());
     }
 
     @Command(name = "kick", flags = "o", min = 1, max = -1)
@@ -183,96 +192,103 @@ public class PlayerCommands extends UsefulCommands {
 
     @Command(name = "tell", min = 2, max = -1)
     public void tell(Player player, CommandArgs args) {
-    	List<Player> targets = args.getPlayers(0);
-    	
-    	for (Player target : targets) {
-    		target.sendMessage(ChatColor.GREEN + "(" + ChatColor.RED + 
-    				"From " + player.getName() 
-    				+ ChatColor.GREEN + ") " 
-    				+ ChatColor.WHITE + args.get(1, -1));
-    	}
-    	player.sendMessage(ChatColor.GREEN + "Message send.");
+        List<Player> targets = args.getPlayers(0);
+
+        for (Player target : targets) {
+            target.sendMessage(ChatColor.GREEN + "(" + ChatColor.RED
+                    + "De " + player.getName() 
+                    + ChatColor.GREEN + ") " 
+                    + ChatColor.WHITE + args.get(1, -1));
+        }
+        player.sendMessage(ChatColor.GREEN + "Message envoyé.");
     }
-    
+
     @Command(name = "fly", min = 0, max = 1)
     public void fly(Player player, CommandArgs args) {
-    	List<Player> targets = args.getPlayers(0, player);
-    	for (Player target : targets) {
-    		if (target.isFlying()) {
-    			target.setFlying(false);
-    		} else {
-    			target.setFlying(true);
-    		}
-    		if (target.isFlying()) {
-				player.sendMessage(ChatColor.GREEN + " Vous volez maintenant !");
-			} else {
-				player.sendMessage(ChatColor.GREEN + " Vous ne volez plus !");
-			}
-    		
-    		if (!player.equals(target)) {
-    			if (target.isFlying()) {
-    				player.sendMessage(ChatColor.GOLD + target.getName() + ChatColor.GREEN + " vole maintenant !");
-    			} else {
-    				player.sendMessage(ChatColor.GOLD + target.getName() + ChatColor.GREEN + " ne vole plus !");
-    			}
+        List<Player> targets = args.getPlayers(0, player);
+        for (Player target : targets) {
+            if (target.isFlying()) {
+                target.setFlying(false);
+            } else {
+                target.setFlying(true);
             }
-    	}
+            if (target.isFlying()) {
+                player.sendMessage(ChatColor.GREEN
+                        + " Vous volez maintenant !");
+            } else {
+                player.sendMessage(ChatColor.GREEN
+                        + " Vous ne volez plus !");
+            }
+
+            if (!player.equals(target)) {
+                if (target.isFlying()) {
+                    player.sendMessage(ChatColor.GOLD + target.getName()
+                            + ChatColor.GREEN + " vole maintenant !");
+                } else {
+                    player.sendMessage(ChatColor.GOLD + target.getName()
+                            + ChatColor.GREEN + " ne vole plus !");
+                }
+            }
+        }
     }
-    
+
     @Command(name = "kill", min = 0, max = 1)
     public void kill(Player player, CommandArgs args) {
-    	List<Player> targets = args.getPlayers(0, player);
-    	for (Player target : targets) {
-    		target.setHealth(0);
-    		player.sendMessage(ChatColor.GREEN + "Vous vous êtes suicider !");
-    		
-    		if (!player.equals(target)) {
-    			player.sendMessage(ChatColor.GREEN + "Vous avez tués " + ChatColor.WHITE + target.getName());
+        List<Player> targets = args.getPlayers(0, player);
+        for (Player target : targets) {
+            target.setHealth(0);
+            player.sendMessage(ChatColor.GREEN + "Vous vous êtes suicider !");
+
+            if (!player.equals(target)) {
+                player.sendMessage(ChatColor.GREEN + "Vous avez tués "
+                        + ChatColor.WHITE + target.getName());
             }
-    	}
+        }
     }
-    
+
     @Command(name = "effect", min = 1, max = 3)
     public void effect(Player player, CommandArgs args) {
-    	PotionEffectType effect = args.getPotionEffectType(0);
-    	Integer duration = args.getInteger(1, 60);
-    	PotionEffect newEffect = new PotionEffect(
-                effect, duration*20, 1);
-    	
-    	List<Player> targets = args.getPlayers(2, player);
-    	
-    	for (Player target : targets) {
-    		target.addPotionEffect(newEffect, true);
-    		player.sendMessage(ChatColor.GREEN +"Vous êtes sous influence de " +
-    				ChatColor.GOLD + effect.getName());
-    		
-    		if (!player.equals(target)) {
-    			player.sendMessage(ChatColor.GOLD + target.getName() + 
-    					ChatColor.GREEN + " est désormé sous l'effet de " + 
-    					ChatColor.GOLD + effect.getName() + 
-    					ChatColor.GREEN + " pour " + effect.getDurationModifier());
+        PotionEffectType effect = args.getPotionEffectType(0);
+        Integer duration = args.getInteger(1, 60);
+        PotionEffect newEffect = new PotionEffect(
+                effect, duration * 20, 1);
+
+        List<Player> targets = args.getPlayers(2, player);
+
+        for (Player target : targets) {
+            target.addPotionEffect(newEffect, true);
+            player.sendMessage(ChatColor.GREEN +"Vous êtes sous influence de " +
+                    ChatColor.GOLD + effect.getName());
+
+            if (!player.equals(target)) {
+                player.sendMessage(ChatColor.GOLD + target.getName() + 
+                        ChatColor.GREEN + " est désormé sous l'effet de " + 
+                        ChatColor.GOLD + effect.getName() + 
+                        ChatColor.GREEN + " pour " + effect.getDurationModifier());
             }
-    	}
+        }
     }
-    
+
     @Command(name = "enchantment", min = 1, max = 2)
     public void enchantment(Player player, CommandArgs args) {
-    	Enchantment enchantment = args.getEnchantment(0);
-    	Integer level = args.getInteger(1, 1);
-    	if(!enchantment.canEnchantItem(player.getItemInHand())) {
-    		player.sendMessage(ChatColor.GREEN + "L'enchantement " 
-    				+ ChatColor.GOLD + enchantment.getName() 
-    				+ ChatColor.GREEN + " ne peux pas être apliqué à " 
-    				+ ChatColor.GOLD + player.getItemInHand().getType());
-    	} else if (level > enchantment.getMaxLevel()) {
-    		player.sendMessage(ChatColor.GREEN + "Le niveau d'enchantement doit être inférieure ou égal à " + 
-    				ChatColor.RED + enchantment.getMaxLevel());
-    	} else {
-    		player.getItemInHand().addEnchantment(enchantment, level);
-    		player.sendMessage(ChatColor.GREEN + "Vous avez ajouté " +
-        			ChatColor.GOLD + enchantment.getName() 
-        			+ ChatColor.GOLD + " : " 
-        			+ ChatColor.GREEN + player.getItemInHand().getEnchantmentLevel(enchantment));
-    	}
+        Enchantment enchantment = args.getEnchantment(0);
+        Integer level = args.getInteger(1, 1);
+        if(!enchantment.canEnchantItem(player.getItemInHand())) {
+            player.sendMessage(ChatColor.GREEN + "L'enchantement " 
+                    + ChatColor.GOLD + enchantment.getName() 
+                    + ChatColor.GREEN + " ne peux pas être apliqué à " 
+                    + ChatColor.GOLD + player.getItemInHand().getType());
+        } else if (level > enchantment.getMaxLevel()) {
+            player.sendMessage(ChatColor.GREEN
+                    + "Le niveau d'enchantement doit être inférieure ou égal à "
+                    + ChatColor.RED + enchantment.getMaxLevel());
+        } else {
+            player.getItemInHand().addEnchantment(enchantment, level);
+            player.sendMessage(ChatColor.GREEN + "Vous avez ajouté " +
+                    ChatColor.GOLD + enchantment.getName() 
+                    + ChatColor.GOLD + " : " 
+                    + ChatColor.GREEN
+                    + player.getItemInHand().getEnchantmentLevel(enchantment));
+        }
     }
 }
