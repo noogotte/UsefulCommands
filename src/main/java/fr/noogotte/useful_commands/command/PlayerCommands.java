@@ -226,7 +226,7 @@ public class PlayerCommands extends UsefulCommands {
     	}
     }
     
-    @Command(name = "effect", min = 0, max = 3)
+    @Command(name = "effect", min = 1, max = 3)
     public void effect(Player player, CommandArgs args) {
     	PotionEffectType effect = args.getPotionEffectType(0);
     	Integer duration = args.getInteger(1, 60);
@@ -255,16 +255,18 @@ public class PlayerCommands extends UsefulCommands {
     	Integer level = args.getInteger(1, 1);
     	if(!enchantment.canEnchantItem(player.getItemInHand())) {
     		player.sendMessage(ChatColor.GREEN + "L'enchantement " 
-    	+ ChatColor.GOLD + enchantment.getName() 
-    	+ ChatColor.GREEN + " ne peux pas être apliqué à " 
-    	+ ChatColor.GOLD + player.getItemInHand().getType());
+    				+ ChatColor.GOLD + enchantment.getName() 
+    				+ ChatColor.GREEN + " ne peux pas être apliqué à " 
+    				+ ChatColor.GOLD + player.getItemInHand().getType());
+    	} else if (level > enchantment.getMaxLevel()) {
+    		player.sendMessage(ChatColor.GREEN + "Le niveau d'enchantement doit être inférieure ou égal à " + 
+    				ChatColor.RED + enchantment.getMaxLevel());
     	} else {
     		player.getItemInHand().addEnchantment(enchantment, level);
-    		player.sendMessage(ChatColor.GREEN + "Vous avez ajouté " + 
+    		player.sendMessage(ChatColor.GREEN + "Vous avez ajouté " +
         			ChatColor.GOLD + enchantment.getName() 
         			+ ChatColor.GOLD + " : " 
         			+ ChatColor.GREEN + player.getItemInHand().getEnchantmentLevel(enchantment));
     	}
-    	
     }
 }
