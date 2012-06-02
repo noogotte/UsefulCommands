@@ -72,8 +72,8 @@ public class PlayerCommands extends UsefulCommands {
     @Command(name = "clear", flags = "qra", min = 0, max = 1)
     public void clear(Player player, CommandArgs args) {
         List<Player> targets = args.getPlayers(0, player);
-        int from = args.hasFlag('q') ? 10 : 0;
-        int to = args.hasFlag('r') ? 9 : 35;
+        int from = args.hasFlag('q') ? 9 : 0;
+        int to = args.hasFlag('r') ? 8 : 35;
         boolean armor = !args.hasFlag('a');
 
         for (Player target : targets) {
