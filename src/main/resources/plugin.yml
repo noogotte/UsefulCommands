@@ -107,6 +107,16 @@ commands:
         usage: "[enchantment] [level]"
         permission: "useful.enchant"
         aliases: ["enchant"]
+    "useful setwarp":
+        description: "Cree un warp"
+        usage: "[name]"
+        permission: "useful.setwarp"
+        aliases: ["setwarp"]
+    "useful deletewarp":
+        description: "Supprime un warp"
+        usage: "[name]"
+        permission: "useful.delwarp"
+        aliases: ["deletewarp", "delwarp"]
     # Teleport commands
     "useful teleportation":
         description: "Teleportation."

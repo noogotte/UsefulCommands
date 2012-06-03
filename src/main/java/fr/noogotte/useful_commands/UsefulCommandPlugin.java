@@ -7,6 +7,7 @@ import fr.aumgn.bukkitutils.command.messages.FrenchMessages;
 import fr.noogotte.useful_commands.command.GodCommand;
 import fr.noogotte.useful_commands.command.PlayerCommands;
 import fr.noogotte.useful_commands.command.TeleportCommands;
+import fr.noogotte.useful_commands.command.WarpsCommand;
 import fr.noogotte.useful_commands.command.WorldCommands;
 
 public class UsefulCommandPlugin extends JavaPlugin {
@@ -14,6 +15,7 @@ public class UsefulCommandPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         GodComponent godComponent = new GodComponent(this);
+        WarpsComponent warpcomponent = new WarpsComponent();
 
         CommandsRegistration registration = new CommandsRegistration(
                 this, new FrenchMessages());
@@ -21,5 +23,6 @@ public class UsefulCommandPlugin extends JavaPlugin {
         registration.register(new PlayerCommands());
         registration.register(new GodCommand(godComponent));
         registration.register(new TeleportCommands());
+        registration.register(new WarpsCommand(warpcomponent));
     }
 }
