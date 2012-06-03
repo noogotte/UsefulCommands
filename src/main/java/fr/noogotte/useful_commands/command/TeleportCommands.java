@@ -27,7 +27,7 @@ public class TeleportCommands extends UsefulCommands {
             for (Player player : args.getPlayers(0)) {
                 player.teleport(target);
                 sender.sendMessage(ChatColor.AQUA +
-                        "Vous avez téléportés "
+                        "Vous avez téléporté "
                         + ChatColor.GREEN + player.getName() 
                         + ChatColor.AQUA + " à "
                         + ChatColor.GREEN + target.getName());

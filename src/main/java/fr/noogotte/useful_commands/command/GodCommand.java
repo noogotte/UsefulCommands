@@ -30,7 +30,7 @@ public class GodCommand extends UsefulCommands {
                         + "Mode dieu arreté.");
                 if (!player.equals(target)) {
                     player.sendMessage(ChatColor.AQUA
-                            + "Mode dieux arreté pour "
+                            + "Mode Dieu arreté pour "
                             + ChatColor.BLUE + target.getName());
                 }
             } else {
@@ -38,10 +38,10 @@ public class GodCommand extends UsefulCommands {
                 target.sendMessage(ChatColor.GREEN
                         + "Vous êtes en mode Dieu, tapez "
                         + ChatColor.BLUE + " /god "
-                        + ChatColor.GREEN + " pour en resortir.");
+                        + ChatColor.GREEN + " pour en ressortir.");
                 if (!player.equals(target)) {
                     player.sendMessage(ChatColor.AQUA
-                            + "Vous avez mis le mode Dieux pour "
+                            + "Vous avez activé le mode Dieu pour "
                             + ChatColor.BLUE + target.getName());
                 }
             }

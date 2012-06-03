@@ -60,10 +60,10 @@ public class PlayerCommands extends UsefulCommands {
             }
 
             target.sendMessage(ChatColor.YELLOW
-                    + "Vous voila soignés et nourris");
+                    + "Vous voilà soignés et nourris");
             if (!player.equals(target)) {
                 player.sendMessage(ChatColor.GREEN
-                        + "Vous vous avez soignés et nourris "
+                        + "Vous avez soigné et nourri "
                         + ChatColor.BLUE + target.getName());
             }
         }
@@ -90,7 +90,7 @@ public class PlayerCommands extends UsefulCommands {
 
             if (!player.equals(target)) {
                 player.sendMessage(ChatColor.GREEN
-                        + "Vous avez vidés l'inventaire de "
+                        + "Vous avez vidé l'inventaire de "
                         + ChatColor.BLUE + target.getName());
             }
         }
@@ -117,7 +117,7 @@ public class PlayerCommands extends UsefulCommands {
                     + ChatColor.AQUA + itemType.getMaterial());
             if (!player.equals(target)) {
                 player.sendMessage(ChatColor.GREEN
-                        + "Vous avez donnez à " + target.getName()
+                        + "Vous avez donné à " + target.getName()
                         + ChatColor.GREEN + ": "
                         + ChatColor.AQUA + item.getAmount()
                         + ChatColor.GREEN + " de "
@@ -145,22 +145,22 @@ public class PlayerCommands extends UsefulCommands {
         player.sendMessage(ChatColor.GREEN + ""
                 + ChatColor.UNDERLINE + "Info de "
                 +  target.getName());
-        player.sendMessage(ChatColor.GREEN +"Vie: "
+        player.sendMessage(ChatColor.GREEN +"Vie : "
                 + ChatColor.AQUA + target.getHealth());
-        player.sendMessage(ChatColor.GREEN +"Faim: "
+        player.sendMessage(ChatColor.GREEN +"Faim : "
                 + ChatColor.AQUA + target.getFoodLevel());
-        player.sendMessage(ChatColor.GREEN +"IP: "
+        player.sendMessage(ChatColor.GREEN +"IP : "
                 + ChatColor.AQUA + target.getAddress());
         Location loc = target.getLocation();
-        player.sendMessage(ChatColor.GREEN + "Cordonnées: "
+        player.sendMessage(ChatColor.GREEN + "Coordonnées : "
                 + ChatColor.AQUA + loc.getBlockX()
                 + ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockY()
                 + ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockZ()
-                + ChatColor.GREEN + " Monde: "
+                + ChatColor.GREEN + " Monde : "
                 + ChatColor.AQUA + target.getWorld().getName());
-        player.sendMessage(ChatColor.GREEN +"Gamemode: "
+        player.sendMessage(ChatColor.GREEN +"Gamemode : "
                 + ChatColor.AQUA + target.getGameMode());
-        player.sendMessage(ChatColor.GREEN +"Experience: "
+        player.sendMessage(ChatColor.GREEN +"Expérience : "
                 + ChatColor.AQUA + target.getLevel());
     }
 
@@ -184,7 +184,7 @@ public class PlayerCommands extends UsefulCommands {
             } else {
                 target.kickPlayer(reason);
                 Util.broadcast(ChatColor.AQUA + target.getName()
-                        + ChatColor.GREEN + " a été kicker par "
+                        + ChatColor.GREEN + " a été kické par "
                         + ChatColor.AQUA + player.getName());
             }
         }
@@ -216,19 +216,19 @@ public class PlayerCommands extends UsefulCommands {
             }
             if (target.isFlying()) {
                 player.sendMessage(ChatColor.GREEN
-                        + " Vous volez maintenant !");
+                        + " Vous pouvez désormais voler !");
             } else {
                 player.sendMessage(ChatColor.GREEN
-                        + " Vous ne volez plus !");
+                        + " Vous ne pouvez plus voler !");
             }
 
             if (!player.equals(target)) {
                 if (target.isFlying()) {
                     player.sendMessage(ChatColor.GOLD + target.getName()
-                            + ChatColor.GREEN + " vole maintenant !");
+                            + ChatColor.GREEN + " peut maintenant voler !");
                 } else {
                     player.sendMessage(ChatColor.GOLD + target.getName()
-                            + ChatColor.GREEN + " ne vole plus !");
+                            + ChatColor.GREEN + " ne peut plus voler !");
                 }
             }
         }
@@ -239,10 +239,10 @@ public class PlayerCommands extends UsefulCommands {
         List<Player> targets = args.getPlayers(0, player);
         for (Player target : targets) {
             target.setHealth(0);
-            player.sendMessage(ChatColor.GREEN + "Vous vous êtes suicider !");
+            player.sendMessage(ChatColor.GREEN + "Vous vous êtes suicidés !");
 
             if (!player.equals(target)) {
-                player.sendMessage(ChatColor.GREEN + "Vous avez tués "
+                player.sendMessage(ChatColor.GREEN + "Vous avez tué "
                         + ChatColor.WHITE + target.getName());
             }
         }
@@ -282,7 +282,7 @@ public class PlayerCommands extends UsefulCommands {
                     + ChatColor.GOLD + player.getItemInHand().getType());
         } else if (level > enchantment.getMaxLevel()) {
             player.sendMessage(ChatColor.GREEN
-                    + "Le niveau d'enchantement doit être inférieure ou égal à "
+                    + "Le niveau d'enchantement doit être inférieur ou égal à "
                     + ChatColor.RED + enchantment.getMaxLevel());
         } else {
             player.getItemInHand().addEnchantment(enchantment, level);

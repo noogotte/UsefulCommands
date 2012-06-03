@@ -38,7 +38,7 @@ public class WorldCommands extends UsefulCommands {
                 playerloc.getBlockX(),
                 playerloc.getBlockY(),
                 playerloc.getBlockZ());
-        player.sendMessage(ChatColor.GREEN + "Vous avez mis le spawn !");
+        player.sendMessage(ChatColor.GREEN + "Vous avez défini le spawn !");
     }
 
     @Command(name = "time", min = 1, max = 2)

@@ -23,11 +23,11 @@ public class WarpsCommand extends UsefulCommands {
 	@Command(name = "setwarp", min = 1, max = 1)
 	public void createWarp(Player player, CommandArgs args) {
 		if(warpscomponent.isWarp(args.get(0))) {
-			throw new CommandError("Le warp " + args.get(0) + " existe deja");
+			throw new CommandError("Le warp " + args.get(0) + " existe déjà.");
 		} else {
 			Location location = player.getLocation();
 			warpscomponent.addWarp(args.get(0), location);		
-			player.sendMessage("Vous avez crée un warp : " + args.get(0));
+			player.sendMessage("Vous avez créé un warp : " + args.get(0));
 		}
 	}
 	
