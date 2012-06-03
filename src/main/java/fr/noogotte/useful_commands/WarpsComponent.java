@@ -48,4 +48,8 @@ public class WarpsComponent {
     public void deleteWarp(String name) {
     	warps.remove(name);
     }
+    
+    public Warp getWarp(String name) {
+		return warps.get(name);
+    }
 }
