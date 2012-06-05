@@ -37,7 +37,7 @@ public class WarpsCommand extends UsefulCommands {
 		}
 	}
 	
-	@Command(name = "warp", min = 1, max = 1)
+	@Command(name = "warp", min = 1, max = 2)
 	public void teleportToWarp(Player player, CommandArgs args) {
 		if(!warpscomponent.isWarp(args.get(0))) {
 			throw new CommandError("Le warp " + args.get(0) + " n'existe pas.");
@@ -49,6 +49,10 @@ public class WarpsCommand extends UsefulCommands {
 				Warp warp = warpscomponent.getWarp(warpName);
 				player.teleport(warp.toLocation());
 				player.sendMessage(ChatColor.GREEN + "Poof !");
+				
+				if(!player.equals(target)) {
+					player.sendMessage( target.getName() + "a été téléporté au warp : " + warpName);
+				}
 			}
 		}
 	}

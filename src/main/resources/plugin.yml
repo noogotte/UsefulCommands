@@ -119,7 +119,7 @@ commands:
         aliases: ["deletewarp", "delwarp"]
     "useful warp":
         description: "Téléporte à un warp."
-        usage: "[name]"
+        usage: "[name] [target]"
         permission: "useful.warp"
         aliases: ["warp"]
     # Teleport commands
