@@ -110,7 +110,12 @@ commands:
         usage: "<enchantment> [level = 1]"
         permission: "useful.enchant"
         aliases: ["enchant"]
-
+    "useful afk":
+        description: "Met en afk"
+        usage: "<target>"
+        permission: "useful.afk"
+        aliases: ["afk"]
+#
     # Warp Commands
     "useful setwarp":
         description: "Crée un warp."
