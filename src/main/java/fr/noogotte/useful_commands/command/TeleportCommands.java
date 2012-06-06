@@ -56,9 +56,12 @@ public class TeleportCommands extends UsefulCommands {
         }
     }
 
-    @Command(name = "spawn", min = 0, max = 1)
+    @Command(name = "spawn", min = 0, max = -1)
     public void spawn(Player player, CommandArgs args) {
         List<Player> targets = args.getPlayers(0, player);
+        for (int i = 1; i < args.length(); i++) {
+            targets.addAll(args.getPlayers(i));
+        }
 
         for (Player target : targets) {
             target.teleport(

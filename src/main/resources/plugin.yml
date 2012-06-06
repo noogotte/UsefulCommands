@@ -23,30 +23,33 @@ commands:
         aliases: ["setspawn"]
     "useful time":
         description: "Change l'heure."
-        usage: "day | night [world]"
+        usage: "<day | night> [world]"
         permission: "useful.time"
         aliases: ["time"]
     "useful weather":
         description: "Change le temps."
-        usage: "sun | storm [world]"
+        usage: "<sun | storm> [world]"
         permission: "useful.weather"
         aliases: ["weather"]
     "useful spawnmob":
         description: "Spawn un mob."
-        usage: "[-tdp] [mob] [target]"
+        usage: "[-tdp] <mob> [target]"
         permission: "useful.spawnmob"
         aliases: ["spawnmob", "mob"]
+
+    # God Commands
+    "useful god":
+        description: "Met en mode Dieu."
+        usage: "[target]"
+        permission: "useful.god"
+        aliases: ["god"]
+
     # Player commands
     "useful gamemode":
         description: "Change le gamemode."
         usage: "[target]"
         permission: "useful.gamemode"
         aliases: ["gm", "gamemode"]
-    "useful god":
-        description: "Met en mode Dieu."
-        usage: "[target]"
-        permission: "useful.god"
-        aliases: ["god"]
     "useful heal":
         description: "Soigne et nourrit."
         usage: "[-hf] [target]"
@@ -69,7 +72,7 @@ commands:
         aliases: ["open"]
     "useful playerinfo":
         description: "Affiche les infos de la cible."
-        usage: "[target]"
+        usage: "<target>"
         permission: "useful.playerinfo"
         aliases: ["pinfo", "player-info"]
     "useful id":
@@ -79,12 +82,12 @@ commands:
         aliases: ["id"]
     "useful kick":
         description: "Kick un joueur."
-        usage: ""
+        usage: "<target> [reason...]"
         permission: "useful.kick"
         aliases: ["kick"]
     "useful tell":
         description: "Envoie un message privé."
-        usage: "[target]  [msg]"
+        usage: "<target> <msg...>"
         permission: "useful.tell"
         aliases: ["tell", "say"]
     "useful fly":
@@ -99,29 +102,32 @@ commands:
         aliases: ["kill"]
     "useful effect":
         description: "Applique un effet de potion."
-        usage: "[potion] [duration] [target]"
+        usage: "<potion> [duration = 60] [target]"
         permission: "useful.effect"
         aliases: ["effect"]
     "useful enchantment":
         description: "Enchante un objet."
-        usage: "[enchantment] [level]"
+        usage: "<enchantment> [level = 1]"
         permission: "useful.enchant"
         aliases: ["enchant"]
+
+    # Warp Commands
     "useful setwarp":
         description: "Crée un warp."
-        usage: "[name]"
+        usage: "<name>"
         permission: "useful.setwarp"
         aliases: ["setwarp"]
     "useful deletewarp":
         description: "Supprime un warp."
-        usage: "[name]"
+        usage: "<name>"
         permission: "useful.delwarp"
         aliases: ["deletewarp", "delwarp"]
     "useful warp":
         description: "Téléporte à un warp."
-        usage: "[name] [target]"
+        usage: "<name> [target]"
         permission: "useful.warp"
         aliases: ["warp"]
+
     # Teleport commands
     "useful teleportation":
         description: "Téléporte à un joueur."
@@ -135,9 +141,10 @@ commands:
         aliases: ["tpto"]
     "useful spawn":
         description: "Téléporte au spawn."
-        usage: "[target]"
+        usage: "[target...]"
         permission: "useful.spawn"
         aliases: ["spawn"]
+
 #¨Permissions
 permissions:
     useful.tell:

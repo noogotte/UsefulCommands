@@ -60,7 +60,7 @@ public class PlayerCommands extends UsefulCommands {
             }
 
             target.sendMessage(ChatColor.YELLOW
-                    + "Vous voilà soignés et nourris");
+                    + "Vous voilà soigné et nourri");
             if (!player.equals(target)) {
                 player.sendMessage(ChatColor.GREEN
                         + "Vous avez soigné et nourri "
