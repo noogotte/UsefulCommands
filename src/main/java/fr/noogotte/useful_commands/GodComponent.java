@@ -32,7 +32,7 @@ public class GodComponent implements Listener {
         gods.remove(player);
     }
 
-    @EventHandler()
+    @EventHandler
     public void healthChange(EntityDamageEvent event) {
         Entity entity = event.getEntity();
         if(entity instanceof Player
@@ -41,7 +41,7 @@ public class GodComponent implements Listener {
         }
     }
 
-    @EventHandler()
+    @EventHandler
     public void foodLevelChange(FoodLevelChangeEvent event) {
         if(gods.contains(event.getEntity().getName())) {
             event.setCancelled(true);
