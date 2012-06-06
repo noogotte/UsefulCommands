@@ -6,7 +6,6 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
@@ -15,10 +14,10 @@ import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.command.exception.CommandError;
 import fr.aumgn.bukkitutils.command.exception.CommandUsageError;
-import fr.aumgn.bukkitutils.geom.Direction;
 import fr.aumgn.bukkitutils.geom.Vector;
 import fr.aumgn.bukkitutils.geom.Vector2D;
-import fr.aumgn.bukkitutils.geom.direction.HorizontalDirection;
+
+import static fr.noogotte.useful_commands.LocationUtil.*;
 
 @NestedCommands(name = "useful")
 public class WorldCommands extends UsefulCommands {
@@ -93,21 +92,14 @@ public class WorldCommands extends UsefulCommands {
         int count = args.getInteger(1, 1);
         List<Location> locations = new ArrayList<Location>();
         if (args.hasFlag('t')) {
-            for (Player targetPlayer : args.getPlayers(2, player)) {
-                Block target = targetPlayer.getTargetBlock(null, 180);
-                Vector2D pos2D = new Vector(target.getLocation()).to2D();
-                Vector pos = pos2D.toHighest(targetPlayer.getWorld());
-                locations.add(pos.toLocation(player.getWorld()));
+            for (Player target : args.getPlayers(2, player)) {
+                locations.add(getTargetBlockLocation(target, 180));
             }
         } else if (args.hasFlag('d')) {
-            int distance = args.getInteger(2);
-            Vector pos = new Vector(player.getLocation());
-            Direction dir = new HorizontalDirection(player.getLocation().getYaw());
-            Vector dirVector = dir.getVector2D().multiply(distance).to3D();
-
-            locations.add(pos.add(dirVector).to2D().
-                    toHighest(player.getWorld()).
-                    toLocation(player.getWorld()));
+            int distance = args.getInteger(args.length() - 1);
+            for (Player target : args.getPlayers(2, player)) {
+                locations.add(getDistantLocation(target, distance));
+            }
         } else if (args.hasFlag('p')) {
             Vector2D pos2D = args.getVector2D(2);
             Vector pos = pos2D.toHighest(player.getWorld());

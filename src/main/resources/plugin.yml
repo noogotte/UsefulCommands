@@ -134,6 +134,10 @@ commands:
         usage: "<target> | <player> <target>"
         permission: "useful.teleportation"
         aliases: ["tp"]
+    "useful summon":
+        description: "Téléporte un joueur à vous."
+        usage: "[-dt] <players...> [distance]"
+        aliases: ["summon", "s"]
     "useful teleport-to":
         description: "Téléporte aux coordonnées données."
         usage: "<x>,<y>,<z> [world] [target]"

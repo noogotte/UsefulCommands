@@ -13,11 +13,13 @@ import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.geom.Direction;
 import fr.aumgn.bukkitutils.geom.Vector;
 
+import static fr.noogotte.useful_commands.LocationUtil.*;
+
 @NestedCommands(name = "useful")
 public class TeleportCommands extends UsefulCommands {
 
     @Command(name = "teleportation", min = 1, max = 2)
-    public void telportation(Player sender, CommandArgs args) {
+    public void teleportation(Player sender, CommandArgs args) {
         if(args.length() == 1) {
             Player target = args.getPlayer(0);
             sender.teleport(target);
@@ -32,6 +34,37 @@ public class TeleportCommands extends UsefulCommands {
                         + ChatColor.AQUA + " à "
                         + ChatColor.GREEN + target.getName());
             }
+        }
+    }
+
+    @Command(name = "summon", flags = "dt", min = 1, max = -1)
+    public void summon(Player sender, CommandArgs args) {
+        List<Player> targets = args.getPlayers(0);
+        int to = args.length() - (args.hasFlag('d') ? 1 : 0);
+        for (int i = 1; i < to; i++) {
+            targets.addAll(args.getPlayers(i));
+        }
+
+        Location location;
+        if (args.hasFlag('d')) {
+            int distance = args.getInteger(args.length() - 1);
+            location = getDistantLocation(sender, distance);
+        } else if (args.hasFlag('t')) {
+            location = getTargetBlockLocation(sender, 180);
+        } else {
+            location = sender.getLocation();
+        }
+
+        for (Player target : targets) {
+            if (sender.equals(target)) {
+                continue;
+            }
+
+            target.teleport(location);
+            target.sendMessage(ChatColor.GREEN + "Poof !");
+                sender.sendMessage(ChatColor.AQUA
+                        + "Vous avez téléporté "
+                        + ChatColor.GREEN + target.getName());
         }
     }
 
