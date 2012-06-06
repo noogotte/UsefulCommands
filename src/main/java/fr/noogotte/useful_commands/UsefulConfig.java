@@ -4,6 +4,7 @@ public class UsefulConfig {
 
     private boolean enableGod = true;
     private boolean enableWarp = true;
+    private boolean enableAfk = true;
 
     public boolean enableGod() {
         return enableGod;
@@ -11,5 +12,9 @@ public class UsefulConfig {
 
     public boolean enableWarp() {
         return enableWarp;
+    }
+    
+    public boolean enableAfk() {
+    	return enableAfk;
     }
 }

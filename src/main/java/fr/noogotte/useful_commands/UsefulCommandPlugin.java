@@ -43,8 +43,11 @@ public class UsefulCommandPlugin extends JavaPlugin {
         registration.register(new WorldCommands());
         registration.register(new PlayerCommands());
         registration.register(new TeleportCommands());
-        registration.register(new AfkCommand(afkComponent));
         registration.register(new PlayerInfoCommand(godComponent, afkComponent));
+        
+        if(config.enableAfk()) {
+        	registration.register(new AfkCommand(afkComponent));
+        }
         
         if (config.enableGod()) {
             
