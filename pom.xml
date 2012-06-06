@@ -36,6 +36,11 @@
 			<artifactId>command</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+            <groupId>fr.aumgn.bukkitutils</groupId>
+            <artifactId>gconf</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
 	</dependencies>
 
 	<build>
@@ -96,6 +101,7 @@
 								<includes>
 									<include>fr.aumgn.bukkitutils:core</include>
 									<include>fr.aumgn.bukkitutils:command</include>
+									<include>fr.aumgn.bukkitutils:gconf</include>
 								</includes>
 							</artifactSet>
 						</configuration>
