@@ -193,14 +193,22 @@ public class PlayerCommands extends UsefulCommands {
     @Command(name = "tell", min = 2, max = -1)
     public void tell(Player player, CommandArgs args) {
         List<Player> targets = args.getPlayers(0);
+        String message = args.get(1, -1);
 
+        StringBuilder receivers = new StringBuilder();
         for (Player target : targets) {
-            target.sendMessage(ChatColor.GREEN + "(" + ChatColor.RED
-                    + "De " + player.getName() 
-                    + ChatColor.GREEN + ") " 
-                    + ChatColor.WHITE + args.get(1, -1));
+            target.sendMessage(ChatColor.ITALIC.toString()
+                    + ChatColor.AQUA
+                    + "De " + player.getDisplayName()
+                    + ChatColor.WHITE + message);
+
+            receivers.append(target.getDisplayName());
+            receivers.append(" ");
         }
-        player.sendMessage(ChatColor.GREEN + "Message envoyé.");
+
+       player.sendMessage(ChatColor.ITALIC.toString()
+                + ChatColor.AQUA + "A " + receivers + ":");
+        player.sendMessage("  " + message);
     }
 
     @Command(name = "fly", min = 0, max = 1)
