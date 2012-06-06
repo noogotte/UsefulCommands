@@ -1,5 +1,9 @@
 package fr.noogotte.useful_commands;
 
+
+import java.io.File;
+
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -27,14 +31,21 @@ public class UsefulCommandPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         UsefulConfig config;
+        File warps = new File("plugins/UsefulCommands/Warps");
         GConfLoader loader = getConfigLoader();
+        
+        if (warps.mkdirs()) {	
+        	System.out.println("[UsefulCommands] Fichier de warp crée");
+        } else {
+        	System.out.println("[UsefulCommands] Echec sur le dossier : " + warps.getName());
+        }
         try {
             config = loader.loadOrCreate("config.json", UsefulConfig.class);
         } catch (GConfLoadException exc) {
             getLogger().severe("Unable to load config.json. Using default values");
             config = new UsefulConfig();
         }
-
+        
         CommandsRegistration registration = new CommandsRegistration(
                 this, new FrenchMessages());
 
