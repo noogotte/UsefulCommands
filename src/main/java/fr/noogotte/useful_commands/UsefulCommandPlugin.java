@@ -31,11 +31,12 @@ public class UsefulCommandPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         UsefulConfig config;
+        SaveWarpsFile warpsFile;
         File warps = new File("plugins/UsefulCommands/Warps");
         GConfLoader loader = getConfigLoader();
         
         if (warps.mkdirs()) {	
-        	System.out.println("[UsefulCommands] Fichier de warp crée");
+        	System.out.println("[UsefulCommands] Fichier de warp cree");
         } else {
         	System.out.println("[UsefulCommands] Echec sur le dossier : " + warps.getName());
         }
@@ -44,6 +45,13 @@ public class UsefulCommandPlugin extends JavaPlugin {
         } catch (GConfLoadException exc) {
             getLogger().severe("Unable to load config.json. Using default values");
             config = new UsefulConfig();
+        }
+        
+        try {
+            warpsFile = loader.loadOrCreate("Warps/warps.json", SaveWarpsFile.class);
+        } catch (GConfLoadException exc) {
+            getLogger().severe("Unable to load warps.json.");
+            warpsFile = new SaveWarpsFile();
         }
         
         CommandsRegistration registration = new CommandsRegistration(
