@@ -138,32 +138,6 @@ public class PlayerCommands extends UsefulCommands {
         player.openInventory(inventory);
     }
 
-    @Command(name = "playerinfo", min = 1, max = 1)
-    public void playerInfo(Player player, CommandArgs args) {
-        Player target = args.getPlayer(0);
-
-        player.sendMessage(ChatColor.GREEN + ""
-                + ChatColor.UNDERLINE + "Info de "
-                +  target.getName());
-        player.sendMessage(ChatColor.GREEN +"Vie : "
-                + ChatColor.AQUA + target.getHealth());
-        player.sendMessage(ChatColor.GREEN +"Faim : "
-                + ChatColor.AQUA + target.getFoodLevel());
-        player.sendMessage(ChatColor.GREEN +"IP : "
-                + ChatColor.AQUA + target.getAddress());
-        Location loc = target.getLocation();
-        player.sendMessage(ChatColor.GREEN + "Coordonnées : "
-                + ChatColor.AQUA + loc.getBlockX()
-                + ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockY()
-                + ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockZ()
-                + ChatColor.GREEN + " Monde : "
-                + ChatColor.AQUA + target.getWorld().getName());
-        player.sendMessage(ChatColor.GREEN +"Gamemode : "
-                + ChatColor.AQUA + target.getGameMode());
-        player.sendMessage(ChatColor.GREEN +"Expérience : "
-                + ChatColor.AQUA + target.getLevel());
-    }
-
     @Command(name = "id", min = 0, max = 0)
     public void id(Player player, CommandArgs args) {
         player.sendMessage(ChatColor.GREEN + "Vous tenez : "
