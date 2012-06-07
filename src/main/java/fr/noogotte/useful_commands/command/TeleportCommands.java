@@ -48,9 +48,13 @@ public class TeleportCommands extends UsefulCommands {
         Location location;
         if (args.hasFlag('d')) {
             int distance = args.getInteger(args.length() - 1);
-            location = getDistantLocation(sender, distance);
+            Vector pos = getDistantLocation(sender, distance);
+            Direction dir = pos.towards(new Vector(sender));
+            location = pos.toLocation(sender.getWorld(), dir);
         } else if (args.hasFlag('t')) {
-            location = getTargetBlockLocation(sender, 180);
+            Vector pos = getTargetBlockLocation(sender, 180);
+            Direction dir = pos.towards(new Vector(sender));
+            location = pos.toLocation(sender.getWorld(), dir);
         } else {
             location = sender.getLocation();
         }

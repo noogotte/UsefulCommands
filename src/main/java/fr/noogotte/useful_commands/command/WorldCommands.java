@@ -94,12 +94,16 @@ public class WorldCommands extends UsefulCommands {
         List<Location> locations = new ArrayList<Location>();
         if (args.hasFlag('t')) {
             for (Player target : args.getPlayers(2, player)) {
-                locations.add(getTargetBlockLocation(target, 180));
+                Location location = getTargetBlockLocation(target, 180)
+                        .toLocation(player.getWorld());
+                locations.add(location);
             }
         } else if (args.hasFlag('d')) {
             int distance = args.getInteger(args.length() - 1);
             for (Player target : args.getPlayers(2, player)) {
-                locations.add(getDistantLocation(target, distance));
+                Location location = getDistantLocation(target, distance)
+                        .toLocation(player.getWorld());
+                locations.add(location);
             }
         } else if (args.hasFlag('p')) {
             Vector2D pos2D = args.getVector2D(2);
