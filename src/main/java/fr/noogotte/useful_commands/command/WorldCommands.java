@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
@@ -118,7 +119,51 @@ public class WorldCommands extends UsefulCommands {
             }
         }
 
-        player.sendMessage(ChatColor.GREEN + "Vous avez spawn " + ChatColor.GOLD + totalCount + " " + entity.getName());
+        player.sendMessage(ChatColor.GREEN + "Vous avez spawn "
+                + ChatColor.GOLD + totalCount
+                + ChatColor.GREEN + " " + entity.getName());
+    }
+
+    @Command(name = "removemob", min = 0, max = 3)
+    public void removemob(Player sender, CommandArgs args) {
+        boolean all = args.length() == 0 || args.get(0).equals("*");
+
+        EntityType type = null;
+        if (!all) {
+            type = args.getEntityType(0);
+
+            if (isNotAMob(type)) {
+                throw new CommandError(type.getName() + " n'est pas un mob.");
+            }
+        }
+
+        boolean hasRadius = args.length() > 1;
+        Vector from = new Vector(sender);
+        int radius = args.getInteger(1, 0);
+        radius *= radius;
+
+        World world = args.getWorld(2, sender.getWorld());
+
+        int count = 0;
+        for (Entity entity : world.getEntities()) {
+            EntityType entityType = entity.getType();
+            if ((!all || isNotAMob(entityType))
+                    && entityType != type) {
+                continue;
+            }
+
+            if (hasRadius
+                    && new Vector(entity).distanceSq(from) > radius) {
+                continue;
+            }
+
+            count++;
+            entity.remove();
+        }
+
+        sender.sendMessage(ChatColor.GREEN + "Vous avez supprimé "
+                        + ChatColor.GOLD + count
+                        + ChatColor.GREEN + " mobs");
     }
 
     private boolean isNotAMob(EntityType type) {

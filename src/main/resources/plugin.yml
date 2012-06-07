@@ -32,10 +32,15 @@ commands:
         permission: "useful.weather"
         aliases: ["weather"]
     "useful spawnmob":
-        description: "Spawn un mob."
+        description: "Spawn un ou plusieurs mob(s)."
         usage: "[-tdp] <mob> [target]"
         permission: "useful.spawnmob"
         aliases: ["spawnmob", "mob"]
+    "useful removemob":
+        description: "Supprime un ou plusieurs mob(s)."
+        usage: "<type> [radius] [world]"
+        permission: "useful.removemob"
+        aliases: ["removemob", "rmmob"]
 
     # God Commands
     "useful god":
