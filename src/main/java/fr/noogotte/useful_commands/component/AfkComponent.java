@@ -9,20 +9,22 @@ import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventException;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 import fr.noogotte.useful_commands.UsefulCommandPlugin;
 
@@ -91,25 +93,13 @@ public class AfkComponent  extends Component implements Listener {
         Player player = event.getPlayer();
         if (isAfk(player)) {
             event.setCancelled(true);
-            event.getPlayer().sendMessage(ChatColor.RED
-                    + "Vous êtes AFK, vous ne pouvez pas interagir !");
         }
     }
 
     @EventHandler
-    public void onInteractEntity(PlayerInteractEntityEvent event) throws EventException {
+    public void onInteractEntity(PlayerInteractEntityEvent event) {
         Player player = event.getPlayer();
         if (isAfk(player)) {
-            event.setCancelled(true);
-            player.sendMessage(ChatColor.RED
-                    + "Vous êtes AFK, vous ne pouvez pas interagir !");
-        }
-    }
-
-    @EventHandler
-    public void onDamage(EntityDamageEvent event) {
-        Entity entity = event.getEntity();
-        if (entity instanceof Player && isAfk((Player) entity)) {
             event.setCancelled(true);
         }
     }
@@ -154,6 +144,29 @@ public class AfkComponent  extends Component implements Listener {
         if(isAfk(event.getPlayer())) {
             event.setCancelled(true);
         }
+    }
+    
+    @EventHandler
+    public void entityDamageByEntity(EntityDamageByEntityEvent event) {
+    	if(isAfk((Player) event.getDamager())) {
+    		event.setCancelled(true);
+    	}
+    }
+    
+    @EventHandler
+    public void entityDamage(EntityDamageEvent event) {
+    	Entity entity = event.getEntity();
+        if (entity instanceof Player && isAfk((Player) entity)) {
+            event.setCancelled(true);
+        }
+    }
+    
+    @EventHandler
+    public void onChat(PlayerChatEvent event) {
+    	if(isAfk(event.getPlayer())) {
+    		event.setCancelled(true);
+    		event.getPlayer().sendMessage(ChatColor.RED + "Vous ne pouvez pas parler, vous êtes AFK");
+    	}
     }
 }
 
