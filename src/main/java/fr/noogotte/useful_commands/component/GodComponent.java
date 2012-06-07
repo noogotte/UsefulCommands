@@ -3,33 +3,40 @@ package fr.noogotte.useful_commands.component;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
-import org.bukkit.plugin.Plugin;
+
+import fr.noogotte.useful_commands.UsefulCommandPlugin;
 
 public class GodComponent extends Component implements Listener {
 
-    private Set<Player> gods = new HashSet<Player>();
+    private final Set<Player> gods;
 
-    public GodComponent(Plugin plugin) {
-        Bukkit.getPluginManager().registerEvents(this, plugin);
-    }
-
-    public void setGod(Player player) {
-        gods.add(player);
+    public GodComponent(UsefulCommandPlugin plugin) {
+        super(plugin);
+        gods = new HashSet<Player>();
     }
 
     public boolean isGod(Player player) {
         return gods.contains(player);
     }
 
+    public void setGod(Player player) {
+        gods.add(player);
+        if (gods.size() == 1) {
+            registerEvents(this);
+        }
+    }
+
     public void removeGod(Player player) {
         gods.remove(player);
+        if (gods.size() == 0) {
+            unregisterEvents(this);
+        }
     }
 
     @EventHandler

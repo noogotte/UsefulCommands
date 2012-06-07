@@ -133,7 +133,7 @@ commands:
         description: "Supprime un warp."
         usage: "<name>"
         permission: "useful.delwarp"
-        aliases: ["deletewarp", "delwarp"]
+        aliases: ["deletewarp", "delwarp", "removewarp", "rmwarp"]
     "useful warp":
         description: "Téléporte à un warp."
         usage: "<name> [target]"

@@ -18,8 +18,6 @@ import fr.noogotte.useful_commands.UsefulCommandPlugin;
 
 public class WarpsComponent extends Component {
 
-    private final UsefulCommandPlugin plugin;
-
     public static class Warp {
         private final String worldName;
         private final Vector position;
@@ -37,17 +35,18 @@ public class WarpsComponent extends Component {
         }
     }
 
-    private Map<String, Warp> warps;
+    private final Map<String, Warp> warps;
 
     public WarpsComponent(UsefulCommandPlugin plugin) {
-        this.plugin = plugin;
+        super(plugin);
         GConfLoader loader = plugin.getGConfLoader();
+        warps = new HashMap<String, Warp>();
         try {
             TypeToken<HashMap<String, Warp>> typeToken =
                     new TypeToken<HashMap<String, Warp>>() {};
-            warps = loader.loadOrCreate("warps.json", typeToken);
+            warps.putAll(loader.loadOrCreate("warps.json", typeToken));
         } catch (GConfLoadException exc) {
-            warps = new HashMap<String, Warp>();
+            plugin.getLogger().severe("Unable to load warps.json.");
         }
     }
 

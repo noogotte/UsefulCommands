@@ -3,7 +3,6 @@ package fr.noogotte.useful_commands.component;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Creature;
@@ -24,22 +23,30 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.Plugin;
+
+import fr.noogotte.useful_commands.UsefulCommandPlugin;
 
 public class AfkComponent  extends Component implements Listener {
 
-    private Set<Player> afks = new HashSet<Player>();
+    private final Set<Player> afks;
 
-    public AfkComponent(Plugin plugin) {
-        Bukkit.getPluginManager().registerEvents(this, plugin);
+    public AfkComponent(UsefulCommandPlugin plugin) {
+        super(plugin);
+        afks = new HashSet<Player>();
     }
 
     public void addPlayer(Player player) {
         afks.add(player);
+        if (afks.size() == 1) {
+            registerEvents(this);
+        }
     }
 
     public void removePlayer(Player player) {
         afks.remove(player);
+        if (afks.size() == 0) {
+            unregisterEvents(this);
+        }
     }
 
     public boolean isAfk(Player player) {
@@ -54,7 +61,7 @@ public class AfkComponent  extends Component implements Listener {
         }
     }
 
-    @EventHandler()
+    @EventHandler
     public void onMove(PlayerMoveEvent event) {
         if (isAfk(event.getPlayer())) {
             Location location = event.getPlayer().getLocation();
@@ -69,7 +76,7 @@ public class AfkComponent  extends Component implements Listener {
         }
     }
 
-    @EventHandler()
+    @EventHandler
     public void onDropItem(PlayerDropItemEvent event) {
         Player player = event.getPlayer();
         if (isAfk(player)) {
@@ -79,7 +86,7 @@ public class AfkComponent  extends Component implements Listener {
         }
     }
 
-    @EventHandler()
+    @EventHandler
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if (isAfk(player)) {
@@ -89,17 +96,17 @@ public class AfkComponent  extends Component implements Listener {
         }
     }
 
-    @EventHandler()
+    @EventHandler
     public void onInteractEntity(PlayerInteractEntityEvent event) throws EventException {
         Player player = event.getPlayer();
         if (isAfk(player)) {
-            event.setCancelled(true);  
+            event.setCancelled(true);
             player.sendMessage(ChatColor.RED
                     + "Vous êtes AFK, vous ne pouvez pas interagir !");
         }
     }
 
-    @EventHandler()
+    @EventHandler
     public void onDamage(EntityDamageEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof Player && isAfk((Player) entity)) {
@@ -107,8 +114,7 @@ public class AfkComponent  extends Component implements Listener {
         }
     }
 
-
-    @EventHandler()
+    @EventHandler
     public void onRegainHealth(EntityRegainHealthEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof Player && isAfk((Player) entity)) {
@@ -116,8 +122,7 @@ public class AfkComponent  extends Component implements Listener {
         }
     }
 
-
-    @EventHandler()
+    @EventHandler
     public void onFoodLevelChange(FoodLevelChangeEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof Player && isAfk((Player) entity)) {	
@@ -125,7 +130,7 @@ public class AfkComponent  extends Component implements Listener {
         }
     }
 
-    @EventHandler() 
+    @EventHandler
     public void onTarget(EntityTargetEvent event) {
         Entity entity = event.getTarget();
         if (entity instanceof Player && isAfk((Player) entity)) {
@@ -133,7 +138,7 @@ public class AfkComponent  extends Component implements Listener {
         }
     }
 
-    @EventHandler()
+    @EventHandler
     public void onExplode(EntityExplodeEvent event) {
         Entity entity = event.getEntity();
         if (entity instanceof Creature) {
@@ -144,7 +149,7 @@ public class AfkComponent  extends Component implements Listener {
         }
     }
 
-    @EventHandler()
+    @EventHandler
     public void onPickupItem(PlayerPickupItemEvent event) {
         if(isAfk(event.getPlayer())) {
             event.setCancelled(true);
