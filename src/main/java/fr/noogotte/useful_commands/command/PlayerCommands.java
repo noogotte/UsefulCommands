@@ -103,10 +103,12 @@ public class PlayerCommands extends UsefulCommands {
             target.sendMessage(ChatColor.ITALIC.toString()
                     + ChatColor.AQUA
                     + "De " + player.getDisplayName()
-                    + ChatColor.WHITE + message);
+                    + ChatColor.WHITE +  " " + message);
 
             receivers.append(target.getDisplayName());
             receivers.append(" ");
+            
+            System.out.println("[MSG] de " + player.getName() +  " a " + target.getName() + ": " + message);
         }
 
        player.sendMessage(ChatColor.ITALIC.toString()
