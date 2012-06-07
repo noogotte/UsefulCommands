@@ -16,11 +16,22 @@ import fr.aumgn.bukkitutils.util.Util;
 @NestedCommands(name = "useful")
 public class PlayerCommands extends UsefulCommands {
 
-    @Command(name = "gamemode", min = 0, max = 1)
+    @Command(name = "gamemode", flags = "cs", min = 0, max = 1)
     public void gamemode(Player player, CommandArgs args) {
         List<Player> targets = args.getPlayers(0, player);
+        boolean force = args.hasFlags();
+        GameMode gameMode = null;
+        if (args.hasFlag('c')) {
+            gameMode = GameMode.CREATIVE;
+        } else {
+            gameMode = GameMode.SURVIVAL;
+        }
 
         for (Player target : targets) {
+            if (force && target.getGameMode() == gameMode) {
+                continue;
+            }
+
             if (target.getGameMode() == GameMode.CREATIVE) {
                 target.setGameMode(GameMode.SURVIVAL);
             } else {
