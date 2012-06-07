@@ -20,6 +20,7 @@ import fr.aumgn.bukkitutils.gconf.GConfLoader;
 import fr.aumgn.bukkitutils.gconf.typeadapter.DirectionTypeAdapterFactory;
 import fr.noogotte.useful_commands.command.AfkCommand;
 import fr.noogotte.useful_commands.command.GodCommand;
+import fr.noogotte.useful_commands.command.InventoryCommands;
 import fr.noogotte.useful_commands.command.PlayerCommands;
 import fr.noogotte.useful_commands.command.PlayerInfoCommand;
 import fr.noogotte.useful_commands.command.TeleportCommands;
@@ -44,6 +45,7 @@ public class UsefulCommandPlugin extends JavaPlugin {
 
         registration.register(new WorldCommands());
         registration.register(new PlayerCommands());
+        registration.register(new InventoryCommands());
         registration.register(new TeleportCommands());
 
         AfkComponent afkComponent = null;

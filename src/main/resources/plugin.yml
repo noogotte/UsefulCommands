@@ -55,31 +55,11 @@ commands:
         usage: "[-hf] [target]"
         permission: "useful.heal"
         aliases: ["heal"]
-    "useful clear":
-        description: "Vide l'inventaire."
-        usage: "[-qra] [target]"
-        permission: "useful.clear"
-        aliases: ["clear"]
-    "useful give":
-        description: "Donne x objets."
-        usage: "<type> [amount] [target]"
-        permission: "useful.give"
-        aliases: ["give", "i", "item"]
-    "useful open":
-        description: "Ouvre l'inventaire."
-        usage: "[target]"
-        permission: "useful.openinv"
-        aliases: ["open"]
     "useful playerinfo":
         description: "Affiche les infos de la cible."
         usage: "<target>"
         permission: "useful.playerinfo"
         aliases: ["pinfo", "player-info"]
-    "useful id":
-        description: "Affiche l'id de l'objet en main."
-        usage: ""
-        permission: "useful.id"
-        aliases: ["id"]
     "useful kick":
         description: "Kick un joueur."
         usage: "<target> [reason...]"
@@ -105,17 +85,39 @@ commands:
         usage: "<potion> [duration = 60] [target]"
         permission: "useful.effect"
         aliases: ["effect"]
-    "useful enchantment":
-        description: "Enchante un objet."
-        usage: "<enchantment> [level = 1]"
-        permission: "useful.enchant"
-        aliases: ["enchant"]
     "useful afk":
         description: "Met en afk"
         usage: "<target>"
         permission: "useful.afk"
         aliases: ["afk"]
-#
+
+    # Inventory Commands
+    "useful clear":
+        description: "Vide l'inventaire."
+        usage: "[-qra] [target]"
+        permission: "useful.clear"
+        aliases: ["clear"]
+    "useful give":
+        description: "Donne x objets."
+        usage: "[-e] <type> [amount] [target]"
+        permission: "useful.give"
+        aliases: ["give", "i", "item"]
+    "useful open":
+        description: "Ouvre l'inventaire."
+        usage: "[target]"
+        permission: "useful.openinv"
+        aliases: ["open"]
+    "useful id":
+        description: "Affiche l'id de l'objet en main."
+        usage: ""
+        permission: "useful.id"
+        aliases: ["id"]
+    "useful enchantment":
+        description: "Enchante un objet."
+        usage: "<enchantment> [level = 1]"
+        permission: "useful.enchant"
+        aliases: ["enchant"]
+
     # Warp Commands
     "useful setwarp":
         description: "Crée un warp."
