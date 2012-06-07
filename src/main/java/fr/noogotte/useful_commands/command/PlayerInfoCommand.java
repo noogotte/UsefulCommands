@@ -12,17 +12,16 @@ import fr.noogotte.useful_commands.GodComponent;
 
 @NestedCommands(name = "useful")
 public class PlayerInfoCommand extends UsefulCommands {
-	
-	private GodComponent godComponent;
-	private AfkComponent afkComponent;
+
+    private final GodComponent godComponent;
+    private final AfkComponent afkComponent;
 
     public PlayerInfoCommand(GodComponent godComponent, AfkComponent afkComponent) {
         this.godComponent = godComponent;
         this.afkComponent = afkComponent;
-    
     }
-    
-	@Command(name = "playerinfo", min = 1, max = 1)
+
+    @Command(name = "playerinfo", min = 1, max = 1)
     public void playerInfo(Player player, CommandArgs args) {
         Player target = args.getPlayer(0);
 
@@ -46,22 +45,25 @@ public class PlayerInfoCommand extends UsefulCommands {
                 + ChatColor.AQUA + target.getGameMode());
         player.sendMessage(ChatColor.GREEN +"Expérience : "
                 + ChatColor.AQUA + target.getLevel());
-        
-        if(godComponent.isGod(target)) {
-        	player.sendMessage(ChatColor.GREEN + "Mode dieux : " + 
-        			ChatColor.AQUA + "Oui");
-        } else {
-        	player.sendMessage(ChatColor.GREEN + "Mode dieux : " + 
-        			ChatColor.AQUA + "Non");
+
+        if (godComponent != null) {
+            if (godComponent.isGod(target)) {
+                player.sendMessage(ChatColor.GREEN + "Mode dieux : "
+                        + ChatColor.AQUA + "Oui");
+            } else {
+                player.sendMessage(ChatColor.GREEN + "Mode dieux : "
+                        + ChatColor.AQUA + "Non");
+            }
         }
-        
-        if(afkComponent.isAfk(target)) {
-        	player.sendMessage(ChatColor.GREEN + "AFK : " + 
-        			ChatColor.AQUA + "Oui");
-        } else {
-        	player.sendMessage(ChatColor.GREEN + "AFK : " + 
-        			ChatColor.AQUA + "Non");
+
+        if (afkComponent != null) {
+            if (afkComponent.isAfk(target)) {
+                player.sendMessage(ChatColor.GREEN + "AFK : "
+                        + ChatColor.AQUA + "Oui");
+            } else {
+                player.sendMessage(ChatColor.GREEN + "AFK : "
+                        + ChatColor.AQUA + "Non");
+            }
         }
     }
-
 }

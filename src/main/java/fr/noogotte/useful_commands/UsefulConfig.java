@@ -13,8 +13,8 @@ public class UsefulConfig {
     public boolean enableWarp() {
         return enableWarp;
     }
-    
+
     public boolean enableAfk() {
-    	return enableAfk;
+        return enableAfk;
     }
 }
