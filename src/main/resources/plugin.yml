@@ -122,6 +122,11 @@ commands:
         usage: "<enchantment> [level = 1]"
         permission: "useful.enchant"
         aliases: ["enchant"]
+    "useful remove-enchantment":
+        description: "Supprimes un enchantment d'un objet."
+        usage: "[enchantment]"
+        permission: "useful.removeenchant"
+        aliases: ["removeenchant", "rmenchant"]
 
     # Warp Commands
     "useful setwarp":

@@ -1,6 +1,7 @@
 package fr.noogotte.useful_commands.command;
 
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.bukkit.ChatColor;
 import org.bukkit.enchantments.Enchantment;
@@ -118,11 +119,25 @@ public class InventoryCommands implements Commands {
                     + ChatColor.RED + enchantment.getMaxLevel());
         } else {
             player.getItemInHand().addEnchantment(enchantment, level);
-            player.sendMessage(ChatColor.GREEN + "Vous avez ajouté " +
-                    ChatColor.GOLD + enchantment.getName() 
+            player.sendMessage(ChatColor.GREEN + "Vous avez ajouté "
+                    + ChatColor.GOLD + enchantment.getName() 
                     + ChatColor.GOLD + " : " 
                     + ChatColor.GREEN
                     + player.getItemInHand().getEnchantmentLevel(enchantment));
         }
+    }
+
+    @Command(name = "remove-enchantment", min = 0, max = 1)
+    public void removeEnchantment(Player player, CommandArgs args) {
+        ItemStack stack = player.getItemInHand();
+        if (args.length() == 0) {
+            for (Entry<Enchantment, Integer> entry : stack.getEnchantments().entrySet()) {
+                stack.removeEnchantment(entry.getKey());
+            }
+        } else {
+            Enchantment enchantment = args.getEnchantment(0);
+            stack.removeEnchantment(enchantment);
+        }
+        
     }
 }
