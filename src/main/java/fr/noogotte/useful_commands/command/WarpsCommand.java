@@ -10,8 +10,8 @@ import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.command.exception.CommandError;
-import fr.noogotte.useful_commands.WarpsComponent;
-import fr.noogotte.useful_commands.WarpsComponent.Warp;
+import fr.noogotte.useful_commands.component.WarpsComponent;
+import fr.noogotte.useful_commands.component.WarpsComponent.Warp;
 
 @NestedCommands(name = "useful")
 public class WarpsCommand extends UsefulCommands {

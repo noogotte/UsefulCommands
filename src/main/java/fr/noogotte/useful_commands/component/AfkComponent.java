@@ -1,4 +1,4 @@
-package fr.noogotte.useful_commands;
+package fr.noogotte.useful_commands.component;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,7 +26,7 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.Plugin;
 
-public class AfkComponent implements Listener {
+public class AfkComponent  extends Component implements Listener {
 
     private Set<Player> afks = new HashSet<Player>();
 

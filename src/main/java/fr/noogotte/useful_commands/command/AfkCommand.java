@@ -9,7 +9,7 @@ import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.util.Util;
-import fr.noogotte.useful_commands.AfkComponent;
+import fr.noogotte.useful_commands.component.AfkComponent;
 
 @NestedCommands(name = "useful")
 public class AfkCommand extends UsefulCommands {

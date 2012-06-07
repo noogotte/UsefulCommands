@@ -1,4 +1,4 @@
-package fr.noogotte.useful_commands;
+package fr.noogotte.useful_commands.component;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +12,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.plugin.Plugin;
 
-public class GodComponent implements Listener {
+public class GodComponent extends Component implements Listener {
 
     private Set<Player> gods = new HashSet<Player>();
 

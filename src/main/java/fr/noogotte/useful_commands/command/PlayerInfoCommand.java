@@ -7,8 +7,8 @@ import org.bukkit.entity.Player;
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
-import fr.noogotte.useful_commands.AfkComponent;
-import fr.noogotte.useful_commands.GodComponent;
+import fr.noogotte.useful_commands.component.AfkComponent;
+import fr.noogotte.useful_commands.component.GodComponent;
 
 @NestedCommands(name = "useful")
 public class PlayerInfoCommand extends UsefulCommands {

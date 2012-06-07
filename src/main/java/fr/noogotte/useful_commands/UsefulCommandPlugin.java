@@ -1,6 +1,9 @@
 package fr.noogotte.useful_commands;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -22,49 +25,69 @@ import fr.noogotte.useful_commands.command.PlayerInfoCommand;
 import fr.noogotte.useful_commands.command.TeleportCommands;
 import fr.noogotte.useful_commands.command.WarpsCommand;
 import fr.noogotte.useful_commands.command.WorldCommands;
+import fr.noogotte.useful_commands.component.AfkComponent;
+import fr.noogotte.useful_commands.component.Component;
+import fr.noogotte.useful_commands.component.GodComponent;
+import fr.noogotte.useful_commands.component.WarpsComponent;
 
 public class UsefulCommandPlugin extends JavaPlugin {
 
+    private List<Component> components;
+
     @Override
     public void onEnable() {
-        UsefulConfig config;
-        SaveWarpsFile warpsFile;
-        GConfLoader loader = getConfigLoader();
-        try {
-            config = loader.loadOrCreate("config.json", UsefulConfig.class);
-            warpsFile = loader.loadOrCreate("warps.json", SaveWarpsFile.class);
-        } catch (GConfLoadException exc) {
-            getLogger().severe("Unable to load config.json or warps.json. Using default values");
-            warpsFile = new SaveWarpsFile();
-            config = new UsefulConfig();
-        }
-        
+        UsefulConfig config = loadUsefulConfig();
+        components = new ArrayList<Component>(3);
+
         CommandsRegistration registration = new CommandsRegistration(
                 this, new FrenchMessages());
 
-        GodComponent godComponent = new GodComponent(this);
-        AfkComponent afkComponent = new AfkComponent(this);
         registration.register(new WorldCommands());
         registration.register(new PlayerCommands());
         registration.register(new TeleportCommands());
-        registration.register(new PlayerInfoCommand(godComponent, afkComponent));
-        
-        if(config.enableAfk()) {
-        	registration.register(new AfkCommand(afkComponent));
+
+        AfkComponent afkComponent = null;
+        GodComponent godComponent = null;
+
+        if (config.enableAfk()) {
+            afkComponent = new AfkComponent(this);
+            components.add(afkComponent);
+            registration.register(new AfkCommand(afkComponent));
         }
-        
+
         if (config.enableGod()) {
-            
+            godComponent = new GodComponent(this);
+            components.add(godComponent);
             registration.register(new GodCommand(godComponent));
         }
 
         if (config.enableWarp()) {
-            WarpsComponent warpcomponent = new WarpsComponent();
-            registration.register(new WarpsCommand(warpcomponent));
+            WarpsComponent warpComponent = new WarpsComponent(this);
+            components.add(warpComponent);
+            registration.register(new WarpsCommand(warpComponent));
+        }
+
+        registration.register(new PlayerInfoCommand(godComponent, afkComponent));
+    }
+
+    private UsefulConfig loadUsefulConfig() {
+        GConfLoader loader = getGConfLoader();
+        try {
+            return loader.loadOrCreate("config.json", UsefulConfig.class);
+        } catch (GConfLoadException exc) {
+            getLogger().severe("Unable to load config.json or warps.json. Using default values");
+            return new UsefulConfig();
         }
     }
 
-    private GConfLoader getConfigLoader() {
+    @Override
+    public void onDisable() {
+        for (Component component : components) {
+            component.onDisable();
+        }
+    }
+
+    public GConfLoader getGConfLoader() {
         Gson gson = new GsonBuilder()
             .registerTypeAdapterFactory(new DirectionTypeAdapterFactory())
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES)
