@@ -103,7 +103,7 @@ public class WorldCommands extends UsefulCommands {
         }
     }
 
-    @Command(name = "spawnmob", flags = "tdp", min = 1, max = 3)
+    @Command(name = "spawnmob", flags = "tp", argsFlags = "d", min = 1, max = 3)
     public void spawnmob(Player sender, CommandArgs args) {
         EntityType entity = args.getEntityType(0).value();
         if (!entity.isSpawnable() && isNotAMob(entity)) {
@@ -118,8 +118,8 @@ public class WorldCommands extends UsefulCommands {
                         .toLocation(sender.getWorld());
                 locations.add(location);
             }
-        } else if (args.hasFlag('d')) {
-            int distance = args.getInteger(args.length() - 1).value();
+        } else if (args.hasArgFlag('d')) {
+            int distance = args.get('d', Integer.class).value();
             for (Player target : args.getPlayers(2).value(sender)) {
                 Location location = getDistantLocation(target, distance)
                         .toLocation(sender.getWorld());
@@ -148,31 +148,58 @@ public class WorldCommands extends UsefulCommands {
                 + ChatColor.GREEN + " " + entity.getName());
     }
 
-    @Command(name = "removemob", min = 0, max = 3)
-    public void removemob(Player sender, CommandArgs args) {
-        boolean all = args.length() == 0 || args.get(0).equals("*");
+    @Command(name = "removemob", argsFlags = "wcp", min = 0, max = 2)
+    public void removemob(CommandSender sender, CommandArgs args) {
+        List<EntityType> types;
+        if (args.length() == 0 || args.get(0).equals("*")) {
+            types = null;
+        } else {
+            types = args.getList(0, EntityType.class).value();
 
-        EntityType type = null;
-        if (!all) {
-            type = args.getEntityType(0).value();
-
-            if (isNotAMob(type)) {
-                throw new CommandError(type.getName() + " n'est pas un mob.");
+            for (EntityType type : types) {
+                if (isNotAMob(type)) {
+                    throw new CommandError(type.getName() + " n'est pas un mob.");
+                }
             }
         }
 
         boolean hasRadius = args.length() > 1;
-        Vector from = new Vector(sender);
-        int radius = args.getInteger(1).value(0);
-        radius *= radius;
+        int radius = 0;
+        Vector from = null;
+        World world = null;
 
-        World world = args.getWorld(2).value(sender);
+        if (hasRadius) {
+            radius = args.getInteger(1).value(1);
+            radius *= radius;
+
+            if (args.hasArgFlag('c')) {
+                if (!args.hasArgFlag('w')) {
+                    throw new CommandUsageError("Vous devez specifier un monde.");
+                }
+                from = args.get('c', Vector.class).value(); 
+                world = args.get('w', World.class).value();
+            } else {
+                Player target = args.get('p', Player.class).value(sender);
+                from = new Vector(target);
+                world = target.getWorld();
+            }
+        } else {
+            if (args.hasArgFlag('p')) {
+                world = args.get('p', Player.class).value().getWorld();
+            } else {
+                world = args.get('w', World.class).value(sender);
+            }
+        }
 
         int count = 0;
         for (Entity entity : world.getEntities()) {
             EntityType entityType = entity.getType();
-            if ((!all || isNotAMob(entityType))
-                    && entityType != type) {
+            if (isNotAMob(entityType)) {
+                continue;
+            }
+
+            if (types != null
+                    && !types.contains(entityType)) {
                 continue;
             }
 

@@ -1,7 +1,6 @@
 package fr.noogotte.useful_commands.command;
 
 import java.util.List;
-import java.util.Map.Entry;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -128,14 +127,15 @@ public class InventoryCommands implements Commands {
     @Command(name = "remove-enchantment", min = 0, max = 1)
     public void removeEnchantment(Player sender, CommandArgs args) {
         ItemStack stack = sender.getItemInHand();
+        Iterable<Enchantment> enchantments; 
         if (args.length() == 0) {
-            for (Entry<Enchantment, Integer> entry : stack.getEnchantments().entrySet()) {
-                stack.removeEnchantment(entry.getKey());
-            }
+            enchantments = stack.getEnchantments().keySet();
         } else {
-            Enchantment enchantment = args.getEnchantment(0).value();
+            enchantments = args.getList(0, Enchantment.class).value();
+        }
+
+        for (Enchantment enchantment : enchantments) {
             stack.removeEnchantment(enchantment);
         }
-        
     }
 }

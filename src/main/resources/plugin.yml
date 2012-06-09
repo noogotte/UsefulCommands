@@ -33,12 +33,12 @@ commands:
         aliases: ["weather"]
     "useful spawnmob":
         description: "Spawn un ou plusieurs mob(s)."
-        usage: "[-tdp] <mob> [target]"
+        usage: "[-tp] [-d=<distance>] <mob...> [target]"
         permission: "useful.spawnmob"
         aliases: ["spawnmob", "mob"]
     "useful removemob":
         description: "Supprime un ou plusieurs mob(s)."
-        usage: "<type> [radius] [world]"
+        usage: "<type> [radius] [-w=<world> [-c=<x,y,z>]] [-p=<player>]"
         permission: "useful.removemob"
         aliases: ["removemob", "rmmob"]
 
@@ -153,7 +153,7 @@ commands:
         aliases: ["tp"]
     "useful summon":
         description: "Téléporte un joueur à vous."
-        usage: "[-dt] <players...> [distance]"
+        usage: "[-t] [-d=<distance>] <players...> [distance]"
         aliases: ["summon", "s"]
     "useful teleport-to":
         description: "Téléporte aux coordonnées données."

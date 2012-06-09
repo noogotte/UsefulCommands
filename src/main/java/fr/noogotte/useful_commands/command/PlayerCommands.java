@@ -22,6 +22,7 @@ public class PlayerCommands extends UsefulCommands {
     @Command(name = "gamemode", flags = "cs", min = 0, max = 1)
     public void gamemode(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0).match(sender);
+
         boolean force = args.hasFlags();
         GameMode gameMode = null;
         if (args.hasFlag('c')) {
@@ -86,7 +87,7 @@ public class PlayerCommands extends UsefulCommands {
         for (Player target : args.getPlayers(0).match()) {
             if (dontKickOps && target.isOp()) {
                 sender.sendMessage(ChatColor.RED + target.getName()
-                        + " est OP vous ne pouvez pas le kicker.");
+                        + " est OP vous ne pouvez pas le kicker (utiliser \"-o\".");
             } else {
                 target.kickPlayer(reason);
                 Util.broadcast(ChatColor.AQUA + target.getName()
