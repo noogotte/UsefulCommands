@@ -8,7 +8,8 @@ main: fr.noogotte.useful_commands.UsefulCommandPlugin
 commands:
     useful:
         description: "Commande principale."
-        usage: "time | weather | gamemode | god | heal | clear | teleportation | seed | spawn"
+        usage: "/help UsefulCommands"
+        aliases: ["us"]
 
     # World commands
     "useful seed":
