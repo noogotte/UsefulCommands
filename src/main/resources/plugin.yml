@@ -144,6 +144,11 @@ commands:
         usage: "<name> [target]"
         permission: "useful.warp"
         aliases: ["warp"]
+    "useful warps":
+        description: "Liste les warps."
+        usage: ""
+        permission: "useful.warps"
+        aliases: ["warps"]
 
     # Teleport commands
     "useful teleportation":

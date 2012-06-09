@@ -2,6 +2,7 @@ package fr.noogotte.useful_commands.component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -71,6 +72,10 @@ public class WarpsComponent extends Component {
     public void deleteWarp(String name) {
         warps.remove(name);
         save();
+    }
+
+    public Iterable<Entry<String, Warp>> warps() {
+        return warps.entrySet();
     }
 
     public void save() {

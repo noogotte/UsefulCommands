@@ -1,6 +1,7 @@
 package fr.noogotte.useful_commands.command;
 
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -63,6 +64,14 @@ public class WarpsCommand extends UsefulCommands {
         } else {
             warpscomponent.deleteWarp(args.get(0));
             sender.sendMessage(ChatColor.RED + "Vous avez supprimé le warp : " + args.get(0));
+        }
+    }
+
+    @Command(name = "warps")
+    public void warps(CommandSender sender, CommandArgs args) {
+        sender.sendMessage(ChatColor.GOLD + "Warps : ");
+        for (Entry<String, Warp> warpEntry : warpscomponent.warps()) {
+            sender.sendMessage(ChatColor.AQUA + "  -" + warpEntry.getKey());
         }
     }
 }
