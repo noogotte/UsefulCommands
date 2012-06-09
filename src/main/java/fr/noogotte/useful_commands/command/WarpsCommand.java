@@ -69,7 +69,12 @@ public class WarpsCommand extends UsefulCommands {
 
     @Command(name = "warps")
     public void warps(CommandSender sender, CommandArgs args) {
-        sender.sendMessage(ChatColor.GOLD + "Warps : ");
+    	
+    	if(warpscomponent.isEmpty()) {
+    		throw new CommandError("Il n'y a pas de warp !");
+    	}
+    	
+    	sender.sendMessage(ChatColor.GOLD + "Warps : ");
         for (Entry<String, Warp> warpEntry : warpscomponent.warps()) {
             sender.sendMessage(ChatColor.AQUA + "  -" + warpEntry.getKey());
         }

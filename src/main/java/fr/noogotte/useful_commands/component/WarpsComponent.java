@@ -86,4 +86,8 @@ public class WarpsComponent extends Component {
             plugin.getLogger().severe("Unable to save warps.json.");
         }
     }
+    
+    public boolean isEmpty() {
+    	return warps.isEmpty();
+    }
 }
