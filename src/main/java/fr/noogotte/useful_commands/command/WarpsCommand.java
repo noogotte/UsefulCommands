@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.aumgn.bukkitutils.command.Command;
@@ -35,33 +36,33 @@ public class WarpsCommand extends UsefulCommands {
     }
 
     @Command(name = "warp", min = 1, max = 2)
-    public void teleportToWarp(Player player, CommandArgs args) {
+    public void teleportToWarp(CommandSender sender, CommandArgs args) {
         if(!warpscomponent.isWarp(args.get(0))) {
             throw new CommandError("Le warp " + args.get(0) + " n'existe pas.");
         } else {
             String warpName = args.get(0);
-            List<Player> targets = args.getPlayers(1, player);
+            List<Player> targets = args.getPlayers(1).match(sender);
 
             for (Player target : targets) {
                 Warp warp = warpscomponent.getWarp(warpName);
-                player.teleport(warp.toLocation());
-                player.sendMessage(ChatColor.GREEN + "Poof !");
+                target.teleport(warp.toLocation());
+                target.sendMessage(ChatColor.GREEN + "Poof !");
 
-                if(!player.equals(target)) {
-                    player.sendMessage( target.getName() + "a été téléporté au warp : " + warpName);
+                if (!sender.equals(target)) {
+                    sender.sendMessage( target.getName() + "a été téléporté au warp : " + warpName);
                 }
             }
         }
     }
 
     @Command(name = "deletewarp", min = 1, max = 1)
-    public void deleteWarp(Player player, CommandArgs args) {
+    public void deleteWarp(CommandSender sender, CommandArgs args) {
         if(!warpscomponent.isWarp(args.get(0))) {
             String arg = args.get(0);
             throw new CommandError("Le warp " + arg + " n'existe pas.");
         } else {
             warpscomponent.deleteWarp(args.get(0));
-            player.sendMessage(ChatColor.RED + "Vous avez supprimé le warp : " + args.get(0));
+            sender.sendMessage(ChatColor.RED + "Vous avez supprimé le warp : " + args.get(0));
         }
     }
 }

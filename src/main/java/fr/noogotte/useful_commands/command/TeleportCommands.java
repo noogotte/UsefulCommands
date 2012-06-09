@@ -5,6 +5,7 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.aumgn.bukkitutils.command.Command;
@@ -20,34 +21,30 @@ public class TeleportCommands extends UsefulCommands {
 
     @Command(name = "teleportation", min = 1, max = 2)
     public void teleportation(Player sender, CommandArgs args) {
-        if(args.length() == 1) {
-            Player target = args.getPlayer(0);
-            sender.teleport(target);
-            sender.sendMessage(ChatColor.GREEN + "Poof !");
-        } else {
-            Player target = args.getPlayer(1);
-            for (Player player : args.getPlayers(0)) {
-                player.teleport(target);
+        Player to = args.getPlayer(0).value();
+        List<Player> targets = args.getPlayers(1).match(sender);
+
+        for (Player target : targets) {
+            target.teleport(to);
+            target.sendMessage(ChatColor.GREEN + "Poof !");
+
+            if (!target.equals(sender)) {
                 sender.sendMessage(ChatColor.AQUA +
                         "Vous avez téléporté "
-                        + ChatColor.GREEN + player.getName() 
+                        + ChatColor.GREEN + target.getName() 
                         + ChatColor.AQUA + " à "
                         + ChatColor.GREEN + target.getName());
             }
         }
     }
 
-    @Command(name = "summon", flags = "dt", min = 1, max = -1)
+    @Command(name = "summon", flags = "t", argsFlags = "d", min = 1, max = 1)
     public void summon(Player sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0);
-        int to = args.length() - (args.hasFlag('d') ? 1 : 0);
-        for (int i = 1; i < to; i++) {
-            targets.addAll(args.getPlayers(i));
-        }
+        List<Player> targets = args.getPlayers(0).match();
 
         Location location;
-        if (args.hasFlag('d')) {
-            int distance = args.getInteger(args.length() - 1);
+        if (args.hasArgFlag('d')) {
+            int distance = args.getInteger('d').value();
             Vector pos = getDistantLocation(sender, distance);
             Direction dir = pos.towards(new Vector(sender));
             location = pos.toLocation(sender.getWorld(), dir);
@@ -73,10 +70,10 @@ public class TeleportCommands extends UsefulCommands {
     }
 
     @Command(name = "teleport-to", min = 1, max = 3)
-    public void teleportTo(Player player, CommandArgs args) {
-        Vector teleportPos = args.getVector(0);
-        World world = args.getWorld(1, player.getWorld());
-        List<Player> targets = args.getPlayers(2, player);
+    public void teleportTo(CommandSender sender, CommandArgs args) {
+        Vector teleportPos = args.getVector(0).value();
+        World world = args.getWorld(1).value(sender);
+        List<Player> targets = args.getPlayers(2).match(sender);
 
         for (Player target : targets) {
             Vector currentPos = new Vector(target.getLocation());
@@ -84,29 +81,26 @@ public class TeleportCommands extends UsefulCommands {
             Location location = teleportPos.toLocation(world, dir);
             target.teleport(location);
 
-            player.sendMessage(ChatColor.GREEN + "Poof !");
-            if (!player.equals(target)) {
-                player.sendMessage(ChatColor.GREEN
+            sender.sendMessage(ChatColor.GREEN + "Poof !");
+            if (!sender.equals(target)) {
+                sender.sendMessage(ChatColor.GREEN
                         + "Vous avez téléporté "
                         + ChatColor.BLUE + target.getName());
             }
         }
     }
 
-    @Command(name = "spawn", min = 0, max = -1)
-    public void spawn(Player player, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0, player);
-        for (int i = 1; i < args.length(); i++) {
-            targets.addAll(args.getPlayers(i));
-        }
+    @Command(name = "spawn", min = 0, max = 1)
+    public void spawn(CommandSender sender, CommandArgs args) {
+        List<Player> targets = args.getPlayers(0).match(sender);
 
         for (Player target : targets) {
             target.teleport(
                     target.getWorld().getSpawnLocation());
 
             target.sendMessage(ChatColor.GREEN + "Vous êtes au spawn !");
-            if (!player.equals(target)) {
-                player.sendMessage(ChatColor.GREEN
+            if (!sender.equals(target)) {
+                sender.sendMessage(ChatColor.GREEN
                         + "Vous avez téléporté "
                         + ChatColor.BLUE + target.getName()
                         + ChatColor.GREEN + " au spawn.");

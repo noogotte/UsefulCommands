@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -19,8 +20,8 @@ import fr.aumgn.bukkitutils.itemtype.ItemType;
 public class InventoryCommands implements Commands {
 
     @Command(name = "clear", flags = "qra", min = 0, max = 1)
-    public void clear(Player player, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0, player);
+    public void clear(CommandSender sender, CommandArgs args) {
+        List<Player> targets = args.getPlayers(0).match(sender);
         int from = args.hasFlag('q') ? 9 : 0;
         int to = args.hasFlag('r') ? 8 : 35;
         boolean armor = !args.hasFlag('a');
@@ -37,8 +38,8 @@ public class InventoryCommands implements Commands {
             target.sendMessage(ChatColor.YELLOW
                     + "Inventaire vidé !");
 
-            if (!player.equals(target)) {
-                player.sendMessage(ChatColor.GREEN
+            if (!sender.equals(target)) {
+                sender.sendMessage(ChatColor.GREEN
                         + "Vous avez vidé l'inventaire de "
                         + ChatColor.BLUE + target.getName());
             }
@@ -46,18 +47,15 @@ public class InventoryCommands implements Commands {
     }
 
     @Command(name = "give", flags = "e", min = 1, max = 3)
-    public void give(Player player, CommandArgs args) {
-        ItemType itemType = args.getItemType(0);
-        List<Player> targets = args.getPlayers(2, player);
+    public void give(CommandSender sender, CommandArgs args) {
+        ItemType itemType = args.getItemType(0).value();
+        List<Player> targets = args.getPlayers(2).match(sender);
 
-        ItemStack item;
-        if(args.length() == 1) {
-            item = itemType.toMaxItemStack();
-        } else {
-            item = itemType.toItemStack(args.getInteger(1));
-        }
+        int amount = args.getInteger(1)
+                .value(itemType.getMaxStackSize());
+        ItemStack item = itemType.toItemStack(amount);
 
-        if (args.hasFlag('e')) {
+        if (args.hasFlag('e') && !itemType.getMaterial().isBlock()) {
             for (Enchantment enchantment : Enchantment.values()) {
                 if (enchantment.canEnchantItem(item)) {
                     item.addEnchantment(
@@ -73,8 +71,8 @@ public class InventoryCommands implements Commands {
                     + ChatColor.AQUA + item.getAmount()
                     + ChatColor.GREEN + " de "
                     + ChatColor.AQUA + itemType.getMaterial());
-            if (!player.equals(target)) {
-                player.sendMessage(ChatColor.GREEN
+            if (!sender.equals(target)) {
+                sender.sendMessage(ChatColor.GREEN
                         + "Vous avez donné à " + target.getName()
                         + ChatColor.GREEN + ": "
                         + ChatColor.AQUA + item.getAmount()
@@ -85,57 +83,57 @@ public class InventoryCommands implements Commands {
     }
 
     @Command(name = "open", min = 0, max = 1)
-    public void openInv(Player player, CommandArgs args) {
-        Player target = args.getPlayer(0, player);
+    public void openInv(Player sender, CommandArgs args) {
+        Player target = args.getPlayer(0).value(sender);
         if (target.isOp()) {
             target.sendMessage(ChatColor.RED
                     + "Votre inventaire a été ouvert par "
-                    + ChatColor.GRAY + player.getName());
+                    + ChatColor.GRAY + sender.getName());
         }
         Inventory inventory = target.getInventory();
-        player.openInventory(inventory);
+        sender.openInventory(inventory);
     }
 
     @Command(name = "id", min = 0, max = 0)
-    public void id(Player player, CommandArgs args) {
-        player.sendMessage(ChatColor.GREEN + "Vous tenez : "
-                + ChatColor.AQUA + player.getItemInHand().getData());
-        player.sendMessage(ChatColor.GREEN + "Son id est : "
-                + ChatColor.AQUA + player.getItemInHand().getTypeId());
+    public void id(Player sender, CommandArgs args) {
+        sender.sendMessage(ChatColor.GREEN + "Vous tenez : "
+                + ChatColor.AQUA + sender.getItemInHand().getData());
+        sender.sendMessage(ChatColor.GREEN + "Son id est : "
+                + ChatColor.AQUA + sender.getItemInHand().getTypeId());
     }
 
     @Command(name = "enchantment", min = 1, max = 2)
-    public void enchantment(Player player, CommandArgs args) {
-        Enchantment enchantment = args.getEnchantment(0);
-        Integer level = args.getInteger(1, 1);
-        if(!enchantment.canEnchantItem(player.getItemInHand())) {
-            player.sendMessage(ChatColor.GREEN + "L'enchantement " 
+    public void enchantment(Player sender, CommandArgs args) {
+        Enchantment enchantment = args.getEnchantment(0).value();
+        Integer level = args.getInteger(1).value(1);
+        if(!enchantment.canEnchantItem(sender.getItemInHand())) {
+            sender.sendMessage(ChatColor.GREEN + "L'enchantement " 
                     + ChatColor.GOLD + enchantment.getName() 
                     + ChatColor.GREEN + " ne peux pas être apliqué à " 
-                    + ChatColor.GOLD + player.getItemInHand().getType());
+                    + ChatColor.GOLD + sender.getItemInHand().getType());
         } else if (level > enchantment.getMaxLevel()) {
-            player.sendMessage(ChatColor.GREEN
+            sender.sendMessage(ChatColor.GREEN
                     + "Le niveau d'enchantement doit être inférieur ou égal à "
                     + ChatColor.RED + enchantment.getMaxLevel());
         } else {
-            player.getItemInHand().addEnchantment(enchantment, level);
-            player.sendMessage(ChatColor.GREEN + "Vous avez ajouté "
+            sender.getItemInHand().addEnchantment(enchantment, level);
+            sender.sendMessage(ChatColor.GREEN + "Vous avez ajouté "
                     + ChatColor.GOLD + enchantment.getName() 
                     + ChatColor.GOLD + " : " 
                     + ChatColor.GREEN
-                    + player.getItemInHand().getEnchantmentLevel(enchantment));
+                    + sender.getItemInHand().getEnchantmentLevel(enchantment));
         }
     }
 
     @Command(name = "remove-enchantment", min = 0, max = 1)
-    public void removeEnchantment(Player player, CommandArgs args) {
-        ItemStack stack = player.getItemInHand();
+    public void removeEnchantment(Player sender, CommandArgs args) {
+        ItemStack stack = sender.getItemInHand();
         if (args.length() == 0) {
             for (Entry<Enchantment, Integer> entry : stack.getEnchantments().entrySet()) {
                 stack.removeEnchantment(entry.getKey());
             }
         } else {
-            Enchantment enchantment = args.getEnchantment(0);
+            Enchantment enchantment = args.getEnchantment(0).value();
             stack.removeEnchantment(enchantment);
         }
         

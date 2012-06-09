@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -24,93 +25,112 @@ import static fr.noogotte.useful_commands.LocationUtil.*;
 public class WorldCommands extends UsefulCommands {
 
     @Command(name = "seed", min = 0, max = 1)
-    public void seed(Player player, CommandArgs args) {
-        World world = args.getWorld(0, player.getWorld());
+    public void seed(CommandSender sender, CommandArgs args) {
+        List<World> worlds = args.getList(0, World.class).match(sender);
 
-        player.sendMessage(ChatColor.GREEN + "Seed : "
-                + ChatColor.BLUE + world.getSeed());
+        for (World world : worlds) {
+            sender.sendMessage(ChatColor.GREEN + "Seed de "
+                    + ChatColor.BLUE + world.getName()
+                    + ChatColor.GREEN + " : "
+                    + ChatColor.BLUE + world.getSeed());
+        }
     }
 
-    @Command(name = "setspawn", min = 0, max = 0)
-    public void setSpawn(Player player, CommandArgs args) {
-        Location playerloc = player.getLocation();
-        player.getWorld().setSpawnLocation(
-                playerloc.getBlockX(),
-                playerloc.getBlockY(),
-                playerloc.getBlockZ());
-        player.sendMessage(ChatColor.GREEN + "Vous avez défini le spawn !");
+    @Command(name = "setspawn", min = 0, max = 2)
+    public void setSpawn(CommandSender sender, CommandArgs args) {
+        Vector position = args.getVector(0).value(sender);
+        World world = args.getWorld(0).value(sender);
+        world.setSpawnLocation(
+                position.getBlockX(),
+                position.getBlockY(),
+                position.getBlockZ());
+        sender.sendMessage(ChatColor.GREEN + "Vous avez défini le spawn !");
     }
 
     @Command(name = "time", min = 1, max = 2)
-    public void time(Player player, CommandArgs args) {
+    public void time(CommandSender sender, CommandArgs args) {
         String arg = args.get(0);
-        World world = args.getWorld(1, player.getWorld());
+        List<World> worlds = args.getList(1, World.class).value(sender);
 
+        int time;
+        String message;
         if (arg.equalsIgnoreCase("day")) {
-            world.setTime(20 * 60);
-            player.sendMessage(ChatColor.GOLD
+            time = 20 * 60;
+            message = ChatColor.GOLD
                     + "Vous avez mis le jour dans "
-                    + ChatColor.AQUA + world.getName());
+                    + ChatColor.AQUA;
         } else if (arg.equalsIgnoreCase("night")) {
-            world.setTime(20 * 60 * 11);
-            player.sendMessage(ChatColor.GOLD
+            time = 20 * 60 * 11;
+            message = ChatColor.GOLD
                     +"Vous avez mis la nuit dans "
-                    + ChatColor.AQUA + world.getName());
+                    + ChatColor.AQUA;
         } else {
             throw new CommandUsageError(
                     "Argument " + arg + " inconnu.");
+        }
+
+        for (World world : worlds) {
+            world.setTime(time);
+            sender.sendMessage(message + world.getName());
         }
     }
 
     @Command(name = "weather", min = 1, max = 2)
-    public void weather(Player player, CommandArgs args) {
+    public void weather(CommandSender sender, CommandArgs args) {
         String arg = args.get(0);
-        World world = args.getWorld(1, player.getWorld());
+        List<World> worlds = args.getList(1, World.class).value(sender);
 
+        boolean storm;
+        String message;
         if (arg.equalsIgnoreCase("sun")) {
-            world.setStorm(false);
-            player.sendMessage(ChatColor.GOLD
+            storm = false;
+            message = ChatColor.GOLD
                     + "Vous avez mis le soleil dans "
-                    + ChatColor.AQUA + world.getName());
+                    + ChatColor.AQUA;
         } else if(arg.equalsIgnoreCase("storm")) {
-            world.setStorm(true);
-            player.sendMessage(ChatColor.GOLD
+            storm = true;
+            message = ChatColor.GOLD
                     + "Vous avez mis la pluie dans "
-                    + ChatColor.AQUA + world.getName());
+                    + ChatColor.AQUA;
         } else {
             throw new CommandUsageError(
                     "Argument " + arg + " inconnu.");
         }
+
+        for (World world : worlds) {
+            world.setStorm(storm);
+            sender.sendMessage(message + world.getName());
+        }
     }
 
     @Command(name = "spawnmob", flags = "tdp", min = 1, max = 3)
-    public void spawnmob(Player player, CommandArgs args) {
-        EntityType entity = args.getEntityType(0);
+    public void spawnmob(Player sender, CommandArgs args) {
+        EntityType entity = args.getEntityType(0).value();
         if (!entity.isSpawnable() && isNotAMob(entity)) {
             throw new CommandError("Vous ne pouvez pas spawner ce type d'entité");
         }
 
-        int count = args.getInteger(1, 1);
+        int count = args.getInteger(1).value(1);
         List<Location> locations = new ArrayList<Location>();
         if (args.hasFlag('t')) {
-            for (Player target : args.getPlayers(2, player)) {
+            for (Player target : args.getPlayers(2).value(sender)) {
                 Location location = getTargetBlockLocation(target, 180)
-                        .toLocation(player.getWorld());
+                        .toLocation(sender.getWorld());
                 locations.add(location);
             }
         } else if (args.hasFlag('d')) {
-            int distance = args.getInteger(args.length() - 1);
-            for (Player target : args.getPlayers(2, player)) {
+            int distance = args.getInteger(args.length() - 1).value();
+            for (Player target : args.getPlayers(2).value(sender)) {
                 Location location = getDistantLocation(target, distance)
-                        .toLocation(player.getWorld());
+                        .toLocation(sender.getWorld());
                 locations.add(location);
             }
         } else if (args.hasFlag('p')) {
-            Vector2D pos2D = args.getVector2D(2);
-            Vector pos = pos2D.toHighest(player.getWorld());
-            locations.add(pos.toLocation(player.getWorld()));
+            Vector2D pos2D = args.getVector2D(2).value();
+            Vector pos = pos2D.toHighest(sender.getWorld());
+            locations.add(pos.toLocation(sender.getWorld()));
         } else {
-            for (Player target : args.getPlayers(2, player)) {
+            for (Player target : args.getPlayers(2).value(sender)) {
                 locations.add(target.getLocation());
             }
         }
@@ -123,7 +143,7 @@ public class WorldCommands extends UsefulCommands {
             }
         }
 
-        player.sendMessage(ChatColor.GREEN + "Vous avez spawn "
+        sender.sendMessage(ChatColor.GREEN + "Vous avez spawn "
                 + ChatColor.GOLD + totalCount
                 + ChatColor.GREEN + " " + entity.getName());
     }
@@ -134,7 +154,7 @@ public class WorldCommands extends UsefulCommands {
 
         EntityType type = null;
         if (!all) {
-            type = args.getEntityType(0);
+            type = args.getEntityType(0).value();
 
             if (isNotAMob(type)) {
                 throw new CommandError(type.getName() + " n'est pas un mob.");
@@ -143,10 +163,10 @@ public class WorldCommands extends UsefulCommands {
 
         boolean hasRadius = args.length() > 1;
         Vector from = new Vector(sender);
-        int radius = args.getInteger(1, 0);
+        int radius = args.getInteger(1).value(0);
         radius *= radius;
 
-        World world = args.getWorld(2, sender.getWorld());
+        World world = args.getWorld(2).value(sender);
 
         int count = 0;
         for (Entity entity : world.getEntities()) {

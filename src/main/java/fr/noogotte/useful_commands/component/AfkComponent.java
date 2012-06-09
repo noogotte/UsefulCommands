@@ -24,7 +24,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerToggleSneakEvent;
 
 import fr.noogotte.useful_commands.UsefulCommandPlugin;
 
@@ -145,28 +144,28 @@ public class AfkComponent  extends Component implements Listener {
             event.setCancelled(true);
         }
     }
-    
+
     @EventHandler
     public void entityDamageByEntity(EntityDamageByEntityEvent event) {
-    	if(isAfk((Player) event.getDamager())) {
-    		event.setCancelled(true);
-    	}
+        if(isAfk((Player) event.getDamager())) {
+            event.setCancelled(true);
+        }
     }
-    
+
     @EventHandler
     public void entityDamage(EntityDamageEvent event) {
-    	Entity entity = event.getEntity();
+        Entity entity = event.getEntity();
         if (entity instanceof Player && isAfk((Player) entity)) {
             event.setCancelled(true);
         }
     }
-    
+
     @EventHandler
     public void onChat(PlayerChatEvent event) {
-    	if(isAfk(event.getPlayer())) {
-    		event.setCancelled(true);
-    		event.getPlayer().sendMessage(ChatColor.RED + "Vous ne pouvez pas parler, vous êtes AFK");
-    	}
+        if(isAfk(event.getPlayer())) {
+            event.setCancelled(true);
+            event.getPlayer().sendMessage(ChatColor.RED + "Vous ne pouvez pas parler, vous êtes AFK");
+        }
     }
 }
 
