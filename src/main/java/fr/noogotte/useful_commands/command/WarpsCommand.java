@@ -56,8 +56,17 @@ public class WarpsCommand extends UsefulCommands {
         }
     }
 
-    @Command(name = "deletewarp", min = 1, max = 1)
+    @Command(name = "deletewarp", flags = "a", min = 0, max = 1)
     public void deleteWarp(CommandSender sender, CommandArgs args) {
+    	
+    	boolean all = args.hasFlag('a');
+    	
+    	if(all) {
+    		warpscomponent.clearWarp();
+    		sender.sendMessage(ChatColor.RED + "Vous avez enlevés tous les Warps !");
+    		return;
+    	}
+
         if(!warpscomponent.isWarp(args.get(0))) {
             String arg = args.get(0);
             throw new CommandError("Le warp " + arg + " n'existe pas.");
@@ -67,7 +76,7 @@ public class WarpsCommand extends UsefulCommands {
         }
     }
 
-    @Command(name = "warps")
+    @Command(name = "warps", min = 0, max = 0)
     public void warps(CommandSender sender, CommandArgs args) {
     	
     	if(warpscomponent.isEmpty()) {

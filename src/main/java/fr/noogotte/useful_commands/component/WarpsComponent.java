@@ -90,4 +90,8 @@ public class WarpsComponent extends Component {
     public boolean isEmpty() {
     	return warps.isEmpty();
     }
+    
+    public void clearWarp() {
+    	warps.clear();
+    }
 }
