@@ -87,7 +87,8 @@ public class PlayerCommands extends UsefulCommands {
         for (Player target : args.getPlayers(0).match()) {
             if (dontKickOps && target.isOp()) {
                 sender.sendMessage(ChatColor.RED + target.getName()
-                        + " est OP vous ne pouvez pas le kicker (utiliser \"-o\".");
+                        + " est OP vous ne pouvez pas le kicker "
+                        + "(utilisez \"-o\" pour forcer le kick).");
             } else {
                 target.kickPlayer(reason);
                 Util.broadcast(ChatColor.AQUA + target.getName()
