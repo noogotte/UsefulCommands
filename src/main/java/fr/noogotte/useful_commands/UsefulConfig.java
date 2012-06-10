@@ -5,6 +5,7 @@ public class UsefulConfig {
     private boolean enableGod = true;
     private boolean enableWarp = true;
     private boolean enableAfk = true;
+    private boolean enableKits = true;
 
     public boolean enableGod() {
         return enableGod;
@@ -16,5 +17,9 @@ public class UsefulConfig {
 
     public boolean enableAfk() {
         return enableAfk;
+    }
+
+    public boolean enableKits() {
+        return enableKits;
     }
 }

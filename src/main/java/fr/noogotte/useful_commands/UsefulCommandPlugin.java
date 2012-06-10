@@ -29,6 +29,7 @@ import fr.noogotte.useful_commands.command.WorldCommands;
 import fr.noogotte.useful_commands.component.AfkComponent;
 import fr.noogotte.useful_commands.component.Component;
 import fr.noogotte.useful_commands.component.GodComponent;
+import fr.noogotte.useful_commands.component.KitsComponent;
 import fr.noogotte.useful_commands.component.WarpsComponent;
 
 public class UsefulCommandPlugin extends JavaPlugin {
@@ -38,7 +39,7 @@ public class UsefulCommandPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         UsefulConfig config = loadUsefulConfig();
-        components = new ArrayList<Component>(3);
+        components = new ArrayList<Component>(4);
 
         CommandsRegistration registration = new CommandsRegistration(
                 this, new FrenchMessages());
@@ -67,6 +68,11 @@ public class UsefulCommandPlugin extends JavaPlugin {
             WarpsComponent warpComponent = new WarpsComponent(this);
             components.add(warpComponent);
             registration.register(new WarpsCommand(warpComponent));
+        }
+
+        if (config.enableKits()) {
+            KitsComponent kitsComponent = new KitsComponent(this);
+            components.add(kitsComponent);
         }
 
         registration.register(new PlayerInfoCommand(godComponent, afkComponent));
