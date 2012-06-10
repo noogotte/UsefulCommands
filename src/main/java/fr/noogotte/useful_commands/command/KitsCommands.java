@@ -27,6 +27,11 @@ public class KitsCommands extends UsefulCommands {
     @Command(name = "kit", min = 1, max = 2)
     public void kit(CommandSender sender, CommandArgs args) {
         String kitName = args.get(0);
+
+        if(component.hasKits()) {
+        	throw new CommandError("Aucun kit de sauvegardé !");
+        }
+
         if (!component.isKit(kitName)) {
             throw new CommandError(
                     "Aucun kit ne porte ce nom : " + kitName);
@@ -53,15 +58,15 @@ public class KitsCommands extends UsefulCommands {
 
     @Command(name = "kits")
     public void kits(CommandSender sender, CommandArgs args) {
-        if (component.hasKits()) {
-            sender.sendMessage(ChatColor.RED
-                    + "Aucun kit n'est disponible.");
-        } else {
-            sender.sendMessage(ChatColor.GREEN + "Kits :");
-            for (Entry<String, Kit> entry : component) {
-                sender.sendMessage(ChatColor.GREEN + "  - "
-                        + ChatColor.AQUA + entry.getKey());
-            }
+        
+    	if(component.hasKits()) {
+        	throw new CommandError("Aucun kit de sauvegardé !");
+        }
+
+        sender.sendMessage(ChatColor.GREEN + "Kits :");
+        for (Entry<String, Kit> entry : component) {
+        	sender.sendMessage(ChatColor.GREEN + "  - "        
+        			+ ChatColor.AQUA + entry.getKey());
         }
     }
 
@@ -98,6 +103,10 @@ public class KitsCommands extends UsefulCommands {
     @Command(name = "deletekit", flags = "f", min = 1, max = 1)
     public void deleteKit(Player sender, CommandArgs args) {
         String name = args.get(0);
+
+        if(component.hasKits()) {
+        	throw new CommandError("Aucun kit de sauvegardé !");
+        }
 
         if (!component.isKit(name)) {
             throw new CommandError("Aucun kit ne porte ce nom.");
