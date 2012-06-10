@@ -26,17 +26,14 @@ public class KitsComponent extends Component implements Iterable<Entry<String, K
 
         GConfLoader loader = plugin.getGConfLoader();
         for (File file : folder.listFiles()) {
-            String name = file.getName();
-            if (name.startsWith("template")) {
-                continue;
-            }
+            String filename = file.getName();
 
             try {
-                Kit kit = loader.loadOrCreate(name, Kit.class);
-                kits.put(name, kit);
+                Kit kit = loader.loadOrCreate(filename, Kit.class);
+                kits.put(getKitNameFor(filename), kit);
             } catch (GConfLoadException exc) {
                 plugin.getLogger().severe("Unable to read "
-                        + name + " kit file.");
+                        + filename + " kit file.");
             }
         }
     }
@@ -61,6 +58,13 @@ public class KitsComponent extends Component implements Iterable<Entry<String, K
     private String getFilenameFor(String name) {
         return "kits" + File.separator
                 + name + ".json";
+    }
+
+    private String getKitNameFor(String pathname) {
+        int index = pathname.lastIndexOf(File.separatorChar);
+        String filename = pathname.substring(index + 1);
+        index = filename.indexOf(".");
+        return filename.substring(0, index);
     }
 
     private boolean saveKit(String name, Kit kit) {
