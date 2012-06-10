@@ -21,6 +21,7 @@ import fr.aumgn.bukkitutils.gconf.typeadapter.DirectionTypeAdapterFactory;
 import fr.noogotte.useful_commands.command.AfkCommand;
 import fr.noogotte.useful_commands.command.GodCommand;
 import fr.noogotte.useful_commands.command.InventoryCommands;
+import fr.noogotte.useful_commands.command.KitsCommands;
 import fr.noogotte.useful_commands.command.PlayerCommands;
 import fr.noogotte.useful_commands.command.PlayerInfoCommand;
 import fr.noogotte.useful_commands.command.TeleportCommands;
@@ -73,6 +74,7 @@ public class UsefulCommandPlugin extends JavaPlugin {
         if (config.enableKits()) {
             KitsComponent kitsComponent = new KitsComponent(this);
             components.add(kitsComponent);
+            registration.register(new KitsCommands(kitsComponent));
         }
 
         registration.register(new PlayerInfoCommand(godComponent, afkComponent));

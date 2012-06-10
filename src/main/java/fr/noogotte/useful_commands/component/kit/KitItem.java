@@ -10,12 +10,17 @@ import org.bukkit.inventory.ItemStack;
 public class KitItem {
 
     private static class KitEnchantment {
-        private final Enchantment type;
+        private final String type;
         private final int level;
 
         public KitEnchantment(Entry<Enchantment, Integer> entry) {
-            this.type = entry.getKey();
+            this.type = entry.getKey().getName();
             this.level = entry.getValue();
+        }
+
+        public void addTo(ItemStack stack) {
+            Enchantment enchantment = Enchantment.getByName(type);
+            stack.addEnchantment(enchantment, level);
         }
     }
 
@@ -51,7 +56,7 @@ public class KitItem {
     public ItemStack toItemStack() {
         ItemStack stack = new ItemStack(material, amount, durability);
         for (KitEnchantment enchantment : enchantments) {
-            stack.addEnchantment(enchantment.type, enchantment.level);
+            enchantment.addTo(stack);
         }
 
         return stack;

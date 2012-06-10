@@ -151,6 +151,28 @@ commands:
         permission: "useful.warps"
         aliases: ["warps"]
 
+    # Kit Commands
+    "useful kit":
+        description: "Donne un kit."
+        usage: "<name> [target...]"
+        permission: "useful.kit"
+        aliases: ["kit"]
+    "useful kits":
+        description: "Liste les kits disponibles."
+        usage: ""
+        permission: "useful.kits"
+        aliases: ["kits"]
+    "useful addkit":
+        description: "Ajoute un kit."
+        usage: "[-f] <name>"
+        permission: "useful.addkit"
+        aliases: ["addkit"]
+    "useful deletekit":
+        description: "Supprime un kit."
+        usage: "<name>"
+        permission: "useful.rmkit"
+        aliases: ["deletekit", "removekit", "rmkit"]
+
     # Teleport commands
     "useful teleportation":
         description: "Téléporte à un joueur."
