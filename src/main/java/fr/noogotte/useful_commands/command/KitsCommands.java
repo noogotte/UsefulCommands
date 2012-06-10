@@ -65,10 +65,20 @@ public class KitsCommands extends UsefulCommands {
         }
     }
 
-    @Command(name = "addkit", flags = "f", min = 1, max = 1)
+    @Command(name = "addkit", flags = "af", min = 1, max = 1)
     public void addKit(Player sender, CommandArgs args) {
         String name = args.get(0);
-        Kit kit = new Kit(sender.getInventory().getContents());
+
+        ItemStack[] stacks;
+        if (args.hasFlag('a')) {
+            stacks = sender.getInventory().getContents();
+        } else {
+            stacks = new ItemStack[8];
+            System.arraycopy(
+                    sender.getInventory().getContents(),
+                    0, stacks, 0, 8);
+        }
+        Kit kit = new Kit(stacks);
 
         if (!args.hasFlag('f') && component.isKit(name)) {
             throw new CommandError("Un kit portant ce nom existe déjà."
