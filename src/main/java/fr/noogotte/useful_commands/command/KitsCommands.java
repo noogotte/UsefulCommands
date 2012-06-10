@@ -73,10 +73,10 @@ public class KitsCommands extends UsefulCommands {
         if (args.hasFlag('a')) {
             stacks = sender.getInventory().getContents();
         } else {
-            stacks = new ItemStack[8];
+            stacks = new ItemStack[9];
             System.arraycopy(
                     sender.getInventory().getContents(),
-                    0, stacks, 0, 8);
+                    0, stacks, 0, 9);
         }
         Kit kit = new Kit(stacks);
 
