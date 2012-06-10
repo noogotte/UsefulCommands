@@ -26,7 +26,9 @@ public class KitsComponent extends Component implements Iterable<Entry<String, K
 
         GConfLoader loader = plugin.getGConfLoader();
         for (File file : folder.listFiles()) {
-            String filename = file.getName();
+            String filename = folder.getName()
+                    + File.separator + file.getName();
+            System.out.println(filename);
 
             try {
                 Kit kit = loader.loadOrCreate(filename, Kit.class);
