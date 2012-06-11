@@ -56,7 +56,7 @@ public class KitsCommands extends UsefulCommands {
 
             if (!sender.equals(target)) {
                 sender.sendMessage(ChatColor.AQUA + target.getDisplayName()
-                        + ChatColor.GREEN + " a recu le kit"
+                        + ChatColor.GREEN + " a recu le kit "
                         + ChatColor.AQUA + kitName
                         + ChatColor.GREEN + ".");
             }
