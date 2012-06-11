@@ -101,7 +101,7 @@ public class KitsComponent extends Component implements Iterable<Entry<String, K
         return kits.get(name);
     }
 
-    public boolean hasKits() {
+    public boolean hasNoKit() {
         return kits.isEmpty();
     }
 

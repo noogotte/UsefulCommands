@@ -29,7 +29,7 @@ public class KitsCommands extends UsefulCommands {
         String kitName = args.get(0);
         boolean clear = args.hasFlag('c');
         
-        if(component.hasKits()) {
+        if(component.hasNoKit()) {
         	throw new CommandError("Aucun kit de sauvegardé !");
         }
 
@@ -66,7 +66,7 @@ public class KitsCommands extends UsefulCommands {
     @Command(name = "kits")
     public void kits(CommandSender sender, CommandArgs args) {
         
-    	if(component.hasKits()) {
+    	if(component.hasNoKit()) {
         	throw new CommandError("Aucun kit de sauvegardé !");
         }
 
@@ -111,7 +111,7 @@ public class KitsCommands extends UsefulCommands {
     public void deleteKit(Player sender, CommandArgs args) {
         String name = args.get(0);
 
-        if(component.hasKits()) {
+        if(component.hasNoKit()) {
         	throw new CommandError("Aucun kit de sauvegardé !");
         }
 
