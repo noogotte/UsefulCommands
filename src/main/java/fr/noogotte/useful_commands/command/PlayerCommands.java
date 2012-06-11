@@ -15,6 +15,7 @@ import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.util.Util;
+import fr.noogotte.useful_commands.event.DisplayNameLookupEvent;
 
 @NestedCommands(name = "useful")
 public class PlayerCommands extends UsefulCommands {
@@ -188,7 +189,7 @@ public class PlayerCommands extends UsefulCommands {
         PotionEffect newEffect = new PotionEffect(
                 effect, duration * 20, 1);
 
-        List<Player> targets = args.getPlayers(2).value(sender);
+        List<Player> targets = args.getPlayers(2).match(sender);
 
         for (Player target : targets) {
             target.addPotionEffect(newEffect, true);
@@ -206,12 +207,16 @@ public class PlayerCommands extends UsefulCommands {
 
     @Command(name = "rename", min = 1, max = 2)
     public void rename(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(1).value(sender);
+        List<Player> targets = args.getPlayers(1).match(sender);
         boolean reset = args.get(0).equals("reset");
 
         for (Player target : targets) {
             if (reset) {
-                String name = target.getName();
+                DisplayNameLookupEvent event =
+                        new DisplayNameLookupEvent(target);
+                Bukkit.getPluginManager().callEvent(event);
+                String name = event.getDisplayName();
+
                 target.setDisplayName(name);
                 target.setPlayerListName(name);
                 target.sendMessage(ChatColor.GREEN
