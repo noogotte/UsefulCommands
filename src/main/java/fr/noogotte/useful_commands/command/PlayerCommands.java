@@ -203,4 +203,33 @@ public class PlayerCommands extends UsefulCommands {
             }
         }
     }
+    
+    @Command(name = "rename", min = 1, max = 2)
+    public void rename(CommandSender sender, CommandArgs args) {
+    	List<Player> targets = args.getPlayers(1).value(sender);
+    	
+    	if(args.get(0).equals("off")) {
+    		for(Player target : targets) {
+    			String name = target.getName();
+    			target.setDisplayName(name);
+    			target.setPlayerListName(name);
+    			target.sendMessage("Vous êtes de nouveau connus sous le nom "  + name);
+    			
+    			if(!sender.equals(target)) {
+    				sender.sendMessage("Vous avez mis " + name + " avec son nom d'origine");
+    			}
+    		}
+    		return;
+    	}
+
+    	for(Player target : targets) {
+    		target.setDisplayName(args.get(0));
+    		target.setPlayerListName(args.get(0));
+    		target.sendMessage("Vous voilà renommez en "  + args.get(0));
+    		
+    		if(!sender.equals(target)) {
+    			sender.sendMessage("Vous avez renommez " + target.getName() + " en " + args.get(0));
+    		}
+    	}
+    }
 }

@@ -96,6 +96,11 @@ commands:
         usage: "<target>"
         permission: "useful.afk"
         aliases: ["afk"]
+    "useful rename":
+        description: "Renomme le joueure."
+        usage: "[name] <target>"
+        permission: "useful.rename"
+        aliases: ["rename"]
 
     # Inventory Commands
     "useful clear":
