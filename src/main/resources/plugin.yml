@@ -159,7 +159,7 @@ commands:
     # Kit Commands
     "useful kit":
         description: "Donne un kit."
-        usage: "<name> [target...]"
+        usage: "[-c] <name> [target...]"
         permission: "useful.kit"
         aliases: ["kit"]
     "useful kits":
