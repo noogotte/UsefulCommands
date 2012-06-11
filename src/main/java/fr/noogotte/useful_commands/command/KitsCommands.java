@@ -72,8 +72,8 @@ public class KitsCommands extends UsefulCommands {
 
         sender.sendMessage(ChatColor.GREEN + "Kits :");
         for (Entry<String, Kit> entry : component) {
-        	sender.sendMessage(ChatColor.GREEN + "  - "        
-        			+ ChatColor.AQUA + entry.getKey());
+            sender.sendMessage(ChatColor.GREEN + "  - "
+                    + ChatColor.AQUA + entry.getKey());
         }
     }
 
