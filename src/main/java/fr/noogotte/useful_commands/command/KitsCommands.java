@@ -24,10 +24,11 @@ public class KitsCommands extends UsefulCommands {
         this.component = component;
     }
 
-    @Command(name = "kit", min = 1, max = 2)
+    @Command(name = "kit", flags = "c", min = 1, max = 2)
     public void kit(CommandSender sender, CommandArgs args) {
         String kitName = args.get(0);
-
+        boolean clear = args.hasFlag('c');
+        
         if(component.hasKits()) {
         	throw new CommandError("Aucun kit de sauvegardé !");
         }
@@ -42,6 +43,12 @@ public class KitsCommands extends UsefulCommands {
         ItemStack[] stacks = kit.toItemStacks();
 
         for (Player target : targets) {
+        	if(clear) {
+                for (int j = 0; j <= 39; j++) {
+                    target.getInventory().setItem(j, null);
+                }
+        	}
+        	
             target.getInventory().addItem(stacks);
             target.sendMessage(ChatColor.GREEN + "Vous avez reçu le kit "
                     + ChatColor.AQUA + kitName
