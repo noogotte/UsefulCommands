@@ -3,6 +3,7 @@ package fr.noogotte.useful_commands.command;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -53,17 +54,10 @@ public class WorldCommands extends UsefulCommands {
         List<World> worlds = args.getList(1, World.class).value(sender);
 
         int time;
-        String message;
         if (arg.equalsIgnoreCase("day")) {
             time = 20 * 60;
-            message = ChatColor.GOLD
-                    + "Vous avez mis le jour dans "
-                    + ChatColor.AQUA;
         } else if (arg.equalsIgnoreCase("night")) {
             time = 20 * 60 * 11;
-            message = ChatColor.GOLD
-                    +"Vous avez mis la nuit dans "
-                    + ChatColor.AQUA;
         } else {
             throw new CommandUsageError(
                     "Argument " + arg + " inconnu.");
@@ -71,7 +65,15 @@ public class WorldCommands extends UsefulCommands {
 
         for (World world : worlds) {
             world.setTime(time);
-            sender.sendMessage(message + world.getName());
+            if(time == 20 * 60) {
+            	broadcastToOp(ChatColor.AQUA + sender.getName() +
+            			ChatColor.GOLD + " a mis le jour dans " +
+            			ChatColor.AQUA + world.getName());
+            } else if (time == 20 * 60 * 11) {
+            	broadcastToOp(ChatColor.AQUA + sender.getName() +
+            			ChatColor.GOLD + " a mis la nuit dans " +
+            			ChatColor.AQUA + world.getName());
+            }
         }
     }
 
@@ -81,17 +83,10 @@ public class WorldCommands extends UsefulCommands {
         List<World> worlds = args.getList(1, World.class).value(sender);
 
         boolean storm;
-        String message;
         if (arg.equalsIgnoreCase("sun")) {
             storm = false;
-            message = ChatColor.GOLD
-                    + "Vous avez mis le soleil dans "
-                    + ChatColor.AQUA;
         } else if(arg.equalsIgnoreCase("storm")) {
             storm = true;
-            message = ChatColor.GOLD
-                    + "Vous avez mis la pluie dans "
-                    + ChatColor.AQUA;
         } else {
             throw new CommandUsageError(
                     "Argument " + arg + " inconnu.");
@@ -99,7 +94,16 @@ public class WorldCommands extends UsefulCommands {
 
         for (World world : worlds) {
             world.setStorm(storm);
-            sender.sendMessage(message + world.getName());
+            
+            if(storm == true) {
+            	broadcastToOp(ChatColor.AQUA + sender.getName() +
+            			ChatColor.GOLD + " a mis la pluit dans " +
+            			ChatColor.AQUA + world.getName());
+            } else if (storm == false) {
+            	broadcastToOp(ChatColor.AQUA + sender.getName() +
+            			ChatColor.GOLD + " a arrété la pluit dans " +
+            			ChatColor.AQUA + world.getName());
+            }
         }
     }
 
@@ -240,5 +244,13 @@ public class WorldCommands extends UsefulCommands {
                 || type.equals(EntityType.THROWN_EXP_BOTTLE)
                 || type.equals(EntityType.UNKNOWN)
                 || type.equals(EntityType.WEATHER);
+    }
+    
+    public void broadcastToOp(String message) {
+    	for(Player player : Bukkit.getOnlinePlayers()) {
+    		if(player.isOp()) {
+    			player.sendMessage(message);
+    		}
+    	}
     }
 }
