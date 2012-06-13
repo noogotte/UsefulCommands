@@ -19,6 +19,7 @@ import fr.aumgn.bukkitutils.command.exception.CommandError;
 import fr.aumgn.bukkitutils.command.exception.CommandUsageError;
 import fr.aumgn.bukkitutils.geom.Vector;
 import fr.aumgn.bukkitutils.geom.Vector2D;
+import fr.noogotte.useful_commands.UsefulUtil;
 
 import static fr.noogotte.useful_commands.LocationUtil.*;
 
@@ -66,11 +67,11 @@ public class WorldCommands extends UsefulCommands {
         for (World world : worlds) {
             world.setTime(time);
             if(time == 20 * 60) {
-            	broadcastToOp(ChatColor.AQUA + sender.getName() +
+            	UsefulUtil.broadcastToOp(ChatColor.AQUA + sender.getName() +
             			ChatColor.GOLD + " a mis le jour dans " +
             			ChatColor.AQUA + world.getName());
             } else if (time == 20 * 60 * 11) {
-            	broadcastToOp(ChatColor.AQUA + sender.getName() +
+            	UsefulUtil.broadcastToOp(ChatColor.AQUA + sender.getName() +
             			ChatColor.GOLD + " a mis la nuit dans " +
             			ChatColor.AQUA + world.getName());
             }
@@ -96,11 +97,11 @@ public class WorldCommands extends UsefulCommands {
             world.setStorm(storm);
             
             if(storm == true) {
-            	broadcastToOp(ChatColor.AQUA + sender.getName() +
+            	UsefulUtil.broadcastToOp(ChatColor.AQUA + sender.getName() +
             			ChatColor.GOLD + " a mis la pluit dans " +
             			ChatColor.AQUA + world.getName());
             } else if (storm == false) {
-            	broadcastToOp(ChatColor.AQUA + sender.getName() +
+            	UsefulUtil.broadcastToOp(ChatColor.AQUA + sender.getName() +
             			ChatColor.GOLD + " a arrété la pluit dans " +
             			ChatColor.AQUA + world.getName());
             }
@@ -244,13 +245,5 @@ public class WorldCommands extends UsefulCommands {
                 || type.equals(EntityType.THROWN_EXP_BOTTLE)
                 || type.equals(EntityType.UNKNOWN)
                 || type.equals(EntityType.WEATHER);
-    }
-    
-    public void broadcastToOp(String message) {
-    	for(Player player : Bukkit.getOnlinePlayers()) {
-    		if(player.isOp()) {
-    			player.sendMessage(message);
-    		}
-    	}
     }
 }
