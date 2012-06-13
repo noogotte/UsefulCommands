@@ -177,6 +177,11 @@ commands:
         usage: "<name>"
         permission: "useful.rmkit"
         aliases: ["deletekit", "removekit", "rmkit"]
+    "useful rocket":
+        description: "Rocket le joueure"
+        usage: "<name>"
+        permission: "useful.rocket"
+        aliases: ["rocket"]
 
     # Teleport commands
     "useful teleportation":

@@ -19,6 +19,7 @@ import fr.aumgn.bukkitutils.gconf.GConfLoadException;
 import fr.aumgn.bukkitutils.gconf.GConfLoader;
 import fr.aumgn.bukkitutils.gconf.typeadapter.DirectionTypeAdapterFactory;
 import fr.noogotte.useful_commands.command.AfkCommand;
+import fr.noogotte.useful_commands.command.FunCommand;
 import fr.noogotte.useful_commands.command.GodCommand;
 import fr.noogotte.useful_commands.command.InventoryCommands;
 import fr.noogotte.useful_commands.command.KitsCommands;
@@ -52,6 +53,10 @@ public class UsefulCommandPlugin extends JavaPlugin {
 
         AfkComponent afkComponent = null;
         GodComponent godComponent = null;
+        
+        if(config.enableFunCommands()) {
+        	registration.register(new FunCommand());
+        }
 
         if (config.enableAfk()) {
             afkComponent = new AfkComponent(this);
