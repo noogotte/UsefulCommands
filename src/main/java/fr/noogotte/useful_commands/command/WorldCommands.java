@@ -1,9 +1,11 @@
 package fr.noogotte.useful_commands.command;
 
+import static fr.noogotte.useful_commands.LocationUtil.getDistantLocation;
+import static fr.noogotte.useful_commands.LocationUtil.getTargetBlockLocation;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -19,9 +21,7 @@ import fr.aumgn.bukkitutils.command.exception.CommandError;
 import fr.aumgn.bukkitutils.command.exception.CommandUsageError;
 import fr.aumgn.bukkitutils.geom.Vector;
 import fr.aumgn.bukkitutils.geom.Vector2D;
-import fr.noogotte.useful_commands.UsefulUtil;
-
-import static fr.noogotte.useful_commands.LocationUtil.*;
+import fr.aumgn.bukkitutils.util.Util;
 
 @NestedCommands(name = "useful")
 public class WorldCommands extends UsefulCommands {
@@ -67,12 +67,12 @@ public class WorldCommands extends UsefulCommands {
         for (World world : worlds) {
             world.setTime(time);
             if(time == 20 * 60) {
-            	UsefulUtil.broadcastToOp(ChatColor.AQUA + sender.getName() +
-            			ChatColor.GOLD + " a mis le jour dans " +
+            	Util.broadcast("useful.showBroadcast", ChatColor.AQUA + sender.getName() +          			
+            			ChatColor.GOLD + " a mis le jour " +
             			ChatColor.AQUA + world.getName());
             } else if (time == 20 * 60 * 11) {
-            	UsefulUtil.broadcastToOp(ChatColor.AQUA + sender.getName() +
-            			ChatColor.GOLD + " a mis la nuit dans " +
+            	Util.broadcast("useful.showBroadcast", ChatColor.AQUA + sender.getName() +          			
+            			ChatColor.GOLD + " a mis la nuit " +
             			ChatColor.AQUA + world.getName());
             }
         }
@@ -97,11 +97,11 @@ public class WorldCommands extends UsefulCommands {
             world.setStorm(storm);
             
             if(storm == true) {
-            	UsefulUtil.broadcastToOp(ChatColor.AQUA + sender.getName() +
+            	Util.broadcast("useful.showBroadcast", ChatColor.AQUA + sender.getName() +          			
             			ChatColor.GOLD + " a mis la pluit dans " +
             			ChatColor.AQUA + world.getName());
             } else if (storm == false) {
-            	UsefulUtil.broadcastToOp(ChatColor.AQUA + sender.getName() +
+            	Util.broadcast("useful.showBroadcast", ChatColor.AQUA + sender.getName() +          			
             			ChatColor.GOLD + " a arrété la pluit dans " +
             			ChatColor.AQUA + world.getName());
             }

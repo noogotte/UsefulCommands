@@ -203,3 +203,6 @@ commands:
 permissions:
     useful.tell:
         default: true
+
+    useful.showBroadcast:
+        default: op
