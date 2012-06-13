@@ -193,6 +193,10 @@ commands:
         description: "Téléporte un joueur à vous."
         usage: "[-t] [-d=<distance>] <players...> [distance]"
         aliases: ["summon", "s"]
+    "useful put":
+        description: "Téléporte un joueur à l'emplacement regardé."
+        usage: "<targets...>"
+        aliases: ["put"]
     "useful teleport-to":
         description: "Téléporte aux coordonnées données."
         usage: "<x>,<y>,<z> [world] [target]"
