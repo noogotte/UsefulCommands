@@ -15,203 +15,272 @@ commands:
     "useful seed":
         description: "Montre le seed du monde."
         usage: "[world]"
-        permission: "useful.seed"
         aliases: ["seed"]
+        permission: "useful.world.seed"
     "useful setspawn":
         description: "Définit le spawn."
         usage: ""
-        permission: "useful.setspawn"
         aliases: ["setspawn"]
+        permission: "useful.world.setspawn"
     "useful time":
         description: "Change l'heure."
         usage: "<day | night> [world]"
-        permission: "useful.time"
         aliases: ["time"]
+        permission: "useful.world.time"
     "useful weather":
         description: "Change le temps."
         usage: "<sun | storm> [world]"
-        permission: "useful.weather"
         aliases: ["weather"]
+        permission: "useful.world.weather"
     "useful spawnmob":
         description: "Spawn un ou plusieurs mob(s)."
         usage: "[-tp] [-d=<distance>] <mob...> [target]"
-        permission: "useful.spawnmob"
         aliases: ["spawnmob", "mob"]
+        permission: "useful.world.spawnmob"
     "useful removemob":
         description: "Supprime un ou plusieurs mob(s)."
         usage: "<type> [radius] [-w=<world> [-c=<x,y,z>]] [-p=<player>]"
-        permission: "useful.removemob"
         aliases: ["removemob", "rmmob"]
+        permission: "useful.world.removemob"
 
-    # God Commands
+    # God Command
     "useful god":
         description: "Met en mode Dieu."
         usage: "[target]"
-        permission: "useful.god"
         aliases: ["god"]
+        permission: "useful.god"
+
+    # Afk Command
+    "useful afk":
+        description: "Met en afk"
+        usage: "<target>"
+        aliases: ["afk"]
+        permission: "useful.afk"
 
     # Player commands
     "useful gamemode":
         description: "Change le gamemode."
         usage: "[target]"
-        permission: "useful.gamemode"
         aliases: ["gm", "gamemode"]
+        permission: "useful.player.gamemode"
     "useful heal":
         description: "Soigne et nourrit."
         usage: "[-hf] [target]"
-        permission: "useful.heal"
         aliases: ["heal"]
+        permission: "useful.player.heal"
     "useful playerinfo":
         description: "Affiche les infos de la cible."
         usage: "<target>"
-        permission: "useful.playerinfo"
         aliases: ["pinfo", "player-info"]
+        permission: "useful.player.info"
     "useful kick":
         description: "Kick un joueur."
         usage: "<target> [reason...]"
-        permission: "useful.kick"
         aliases: ["kick"]
+        permission: "useful.player.kick"
     "useful tell":
         description: "Envoie un message privé."
         usage: "<target> <msg...>"
-        permission: "useful.tell"
         aliases: ["tell", "say"]
+        permission: "useful.player.tell"
     "useful fly":
         description: "Active le vol."
         usage: "[target]"
-        permission: "useful.fly"
         aliases: ["fly"]
+        permission: "useful.player.fly"
     "useful kill":
         description: "Kill"
         usage: "[target]"
-        permission: "useful.kill"
         aliases: ["kill"]
+        permission: "useful.player.kill"
     "useful effect":
         description: "Applique un effet de potion."
         usage: "<potion> [duration = 60] [target]"
-        permission: "useful.effect"
         aliases: ["effect"]
-    "useful afk":
-        description: "Met en afk"
-        usage: "<target>"
-        permission: "useful.afk"
-        aliases: ["afk"]
+        permission: "useful.player.effect"
     "useful rename":
         description: "Renomme le joueure."
         usage: "[name] <target>"
-        permission: "useful.rename"
         aliases: ["rename"]
+        permission: "useful.player.rename"
 
     # Inventory Commands
     "useful clear":
         description: "Vide l'inventaire."
         usage: "[-qra] [target]"
-        permission: "useful.clear"
         aliases: ["clear"]
+        permission: "useful.inventory.clear"
     "useful give":
         description: "Donne x objets."
         usage: "[-e] <type> [amount] [target]"
-        permission: "useful.give"
         aliases: ["give", "i", "item"]
+        permission: "useful.inventory.give"
     "useful open":
         description: "Ouvre l'inventaire."
         usage: "[target]"
-        permission: "useful.openinv"
         aliases: ["open"]
+        permission: "useful.inventory.open"
     "useful id":
         description: "Affiche l'id de l'objet en main."
         usage: ""
-        permission: "useful.id"
         aliases: ["id"]
+        permission: "useful.inventory.id"
     "useful enchantment":
         description: "Enchante un objet."
         usage: "<enchantment> [level = 1]"
-        permission: "useful.enchant"
         aliases: ["enchant"]
+        permission: "useful.inventory.enchant"
     "useful remove-enchantment":
         description: "Supprimes un enchantment d'un objet."
         usage: "[enchantment]"
-        permission: "useful.removeenchant"
         aliases: ["removeenchant", "rmenchant"]
+        permission: "useful.inventory.removeenchant"
 
     # Warp Commands
     "useful setwarp":
         description: "Crée un warp."
         usage: "<name>"
-        permission: "useful.setwarp"
         aliases: ["setwarp"]
+        permission: "useful.warp.set"
     "useful deletewarp":
         description: "Supprime un warp."
         usage: "<name>"
-        permission: "useful.delwarp"
         aliases: ["deletewarp", "delwarp", "removewarp", "rmwarp"]
+        permission: "useful.warp.delete"
     "useful warp":
         description: "Téléporte à un warp."
         usage: "<name> [target]"
-        permission: "useful.warp"
         aliases: ["warp"]
+        permission: "useful.warp.tp"
     "useful warps":
         description: "Liste les warps."
         usage: ""
-        permission: "useful.warps"
         aliases: ["warps"]
+        permission: "useful.warp.list"
 
     # Kit Commands
     "useful kit":
         description: "Donne un kit."
         usage: "[-c] <name> [target...]"
-        permission: "useful.kit"
         aliases: ["kit"]
+        permission: "useful.kit.give"
     "useful kits":
         description: "Liste les kits disponibles."
         usage: ""
-        permission: "useful.kits"
         aliases: ["kits"]
+        permission: "useful.kit.list"
     "useful addkit":
         description: "Ajoute un kit."
         usage: "[-f] <name>"
-        permission: "useful.addkit"
         aliases: ["addkit"]
+        permission: "useful.kit.add"
     "useful deletekit":
         description: "Supprime un kit."
         usage: "<name>"
-        permission: "useful.rmkit"
         aliases: ["deletekit", "removekit", "rmkit"]
+        permission: "useful.kit.remove"
+
+    # Fun Commands
     "useful rocket":
         description: "Rocket le joueure"
         usage: "<name>"
-        permission: "useful.rocket"
         aliases: ["rocket"]
+        permission: "useful.fun.rocket"
 
     # Teleport commands
     "useful teleportation":
         description: "Téléporte à un joueur."
         usage: "<target> | <player> <target>"
-        permission: "useful.teleportation"
         aliases: ["tp"]
+        permission: "useful.teleport.teleport"
     "useful summon":
         description: "Téléporte un joueur à vous."
         usage: "[-t] [-d=<distance>] <players...> [distance]"
         aliases: ["summon", "s"]
+        permission: "useful.teleport.summon"
     "useful put":
         description: "Téléporte un joueur à l'emplacement regardé."
         usage: "<targets...>"
         aliases: ["put"]
+        permission: "useful.teleport.put"
     "useful teleport-to":
         description: "Téléporte aux coordonnées données."
         usage: "<x>,<y>,<z> [world] [target]"
-        permission: "useful.teleportto"
         aliases: ["tpto"]
+        permission: "useful.teleport.teleportto"
     "useful spawn":
         description: "Téléporte au spawn."
         usage: "[target...]"
-        permission: "useful.spawn"
         aliases: ["spawn"]
+        permission: "useful.teleport.spawn"
 
-#¨Permissions
+# Permissions
 permissions:
+    useful.*:
+        default: op
+        children:
+            - useful.world.*: true
+            - useful.god.*: true
+            - useful.afk.*: true
+            - useful.player.*: true
+
+    useful.world.*:
+        children:
+            - useful.world.seed: true
+            - useful.world.setspawn: true
+            - useful.world.time: true
+            - useful.world.time.broadcast: true
+            - useful.world.weather: true
+            - useful.world.weather.broadcast: true
+            - useful.world.spawnmob: true
+            - useful.world.removemob: true
+
+    useful.player.*:
+        children:
+            - useful.player.gamemode: true
+            - useful.player.heal: true
+            - useful.player.info: true
+            - useful.player.kick: true
+            - useful.player.tell: true
+            - useful.player.fly: true
+            - useful.player.kill: true
+            - useful.player.effect: true
+            - useful.player.rename: true
+
+    useful.inventory.*:
+        children:
+            - useful.inventory.clear: true
+            - useful.inventory.give: true
+            - useful.inventory.open: true
+            - useful.inventory.id: true
+            - useful.inventory.enchant: true
+            - useful.inventory.removeenchant: true
+
+    useful.warp.*:
+        children:
+            - useful.warp.set: true
+            - useful.warp.delete: true
+            - useful.warp.tp: true
+            - useful.warp.list: true
+
+    useful.kit.*:
+        children:
+            - useful.kit.give: true
+            - useful.kit.list: true
+            - useful.kit.add: true
+            - useful.kit.remove: true
+
+    useful.fun.*:
+        children:
+            - useful.fun.rocket: true
+
+    useful.teleport.*:
+        children:
+            - useful.teleport.teleport: true
+            - useful.teleport.summon: true
+            - useful.teleport.put: true
+            - useful.teleport.teleportto: true
+            - useful.teleport.spawn: true
+
     useful.tell:
         default: true
-
-    useful.showBroadcast:
-        default: op

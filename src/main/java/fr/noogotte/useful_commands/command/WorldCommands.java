@@ -67,13 +67,13 @@ public class WorldCommands extends UsefulCommands {
         for (World world : worlds) {
             world.setTime(time);
             if(time == 20 * 60) {
-            	Util.broadcast("useful.showBroadcast", ChatColor.AQUA + sender.getName() +          			
-            			ChatColor.GOLD + " a mis le jour " +
-            			ChatColor.AQUA + world.getName());
+                Util.broadcast("useful.time.broadcast", ChatColor.AQUA + sender.getName()
+                        + ChatColor.GOLD + " a mis le jour "
+                        + ChatColor.AQUA + world.getName());
             } else if (time == 20 * 60 * 11) {
-            	Util.broadcast("useful.showBroadcast", ChatColor.AQUA + sender.getName() +          			
-            			ChatColor.GOLD + " a mis la nuit " +
-            			ChatColor.AQUA + world.getName());
+                Util.broadcast("useful.time.broadcast", ChatColor.AQUA + sender.getName()
+                        + ChatColor.GOLD + " a mis la nuit "
+                        + ChatColor.AQUA + world.getName());
             }
         }
     }
@@ -97,13 +97,13 @@ public class WorldCommands extends UsefulCommands {
             world.setStorm(storm);
             
             if(storm == true) {
-            	Util.broadcast("useful.showBroadcast", ChatColor.AQUA + sender.getName() +          			
-            			ChatColor.GOLD + " a mis la pluit dans " +
-            			ChatColor.AQUA + world.getName());
+                Util.broadcast("useful.weather.broadcast", ChatColor.AQUA + sender.getName()
+                        + ChatColor.GOLD + " a mis la pluit dans "
+                        + ChatColor.AQUA + world.getName());
             } else if (storm == false) {
-            	Util.broadcast("useful.showBroadcast", ChatColor.AQUA + sender.getName() +          			
-            			ChatColor.GOLD + " a arrété la pluit dans " +
-            			ChatColor.AQUA + world.getName());
+                Util.broadcast("useful.weather.broadcast", ChatColor.AQUA + sender.getName()
+                        + ChatColor.GOLD + " a arrété la pluit dans "
+                        + ChatColor.AQUA + world.getName());
             }
         }
     }
