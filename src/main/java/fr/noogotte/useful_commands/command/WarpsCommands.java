@@ -16,11 +16,11 @@ import fr.noogotte.useful_commands.component.WarpsComponent;
 import fr.noogotte.useful_commands.component.WarpsComponent.Warp;
 
 @NestedCommands(name = "useful")
-public class WarpsCommand extends UsefulCommands {
+public class WarpsCommands extends UsefulCommands {
 
     private WarpsComponent warpscomponent;
 
-    public WarpsCommand(WarpsComponent warpscomponent) {
+    public WarpsCommands(WarpsComponent warpscomponent) {
         this.warpscomponent = warpscomponent;
     }
 

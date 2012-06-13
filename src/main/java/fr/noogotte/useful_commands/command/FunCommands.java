@@ -9,11 +9,10 @@ import org.bukkit.util.Vector;
 
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
-import fr.aumgn.bukkitutils.command.arg.CommandArg;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 
 @NestedCommands(name = "useful")
-public class FunCommand extends UsefulCommands {
+public class FunCommands extends UsefulCommands {
 
 	@Command(name = "rocket", min = 0, max = 2)
 	public void rocket(CommandSender sender, CommandArgs args) {

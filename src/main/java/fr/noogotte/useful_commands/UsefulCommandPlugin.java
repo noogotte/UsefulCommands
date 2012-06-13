@@ -19,14 +19,14 @@ import fr.aumgn.bukkitutils.gconf.GConfLoadException;
 import fr.aumgn.bukkitutils.gconf.GConfLoader;
 import fr.aumgn.bukkitutils.gconf.typeadapter.DirectionTypeAdapterFactory;
 import fr.noogotte.useful_commands.command.AfkCommand;
-import fr.noogotte.useful_commands.command.FunCommand;
+import fr.noogotte.useful_commands.command.FunCommands;
 import fr.noogotte.useful_commands.command.GodCommand;
 import fr.noogotte.useful_commands.command.InventoryCommands;
 import fr.noogotte.useful_commands.command.KitsCommands;
 import fr.noogotte.useful_commands.command.PlayerCommands;
 import fr.noogotte.useful_commands.command.PlayerInfoCommand;
 import fr.noogotte.useful_commands.command.TeleportCommands;
-import fr.noogotte.useful_commands.command.WarpsCommand;
+import fr.noogotte.useful_commands.command.WarpsCommands;
 import fr.noogotte.useful_commands.command.WorldCommands;
 import fr.noogotte.useful_commands.component.AfkComponent;
 import fr.noogotte.useful_commands.component.Component;
@@ -55,7 +55,7 @@ public class UsefulCommandPlugin extends JavaPlugin {
         GodComponent godComponent = null;
         
         if(config.enableFunCommands()) {
-        	registration.register(new FunCommand());
+        	registration.register(new FunCommands());
         }
 
         if (config.enableAfk()) {
@@ -73,7 +73,7 @@ public class UsefulCommandPlugin extends JavaPlugin {
         if (config.enableWarp()) {
             WarpsComponent warpComponent = new WarpsComponent(this);
             components.add(warpComponent);
-            registration.register(new WarpsCommand(warpComponent));
+            registration.register(new WarpsCommands(warpComponent));
         }
 
         if (config.enableKits()) {
