@@ -25,6 +25,8 @@ public class PlayerInfoCommand extends UsefulCommands {
     @Command(name = "playerinfo", min = 1, max = 1)
     public void playerInfo(CommandSender sender, CommandArgs args) {
         Player target = args.getPlayer(0).value(sender);
+        String yes = "Oui";
+        String no = "Non";
 
         sender.sendMessage(ChatColor.GREEN + ""
                 + ChatColor.UNDERLINE + "Info de "
@@ -46,24 +48,33 @@ public class PlayerInfoCommand extends UsefulCommands {
                 + ChatColor.AQUA + target.getGameMode());
         sender.sendMessage(ChatColor.GREEN +"Expérience : "
                 + ChatColor.AQUA + target.getLevel());
+        
+        if(target.isOp()) {
+        	sender.sendMessage(ChatColor.GREEN +"Op : " +
+        			ChatColor.AQUA + yes);
+        } else {
+        	sender.sendMessage(ChatColor.GREEN + "Op : " +
+        			ChatColor.AQUA + no);
+        }
+       
 
         if (godComponent != null) {
             if (godComponent.isGod(target)) {
                 sender.sendMessage(ChatColor.GREEN + "Mode dieux : "
-                        + ChatColor.AQUA + "Oui");
+                        + ChatColor.AQUA + yes);
             } else {
                 sender.sendMessage(ChatColor.GREEN + "Mode dieux : "
-                        + ChatColor.AQUA + "Non");
+                        + ChatColor.AQUA + no);
             }
         }
 
         if (afkComponent != null) {
             if (afkComponent.isAfk(target)) {
                 sender.sendMessage(ChatColor.GREEN + "AFK : "
-                        + ChatColor.AQUA + "Oui");
+                        + ChatColor.AQUA + yes);
             } else {
                 sender.sendMessage(ChatColor.GREEN + "AFK : "
-                        + ChatColor.AQUA + "Non");
+                        + ChatColor.AQUA + no);
             }
         }
     }
