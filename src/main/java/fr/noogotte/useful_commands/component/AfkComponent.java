@@ -4,9 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,6 +19,8 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -166,6 +170,24 @@ public class AfkComponent  extends Component implements Listener {
         if(isAfk(event.getPlayer())) {
             event.setCancelled(true);
             event.getPlayer().sendMessage(ChatColor.RED + "Vous ne pouvez pas parler, vous êtes AFK");
+        }
+    }
+    
+    @EventHandler
+    public void onCliked(InventoryClickEvent event) {
+    	HumanEntity entity = event.getWhoClicked();
+        if (!(entity instanceof Player)) {
+            return;
+        }
+        
+        Player player = (Player) entity;
+        if (event.getView().getType() == InventoryType.PLAYER &&
+                player.getGameMode() == GameMode.CREATIVE) {
+        	return;
+        }
+        
+        if(isAfk(player)) {
+        	event.setCancelled(true);
         }
     }
 }
