@@ -50,8 +50,8 @@ public class AfkComponent  extends Component implements Listener {
         }
     }
 
-    public boolean isAfk(Player player) {
-        return afks.contains(player);
+    public boolean isAfk(Entity Entity) {
+        return afks.contains(Entity);
     }
 
     @EventHandler
@@ -147,7 +147,8 @@ public class AfkComponent  extends Component implements Listener {
 
     @EventHandler
     public void entityDamageByEntity(EntityDamageByEntityEvent event) {
-        if(isAfk((Player) event.getDamager())) {
+    	Entity damagerEntity = ((EntityDamageByEntityEvent) event).getDamager();
+        if(isAfk(damagerEntity) && damagerEntity instanceof Player) {
             event.setCancelled(true);
         }
     }
