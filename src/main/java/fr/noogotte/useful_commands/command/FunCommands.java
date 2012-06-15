@@ -16,7 +16,7 @@ public class FunCommands extends UsefulCommands {
 
 	@Command(name = "rocket", min = 0, max = 2)
 	public void rocket(CommandSender sender, CommandArgs args) {
-		List<Player> targets = args.getPlayers(0).match(sender);
+		List<Player> targets = args.getPlayers(0).match(sender, "useful.fun.rocket.other");
 		
 		for(Player target : targets) {
 			target.setVelocity(new Vector(0, 50, 0));

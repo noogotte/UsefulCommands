@@ -23,7 +23,7 @@ public class AfkCommand extends UsefulCommands {
 
     @Command(name = "afk", min = 0, max = 1)
     public void toggleAfk(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).match(sender);
+        List<Player> targets = args.getPlayers(0).match(sender, "useful.afk.other");
 
         for (Player target : targets) {
             if(!afkcomponent.isAfk(target)) {

@@ -113,7 +113,7 @@ public class TeleportCommands extends UsefulCommands {
 
     @Command(name = "spawn", min = 0, max = 1)
     public void spawn(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).match(sender);
+        List<Player> targets = args.getPlayers(0).match(sender, "useful.teleport.spawn.other");
 
         for (Player target : targets) {
             target.teleport(

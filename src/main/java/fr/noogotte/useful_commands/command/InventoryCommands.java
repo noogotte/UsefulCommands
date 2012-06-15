@@ -20,7 +20,7 @@ public class InventoryCommands implements Commands {
 
     @Command(name = "clear", flags = "qra", min = 0, max = 1)
     public void clear(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).match(sender);
+        List<Player> targets = args.getPlayers(0).match(sender, "useful.inventory.clear.other");
         int from = args.hasFlag('q') ? 9 : 0;
         int to = args.hasFlag('r') ? 8 : 35;
         boolean armor = !args.hasFlag('a');
@@ -48,7 +48,7 @@ public class InventoryCommands implements Commands {
     @Command(name = "give", flags = "e", min = 1, max = 3)
     public void give(CommandSender sender, CommandArgs args) {
         ItemType itemType = args.getItemType(0).value();
-        List<Player> targets = args.getPlayers(2).match(sender);
+        List<Player> targets = args.getPlayers(2).match(sender, "useful.inventory.give.other");
 
         int amount = args.getInteger(1)
                 .value(itemType.getMaxStackSize());

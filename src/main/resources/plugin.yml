@@ -243,20 +243,29 @@ permissions:
     useful.player.*:
         children:
             - useful.player.gamemode: true
+            - useful.player.gamemode.other: true
             - useful.player.heal: true
+            - useful.player.heal.other: true
             - useful.player.info: true
             - useful.player.kick: true
             - useful.player.tell: true
             - useful.player.fly: true
+            - useful.player.fly.other: true
             - useful.player.kill: true
+            - useful.player.kill.other: true
             - useful.player.effect: true
+            - useful.player.effect.other: true
             - useful.player.rename: true
+            - useful.player.rename.other: true
             - useful.player.burn: true
+            - useful.player.burn.other: true
 
     useful.inventory.*:
         children:
             - useful.inventory.clear: true
+            - useful.inventory.clear.other: true
             - useful.inventory.give: true
+            - useful.inventory.give.other: true
             - useful.inventory.open: true
             - useful.inventory.id: true
             - useful.inventory.enchant: true
@@ -267,11 +276,13 @@ permissions:
             - useful.warp.set: true
             - useful.warp.delete: true
             - useful.warp.tp: true
+            - useful.warp.tp.other: true
             - useful.warp.list: true
 
     useful.kit.*:
         children:
             - useful.kit.give: true
+            - useful.kit.give.other: true
             - useful.kit.list: true
             - useful.kit.add: true
             - useful.kit.remove: true
@@ -279,6 +290,7 @@ permissions:
     useful.fun.*:
         children:
             - useful.fun.rocket: true
+            - useful.fun.rocket.other: true
 
     useful.teleport.*:
         children:
@@ -287,6 +299,17 @@ permissions:
             - useful.teleport.put: true
             - useful.teleport.teleportto: true
             - useful.teleport.spawn: true
+            - useful.teleport.spawn.other: true
+
+    useful.afk.*:
+        children:
+            - useful.afk: true
+            - useful.afk.other: true
+
+    useful.god.*:
+        children:
+            - useful.god: true
+            - useful.god.other: true
 
     useful.tell:
         default: true

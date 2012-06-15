@@ -42,7 +42,7 @@ public class WarpsCommands extends UsefulCommands {
             throw new CommandError("Le warp " + args.get(0) + " n'existe pas.");
         } else {
             String warpName = args.get(0);
-            List<Player> targets = args.getPlayers(1).match(sender);
+            List<Player> targets = args.getPlayers(1).match(sender, "useful.warp.tp.other");
 
             for (Player target : targets) {
                 Warp warp = warpscomponent.getWarp(warpName);
