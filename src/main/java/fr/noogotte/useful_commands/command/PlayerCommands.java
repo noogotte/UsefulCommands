@@ -207,7 +207,7 @@ public class PlayerCommands extends UsefulCommands {
 
     @Command(name = "rename", min = 1, max = 2)
     public void rename(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(1).match(sender, "");
+        List<Player> targets = args.getPlayers(1).match(sender, "useful.player.rename.other");
         boolean reset = args.get(0).equals("reset");
 
         for (Player target : targets) {
