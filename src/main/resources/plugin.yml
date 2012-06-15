@@ -191,6 +191,11 @@ commands:
         usage: "<name>"
         aliases: ["rocket"]
         permission: "useful.fun.rocket"
+    "useful strike":
+        description: "Envoi un éclair sur le joueure"
+        usage: "<target>"
+        aliases: ["strike"]
+        permission: "useful.fun.strike"
 
     # Teleport commands
     "useful teleportation":
@@ -291,6 +296,8 @@ permissions:
         children:
             - useful.fun.rocket: true
             - useful.fun.rocket.other: true
+            - useful.fun.strike: true
+            - useful.fun.strike.other: true
 
     useful.teleport.*:
         children:

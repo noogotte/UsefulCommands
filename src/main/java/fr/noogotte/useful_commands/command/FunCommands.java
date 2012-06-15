@@ -28,4 +28,19 @@ public class FunCommands extends UsefulCommands {
 			}
 		}
 	}
+	
+	@Command(name = "strike")
+	public void strike(CommandSender sender, CommandArgs args) {
+		List<Player> targets = args.getPlayers(0).match(sender, "useful.fun.strike.other");
+		
+		for(Player target : targets) {
+			target.getWorld().strikeLightning(target.getLocation());
+			target.sendMessage(ChatColor.GREEN + "Vous avez ête foudroyé.");
+			
+			if(!sender.equals(target)) {
+				sender.sendMessage(ChatColor.GREEN + "Vous avez foudroyé " +
+						ChatColor.GOLD + target.getName());
+			}
+		}
+	}
 }
