@@ -103,6 +103,11 @@ commands:
         usage: "[name] <target>"
         aliases: ["rename"]
         permission: "useful.player.rename"
+    "useful burn":
+        description: "Enflamme un joueur."
+        usage: "[player] <duration = 10>"
+        aliases: ["burn"]
+        permission: "useful.player.burn"
 
     # Inventory Commands
     "useful clear":
@@ -246,6 +251,7 @@ permissions:
             - useful.player.kill: true
             - useful.player.effect: true
             - useful.player.rename: true
+            - useful.player.burn: true
 
     useful.inventory.*:
         children:

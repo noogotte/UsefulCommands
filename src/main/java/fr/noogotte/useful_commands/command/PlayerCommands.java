@@ -243,4 +243,25 @@ public class PlayerCommands extends UsefulCommands {
             }
         }
     }
+    
+    @Command(name = "burn", min = 1, max = 2)
+    public void burn(CommandSender sender, CommandArgs args) {
+    	int duration = args.getInteger(1).value(10);
+    	List<Player> targets = args.getPlayers(0).match(sender);
+    	
+    	for (Player target : targets) {
+    		target.setFireTicks(duration * 20);
+    		target.sendMessage(ChatColor.GREEN + "Vous êtes enflammés pour " +
+    				ChatColor.GOLD + duration +
+    				ChatColor.GREEN + " secondes");
+    		
+    		if(!sender.equals(target)) {
+    			sender.sendMessage(ChatColor.GREEN + "Vous avez enflammé " +
+    					ChatColor.GOLD + target.getName() +
+    					ChatColor.GREEN + "pour " +
+    					ChatColor.GOLD + duration  +
+    					ChatColor.GREEN + " secondes");
+    		}
+    	}
+    }
 }
