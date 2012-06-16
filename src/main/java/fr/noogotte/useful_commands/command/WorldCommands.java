@@ -67,11 +67,11 @@ public class WorldCommands extends UsefulCommands {
         for (World world : worlds) {
             world.setTime(time);
             if(time == 20 * 60) {
-                Util.broadcast("useful.time.broadcast", ChatColor.AQUA + sender.getName()
+                Util.broadcast("useful.world.time.broadcast", ChatColor.AQUA + sender.getName()
                         + ChatColor.GOLD + " a mis le jour "
                         + ChatColor.AQUA + world.getName());
             } else if (time == 20 * 60 * 11) {
-                Util.broadcast("useful.time.broadcast", ChatColor.AQUA + sender.getName()
+                Util.broadcast("useful.world.time.broadcast", ChatColor.AQUA + sender.getName()
                         + ChatColor.GOLD + " a mis la nuit "
                         + ChatColor.AQUA + world.getName());
             }
