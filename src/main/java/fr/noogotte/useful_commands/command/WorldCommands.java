@@ -221,6 +221,26 @@ public class WorldCommands extends UsefulCommands {
                         + ChatColor.GOLD + count
                         + ChatColor.GREEN + " mobs");
     }
+    
+    @Command(name = "position", min = 0, max = 1)
+    public void getPos(CommandSender sender, CommandArgs args) {
+    	List<Player> targets = args.getPlayers(0).match(sender, "useful.world.position.other");
+    	
+    	for (Player target : targets) {
+    		Location location = target.getLocation();
+    		sender.sendMessage(ChatColor.UNDERLINE + "" + ChatColor.AQUA + target.getName() + " :");
+    		sender.sendMessage(ChatColor.AQUA + "X: " +
+    				ChatColor.GREEN + location.getX());
+    		sender.sendMessage(ChatColor.AQUA + "Y: " +
+    				ChatColor.GREEN + location.getY());
+    		sender.sendMessage(ChatColor.AQUA + "Z: " +
+    				ChatColor.GREEN + location.getZ());
+    		sender.sendMessage(ChatColor.AQUA + "Pitch: " +
+    				ChatColor.GREEN + location.getPitch());
+    		sender.sendMessage(ChatColor.AQUA + "Yaw: " +
+    				ChatColor.GREEN + location.getYaw());
+    	}
+    }
 
     private boolean isNotAMob(EntityType type) {
         return type.equals(EntityType.ARROW)

@@ -223,6 +223,11 @@ commands:
         usage: "[target...]"
         aliases: ["spawn"]
         permission: "useful.teleport.spawn"
+    "useful position":
+        description: "Montre la position du joueur"
+        usage: "[target...]"
+        aliases: ["position", "getpos", "pos"]
+        permission: "useful.world.position"
 
 # Permissions
 permissions:
@@ -251,6 +256,8 @@ permissions:
             - useful.world.weather.broadcast: true
             - useful.world.spawnmob: true
             - useful.world.removemob: true
+            - useful.world.position: true
+            - useful.world.position.other: true
 
     useful.god.*:
         children:
