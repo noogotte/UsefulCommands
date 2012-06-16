@@ -50,6 +50,10 @@ public class VanishComponent extends Component implements Listener {
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
+		if(vanish.isEmpty()) {
+			return;
+		}
 		
+		event.getPlayer().hidePlayer(vanish.iterator().next().getPlayer());
 	}
 }
