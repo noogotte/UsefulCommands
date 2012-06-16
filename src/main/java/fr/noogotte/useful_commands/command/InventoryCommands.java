@@ -20,7 +20,8 @@ public class InventoryCommands implements Commands {
 
     @Command(name = "clear", flags = "qra", min = 0, max = 1)
     public void clear(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).match(sender, "useful.inventory.clear.other");
+        List<Player> targets = args.getPlayers(0)
+                .match(sender, "useful.inventory.clear.other");
         int from = args.hasFlag('q') ? 9 : 0;
         int to = args.hasFlag('r') ? 8 : 35;
         boolean armor = !args.hasFlag('a');
@@ -48,7 +49,8 @@ public class InventoryCommands implements Commands {
     @Command(name = "give", flags = "e", min = 1, max = 3)
     public void give(CommandSender sender, CommandArgs args) {
         ItemType itemType = args.getItemType(0).value();
-        List<Player> targets = args.getPlayers(2).match(sender, "useful.inventory.give.other");
+        List<Player> targets = args.getPlayers(2)
+                .match(sender, "useful.inventory.give.other");
 
         int amount = args.getInteger(1)
                 .value(itemType.getMaxStackSize());
@@ -84,6 +86,7 @@ public class InventoryCommands implements Commands {
     @Command(name = "open", min = 0, max = 1)
     public void openInv(Player sender, CommandArgs args) {
         Player target = args.getPlayer(0).value(sender);
+
         if (target.isOp()) {
             target.sendMessage(ChatColor.RED
                     + "Votre inventaire a été ouvert par "
@@ -105,7 +108,8 @@ public class InventoryCommands implements Commands {
     public void enchantment(Player sender, CommandArgs args) {
         Enchantment enchantment = args.getEnchantment(0).value();
         Integer level = args.getInteger(1).value(1);
-        if(!enchantment.canEnchantItem(sender.getItemInHand())) {
+
+        if (!enchantment.canEnchantItem(sender.getItemInHand())) {
             sender.sendMessage(ChatColor.GREEN + "L'enchantement " 
                     + ChatColor.GOLD + enchantment.getName() 
                     + ChatColor.GREEN + " ne peux pas être apliqué à " 

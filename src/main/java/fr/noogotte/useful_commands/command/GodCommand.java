@@ -22,7 +22,8 @@ public class GodCommand extends UsefulCommands {
 
     @Command(name = "god", min = 0, max = 1)
     public void god(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).match(sender, "useful.god.other");
+        List<Player> targets = args.getPlayers(0)
+                .match(sender, "useful.god.other");
 
         for (Player target : targets) {
             if (godComponent.isGod(target)) {

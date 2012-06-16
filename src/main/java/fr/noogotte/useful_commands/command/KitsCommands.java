@@ -28,9 +28,9 @@ public class KitsCommands extends UsefulCommands {
     public void kit(CommandSender sender, CommandArgs args) {
         String kitName = args.get(0);
         boolean clear = args.hasFlag('c');
-        
+
         if(component.hasNoKit()) {
-        	throw new CommandError("Aucun kit de sauvegardé !");
+            throw new CommandError("Aucun kit de sauvegardé !");
         }
 
         if (!component.isKit(kitName)) {
@@ -39,16 +39,17 @@ public class KitsCommands extends UsefulCommands {
         }
 
         Kit kit = component.get(kitName);
-        List<Player> targets = args.getPlayers(1).match(sender, "useful.kit.give.other");
+        List<Player> targets = args.getPlayers(1)
+                .match(sender, "useful.kit.give.other");
         ItemStack[] stacks = kit.toItemStacks();
 
         for (Player target : targets) {
-        	if(clear) {
+            if(clear) {
                 for (int j = 0; j <= 39; j++) {
                     target.getInventory().setItem(j, null);
                 }
-        	}
-        	
+            }
+
             target.getInventory().addItem(stacks);
             target.sendMessage(ChatColor.GREEN + "Vous avez reçu le kit "
                     + ChatColor.AQUA + kitName
@@ -65,9 +66,9 @@ public class KitsCommands extends UsefulCommands {
 
     @Command(name = "kits")
     public void kits(CommandSender sender) {
-        
-    	if(component.hasNoKit()) {
-        	throw new CommandError("Aucun kit de sauvegardé !");
+
+        if(component.hasNoKit()) {
+            throw new CommandError("Aucun kit de sauvegardé !");
         }
 
         sender.sendMessage(ChatColor.GREEN + "Kits :");
@@ -111,8 +112,8 @@ public class KitsCommands extends UsefulCommands {
     public void deleteKit(Player sender, CommandArgs args) {
         String name = args.get(0);
 
-        if(component.hasNoKit()) {
-        	throw new CommandError("Aucun kit de sauvegardé !");
+        if (component.hasNoKit()) {
+            throw new CommandError("Aucun kit de sauvegardé !");
         }
 
         if (!component.isKit(name)) {

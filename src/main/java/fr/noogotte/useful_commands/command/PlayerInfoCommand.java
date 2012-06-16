@@ -37,33 +37,34 @@ public class PlayerInfoCommand extends UsefulCommands {
         sender.sendMessage(ChatColor.GREEN +"IP : "
                 + ChatColor.AQUA + target.getAddress());
         Location loc = target.getLocation();
-        sender.sendMessage(ChatColor.GREEN + "Coordonnées : "
+        sender.sendMessage(ChatColor.GREEN + "Position : ("
                 + ChatColor.AQUA + loc.getBlockX()
-                + ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockY()
-                + ChatColor.GREEN + "," + ChatColor.AQUA + loc.getBlockZ()
-                + ChatColor.GREEN + " Monde : "
+                + ChatColor.GREEN + ","
+                + ChatColor.AQUA + loc.getBlockY()
+                + ChatColor.GREEN + ","
+                + ChatColor.AQUA + loc.getBlockZ()
+                + ChatColor.GREEN + ") dans : "
                 + ChatColor.AQUA + target.getWorld().getName());
         sender.sendMessage(ChatColor.GREEN +"Gamemode : "
                 + ChatColor.AQUA + target.getGameMode());
         sender.sendMessage(ChatColor.GREEN +"Expérience : "
                 + ChatColor.AQUA + target.getLevel());
-        
-        if(target.isOp()) {
-        	sender.sendMessage(ChatColor.GREEN +"Op : " +
-        			ChatColor.AQUA + yes);
+
+        if (target.isOp()) {
+            sender.sendMessage(ChatColor.GREEN +"Op : " +
+                    ChatColor.AQUA + yes);
         } else {
-        	sender.sendMessage(ChatColor.GREEN + "Op : " +
-        			ChatColor.AQUA + no);
+            sender.sendMessage(ChatColor.GREEN + "Op : " +
+                    ChatColor.AQUA + no);
         }
-       
 
         GodComponent godComponent = plugin.getComponent(GodComponent.class);
         if (godComponent != null) {
             if (godComponent.isGod(target)) {
-                sender.sendMessage(ChatColor.GREEN + "Mode dieux : "
+                sender.sendMessage(ChatColor.GREEN + "Mode Dieu : "
                         + ChatColor.AQUA + yes);
             } else {
-                sender.sendMessage(ChatColor.GREEN + "Mode dieux : "
+                sender.sendMessage(ChatColor.GREEN + "Mode Dieu : "
                         + ChatColor.AQUA + no);
             }
         }

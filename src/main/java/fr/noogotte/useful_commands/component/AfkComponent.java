@@ -165,7 +165,7 @@ public class AfkComponent  extends Component implements Listener {
 
     @EventHandler
     public void entityDamageByEntity(EntityDamageByEntityEvent event) {
-    	Entity damagerEntity = ((EntityDamageByEntityEvent) event).getDamager();
+        Entity damagerEntity = ((EntityDamageByEntityEvent) event).getDamager();
         if(isAfk(damagerEntity) && damagerEntity instanceof Player) {
             event.setCancelled(true);
         }
@@ -186,23 +186,22 @@ public class AfkComponent  extends Component implements Listener {
             event.getPlayer().sendMessage(ChatColor.RED + "Vous ne pouvez pas parler, vous êtes AFK");
         }
     }
-    
+
     @EventHandler
     public void onCliked(InventoryClickEvent event) {
-    	HumanEntity entity = event.getWhoClicked();
+        HumanEntity entity = event.getWhoClicked();
         if (!(entity instanceof Player)) {
             return;
         }
-        
+
         Player player = (Player) entity;
         if (event.getView().getType() == InventoryType.PLAYER &&
                 player.getGameMode() == GameMode.CREATIVE) {
-        	return;
+            return;
         }
-        
-        if(isAfk(player)) {
-        	event.setCancelled(true);
+
+        if (isAfk(player)) {
+            event.setCancelled(true);
         }
     }
 }
-

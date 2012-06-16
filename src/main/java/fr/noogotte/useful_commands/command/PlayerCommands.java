@@ -22,7 +22,8 @@ public class PlayerCommands extends UsefulCommands {
 
     @Command(name = "gamemode", flags = "cs", min = 0, max = 1)
     public void gamemode(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).match(sender, "useful.player.gamemode.other");
+        List<Player> targets = args.getPlayers(0)
+                .match(sender, "useful.player.gamemode.other");
 
         boolean force = args.hasFlags();
         GameMode gameMode = null;
@@ -58,7 +59,8 @@ public class PlayerCommands extends UsefulCommands {
 
     @Command(name = "heal", flags = "hf", min = 0, max = 1)
     public void heal(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).match(sender, "useful.player.heal.other");
+        List<Player> targets = args.getPlayers(0)
+                .match(sender, "useful.player.heal.other");
         boolean health = !args.hasFlags() || args.hasFlag('h');
         boolean food = !args.hasFlags() || args.hasFlag('f');
 
@@ -132,14 +134,15 @@ public class PlayerCommands extends UsefulCommands {
             }
         }
 
-       sender.sendMessage(ChatColor.ITALIC.toString()
+        sender.sendMessage(ChatColor.ITALIC.toString()
                 + ChatColor.AQUA + "A " + receivers + ":");
         sender.sendMessage("  " + message);
     }
 
     @Command(name = "fly", min = 0, max = 1)
     public void fly(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).match(sender, "useful.player.fly.other");
+        List<Player> targets = args.getPlayers(0)
+                .match(sender, "useful.player.fly.other");
         for (Player target : targets) {
             if (target.isFlying()) {
                 target.setAllowFlight(false);
@@ -189,7 +192,8 @@ public class PlayerCommands extends UsefulCommands {
         PotionEffect newEffect = new PotionEffect(
                 effect, duration * 20, 1);
 
-        List<Player> targets = args.getPlayers(2).match(sender, "useful.player.effect.other");
+        List<Player> targets = args.getPlayers(2)
+                .match(sender, "useful.player.effect.other");
 
         for (Player target : targets) {
             target.addPotionEffect(newEffect, true);
@@ -207,7 +211,8 @@ public class PlayerCommands extends UsefulCommands {
 
     @Command(name = "rename", min = 1, max = 2)
     public void rename(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(1).match(sender, "useful.player.rename.other");
+        List<Player> targets = args.getPlayers(1)
+                .match(sender, "useful.player.rename.other");
         boolean reset = args.get(0).equals("reset");
 
         for (Player target : targets) {
@@ -243,25 +248,25 @@ public class PlayerCommands extends UsefulCommands {
             }
         }
     }
-    
+
     @Command(name = "burn", min = 1, max = 2)
     public void burn(CommandSender sender, CommandArgs args) {
-    	int duration = args.getInteger(1).value(10);
-    	List<Player> targets = args.getPlayers(0).match(sender, "useful.player.burn.other");
-    	
-    	for (Player target : targets) {
-    		target.setFireTicks(duration * 20);
-    		target.sendMessage(ChatColor.GREEN + "Vous êtes enflammés pour " +
-    				ChatColor.GOLD + duration +
-    				ChatColor.GREEN + " secondes");
-    		
-    		if(!sender.equals(target)) {
-    			sender.sendMessage(ChatColor.GREEN + "Vous avez enflammé " +
-    					ChatColor.GOLD + target.getName() +
-    					ChatColor.GREEN + "pour " +
-    					ChatColor.GOLD + duration  +
-    					ChatColor.GREEN + " secondes");
-    		}
-    	}
+        int duration = args.getInteger(1).value(10);
+        List<Player> targets = args.getPlayers(0).match(sender, "useful.player.burn.other");
+
+        for (Player target : targets) {
+            target.setFireTicks(duration * 20);
+            target.sendMessage(ChatColor.GREEN + "Vous êtes enflammés pour " +
+                    ChatColor.GOLD + duration +
+                    ChatColor.GREEN + " secondes");
+
+            if (!sender.equals(target)) {
+                sender.sendMessage(ChatColor.GREEN + "Vous avez enflammé " +
+                        ChatColor.GOLD + target.getName() +
+                        ChatColor.GREEN + "pour " +
+                        ChatColor.GOLD + duration  +
+                        ChatColor.GREEN + " secondes");
+            }
+        }
     }
 }
