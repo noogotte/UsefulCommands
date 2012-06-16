@@ -233,6 +233,13 @@ permissions:
             - useful.god.*: true
             - useful.afk.*: true
             - useful.player.*: true
+            - useful.inventory.*: true
+            - useful.warp.*: true
+            - useful.kit.*: true
+            - useful.fun.*: true
+            - useful.teleport.*: true
+            - useful.afk.*: true
+            - useful.god.*: true
 
     useful.world.*:
         children:
@@ -244,6 +251,16 @@ permissions:
             - useful.world.weather.broadcast: true
             - useful.world.spawnmob: true
             - useful.world.removemob: true
+
+    useful.god.*:
+        children:
+            - useful.god: true
+            - useful.god.other: true
+
+    useful.afk.*:
+        children:
+            - useful.afk: true
+            - useful.afk.other: true
 
     useful.player.*:
         children:
@@ -307,16 +324,6 @@ permissions:
             - useful.teleport.teleportto: true
             - useful.teleport.spawn: true
             - useful.teleport.spawn.other: true
-
-    useful.afk.*:
-        children:
-            - useful.afk: true
-            - useful.afk.other: true
-
-    useful.god.*:
-        children:
-            - useful.god: true
-            - useful.god.other: true
 
     useful.tell:
         default: true
