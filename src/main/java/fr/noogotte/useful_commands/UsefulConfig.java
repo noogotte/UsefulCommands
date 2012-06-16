@@ -1,30 +1,20 @@
 package fr.noogotte.useful_commands;
 
+import java.util.Collections;
+import java.util.Set;
+
+import fr.noogotte.useful_commands.component.Component;
+
 public class UsefulConfig {
 
-    private boolean enableGod = true;
-    private boolean enableWarp = true;
-    private boolean enableAfk = true;
-    private boolean enableKits = true;
-    private boolean enableFunCommands = true;
+    private String lang = "fr";
+    private Set<String> disabled = Collections.<String>emptySet();
 
-    public boolean enableGod() {
-        return enableGod;
+    public String getLang() {
+        return lang;
     }
 
-    public boolean enableWarp() {
-        return enableWarp;
-    }
-
-    public boolean enableAfk() {
-        return enableAfk;
-    }
-
-    public boolean enableKits() {
-        return enableKits;
-    }
-    
-    public boolean enableFunCommands() {
-    	return enableFunCommands;
+    public boolean isEnabled(Component component) {
+        return !disabled.contains(component.getName());
     }
 }

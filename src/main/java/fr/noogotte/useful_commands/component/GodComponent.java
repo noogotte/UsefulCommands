@@ -1,6 +1,8 @@
 package fr.noogotte.useful_commands.component;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.bukkit.entity.Entity;
@@ -12,15 +14,27 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import fr.noogotte.useful_commands.UsefulCommandPlugin;
+import fr.aumgn.bukkitutils.command.Commands;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
+import fr.noogotte.useful_commands.command.GodCommand;
 
 public class GodComponent extends Component implements Listener {
 
     private final Set<Player> gods;
 
-    public GodComponent(UsefulCommandPlugin plugin) {
+    public GodComponent(UsefulCommandsPlugin plugin) {
         super(plugin);
         gods = new HashSet<Player>();
+    }
+
+    @Override
+    public String getName() {
+        return "god";
+    }
+
+    @Override
+    public List<Commands> getCommands() {
+        return Collections.<Commands>singletonList(new GodCommand(this));
     }
 
     public boolean isGod(Player player) {

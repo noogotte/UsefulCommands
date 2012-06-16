@@ -1,6 +1,8 @@
 package fr.noogotte.useful_commands.component;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.bukkit.ChatColor;
@@ -29,15 +31,27 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import fr.noogotte.useful_commands.UsefulCommandPlugin;
+import fr.aumgn.bukkitutils.command.Commands;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
+import fr.noogotte.useful_commands.command.AfkCommand;
 
 public class AfkComponent  extends Component implements Listener {
 
     private final Set<Player> afks;
 
-    public AfkComponent(UsefulCommandPlugin plugin) {
+    public AfkComponent(UsefulCommandsPlugin plugin) {
         super(plugin);
         afks = new HashSet<Player>();
+    }
+
+    @Override
+    public String getName() {
+        return "afk";
+    }
+
+    @Override
+    public List<Commands> getCommands() {
+        return Collections.<Commands>singletonList(new AfkCommand(this));
     }
 
     public void addPlayer(Player player) {

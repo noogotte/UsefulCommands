@@ -1,21 +1,25 @@
 package fr.noogotte.useful_commands.component;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import fr.aumgn.bukkitutils.command.Commands;
 import fr.aumgn.bukkitutils.gconf.GConfLoadException;
 import fr.aumgn.bukkitutils.gconf.GConfLoader;
-import fr.noogotte.useful_commands.UsefulCommandPlugin;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
+import fr.noogotte.useful_commands.command.KitsCommands;
 import fr.noogotte.useful_commands.component.kit.Kit;
 
 public class KitsComponent extends Component implements Iterable<Entry<String, Kit>> {
 
     private final Map<String, Kit> kits; 
 
-    public KitsComponent(UsefulCommandPlugin plugin) {
+    public KitsComponent(UsefulCommandsPlugin plugin) {
         super(plugin);
         this.kits = new HashMap<String, Kit>();
 
@@ -36,6 +40,23 @@ public class KitsComponent extends Component implements Iterable<Entry<String, K
                 plugin.getLogger().severe("Unable to read "
                         + filename + " kit file.");
             }
+        }
+    }
+
+    @Override
+    public String getName() {
+        return "kits";
+    }
+
+    @Override
+    public List<Commands> getCommands() {
+        return Collections.<Commands>singletonList(new KitsCommands(this));
+    }
+
+    @Override
+    public void onDisable() {
+        for (Entry<String, Kit> entry : kits.entrySet()) {
+            saveKit(entry.getKey(), entry.getValue());
         }
     }
 
@@ -83,13 +104,6 @@ public class KitsComponent extends Component implements Iterable<Entry<String, K
             plugin.getLogger().severe(
                     "Unable to save " + filename + ".");
             return false;
-        }
-    }
-
-    @Override
-    public void onDisable() {
-        for (Entry<String, Kit> entry : kits.entrySet()) {
-            saveKit(entry.getKey(), entry.getValue());
         }
     }
 

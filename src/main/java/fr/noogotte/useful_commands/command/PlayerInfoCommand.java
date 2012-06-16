@@ -8,18 +8,17 @@ import org.bukkit.entity.Player;
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.AfkComponent;
 import fr.noogotte.useful_commands.component.GodComponent;
 
 @NestedCommands(name = "useful")
 public class PlayerInfoCommand extends UsefulCommands {
 
-    private final GodComponent godComponent;
-    private final AfkComponent afkComponent;
+    private final UsefulCommandsPlugin plugin;
 
-    public PlayerInfoCommand(GodComponent godComponent, AfkComponent afkComponent) {
-        this.godComponent = godComponent;
-        this.afkComponent = afkComponent;
+    public PlayerInfoCommand(UsefulCommandsPlugin plugin) {
+        this.plugin = plugin;
     }
 
     @Command(name = "playerinfo", min = 1, max = 1)
@@ -58,6 +57,7 @@ public class PlayerInfoCommand extends UsefulCommands {
         }
        
 
+        GodComponent godComponent = plugin.getComponent(GodComponent.class);
         if (godComponent != null) {
             if (godComponent.isGod(target)) {
                 sender.sendMessage(ChatColor.GREEN + "Mode dieux : "
@@ -68,6 +68,7 @@ public class PlayerInfoCommand extends UsefulCommands {
             }
         }
 
+        AfkComponent afkComponent = plugin.getComponent(AfkComponent.class);
         if (afkComponent != null) {
             if (afkComponent.isAfk(target)) {
                 sender.sendMessage(ChatColor.GREEN + "AFK : "

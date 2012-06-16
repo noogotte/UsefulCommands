@@ -2,7 +2,7 @@ name: UsefulCommands
 version: 1.0.0
 description: Useful Commands for Server
 author: noogotte
-main: fr.noogotte.useful_commands.UsefulCommandPlugin
+main: fr.noogotte.useful_commands.UsefulCommandsPlugin
 
 # Commandes
 commands:

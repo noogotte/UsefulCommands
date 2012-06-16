@@ -1,6 +1,8 @@
 package fr.noogotte.useful_commands.component;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -10,12 +12,14 @@ import org.bukkit.World;
 
 import com.google.gson.reflect.TypeToken;
 
+import fr.aumgn.bukkitutils.command.Commands;
 import fr.aumgn.bukkitutils.gconf.GConfLoadException;
 import fr.aumgn.bukkitutils.gconf.GConfLoader;
 import fr.aumgn.bukkitutils.geom.Direction;
 import fr.aumgn.bukkitutils.geom.Directions;
 import fr.aumgn.bukkitutils.geom.Vector;
-import fr.noogotte.useful_commands.UsefulCommandPlugin;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
+import fr.noogotte.useful_commands.command.WarpsCommands;
 
 public class WarpsComponent extends Component {
 
@@ -38,7 +42,7 @@ public class WarpsComponent extends Component {
 
     private final Map<String, Warp> warps;
 
-    public WarpsComponent(UsefulCommandPlugin plugin) {
+    public WarpsComponent(UsefulCommandsPlugin plugin) {
         super(plugin);
         GConfLoader loader = plugin.getGConfLoader();
         warps = new HashMap<String, Warp>();
@@ -49,6 +53,16 @@ public class WarpsComponent extends Component {
         } catch (GConfLoadException exc) {
             plugin.getLogger().severe("Unable to load warps.json.");
         }
+    }
+
+    @Override
+    public String getName() {
+        return "warps";
+    }
+
+    @Override
+    public List<Commands> getCommands() {
+        return Collections.<Commands>singletonList(new WarpsCommands(this));
     }
 
     @Override
