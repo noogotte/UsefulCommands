@@ -77,8 +77,8 @@ public class WarpsCommands extends UsefulCommands {
         }
     }
 
-    @Command(name = "warps", min = 0, max = 0)
-    public void warps(CommandSender sender, CommandArgs args) {
+    @Command(name = "warps")
+    public void warps(CommandSender sender) {
         if (warpscomponent.isEmpty()) {
             throw new CommandError("Il n'y a pas de warp !");
         }

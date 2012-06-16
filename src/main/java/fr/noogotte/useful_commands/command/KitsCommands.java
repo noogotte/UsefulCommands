@@ -64,7 +64,7 @@ public class KitsCommands extends UsefulCommands {
     }
 
     @Command(name = "kits")
-    public void kits(CommandSender sender, CommandArgs args) {
+    public void kits(CommandSender sender) {
         
     	if(component.hasNoKit()) {
         	throw new CommandError("Aucun kit de sauvegardé !");
