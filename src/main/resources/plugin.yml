@@ -229,6 +229,13 @@ commands:
         aliases: ["position", "getpos", "pos"]
         permission: "useful.world.position"
 
+    #Vanish
+    "useful vanish":
+        description: "Rend invisible un joueur"
+        usage: "[target...]"
+        aliases: ["vanish"]
+        permission: "useful.vanish.command"
+
 # Permissions
 permissions:
     useful.*:
@@ -245,6 +252,7 @@ permissions:
             - useful.teleport.*: true
             - useful.afk.*: true
             - useful.god.*: true
+            - useful.vanish.*: true
 
     useful.world.*:
         children:
@@ -332,6 +340,11 @@ permissions:
             - useful.teleport.teleportto: true
             - useful.teleport.spawn: true
             - useful.teleport.spawn.other: true
+
+    useful.vanish.*:
+        children:
+            - useful.vanish.command: true
+            - useful.vanish.command.other: true
 
     useful.tell:
         default: true
