@@ -87,7 +87,7 @@ public class InventoryCommands implements Commands {
     public void openInv(Player sender, CommandArgs args) {
         Player target = args.getPlayer(0).value(sender);
 
-        if (target.isOp()) {
+        if (target.hasPermission("useful.inventory.open.notify")) {
             target.sendMessage(ChatColor.RED
                     + "Votre inventaire a été ouvert par "
                     + ChatColor.GRAY + sender.getName());
