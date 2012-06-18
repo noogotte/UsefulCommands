@@ -54,6 +54,22 @@ public class VanishComponent extends Component implements Listener {
 			return;
 		}
 		
-		event.getPlayer().hidePlayer(vanish.iterator().next().getPlayer());
+		for (Player vanishPlayer : vanish) {
+			event.getPlayer().hidePlayer(vanishPlayer);
+		}
+	}
+
+	@EventHandler
+	public void onPlayerQuit(PlayerQuitEvent event) {
+		if(vanish.isEmpty()) {
+			return;
+		}
+
+		if(isVanish(event.getPlayer())) {
+			vanish.remove(event.getPlayer());
+			for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+				onlinePlayer.showPlayer(event.getPlayer());
+			}
+		}
 	}
 }
