@@ -241,6 +241,18 @@ commands:
         aliases: ["vanish"]
         permission: "useful.vanish.command"
 
+    #Spy
+    "useful spy":
+        description: "Met en mode espion"
+        usage: "[target...]"
+        aliases: ["spy"]
+        permission: "useful.spy.command.spy"
+    "useful spy-list":
+        description: "Liste des espions"
+        usage: ""
+        aliases: ["spylist"]
+        permission: "useful.spy.command.list"
+
 # Permissions
 permissions:
     useful.*:
@@ -258,6 +270,7 @@ permissions:
             - useful.afk.*: true
             - useful.god.*: true
             - useful.vanish.*: true
+            - useful.spy.*: true
 
     useful.world.*:
         children:
@@ -351,6 +364,13 @@ permissions:
         children:
             - useful.vanish.command: true
             - useful.vanish.command.other: true
+
+    useful.spy.*:
+        children:
+            - useful.spy.command.spy: true
+            - useful.spy.command.spy.other: true
+            - useful.spy.command.broadcast: true
+            - useful.spy.command.list: true
 
     useful.tell:
         default: true

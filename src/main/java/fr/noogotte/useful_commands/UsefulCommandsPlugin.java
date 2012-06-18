@@ -25,6 +25,7 @@ import fr.noogotte.useful_commands.component.GodComponent;
 import fr.noogotte.useful_commands.component.InventoryComponent;
 import fr.noogotte.useful_commands.component.KitsComponent;
 import fr.noogotte.useful_commands.component.PlayerComponent;
+import fr.noogotte.useful_commands.component.SpyComponent;
 import fr.noogotte.useful_commands.component.TeleportComponent;
 import fr.noogotte.useful_commands.component.VanishComponent;
 import fr.noogotte.useful_commands.component.WarpsComponent;
@@ -58,6 +59,7 @@ public class UsefulCommandsPlugin extends JavaPlugin {
         registration.register(new WarpsComponent(this));
         registration.register(new WorldComponent(this));
         registration.register(new VanishComponent(this));
+        registration.register(new SpyComponent(this));
 
         components = registration.getComponents();
     }
