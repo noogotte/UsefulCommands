@@ -162,6 +162,11 @@ commands:
         usage: ""
         aliases: ["warps"]
         permission: "useful.warp.list"
+    "useful warplocation":
+        description: "Coordonnée du warp"
+        usage: "<name>"
+        aliases: ["warplocation", "warploc"]
+        permission: "useful.warp.warplocation"
 
     # Kit Commands
     "useful kit":
@@ -316,6 +321,7 @@ permissions:
             - useful.warp.tp: true
             - useful.warp.tp.other: true
             - useful.warp.list: true
+            - useful.warp.warplocation: true
 
     useful.kit.*:
         children:

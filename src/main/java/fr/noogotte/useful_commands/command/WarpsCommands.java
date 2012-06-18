@@ -88,4 +88,31 @@ public class WarpsCommands extends UsefulCommands {
             sender.sendMessage(ChatColor.AQUA + "  -" + warpEntry.getKey());
         }
     }
+    
+    @Command(name = "warplocation", min = 1, max = 1)
+    public void warpLocation(CommandSender sender, CommandArgs args) {
+    	if (warpscomponent.isEmpty()) {
+            throw new CommandError("Il n'y a pas de warp !");
+        }
+    	if (!warpscomponent.isWarp(args.get(0))) {
+            throw new CommandError("Le warp " + args.get(0) + " n'existe pas.");
+        } else {
+            String warpName = args.get(0);
+            Warp warp = warpscomponent.getWarp(warpName);
+            Location warpLocation = warp.toLocation();
+            
+            sender.sendMessage(ChatColor.GREEN + warpName +
+            		ChatColor.AQUA + " :");
+    		sender.sendMessage(ChatColor.AQUA + "  - X: " +
+    				ChatColor.GREEN + warpLocation.getX());
+    		sender.sendMessage(ChatColor.AQUA + "  - Y: " +
+    				ChatColor.GREEN + warpLocation.getY());
+    		sender.sendMessage(ChatColor.AQUA + "  - Z: " +
+    				ChatColor.GREEN + warpLocation.getZ());
+    		sender.sendMessage(ChatColor.AQUA + "  - Pitch: " +
+    				ChatColor.GREEN + warpLocation.getPitch());
+    		sender.sendMessage(ChatColor.AQUA + "  - Yaw: " +
+    				ChatColor.GREEN + warpLocation.getYaw());
+        }
+    }
 }
