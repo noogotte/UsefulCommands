@@ -50,10 +50,6 @@ public class VanishComponent extends Component implements Listener {
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		if(vanish.isEmpty()) {
-			return;
-		}
-		
 		for (Player vanishPlayer : vanish) {
 			event.getPlayer().hidePlayer(vanishPlayer);
 		}
@@ -61,10 +57,6 @@ public class VanishComponent extends Component implements Listener {
 
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent event) {
-		if(vanish.isEmpty()) {
-			return;
-		}
-
 		if(isVanish(event.getPlayer())) {
 			vanish.remove(event.getPlayer());
 			for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
