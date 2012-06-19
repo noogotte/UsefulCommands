@@ -240,6 +240,11 @@ commands:
         usage: "[target...]"
         aliases: ["vanish"]
         permission: "useful.vanish.command"
+    "useful vanish-list":
+        description: "Rend invisible un joueur"
+        usage: ""
+        aliases: ["vanishlist"]
+        permission: "useful.vanish.command.list"
 
     #Spy
     "useful spy":
@@ -364,6 +369,7 @@ permissions:
         children:
             - useful.vanish.command: true
             - useful.vanish.command.other: true
+            - useful.vanish.command.list: true
 
     useful.spy.*:
         children:

@@ -50,4 +50,12 @@ public class VanishCommand extends UsefulCommands {
 			}
 		}
 	}
+
+	@Command(name = "vanish-list")
+    public void vanishlist(CommandSender sender, CommandArgs args) {
+        sender.sendMessage(ChatColor.GREEN + "Joueur caché(s) : ");
+        for (Player player : vanishComponent.getVanishPLayer()) {
+            sender.sendMessage(ChatColor.YELLOW + " - " + player.getDisplayName());
+        }
+    }
 }

@@ -48,6 +48,10 @@ public class VanishComponent extends Component implements Listener {
 		return vanish.contains(player);
 	}
 	
+	public HashSet<Player> getVanishPLayer() {
+		return new HashSet<Player>(vanish);
+	}
+	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		for (Player vanishPlayer : vanish) {
