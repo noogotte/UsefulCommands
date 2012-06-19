@@ -31,6 +31,7 @@ import fr.noogotte.useful_commands.component.VanishComponent;
 import fr.noogotte.useful_commands.component.WarpsComponent;
 import fr.noogotte.useful_commands.component.WorldComponent;
 
+@SuppressWarnings("deprecation")
 public class UsefulCommandsPlugin extends JavaPlugin {
 
     private List<Component> components;
