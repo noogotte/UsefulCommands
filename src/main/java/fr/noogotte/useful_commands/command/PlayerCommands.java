@@ -15,6 +15,7 @@ import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.util.Util;
+import fr.noogotte.useful_commands.UsefulConfig;
 import fr.noogotte.useful_commands.event.DisplayNameLookupEvent;
 
 @NestedCommands(name = "useful")
@@ -126,7 +127,9 @@ public class PlayerCommands extends UsefulCommands {
             receivers.append(target.getDisplayName());
             receivers.append(" ");
 
-            if (!(sender instanceof ConsoleCommandSender)) {
+            UsefulConfig config = new UsefulConfig();
+
+            if (!(sender instanceof ConsoleCommandSender) && config.message_in_console()) {
                 Bukkit.getConsoleSender().sendMessage(
                         "[MSG] de " + sender.getName()
                         +  " à " + target.getName()
