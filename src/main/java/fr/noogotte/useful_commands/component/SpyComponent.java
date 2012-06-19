@@ -19,8 +19,9 @@ import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.command.SpyCommand;
 
 public class SpyComponent extends Component implements Listener {
+
 	private final Set<Player> spy;
-	
+
 	public SpyComponent(UsefulCommandsPlugin plugin) {
 		super(plugin);
 		spy = new HashSet<Player>();
@@ -48,7 +49,7 @@ public class SpyComponent extends Component implements Listener {
 	public boolean isSpy(Player player) {
 		return spy.contains(player);
 	}
-	
+
 	public HashSet<Player> getSpy() {
 		return new HashSet<Player>(spy);
 	}
@@ -70,7 +71,7 @@ public class SpyComponent extends Component implements Listener {
 			}
 		}
 	}
-	
+
 	@EventHandler
 	public void onPlayerPickupItem(PlayerPickupItemEvent event) {
 		if(isSpy(event.getPlayer()) && !event.getPlayer().isSneaking()) {

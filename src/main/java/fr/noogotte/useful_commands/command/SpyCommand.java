@@ -15,17 +15,17 @@ import fr.noogotte.useful_commands.component.SpyComponent;
 
 @NestedCommands(name = "useful")
 public class SpyCommand extends UsefulCommands {
-	
+
 	private SpyComponent spyComponent;
 
 	public SpyCommand(SpyComponent spyComponent) {
 		this.spyComponent = spyComponent;
 	}
-	
+
 	@Command(name = "spy", min = 0, max = 1)
 	public void spy(CommandSender sender, CommandArgs args) {
 		List<Player> targets = args.getPlayers(0).match(sender, "useful.spy.command.other");
-		
+
 		for(Player target : targets) {
 			if(!spyComponent.isSpy(target)) {
 				spyComponent.addPlayer(target);
@@ -44,7 +44,7 @@ public class SpyCommand extends UsefulCommands {
 			}
 		}
 	}
-	
+
 	@Command(name = "spy-list")
     public void spmls(CommandSender sender, CommandArgs args) {
         sender.sendMessage(ChatColor.GREEN + "Espion : ");
