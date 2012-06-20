@@ -8,7 +8,7 @@ main: fr.noogotte.useful_commands.UsefulCommandsPlugin
 commands:
     useful:
         description: "Commande principale."
-        usage: "/help UsefulCommands"
+        usage: ""
         aliases: ["us"]
 
     # World commands
@@ -71,7 +71,7 @@ commands:
     "useful playerinfo":
         description: "Affiche les infos de la cible."
         usage: "<target>"
-        aliases: ["pinfo", "player-info"]
+        aliases: ["pinfo", "player-info", "whois"]
         permission: "useful.player.info"
     "useful kick":
         description: "Kick un joueur."
