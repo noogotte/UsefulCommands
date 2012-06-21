@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
+import fr.aumgn.bukkitutils.command.exception.CommandError;
 import fr.noogotte.useful_commands.component.GodComponent;
 
 @NestedCommands(name = "useful")
@@ -26,27 +27,39 @@ public class GodCommand extends UsefulCommands {
                 .match(sender, "useful.god.other");
 
         for (Player target : targets) {
-            if (godComponent.isGod(target)) {
-                godComponent.removeGod(target);
-                target.sendMessage(ChatColor.AQUA
-                        + "Mode dieu arreté.");
-                if (!sender.equals(target)) {
-                    sender.sendMessage(ChatColor.AQUA
-                            + "Mode Dieu arreté pour "
-                            + ChatColor.BLUE + target.getName());
-                }
-            } else {
-                godComponent.setGod(target);
-                target.sendMessage(ChatColor.GREEN
-                        + "Vous êtes en mode Dieu, tapez "
-                        + ChatColor.BLUE + " /god "
-                        + ChatColor.GREEN + " pour en ressortir.");
-                if (!sender.equals(target)) {
-                    sender.sendMessage(ChatColor.AQUA
-                            + "Vous avez activé le mode Dieu pour "
-                            + ChatColor.BLUE + target.getName());
-                }
-            }
+        	if(godComponent.isGod(target)) {
+            	if (!sender.equals(target)) {
+            		throw new CommandError(target.getName() + " est déja en mode dieu.");
+            	}
+        		throw new CommandError("Vous êtes déja en mode dieu.");
+        	} else {
+        		godComponent.setGod(target);
+        		target.sendMessage(ChatColor.BLUE + "Vous êtes en mode dieu.");
+        		if (!sender.equals(target)) {
+        			sender.sendMessage(ChatColor.GREEN  + target.getName() + ChatColor.BLUE + " est en mode dieu.");
+            	}
+        	}
         }
+    }
+    
+    @Command(name = "ungod", min = 0, max = 1)
+    public void ungod(CommandSender sender, CommandArgs args) {
+    	List<Player> targets = args.getPlayers(0)
+                .match(sender, "useful.ungod.other");
+    	
+    	for (Player target : targets) {
+    		if(!godComponent.isGod(target)) {
+            	if (!sender.equals(target)) {
+            		throw new CommandError(target.getName() + " n'est pas en mode dieu.");
+            	}
+        		throw new CommandError("Vous n'êtes pas en mode dieu.");
+        	} else {
+        		godComponent.removeGod(target);
+        		target.sendMessage(ChatColor.BLUE + "Vous n'êtes plus en mode dieu.");
+        		if (!sender.equals(target)) {
+        			sender.sendMessage(ChatColor.GREEN  + target.getName() + ChatColor.BLUE + " n'est plus en mode dieu.");
+            	}
+        	}
+    	}
     }
 }
