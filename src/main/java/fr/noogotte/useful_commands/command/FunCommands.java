@@ -30,7 +30,7 @@ public class FunCommands extends UsefulCommands {
         }
     }
 
-    @Command(name = "strike")
+    @Command(name = "strike", min = 0, max = 1)
     public void strike(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
                 .match(sender, "useful.fun.strike.other");
