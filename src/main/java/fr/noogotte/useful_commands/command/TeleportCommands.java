@@ -69,24 +69,23 @@ public class TeleportCommands extends UsefulCommands {
         }
     }
 
-    @Command(name = "put", min = 1, max = 1)
+    @Command(name = "put", min =0, max = 1)
     public void put(Player sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).match();
+        List<Player> targets = args.getPlayers(0).match(sender);
 
         Vector pos = getTargetBlockLocation(sender, 180);
         Direction dir = pos.towards(new Vector(sender));
         Location location = pos.toLocation(sender.getWorld(), dir);
 
         for (Player target : targets) {
-            if (sender.equals(target)) {
-                continue;
-            }
 
             target.teleport(location);
             target.sendMessage(ChatColor.GREEN + "Poof !");
-            sender.sendMessage(ChatColor.AQUA
+            if (!sender.equals(target)) {
+            	sender.sendMessage(ChatColor.AQUA
                     + "Vous avez téléporté "
                     + ChatColor.GREEN + target.getName());
+            }
         }
     }
 
