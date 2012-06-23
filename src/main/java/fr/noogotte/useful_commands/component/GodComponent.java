@@ -37,6 +37,11 @@ public class GodComponent extends Component implements Listener {
         return Collections.<Commands>singletonList(new GodCommand(this));
     }
 
+    public boolean isGod(Entity entity) {
+        return entity instanceof Player
+                && isGod((Player) entity);
+    }
+
     public boolean isGod(Player player) {
         return gods.contains(player);
     }
@@ -66,7 +71,7 @@ public class GodComponent extends Component implements Listener {
     @EventHandler
     public void onHealthChange(EntityDamageEvent event) {
         Entity entity = event.getEntity();
-        if (entity instanceof Player && isGod((Player) entity)) {
+        if (isGod(entity)) {
             event.setCancelled(true);
         }
     }
@@ -74,7 +79,7 @@ public class GodComponent extends Component implements Listener {
     @EventHandler
     public void onFoodLevelChange(FoodLevelChangeEvent event) {
         HumanEntity entity = event.getEntity();
-        if (entity instanceof Player && isGod((Player) entity)) {
+        if (isGod(entity)) {
             event.setCancelled(true);
         }
     }

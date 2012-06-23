@@ -68,8 +68,13 @@ public class AfkComponent extends Component implements Listener {
         }
     }
 
-    public boolean isAfk(Entity Entity) {
-        return afks.contains(Entity);
+    public boolean isAfk(Entity entity) {
+        return entity instanceof Player
+                && isAfk((Player) entity);
+    }
+
+    public boolean isAfk(Player player) {
+        return afks.contains(player);
     }
 
     @EventHandler
@@ -83,14 +88,13 @@ public class AfkComponent extends Component implements Listener {
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
         if (isAfk(event.getPlayer())) {
-            Location location = event.getPlayer().getLocation();
             Location from = event.getFrom();
             Location to = event.getTo();
             if (from.getBlockX() != to.getBlockX()
                     || from.getBlockY() != to.getBlockY()
                     || from.getBlockZ() != to.getBlockZ()
                     || !from.getWorld().equals(to.getWorld())) {
-                event.setTo(location);
+                event.setTo(from);
             }
         }
     }
@@ -124,7 +128,7 @@ public class AfkComponent extends Component implements Listener {
     @EventHandler
     public void onRegainHealth(EntityRegainHealthEvent event) {
         Entity entity = event.getEntity();
-        if (entity instanceof Player && isAfk((Player) entity)) {
+        if (isAfk(entity)) {
             event.setCancelled(true);
         }
     }
@@ -132,7 +136,7 @@ public class AfkComponent extends Component implements Listener {
     @EventHandler
     public void onFoodLevelChange(FoodLevelChangeEvent event) {
         Entity entity = event.getEntity();
-        if (entity instanceof Player && isAfk((Player) entity)) {
+        if (isAfk(entity)) {
             event.setCancelled(true);
         }
     }
@@ -140,7 +144,7 @@ public class AfkComponent extends Component implements Listener {
     @EventHandler
     public void onTarget(EntityTargetEvent event) {
         Entity entity = event.getTarget();
-        if (entity instanceof Player && isAfk((Player) entity)) {
+        if (isAfk(entity)) {
             event.setCancelled(true);
         }
     }
@@ -166,7 +170,7 @@ public class AfkComponent extends Component implements Listener {
     @EventHandler
     public void entityDamageByEntity(EntityDamageByEntityEvent event) {
         Entity damagerEntity = event.getDamager();
-        if (isAfk(damagerEntity) && damagerEntity instanceof Player) {
+        if (isAfk(damagerEntity)) {
             event.setCancelled(true);
         }
     }
@@ -174,7 +178,7 @@ public class AfkComponent extends Component implements Listener {
     @EventHandler
     public void entityDamage(EntityDamageEvent event) {
         Entity entity = event.getEntity();
-        if (entity instanceof Player && isAfk((Player) entity)) {
+        if (isAfk(entity)) {
             event.setCancelled(true);
         }
     }
@@ -189,7 +193,7 @@ public class AfkComponent extends Component implements Listener {
     }
 
     @EventHandler
-    public void onCliked(InventoryClickEvent event) {
+    public void onClicked(InventoryClickEvent event) {
         HumanEntity entity = event.getWhoClicked();
         if (!(entity instanceof Player)) {
             return;
