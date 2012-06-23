@@ -1,18 +1,26 @@
 package fr.noogotte.useful_commands;
 
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Set;
 
 import fr.noogotte.useful_commands.component.Component;
 
 public class UsefulConfig {
 
-    private String lang = "fr";
+    private String lang = Locale.FRANCE.toString();
     private Set<String> disabled = Collections.<String> emptySet();
     private boolean msgInConsole = true;
 
-    public String getLang() {
-        return lang;
+    public Locale getLocale() {
+        String[] splitted = lang.split("_");
+        if (splitted.length == 0) {
+            return Locale.getDefault();
+        } else if (splitted.length == 1) {
+            return new Locale(splitted[0]);
+        } else {
+            return new Locale(splitted[0], splitted[1]);
+        }
     }
 
     public boolean isEnabled(Component component) {

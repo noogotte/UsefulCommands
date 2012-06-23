@@ -12,8 +12,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import fr.aumgn.bukkitutils.command.CommandsRegistration;
-import fr.aumgn.bukkitutils.command.messages.FrenchMessages;
-import fr.aumgn.bukkitutils.command.messages.Messages;
 import fr.aumgn.bukkitutils.gconf.GConfLoadException;
 import fr.aumgn.bukkitutils.gconf.GConfLoader;
 import fr.aumgn.bukkitutils.gconf.typeadapter.DirectionTypeAdapterFactory;
@@ -30,7 +28,6 @@ import fr.noogotte.useful_commands.component.VanishComponent;
 import fr.noogotte.useful_commands.component.WarpsComponent;
 import fr.noogotte.useful_commands.component.WorldComponent;
 
-@SuppressWarnings("deprecation")
 public class UsefulCommandsPlugin extends JavaPlugin {
 
     private List<Component> components;
@@ -38,14 +35,8 @@ public class UsefulCommandsPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         UsefulConfig config = loadUsefulConfig();
-        Messages messages;
-        if (config.getLang().equals("fr")) {
-            messages = new FrenchMessages();
-        } else {
-            messages = new Messages();
-        }
-        CommandsRegistration commandsRegistration = new CommandsRegistration(
-                this, messages);
+        CommandsRegistration commandsRegistration =
+                new CommandsRegistration(this, config.getLocale());
         ComponentRegistration registration = new ComponentRegistration(
                 config, commandsRegistration);
 
