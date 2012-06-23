@@ -165,7 +165,7 @@ public class AfkComponent extends Component implements Listener {
 
     @EventHandler
     public void entityDamageByEntity(EntityDamageByEntityEvent event) {
-        Entity damagerEntity = ((EntityDamageByEntityEvent) event).getDamager();
+        Entity damagerEntity = event.getDamager();
         if (isAfk(damagerEntity) && damagerEntity instanceof Player) {
             event.setCancelled(true);
         }
