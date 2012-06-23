@@ -366,9 +366,12 @@ permissions:
     useful.teleport.*:
         children:
             - useful.teleport.teleport: true
+            - useful.teleport.teleport.other: true
             - useful.teleport.summon: true
             - useful.teleport.put: true
+            - useful.teleport.put.other: true
             - useful.teleport.teleportto: true
+            - useful.teleport.teleportto.other: true
             - useful.teleport.spawn: true
             - useful.teleport.spawn.other: true
 

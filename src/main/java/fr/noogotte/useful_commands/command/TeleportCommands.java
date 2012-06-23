@@ -22,7 +22,8 @@ public class TeleportCommands extends UsefulCommands {
     @Command(name = "teleportation", min = 1, max = 2)
     public void teleportation(Player sender, CommandArgs args) {
         Player to = args.getPlayer(0).value();
-        List<Player> targets = args.getPlayers(1).match(sender);
+        List<Player> targets = args.getPlayers(1)
+                .match(sender, "useful.teleport.teleport.other");
 
         for (Player target : targets) {
             target.teleport(to);
@@ -68,7 +69,8 @@ public class TeleportCommands extends UsefulCommands {
 
     @Command(name = "put", min = 0, max = 1)
     public void put(Player sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).match(sender);
+        List<Player> targets = args.getPlayers(0)
+                .match(sender, "useful.teleport.put.other");
 
         Vector pos = getTargetBlockLocation(sender, 180);
         Direction dir = pos.towards(new Vector(sender));
@@ -89,7 +91,8 @@ public class TeleportCommands extends UsefulCommands {
     public void teleportTo(CommandSender sender, CommandArgs args) {
         Vector teleportPos = args.getVector(0).value();
         World world = args.getWorld(1).value(sender);
-        List<Player> targets = args.getPlayers(2).match(sender);
+        List<Player> targets = args.getPlayers(2)
+                .match(sender, "useful.teleport.teleportto.other");
 
         for (Player target : targets) {
             Vector currentPos = new Vector(target.getLocation());
