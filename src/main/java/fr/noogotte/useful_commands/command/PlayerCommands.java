@@ -15,11 +15,17 @@ import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.util.Util;
-import fr.noogotte.useful_commands.UsefulConfig;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.event.DisplayNameLookupEvent;
 
 @NestedCommands(name = "useful")
 public class PlayerCommands extends UsefulCommands {
+
+    private final UsefulCommandsPlugin plugin;
+
+    public PlayerCommands(UsefulCommandsPlugin plugin) {
+        this.plugin = plugin;
+    }
 
     @Command(name = "gamemode", flags = "cs", min = 0, max = 1)
     public void gamemode(CommandSender sender, CommandArgs args) {
@@ -121,10 +127,8 @@ public class PlayerCommands extends UsefulCommands {
             receivers.append(target.getDisplayName());
             receivers.append(" ");
 
-            UsefulConfig config = new UsefulConfig();
-
             if (!(sender instanceof ConsoleCommandSender)
-                    && config.messageInConsole()) {
+                    && plugin.getUsefulConfig().messageInConsole()) {
                 Bukkit.getConsoleSender().sendMessage(
                         "[MSG] de " + sender.getName() + " à "
                                 + target.getName() + ": " + message);

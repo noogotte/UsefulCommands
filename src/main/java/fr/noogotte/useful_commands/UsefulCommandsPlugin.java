@@ -31,10 +31,11 @@ import fr.noogotte.useful_commands.component.WorldComponent;
 public class UsefulCommandsPlugin extends JavaPlugin {
 
     private List<Component> components;
+    private UsefulConfig config;
 
     @Override
     public void onEnable() {
-        UsefulConfig config = loadUsefulConfig();
+        config = loadUsefulConfig();
         CommandsRegistration commandsRegistration =
                 new CommandsRegistration(this, config.getLocale());
         ComponentRegistration registration = new ComponentRegistration(
@@ -66,6 +67,10 @@ public class UsefulCommandsPlugin extends JavaPlugin {
         }
 
         return null;
+    }
+
+    public UsefulConfig getUsefulConfig() {
+        return config;
     }
 
     private UsefulConfig loadUsefulConfig() {
