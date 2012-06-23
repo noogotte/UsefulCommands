@@ -23,6 +23,11 @@ public class ComponentRegistration {
     public void register(Component component) {
         if (config.isEnabled(component)) {
             components.add(component);
+        }
+    }
+
+    public void onEnable() {
+        for (Component component : components) {
             for (Commands commands : component.getCommands()) {
                 commandsRegistration.register(commands);
             }

@@ -61,6 +61,7 @@ public class UsefulCommandsPlugin extends JavaPlugin {
         registration.register(new VanishComponent(this));
         registration.register(new SpyComponent(this));
 
+        registration.onEnable();
         components = registration.getComponents();
     }
 
