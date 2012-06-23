@@ -27,35 +27,29 @@ public class PlayerInfoCommand extends UsefulCommands {
         String yes = "Oui";
         String no = "Non";
 
-        sender.sendMessage(ChatColor.GREEN + ""
-                + ChatColor.UNDERLINE + "Info de "
-                +  target.getName());
-        sender.sendMessage(ChatColor.GREEN +"Vie : "
-                + ChatColor.AQUA + target.getHealth());
-        sender.sendMessage(ChatColor.GREEN +"Faim : "
-                + ChatColor.AQUA + target.getFoodLevel());
-        sender.sendMessage(ChatColor.GREEN +"IP : "
-                + ChatColor.AQUA + target.getAddress());
+        sender.sendMessage(ChatColor.GREEN + "" + ChatColor.UNDERLINE
+                + "Info de " + target.getName());
+        sender.sendMessage(ChatColor.GREEN + "Vie : " + ChatColor.AQUA
+                + target.getHealth());
+        sender.sendMessage(ChatColor.GREEN + "Faim : " + ChatColor.AQUA
+                + target.getFoodLevel());
+        sender.sendMessage(ChatColor.GREEN + "IP : " + ChatColor.AQUA
+                + target.getAddress());
         Location loc = target.getLocation();
-        sender.sendMessage(ChatColor.GREEN + "Position : ("
-                + ChatColor.AQUA + loc.getBlockX()
-                + ChatColor.GREEN + ","
-                + ChatColor.AQUA + loc.getBlockY()
-                + ChatColor.GREEN + ","
-                + ChatColor.AQUA + loc.getBlockZ()
-                + ChatColor.GREEN + ") dans : "
+        sender.sendMessage(ChatColor.GREEN + "Position : (" + ChatColor.AQUA
+                + loc.getBlockX() + ChatColor.GREEN + "," + ChatColor.AQUA
+                + loc.getBlockY() + ChatColor.GREEN + "," + ChatColor.AQUA
+                + loc.getBlockZ() + ChatColor.GREEN + ") dans : "
                 + ChatColor.AQUA + target.getWorld().getName());
-        sender.sendMessage(ChatColor.GREEN +"Gamemode : "
-                + ChatColor.AQUA + target.getGameMode());
-        sender.sendMessage(ChatColor.GREEN +"Expérience : "
-                + ChatColor.AQUA + target.getLevel());
+        sender.sendMessage(ChatColor.GREEN + "Gamemode : " + ChatColor.AQUA
+                + target.getGameMode());
+        sender.sendMessage(ChatColor.GREEN + "Expérience : " + ChatColor.AQUA
+                + target.getLevel());
 
         if (target.isOp()) {
-            sender.sendMessage(ChatColor.GREEN +"Op : " +
-                    ChatColor.AQUA + yes);
+            sender.sendMessage(ChatColor.GREEN + "Op : " + ChatColor.AQUA + yes);
         } else {
-            sender.sendMessage(ChatColor.GREEN + "Op : " +
-                    ChatColor.AQUA + no);
+            sender.sendMessage(ChatColor.GREEN + "Op : " + ChatColor.AQUA + no);
         }
 
         GodComponent godComponent = plugin.getComponent(GodComponent.class);
@@ -72,11 +66,11 @@ public class PlayerInfoCommand extends UsefulCommands {
         AfkComponent afkComponent = plugin.getComponent(AfkComponent.class);
         if (afkComponent != null) {
             if (afkComponent.isAfk(target)) {
-                sender.sendMessage(ChatColor.GREEN + "AFK : "
-                        + ChatColor.AQUA + yes);
+                sender.sendMessage(ChatColor.GREEN + "AFK : " + ChatColor.AQUA
+                        + yes);
             } else {
-                sender.sendMessage(ChatColor.GREEN + "AFK : "
-                        + ChatColor.AQUA + no);
+                sender.sendMessage(ChatColor.GREEN + "AFK : " + ChatColor.AQUA
+                        + no);
             }
         }
     }

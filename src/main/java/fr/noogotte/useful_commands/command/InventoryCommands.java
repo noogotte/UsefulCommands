@@ -35,13 +35,12 @@ public class InventoryCommands implements Commands {
                     target.getInventory().setItem(j, null);
                 }
             }
-            target.sendMessage(ChatColor.YELLOW
-                    + "Inventaire vidé !");
+            target.sendMessage(ChatColor.YELLOW + "Inventaire vidé !");
 
             if (!sender.equals(target)) {
                 sender.sendMessage(ChatColor.GREEN
-                        + "Vous avez vidé l'inventaire de "
-                        + ChatColor.BLUE + target.getName());
+                        + "Vous avez vidé l'inventaire de " + ChatColor.BLUE
+                        + target.getName());
             }
         }
     }
@@ -52,33 +51,27 @@ public class InventoryCommands implements Commands {
         List<Player> targets = args.getPlayers(2)
                 .match(sender, "useful.inventory.give.other");
 
-        int amount = args.getInteger(1)
-                .value(itemType.getMaxStackSize());
+        int amount = args.getInteger(1).value(itemType.getMaxStackSize());
         ItemStack item = itemType.toItemStack(amount);
 
         if (args.hasFlag('e') && !itemType.getMaterial().isBlock()) {
             for (Enchantment enchantment : Enchantment.values()) {
                 if (enchantment.canEnchantItem(item)) {
-                    item.addEnchantment(
-                            enchantment, enchantment.getMaxLevel());
+                    item.addEnchantment(enchantment, enchantment.getMaxLevel());
                 }
             }
         }
 
         for (Player target : targets) {
             target.getInventory().addItem(item);
-            target.sendMessage(ChatColor.GREEN
-                    + "Vous avez reçu "
-                    + ChatColor.AQUA + item.getAmount()
-                    + ChatColor.GREEN + " de "
-                    + ChatColor.AQUA + itemType.getMaterial());
+            target.sendMessage(ChatColor.GREEN + "Vous avez reçu "
+                    + ChatColor.AQUA + item.getAmount() + ChatColor.GREEN
+                    + " de " + ChatColor.AQUA + itemType.getMaterial());
             if (!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GREEN
-                        + "Vous avez donné à " + target.getName()
-                        + ChatColor.GREEN + ": "
-                        + ChatColor.AQUA + item.getAmount()
-                        + ChatColor.GREEN + " de "
-                        + ChatColor.AQUA + itemType.getMaterial());
+                sender.sendMessage(ChatColor.GREEN + "Vous avez donné à "
+                        + target.getName() + ChatColor.GREEN + ": "
+                        + ChatColor.AQUA + item.getAmount() + ChatColor.GREEN
+                        + " de " + ChatColor.AQUA + itemType.getMaterial());
             }
         }
     }
@@ -89,8 +82,8 @@ public class InventoryCommands implements Commands {
 
         if (target.hasPermission("useful.inventory.open.notify")) {
             target.sendMessage(ChatColor.RED
-                    + "Votre inventaire a été ouvert par "
-                    + ChatColor.GRAY + sender.getName());
+                    + "Votre inventaire a été ouvert par " + ChatColor.GRAY
+                    + sender.getName());
         }
         Inventory inventory = target.getInventory();
         sender.openInventory(inventory);
@@ -98,10 +91,10 @@ public class InventoryCommands implements Commands {
 
     @Command(name = "id", min = 0, max = 0)
     public void id(Player sender, CommandArgs args) {
-        sender.sendMessage(ChatColor.GREEN + "Vous tenez : "
-                + ChatColor.AQUA + sender.getItemInHand().getData());
-        sender.sendMessage(ChatColor.GREEN + "Son id est : "
-                + ChatColor.AQUA + sender.getItemInHand().getTypeId());
+        sender.sendMessage(ChatColor.GREEN + "Vous tenez : " + ChatColor.AQUA
+                + sender.getItemInHand().getData());
+        sender.sendMessage(ChatColor.GREEN + "Son id est : " + ChatColor.AQUA
+                + sender.getItemInHand().getTypeId());
     }
 
     @Command(name = "enchantment", min = 1, max = 2)
@@ -110,10 +103,10 @@ public class InventoryCommands implements Commands {
         Integer level = args.getInteger(1).value(1);
 
         if (!enchantment.canEnchantItem(sender.getItemInHand())) {
-            sender.sendMessage(ChatColor.GREEN + "L'enchantement " 
-                    + ChatColor.GOLD + enchantment.getName() 
-                    + ChatColor.GREEN + " ne peux pas être apliqué à " 
-                    + ChatColor.GOLD + sender.getItemInHand().getType());
+            sender.sendMessage(ChatColor.GREEN + "L'enchantement "
+                    + ChatColor.GOLD + enchantment.getName() + ChatColor.GREEN
+                    + " ne peux pas être apliqué à " + ChatColor.GOLD
+                    + sender.getItemInHand().getType());
         } else if (level > enchantment.getMaxLevel()) {
             sender.sendMessage(ChatColor.GREEN
                     + "Le niveau d'enchantement doit être inférieur ou égal à "
@@ -121,9 +114,8 @@ public class InventoryCommands implements Commands {
         } else {
             sender.getItemInHand().addEnchantment(enchantment, level);
             sender.sendMessage(ChatColor.GREEN + "Vous avez ajouté "
-                    + ChatColor.GOLD + enchantment.getName() 
-                    + ChatColor.GOLD + " : " 
-                    + ChatColor.GREEN
+                    + ChatColor.GOLD + enchantment.getName() + ChatColor.GOLD
+                    + " : " + ChatColor.GREEN
                     + sender.getItemInHand().getEnchantmentLevel(enchantment));
         }
     }
@@ -131,7 +123,7 @@ public class InventoryCommands implements Commands {
     @Command(name = "remove-enchantment", min = 0, max = 1)
     public void removeEnchantment(Player sender, CommandArgs args) {
         ItemStack stack = sender.getItemInHand();
-        Iterable<Enchantment> enchantments; 
+        Iterable<Enchantment> enchantments;
         if (args.length() == 0) {
             enchantments = stack.getEnchantments().keySet();
         } else {

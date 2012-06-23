@@ -45,15 +45,12 @@ public class PlayerCommands extends UsefulCommands {
                 target.setGameMode(GameMode.CREATIVE);
             }
 
-            target.sendMessage(ChatColor.GREEN
-                    + "Vous êtes maintenant en "
+            target.sendMessage(ChatColor.GREEN + "Vous êtes maintenant en "
                     + ChatColor.AQUA + target.getGameMode());
             if (!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GREEN
-                        + "Vous avez mis "
-                        + ChatColor.AQUA + target.getName()
-                        + ChatColor.GREEN + " en "
-                        + ChatColor.AQUA +  target.getGameMode());
+                sender.sendMessage(ChatColor.GREEN + "Vous avez mis "
+                        + ChatColor.AQUA + target.getName() + ChatColor.GREEN
+                        + " en " + ChatColor.AQUA + target.getGameMode());
             }
         }
     }
@@ -73,12 +70,11 @@ public class PlayerCommands extends UsefulCommands {
                 target.setFoodLevel(20);
             }
 
-            target.sendMessage(ChatColor.YELLOW
-                    + "Vous voilà soigné et nourri");
+            target.sendMessage(ChatColor.YELLOW + "Vous voilà soigné et nourri");
             if (!sender.equals(target)) {
                 sender.sendMessage(ChatColor.GREEN
-                        + "Vous avez soigné et nourri "
-                        + ChatColor.BLUE + target.getName());
+                        + "Vous avez soigné et nourri " + ChatColor.BLUE
+                        + target.getName());
             }
         }
     }
@@ -118,27 +114,25 @@ public class PlayerCommands extends UsefulCommands {
 
         StringBuilder receivers = new StringBuilder();
         for (Player target : targets) {
-            target.sendMessage(ChatColor.ITALIC.toString()
-                    + ChatColor.AQUA + "De "
-                    + senderName
-                    + ChatColor.AQUA + " : "
-                    + ChatColor.WHITE +  " " + message);
+            target.sendMessage(ChatColor.ITALIC.toString() + ChatColor.AQUA
+                    + "De " + senderName + ChatColor.AQUA + " : "
+                    + ChatColor.WHITE + " " + message);
 
             receivers.append(target.getDisplayName());
             receivers.append(" ");
 
             UsefulConfig config = new UsefulConfig();
 
-            if (!(sender instanceof ConsoleCommandSender) && config.message_in_console()) {
+            if (!(sender instanceof ConsoleCommandSender)
+                    && config.messageInConsole()) {
                 Bukkit.getConsoleSender().sendMessage(
-                        "[MSG] de " + sender.getName()
-                        +  " à " + target.getName()
-                        + ": " + message);
+                        "[MSG] de " + sender.getName() + " à "
+                                + target.getName() + ": " + message);
             }
         }
 
-        sender.sendMessage(ChatColor.ITALIC.toString()
-                + ChatColor.AQUA + "A " + receivers + ":");
+        sender.sendMessage(ChatColor.ITALIC.toString() + ChatColor.AQUA + "A "
+                + receivers + ":");
         sender.sendMessage("  " + message);
     }
 
@@ -176,7 +170,8 @@ public class PlayerCommands extends UsefulCommands {
 
     @Command(name = "kill", min = 0, max = 1)
     public void kill(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).match(sender, "useful.player.kill.other");
+        List<Player> targets = args.getPlayers(0)
+                .match(sender, "useful.player.kill.other");
         for (Player target : targets) {
             target.setHealth(0);
             sender.sendMessage(ChatColor.GREEN + "Vous vous êtes suicidés !");
@@ -192,22 +187,21 @@ public class PlayerCommands extends UsefulCommands {
     public void effect(CommandSender sender, CommandArgs args) {
         PotionEffectType effect = args.getPotionEffectType(0).value();
         Integer duration = args.getInteger(1).value(60);
-        PotionEffect newEffect = new PotionEffect(
-                effect, duration * 20, 1);
+        PotionEffect newEffect = new PotionEffect(effect, duration * 20, 1);
 
         List<Player> targets = args.getPlayers(2)
                 .match(sender, "useful.player.effect.other");
 
         for (Player target : targets) {
             target.addPotionEffect(newEffect, true);
-            sender.sendMessage(ChatColor.GREEN +"Vous êtes sous influence de " +
-                    ChatColor.GOLD + effect.getName());
+            sender.sendMessage(ChatColor.GREEN + "Vous êtes sous influence de "
+                    + ChatColor.GOLD + effect.getName());
 
             if (!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GOLD + target.getName() + 
-                        ChatColor.GREEN + " est désormais sous l'effet de " + 
-                        ChatColor.GOLD + effect.getName() + 
-                        ChatColor.GREEN + " pour " + effect.getDurationModifier());
+                sender.sendMessage(ChatColor.GOLD + target.getName()
+                        + ChatColor.GREEN + " est désormais sous l'effet de "
+                        + ChatColor.GOLD + effect.getName() + ChatColor.GREEN
+                        + " pour " + effect.getDurationModifier());
             }
         }
     }
@@ -233,8 +227,8 @@ public class PlayerCommands extends UsefulCommands {
 
                 if (!sender.equals(target)) {
                     sender.sendMessage(ChatColor.GREEN + "Vous avez mis "
-                            + ChatColor.GOLD + name
-                            + ChatColor.GREEN + " avec son nom d'origine");
+                            + ChatColor.GOLD + name + ChatColor.GREEN
+                            + " avec son nom d'origine");
                 }
             } else {
                 target.setDisplayName(args.get(0));
@@ -245,8 +239,8 @@ public class PlayerCommands extends UsefulCommands {
                 if (!sender.equals(target)) {
                     sender.sendMessage(ChatColor.GREEN + "Vous avez renommez "
                             + ChatColor.GOLD + target.getName()
-                            + ChatColor.GREEN + " en "
-                            + ChatColor.GOLD + args.get(0));
+                            + ChatColor.GREEN + " en " + ChatColor.GOLD
+                            + args.get(0));
                 }
             }
         }
@@ -255,20 +249,19 @@ public class PlayerCommands extends UsefulCommands {
     @Command(name = "burn", min = 1, max = 2)
     public void burn(CommandSender sender, CommandArgs args) {
         int duration = args.getInteger(1).value(10);
-        List<Player> targets = args.getPlayers(0).match(sender, "useful.player.burn.other");
+        List<Player> targets = args.getPlayers(0)
+                .match(sender, "useful.player.burn.other");
 
         for (Player target : targets) {
             target.setFireTicks(duration * 20);
-            target.sendMessage(ChatColor.GREEN + "Vous êtes enflammés pour " +
-                    ChatColor.GOLD + duration +
-                    ChatColor.GREEN + " secondes");
+            target.sendMessage(ChatColor.GREEN + "Vous êtes enflammés pour "
+                    + ChatColor.GOLD + duration + ChatColor.GREEN + " secondes");
 
             if (!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GREEN + "Vous avez enflammé " +
-                        ChatColor.GOLD + target.getName() +
-                        ChatColor.GREEN + "pour " +
-                        ChatColor.GOLD + duration  +
-                        ChatColor.GREEN + " secondes");
+                sender.sendMessage(ChatColor.GREEN + "Vous avez enflammé "
+                        + ChatColor.GOLD + target.getName() + ChatColor.GREEN
+                        + "pour " + ChatColor.GOLD + duration + ChatColor.GREEN
+                        + " secondes");
             }
         }
     }

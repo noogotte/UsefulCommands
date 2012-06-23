@@ -19,13 +19,13 @@ public class FunCommands extends UsefulCommands {
         List<Player> targets = args.getPlayers(0)
                 .match(sender, "useful.fun.rocket.other");
 
-        for(Player target : targets) {
+        for (Player target : targets) {
             target.setVelocity(new Vector(0, 50, 0));
             target.sendMessage(ChatColor.GREEN + "Rocket !");
 
-            if(!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GREEN + "Vous avez propulsés " +
-                        ChatColor.AQUA + target.getName());
+            if (!sender.equals(target)) {
+                sender.sendMessage(ChatColor.GREEN + "Vous avez propulsés "
+                        + ChatColor.AQUA + target.getName());
             }
         }
     }
@@ -35,13 +35,13 @@ public class FunCommands extends UsefulCommands {
         List<Player> targets = args.getPlayers(0)
                 .match(sender, "useful.fun.strike.other");
 
-        for(Player target : targets) {
+        for (Player target : targets) {
             target.getWorld().strikeLightning(target.getLocation());
             target.sendMessage(ChatColor.GREEN + "Vous avez ête foudroyé.");
 
-            if(!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GREEN + "Vous avez foudroyé " +
-                        ChatColor.GOLD + target.getName());
+            if (!sender.equals(target)) {
+                sender.sendMessage(ChatColor.GREEN + "Vous avez foudroyé "
+                        + ChatColor.GOLD + target.getName());
             }
         }
     }

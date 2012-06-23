@@ -16,40 +16,46 @@ import fr.noogotte.useful_commands.component.SpyComponent;
 @NestedCommands(name = "useful")
 public class SpyCommand extends UsefulCommands {
 
-	private SpyComponent spyComponent;
+    private SpyComponent spyComponent;
 
-	public SpyCommand(SpyComponent spyComponent) {
-		this.spyComponent = spyComponent;
-	}
+    public SpyCommand(SpyComponent spyComponent) {
+        this.spyComponent = spyComponent;
+    }
 
-	@Command(name = "spy", min = 0, max = 1)
-	public void spy(CommandSender sender, CommandArgs args) {
-		List<Player> targets = args.getPlayers(0).match(sender, "useful.spy.command.other");
+    @Command(name = "spy", min = 0, max = 1)
+    public void spy(CommandSender sender, CommandArgs args) {
+        List<Player> targets = args.getPlayers(0)
+                .match(sender, "useful.spy.command.other");
 
-		for(Player target : targets) {
-			if(!spyComponent.isSpy(target)) {
-				spyComponent.addPlayer(target);
-				for(Player allPlayer : Bukkit.getOnlinePlayers()) {
-					allPlayer.hidePlayer(target);
-				}
-				Util.broadcast("useful.spy.command.broadcast", target.getName() + " est passé(e) en Spy Mode.");
-				Util.broadcast(ChatColor.YELLOW + target.getName() + " left the game");
-			} else {
-				spyComponent.removePlayer(target);
-				for(Player allPlayer : Bukkit.getOnlinePlayers()) {
-					allPlayer.showPlayer(target);
-				}
-				Util.broadcast("useful.spy.command.broadcast", target.getName() + " n'est plus en Spy Mode.");
-				Util.broadcast(ChatColor.YELLOW + target.getName() + " joined the game");
-			}
-		}
-	}
+        for (Player target : targets) {
+            if (!spyComponent.isSpy(target)) {
+                spyComponent.addPlayer(target);
+                for (Player allPlayer : Bukkit.getOnlinePlayers()) {
+                    allPlayer.hidePlayer(target);
+                }
+                Util.broadcast("useful.spy.command.broadcast", target.getName()
+                        + " est passé(e) en Spy Mode.");
+                Util.broadcast(ChatColor.YELLOW + target.getName()
+                        + " left the game");
+            } else {
+                spyComponent.removePlayer(target);
+                for (Player allPlayer : Bukkit.getOnlinePlayers()) {
+                    allPlayer.showPlayer(target);
+                }
+                Util.broadcast("useful.spy.command.broadcast", target.getName()
+                        + " n'est plus en Spy Mode.");
+                Util.broadcast(ChatColor.YELLOW + target.getName()
+                        + " joined the game");
+            }
+        }
+    }
 
-	@Command(name = "spy-list")
-    public void spmls(CommandSender sender, CommandArgs args) {
+    @Command(name = "spy-list")
+    public void spyls(CommandSender sender, CommandArgs args) {
         sender.sendMessage(ChatColor.GREEN + "Espion : ");
         for (Player player : spyComponent.getSpy()) {
-            sender.sendMessage(ChatColor.YELLOW + " - " + player.getDisplayName());
+            sender.sendMessage(ChatColor.YELLOW + " - "
+                    + player.getDisplayName());
         }
     }
 }

@@ -19,62 +19,62 @@ import fr.noogotte.useful_commands.command.SpyCommand;
 
 public class SpyComponent extends Component implements Listener {
 
-	private final Set<Player> spy;
+    private final Set<Player> spy;
 
-	public SpyComponent(UsefulCommandsPlugin plugin) {
-		super(plugin);
-		spy = new HashSet<Player>();
-		Bukkit.getPluginManager().registerEvents(this, plugin);
-	}
+    public SpyComponent(UsefulCommandsPlugin plugin) {
+        super(plugin);
+        spy = new HashSet<Player>();
+        Bukkit.getPluginManager().registerEvents(this, plugin);
+    }
 
-	@Override
-	public String getName() {
-		return "spy";
-	}
+    @Override
+    public String getName() {
+        return "spy";
+    }
 
-	@Override
+    @Override
     public List<Commands> getCommands() {
         return Collections.<Commands>singletonList(new SpyCommand(this));
     }
 
-	public void addPlayer(Player player) {
-		spy.add(player);
-	}
+    public void addPlayer(Player player) {
+        spy.add(player);
+    }
 
-	public void removePlayer(Player player) {
-		spy.remove(player);
-	}
+    public void removePlayer(Player player) {
+        spy.remove(player);
+    }
 
-	public boolean isSpy(Player player) {
-		return spy.contains(player);
-	}
+    public boolean isSpy(Player player) {
+        return spy.contains(player);
+    }
 
-	public HashSet<Player> getSpy() {
-		return new HashSet<Player>(spy);
-	}
+    public HashSet<Player> getSpy() {
+        return new HashSet<Player>(spy);
+    }
 
-	@EventHandler
-	public void onPlayerJoin(PlayerJoinEvent event) {
-		for (Player spyPlayer : spy) {
-			event.getPlayer().hidePlayer(spyPlayer);
-		}
-	}
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        for (Player spyPlayer : spy) {
+            event.getPlayer().hidePlayer(spyPlayer);
+        }
+    }
 
-	@EventHandler
-	public void onPlayerQuit(PlayerQuitEvent event) {
-		if(isSpy(event.getPlayer())) {
-			event.setQuitMessage(null);
-			spy.remove(event.getPlayer());
-			for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-				onlinePlayer.showPlayer(event.getPlayer());
-			}
-		}
-	}
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        if (isSpy(event.getPlayer())) {
+            event.setQuitMessage(null);
+            spy.remove(event.getPlayer());
+            for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+                onlinePlayer.showPlayer(event.getPlayer());
+            }
+        }
+    }
 
-	@EventHandler
-	public void onPlayerPickupItem(PlayerPickupItemEvent event) {
-		if(isSpy(event.getPlayer()) && !event.getPlayer().isSneaking()) {
-			event.setCancelled(true);
-		}
-	}
- }
+    @EventHandler
+    public void onPlayerPickupItem(PlayerPickupItemEvent event) {
+        if (isSpy(event.getPlayer()) && !event.getPlayer().isSneaking()) {
+            event.setCancelled(true);
+        }
+    }
+}

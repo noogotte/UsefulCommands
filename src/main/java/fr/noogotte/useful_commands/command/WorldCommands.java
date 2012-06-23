@@ -31,9 +31,8 @@ public class WorldCommands extends UsefulCommands {
         List<World> worlds = args.getList(0, World.class).match(sender);
 
         for (World world : worlds) {
-            sender.sendMessage(ChatColor.GREEN + "Seed de "
-                    + ChatColor.BLUE + world.getName()
-                    + ChatColor.GREEN + " : "
+            sender.sendMessage(ChatColor.GREEN + "Seed de " + ChatColor.BLUE
+                    + world.getName() + ChatColor.GREEN + " : "
                     + ChatColor.BLUE + world.getSeed());
         }
     }
@@ -60,20 +59,21 @@ public class WorldCommands extends UsefulCommands {
         } else if (arg.equalsIgnoreCase("night")) {
             time = 20 * 60 * 11;
         } else {
-            throw new CommandUsageError(
-                    "Argument " + arg + " inconnu.");
+            throw new CommandUsageError("Argument " + arg + " inconnu.");
         }
 
         for (World world : worlds) {
             world.setTime(time);
-            if(time == 20 * 60) {
-                Util.broadcast("useful.world.time.broadcast", ChatColor.AQUA + sender.getName()
-                        + ChatColor.GOLD + " a mis le jour dans "
-                        + ChatColor.AQUA + world.getName());
+            if (time == 20 * 60) {
+                Util.broadcast("useful.world.time.broadcast",
+                        ChatColor.AQUA + sender.getName() + ChatColor.GOLD
+                                + " a mis le jour dans " + ChatColor.AQUA
+                                + world.getName());
             } else if (time == 20 * 60 * 11) {
-                Util.broadcast("useful.world.time.broadcast", ChatColor.AQUA + sender.getName()
-                        + ChatColor.GOLD + " a mis la nuit dans "
-                        + ChatColor.AQUA + world.getName());
+                Util.broadcast("useful.world.time.broadcast",
+                        ChatColor.AQUA + sender.getName() + ChatColor.GOLD
+                                + " a mis la nuit dans " + ChatColor.AQUA
+                                + world.getName());
             }
         }
     }
@@ -86,24 +86,25 @@ public class WorldCommands extends UsefulCommands {
         boolean storm;
         if (arg.equalsIgnoreCase("sun")) {
             storm = false;
-        } else if(arg.equalsIgnoreCase("storm")) {
+        } else if (arg.equalsIgnoreCase("storm")) {
             storm = true;
         } else {
-            throw new CommandUsageError(
-                    "Argument " + arg + " inconnu.");
+            throw new CommandUsageError("Argument " + arg + " inconnu.");
         }
 
         for (World world : worlds) {
             world.setStorm(storm);
-            
-            if(storm == true) {
-                Util.broadcast("useful.weather.broadcast", ChatColor.AQUA + sender.getName()
-                        + ChatColor.GOLD + " a mis la pluit dans "
-                        + ChatColor.AQUA + world.getName());
+
+            if (storm == true) {
+                Util.broadcast("useful.weather.broadcast",
+                        ChatColor.AQUA + sender.getName() + ChatColor.GOLD
+                                + " a mis la pluit dans " + ChatColor.AQUA
+                                + world.getName());
             } else if (storm == false) {
-                Util.broadcast("useful.weather.broadcast", ChatColor.AQUA + sender.getName()
-                        + ChatColor.GOLD + " a arrété la pluit dans "
-                        + ChatColor.AQUA + world.getName());
+                Util.broadcast("useful.weather.broadcast",
+                        ChatColor.AQUA + sender.getName() + ChatColor.GOLD
+                                + " a arrété la pluit dans " + ChatColor.AQUA
+                                + world.getName());
             }
         }
     }
@@ -112,7 +113,8 @@ public class WorldCommands extends UsefulCommands {
     public void spawnmob(Player sender, CommandArgs args) {
         EntityType entity = args.getEntityType(0).value();
         if (!entity.isSpawnable() && isNotAMob(entity)) {
-            throw new CommandError("Vous ne pouvez pas spawner ce type d'entité");
+            throw new CommandError(
+                    "Vous ne pouvez pas spawner ce type d'entité");
         }
 
         int count = args.getInteger(1).value(1);
@@ -149,8 +151,8 @@ public class WorldCommands extends UsefulCommands {
         }
 
         sender.sendMessage(ChatColor.GREEN + "Vous avez spawn "
-                + ChatColor.GOLD + totalCount
-                + ChatColor.GREEN + " " + entity.getName());
+                + ChatColor.GOLD + totalCount + ChatColor.GREEN + " "
+                + entity.getName());
     }
 
     @Command(name = "removemob", argsFlags = "wcp", min = 0, max = 2)
@@ -163,7 +165,8 @@ public class WorldCommands extends UsefulCommands {
 
             for (EntityType type : types) {
                 if (isNotAMob(type)) {
-                    throw new CommandError(type.getName() + " n'est pas un mob.");
+                    throw new CommandError(type.getName()
+                            + " n'est pas un mob.");
                 }
             }
         }
@@ -179,9 +182,10 @@ public class WorldCommands extends UsefulCommands {
 
             if (args.hasArgFlag('c')) {
                 if (!args.hasArgFlag('w')) {
-                    throw new CommandUsageError("Vous devez specifier un monde.");
+                    throw new CommandUsageError(
+                            "Vous devez specifier un monde.");
                 }
-                from = args.get('c', Vector.class).value(); 
+                from = args.get('c', Vector.class).value();
                 world = args.get('w', World.class).value();
             } else {
                 Player target = args.get('p', Player.class).value(sender);
@@ -203,13 +207,11 @@ public class WorldCommands extends UsefulCommands {
                 continue;
             }
 
-            if (types != null
-                    && !types.contains(entityType)) {
+            if (types != null && !types.contains(entityType)) {
                 continue;
             }
 
-            if (hasRadius
-                    && new Vector(entity).distanceSq(from) > radius) {
+            if (hasRadius && new Vector(entity).distanceSq(from) > radius) {
                 continue;
             }
 
@@ -218,33 +220,33 @@ public class WorldCommands extends UsefulCommands {
         }
 
         sender.sendMessage(ChatColor.GREEN + "Vous avez supprimé "
-                        + ChatColor.GOLD + count
-                        + ChatColor.GREEN + " mobs");
+                + ChatColor.GOLD + count + ChatColor.GREEN + " mobs");
     }
-    
+
     @Command(name = "position", min = 0, max = 1)
     public void getPos(CommandSender sender, CommandArgs args) {
-    	List<Player> targets = args.getPlayers(0).match(sender, "useful.world.position.other");
-    	
-    	for (Player target : targets) {
-    		Location location = target.getLocation();
-    		sender.sendMessage(ChatColor.UNDERLINE + "" + ChatColor.AQUA + target.getName() + " :");
-    		sender.sendMessage(ChatColor.AQUA + "X: " +
-    				ChatColor.GREEN + location.getX());
-    		sender.sendMessage(ChatColor.AQUA + "Y: " +
-    				ChatColor.GREEN + location.getY());
-    		sender.sendMessage(ChatColor.AQUA + "Z: " +
-    				ChatColor.GREEN + location.getZ());
-    		sender.sendMessage(ChatColor.AQUA + "Pitch: " +
-    				ChatColor.GREEN + location.getPitch());
-    		sender.sendMessage(ChatColor.AQUA + "Yaw: " +
-    				ChatColor.GREEN + location.getYaw());
-    	}
+        List<Player> targets = args.getPlayers(0).match(sender,
+                "useful.world.position.other");
+
+        for (Player target : targets) {
+            Location location = target.getLocation();
+            sender.sendMessage(ChatColor.UNDERLINE + "" + ChatColor.AQUA
+                    + target.getName() + " :");
+            sender.sendMessage(ChatColor.AQUA + "X: " + ChatColor.GREEN
+                    + location.getX());
+            sender.sendMessage(ChatColor.AQUA + "Y: " + ChatColor.GREEN
+                    + location.getY());
+            sender.sendMessage(ChatColor.AQUA + "Z: " + ChatColor.GREEN
+                    + location.getZ());
+            sender.sendMessage(ChatColor.AQUA + "Pitch: " + ChatColor.GREEN
+                    + location.getPitch());
+            sender.sendMessage(ChatColor.AQUA + "Yaw: " + ChatColor.GREEN
+                    + location.getYaw());
+        }
     }
 
     private boolean isNotAMob(EntityType type) {
-        return type.equals(EntityType.ARROW)
-                || type.equals(EntityType.BOAT)
+        return type.equals(EntityType.ARROW) || type.equals(EntityType.BOAT)
                 || type.equals(EntityType.COMPLEX_PART)
                 || type.equals(EntityType.DROPPED_ITEM)
                 || type.equals(EntityType.EGG)

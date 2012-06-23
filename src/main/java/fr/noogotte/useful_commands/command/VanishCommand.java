@@ -15,47 +15,49 @@ import fr.noogotte.useful_commands.component.VanishComponent;
 @NestedCommands(name = "useful")
 public class VanishCommand extends UsefulCommands {
 
-	private VanishComponent vanishComponent;
-	
-	public VanishCommand(VanishComponent vanishComponent) {
-		this.vanishComponent = vanishComponent;
-	}
-	
-	@Command(name = "vanish", min = 0, max = 1)
-	public void vanish(CommandSender sender, CommandArgs args) {
-		List<Player> targets = args.getPlayers(0).match(sender, "useful.vanish.command.other");
+    private VanishComponent vanishComponent;
 
-		for (Player target : targets) {
-			if(!vanishComponent.isVanish(target)) {
-				vanishComponent.addPlayer(target);
-				for(Player allPlayer : Bukkit.getOnlinePlayers()) {
-					allPlayer.hidePlayer(target);
-				}
-				target.sendMessage(ChatColor.GREEN + "Vous êtes invisible !");			
-				if(!sender.equals(target)) {
-					sender.sendMessage(ChatColor.GREEN + "Vous avez caché " +
-							ChatColor.GOLD + target.getName());
-				}
-			} else {
-				vanishComponent.removePlayer(target);
-				for(Player allPlayer : Bukkit.getOnlinePlayers()) {
-					allPlayer.showPlayer(target);
-				}
-				target.sendMessage(ChatColor.GREEN + "Vous êtes visible !");
-				
-				if(!sender.equals(target)) {
-					sender.sendMessage(ChatColor.GREEN + "Vous avez montrer " +
-							ChatColor.GOLD + target.getName());
-				}
-			}
-		}
-	}
+    public VanishCommand(VanishComponent vanishComponent) {
+        this.vanishComponent = vanishComponent;
+    }
 
-	@Command(name = "vanish-list")
+    @Command(name = "vanish", min = 0, max = 1)
+    public void vanish(CommandSender sender, CommandArgs args) {
+        List<Player> targets = args.getPlayers(0)
+                .match(sender, "useful.vanish.command.other");
+
+        for (Player target : targets) {
+            if (!vanishComponent.isVanish(target)) {
+                vanishComponent.addPlayer(target);
+                for (Player allPlayer : Bukkit.getOnlinePlayers()) {
+                    allPlayer.hidePlayer(target);
+                }
+                target.sendMessage(ChatColor.GREEN + "Vous êtes invisible !");
+                if (!sender.equals(target)) {
+                    sender.sendMessage(ChatColor.GREEN + "Vous avez caché "
+                            + ChatColor.GOLD + target.getName());
+                }
+            } else {
+                vanishComponent.removePlayer(target);
+                for (Player allPlayer : Bukkit.getOnlinePlayers()) {
+                    allPlayer.showPlayer(target);
+                }
+                target.sendMessage(ChatColor.GREEN + "Vous êtes visible !");
+
+                if (!sender.equals(target)) {
+                    sender.sendMessage(ChatColor.GREEN + "Vous avez montrer "
+                            + ChatColor.GOLD + target.getName());
+                }
+            }
+        }
+    }
+
+    @Command(name = "vanish-list")
     public void vanishlist(CommandSender sender, CommandArgs args) {
         sender.sendMessage(ChatColor.GREEN + "Joueur caché(s) : ");
         for (Player player : vanishComponent.getVanishPLayer()) {
-            sender.sendMessage(ChatColor.YELLOW + " - " + player.getDisplayName());
+            sender.sendMessage(ChatColor.YELLOW + " - "
+                    + player.getDisplayName());
         }
     }
 }

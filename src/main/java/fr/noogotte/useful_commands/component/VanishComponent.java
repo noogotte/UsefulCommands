@@ -18,54 +18,54 @@ import fr.noogotte.useful_commands.command.VanishCommand;
 
 public class VanishComponent extends Component implements Listener {
 
-	private final Set<Player> vanish;
-	
-	public VanishComponent(UsefulCommandsPlugin plugin) {
-		super(plugin);
-		vanish = new HashSet<Player>();
-		Bukkit.getPluginManager().registerEvents(this, plugin);
-	}
+    private final Set<Player> vanish;
 
-	@Override
-	public String getName() {
-		return "vanish";
-	}
-	
-	@Override
+    public VanishComponent(UsefulCommandsPlugin plugin) {
+        super(plugin);
+        vanish = new HashSet<Player>();
+        Bukkit.getPluginManager().registerEvents(this, plugin);
+    }
+
+    @Override
+    public String getName() {
+        return "vanish";
+    }
+
+    @Override
     public List<Commands> getCommands() {
         return Collections.<Commands>singletonList(new VanishCommand(this));
     }
-	
-	public void addPlayer(Player player) {
-		vanish.add(player);
-	}
-	
-	public void removePlayer(Player player) {
-		vanish.remove(player);
-	}
-	
-	public boolean isVanish(Player player) {
-		return vanish.contains(player);
-	}
-	
-	public HashSet<Player> getVanishPLayer() {
-		return new HashSet<Player>(vanish);
-	}
-	
-	@EventHandler
-	public void onPlayerJoin(PlayerJoinEvent event) {
-		for (Player vanishPlayer : vanish) {
-			event.getPlayer().hidePlayer(vanishPlayer);
-		}
-	}
 
-	@EventHandler
-	public void onPlayerQuit(PlayerQuitEvent event) {
-		if(isVanish(event.getPlayer())) {
-			vanish.remove(event.getPlayer());
-			for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-				onlinePlayer.showPlayer(event.getPlayer());
-			}
-		}
-	}
+    public void addPlayer(Player player) {
+        vanish.add(player);
+    }
+
+    public void removePlayer(Player player) {
+        vanish.remove(player);
+    }
+
+    public boolean isVanish(Player player) {
+        return vanish.contains(player);
+    }
+
+    public HashSet<Player> getVanishPLayer() {
+        return new HashSet<Player>(vanish);
+    }
+
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        for (Player vanishPlayer : vanish) {
+            event.getPlayer().hidePlayer(vanishPlayer);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        if (isVanish(event.getPlayer())) {
+            vanish.remove(event.getPlayer());
+            for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+                onlinePlayer.showPlayer(event.getPlayer());
+            }
+        }
+    }
 }

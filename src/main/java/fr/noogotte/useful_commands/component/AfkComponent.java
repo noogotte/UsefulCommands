@@ -35,7 +35,7 @@ import fr.aumgn.bukkitutils.command.Commands;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.command.AfkCommand;
 
-public class AfkComponent  extends Component implements Listener {
+public class AfkComponent extends Component implements Listener {
 
     private final Set<Player> afks;
 
@@ -84,7 +84,7 @@ public class AfkComponent  extends Component implements Listener {
     public void onMove(PlayerMoveEvent event) {
         if (isAfk(event.getPlayer())) {
             Location location = event.getPlayer().getLocation();
-            Location from = event.getFrom();  
+            Location from = event.getFrom();
             Location to = event.getTo();
             if (from.getBlockX() != to.getBlockX()
                     || from.getBlockY() != to.getBlockY()
@@ -132,7 +132,7 @@ public class AfkComponent  extends Component implements Listener {
     @EventHandler
     public void onFoodLevelChange(FoodLevelChangeEvent event) {
         Entity entity = event.getEntity();
-        if (entity instanceof Player && isAfk((Player) entity)) {	
+        if (entity instanceof Player && isAfk((Player) entity)) {
             event.setCancelled(true);
         }
     }
@@ -141,7 +141,7 @@ public class AfkComponent  extends Component implements Listener {
     public void onTarget(EntityTargetEvent event) {
         Entity entity = event.getTarget();
         if (entity instanceof Player && isAfk((Player) entity)) {
-            event.setCancelled(true); 
+            event.setCancelled(true);
         }
     }
 
@@ -158,7 +158,7 @@ public class AfkComponent  extends Component implements Listener {
 
     @EventHandler
     public void onPickupItem(PlayerPickupItemEvent event) {
-        if(isAfk(event.getPlayer())) {
+        if (isAfk(event.getPlayer())) {
             event.setCancelled(true);
         }
     }
@@ -166,7 +166,7 @@ public class AfkComponent  extends Component implements Listener {
     @EventHandler
     public void entityDamageByEntity(EntityDamageByEntityEvent event) {
         Entity damagerEntity = ((EntityDamageByEntityEvent) event).getDamager();
-        if(isAfk(damagerEntity) && damagerEntity instanceof Player) {
+        if (isAfk(damagerEntity) && damagerEntity instanceof Player) {
             event.setCancelled(true);
         }
     }
@@ -181,9 +181,10 @@ public class AfkComponent  extends Component implements Listener {
 
     @EventHandler
     public void onChat(PlayerChatEvent event) {
-        if(isAfk(event.getPlayer())) {
+        if (isAfk(event.getPlayer())) {
             event.setCancelled(true);
-            event.getPlayer().sendMessage(ChatColor.RED + "Vous ne pouvez pas parler, vous êtes AFK");
+            event.getPlayer().sendMessage(
+                    ChatColor.RED + "Vous ne pouvez pas parler, vous êtes AFK");
         }
     }
 
@@ -195,8 +196,8 @@ public class AfkComponent  extends Component implements Listener {
         }
 
         Player player = (Player) entity;
-        if (event.getView().getType() == InventoryType.PLAYER &&
-                player.getGameMode() == GameMode.CREATIVE) {
+        if (event.getView().getType() == InventoryType.PLAYER
+                && player.getGameMode() == GameMode.CREATIVE) {
             return;
         }
 

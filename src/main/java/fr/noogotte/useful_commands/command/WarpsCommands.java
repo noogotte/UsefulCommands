@@ -40,18 +40,20 @@ public class WarpsCommands extends UsefulCommands {
     public void teleportToWarp(CommandSender sender, CommandArgs args) {
         if (!warpscomponent.isWarp(args.get(0))) {
             throw new CommandError("Le warp " + args.get(0) + " n'existe pas.");
-        } else {
-            String warpName = args.get(0);
-            List<Player> targets = args.getPlayers(1).match(sender, "useful.warp.tp.other");
+        }
 
-            for (Player target : targets) {
-                Warp warp = warpscomponent.getWarp(warpName);
-                target.teleport(warp.toLocation());
-                target.sendMessage(ChatColor.GREEN + "Poof !");
+        String warpName = args.get(0);
+        List<Player> targets = args.getPlayers(1)
+                .match(sender, "useful.warp.tp.other");
 
-                if (!sender.equals(target)) {
-                    sender.sendMessage( target.getName() + "a été téléporté au warp : " + warpName);
-                }
+        for (Player target : targets) {
+            Warp warp = warpscomponent.getWarp(warpName);
+            target.teleport(warp.toLocation());
+            target.sendMessage(ChatColor.GREEN + "Poof !");
+
+            if (!sender.equals(target)) {
+                sender.sendMessage(target.getName()
+                        + "a été téléporté au warp : " + warpName);
             }
         }
     }
@@ -67,8 +69,7 @@ public class WarpsCommands extends UsefulCommands {
         } else {
             if (!warpscomponent.isWarp(args.get(0))) {
                 String arg = args.get(0);
-                throw new CommandError(
-                        "Le warp "+ arg + " n'existe pas.");
+                throw new CommandError("Le warp " + arg + " n'existe pas.");
             } else {
                 warpscomponent.deleteWarp(args.get(0));
                 sender.sendMessage(ChatColor.RED
@@ -88,31 +89,31 @@ public class WarpsCommands extends UsefulCommands {
             sender.sendMessage(ChatColor.AQUA + "  -" + warpEntry.getKey());
         }
     }
-    
+
     @Command(name = "warplocation", min = 1, max = 1)
     public void warpLocation(CommandSender sender, CommandArgs args) {
-    	if (warpscomponent.isEmpty()) {
+        if (warpscomponent.isEmpty()) {
             throw new CommandError("Il n'y a pas de warp !");
         }
-    	if (!warpscomponent.isWarp(args.get(0))) {
+        if (!warpscomponent.isWarp(args.get(0))) {
             throw new CommandError("Le warp " + args.get(0) + " n'existe pas.");
         } else {
             String warpName = args.get(0);
             Warp warp = warpscomponent.getWarp(warpName);
             Location warpLocation = warp.toLocation();
-            
-            sender.sendMessage(ChatColor.GREEN + warpName +
-            		ChatColor.AQUA + " :");
-    		sender.sendMessage(ChatColor.AQUA + "  - X: " +
-    				ChatColor.GREEN + warpLocation.getX());
-    		sender.sendMessage(ChatColor.AQUA + "  - Y: " +
-    				ChatColor.GREEN + warpLocation.getY());
-    		sender.sendMessage(ChatColor.AQUA + "  - Z: " +
-    				ChatColor.GREEN + warpLocation.getZ());
-    		sender.sendMessage(ChatColor.AQUA + "  - Pitch: " +
-    				ChatColor.GREEN + warpLocation.getPitch());
-    		sender.sendMessage(ChatColor.AQUA + "  - Yaw: " +
-    				ChatColor.GREEN + warpLocation.getYaw());
+
+            sender.sendMessage(ChatColor.GREEN + warpName + ChatColor.AQUA
+                    + " :");
+            sender.sendMessage(ChatColor.AQUA + "  - X: " + ChatColor.GREEN
+                    + warpLocation.getX());
+            sender.sendMessage(ChatColor.AQUA + "  - Y: " + ChatColor.GREEN
+                    + warpLocation.getY());
+            sender.sendMessage(ChatColor.AQUA + "  - Z: " + ChatColor.GREEN
+                    + warpLocation.getZ());
+            sender.sendMessage(ChatColor.AQUA + "  - Pitch: " + ChatColor.GREEN
+                    + warpLocation.getPitch());
+            sender.sendMessage(ChatColor.AQUA + "  - Yaw: " + ChatColor.GREEN
+                    + warpLocation.getYaw());
         }
     }
 }

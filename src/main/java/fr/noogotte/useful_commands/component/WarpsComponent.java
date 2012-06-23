@@ -49,7 +49,7 @@ public class WarpsComponent extends Component {
         try {
             TypeToken<HashMap<String, Warp>> typeToken =
                     new TypeToken<HashMap<String, Warp>>() {};
-                    warps.putAll(loader.loadOrCreate("warps.json", typeToken));
+            warps.putAll(loader.loadOrCreate("warps.json", typeToken));
         } catch (GConfLoadException exc) {
             plugin.getLogger().severe("Unable to load warps.json.");
         }

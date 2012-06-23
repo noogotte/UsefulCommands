@@ -1,6 +1,5 @@
 package fr.noogotte.useful_commands;
 
-
 import java.util.List;
 
 import org.bukkit.ChatColor;
@@ -66,7 +65,7 @@ public class UsefulCommandsPlugin extends JavaPlugin {
     }
 
     public <T extends Component> T getComponent(Class<T> klass) {
-        for (Component component: components) {
+        for (Component component : components) {
             if (component.getClass() == klass) {
                 @SuppressWarnings("unchecked")
                 T safeCast = (T) component;
@@ -82,7 +81,8 @@ public class UsefulCommandsPlugin extends JavaPlugin {
         try {
             return loader.loadOrCreate("config.json", UsefulConfig.class);
         } catch (GConfLoadException exc) {
-            getLogger().severe("Unable to load config.json. Using default values");
+            getLogger().severe(
+                    "Unable to load config.json. Using default values");
             return new UsefulConfig();
         }
     }
@@ -96,10 +96,9 @@ public class UsefulCommandsPlugin extends JavaPlugin {
 
     public GConfLoader getGConfLoader() {
         Gson gson = new GsonBuilder()
-            .registerTypeAdapterFactory(new DirectionTypeAdapterFactory())
-            .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES)
-            .setPrettyPrinting()
-            .create();
+                .registerTypeAdapterFactory(new DirectionTypeAdapterFactory())
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES)
+                .setPrettyPrinting().create();
         return new GConfLoader(gson, this);
     }
 

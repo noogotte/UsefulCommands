@@ -29,13 +29,12 @@ public class KitsCommands extends UsefulCommands {
         String kitName = args.get(0);
         boolean clear = args.hasFlag('c');
 
-        if(component.hasNoKit()) {
+        if (component.hasNoKit()) {
             throw new CommandError("Aucun kit de sauvegardé !");
         }
 
         if (!component.isKit(kitName)) {
-            throw new CommandError(
-                    "Aucun kit ne porte ce nom : " + kitName);
+            throw new CommandError("Aucun kit ne porte ce nom : " + kitName);
         }
 
         Kit kit = component.get(kitName);
@@ -44,7 +43,7 @@ public class KitsCommands extends UsefulCommands {
         ItemStack[] stacks = kit.toItemStacks();
 
         for (Player target : targets) {
-            if(clear) {
+            if (clear) {
                 for (int j = 0; j <= 39; j++) {
                     target.getInventory().setItem(j, null);
                 }
@@ -52,22 +51,19 @@ public class KitsCommands extends UsefulCommands {
 
             target.getInventory().addItem(stacks);
             target.sendMessage(ChatColor.GREEN + "Vous avez reçu le kit "
-                    + ChatColor.AQUA + kitName
-                    + ChatColor.GREEN +".");
+                    + ChatColor.AQUA + kitName + ChatColor.GREEN + ".");
 
             if (!sender.equals(target)) {
                 sender.sendMessage(ChatColor.AQUA + target.getDisplayName()
-                        + ChatColor.GREEN + " a recu le kit "
-                        + ChatColor.AQUA + kitName
-                        + ChatColor.GREEN + ".");
+                        + ChatColor.GREEN + " a recu le kit " + ChatColor.AQUA
+                        + kitName + ChatColor.GREEN + ".");
             }
         }
     }
 
     @Command(name = "kits")
     public void kits(CommandSender sender) {
-
-        if(component.hasNoKit()) {
+        if (component.hasNoKit()) {
             throw new CommandError("Aucun kit de sauvegardé !");
         }
 
@@ -87,9 +83,8 @@ public class KitsCommands extends UsefulCommands {
             stacks = sender.getInventory().getContents();
         } else {
             stacks = new ItemStack[9];
-            System.arraycopy(
-                    sender.getInventory().getContents(),
-                    0, stacks, 0, 9);
+            System.arraycopy(sender.getInventory().getContents(), 0, stacks, 0,
+                    9);
         }
         Kit kit = new Kit(stacks);
 
@@ -99,12 +94,10 @@ public class KitsCommands extends UsefulCommands {
         }
 
         if (component.addKit(name, kit)) {
-            sender.sendMessage(ChatColor.GREEN + "Kit "
-                    + ChatColor.AQUA + name
+            sender.sendMessage(ChatColor.GREEN + "Kit " + ChatColor.AQUA + name
                     + ChatColor.GREEN + " enregistré.");
         } else {
-            sender.sendMessage(ChatColor.RED
-                    + "Une erreur est survenu.");
+            sender.sendMessage(ChatColor.RED + "Une erreur est survenu.");
         }
     }
 
@@ -121,12 +114,10 @@ public class KitsCommands extends UsefulCommands {
         }
 
         if (component.removeKit(name)) {
-            sender.sendMessage(ChatColor.GREEN + "Kit "
-                    + ChatColor.AQUA + name
+            sender.sendMessage(ChatColor.GREEN + "Kit " + ChatColor.AQUA + name
                     + ChatColor.GREEN + " supprimé.");
         } else {
-            sender.sendMessage(ChatColor.RED
-                    + "Une erreur est survenu.");
+            sender.sendMessage(ChatColor.RED + "Une erreur est survenu.");
         }
     }
 }

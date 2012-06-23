@@ -21,8 +21,7 @@ public final class LocationUtil {
         Direction dir = new HorizontalDirection(player.getLocation().getYaw());
         Vector dirVector = dir.getVector().multiply(distance);
 
-        return pos.add(dirVector).to2D()
-                .toHighest(player.getWorld());
+        return pos.add(dirVector).to2D().toHighest(player.getWorld());
     }
 
     private LocationUtil() {

@@ -17,8 +17,7 @@ public class Kit {
     public Kit(ItemStack[] stacks) {
         List<KitItem> list = new ArrayList<KitItem>(stacks.length);
         for (ItemStack stack : stacks) {
-            if (stack == null
-                    || stack.getType() == Material.AIR) {
+            if (stack == null || stack.getType() == Material.AIR) {
                 continue;
             }
 

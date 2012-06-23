@@ -23,29 +23,30 @@ public class AfkCommand extends UsefulCommands {
 
     @Command(name = "afk", min = 0, max = 1)
     public void toggleAfk(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).match(sender, "useful.afk.other");
+        List<Player> targets = args.getPlayers(0)
+                .match(sender, "useful.afk.other");
 
         for (Player target : targets) {
-            if(!afkcomponent.isAfk(target)) {
+            if (!afkcomponent.isAfk(target)) {
                 afkcomponent.addPlayer(target);
                 target.setPlayerListName(ChatColor.ITALIC + target.getName());
-                Util.broadcast(ChatColor.GOLD + target.getName() +
-                        ChatColor.GREEN + " est maintenant en AFK.");
-                target.sendMessage(ChatColor.GREEN + "Vous êtes AFK tapez" +
-                        ChatColor.GOLD + " /afk " +
-                        ChatColor.GREEN + "pour en resortir");
-            } else if (afkcomponent.isAfk(target)){
+                Util.broadcast(ChatColor.GOLD + target.getName()
+                        + ChatColor.GREEN + " est maintenant en AFK.");
+                target.sendMessage(ChatColor.GREEN + "Vous êtes AFK tapez"
+                        + ChatColor.GOLD + " /afk " + ChatColor.GREEN
+                        + "pour en resortir");
+            } else if (afkcomponent.isAfk(target)) {
                 target.setPlayerListName(target.getName());
                 afkcomponent.removePlayer(target);
-                Util.broadcast(ChatColor.GOLD + target.getName() +
-                        ChatColor.GREEN + " n'est plus en AFK.");
+                Util.broadcast(ChatColor.GOLD + target.getName()
+                        + ChatColor.GREEN + " n'est plus en AFK.");
                 target.sendMessage(ChatColor.GREEN + "Vous n'êtes plus en AFK.");
             }
 
-            if(!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GREEN + "Vous avez mis " +
-                        ChatColor.GOLD + target.getName() +
-                        ChatColor.GREEN + " en Afk");
+            if (!sender.equals(target)) {
+                sender.sendMessage(ChatColor.GREEN + "Vous avez mis "
+                        + ChatColor.GOLD + target.getName() + ChatColor.GREEN
+                        + " en Afk");
             }
         }
     }

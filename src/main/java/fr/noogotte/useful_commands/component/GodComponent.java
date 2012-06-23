@@ -66,8 +66,7 @@ public class GodComponent extends Component implements Listener {
     @EventHandler
     public void onHealthChange(EntityDamageEvent event) {
         Entity entity = event.getEntity();
-        if(entity instanceof Player
-                && isGod((Player) entity)) {
+        if (entity instanceof Player && isGod((Player) entity)) {
             event.setCancelled(true);
         }
     }
@@ -75,8 +74,7 @@ public class GodComponent extends Component implements Listener {
     @EventHandler
     public void onFoodLevelChange(FoodLevelChangeEvent event) {
         HumanEntity entity = event.getEntity();
-        if(entity instanceof Player
-                && isGod((Player) entity)) {
+        if (entity instanceof Player && isGod((Player) entity)) {
             event.setCancelled(true);
         }
     }

@@ -13,7 +13,8 @@ public class ComponentRegistration {
     private final CommandsRegistration commandsRegistration;
     private List<Component> components;
 
-    public ComponentRegistration(UsefulConfig config, CommandsRegistration commandsRegistration) {
+    public ComponentRegistration(UsefulConfig config,
+            CommandsRegistration commandsRegistration) {
         this.config = config;
         this.commandsRegistration = commandsRegistration;
         this.components = new ArrayList<Component>();
