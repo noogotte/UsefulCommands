@@ -1,5 +1,6 @@
 package fr.noogotte.useful_commands.command;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -11,6 +12,7 @@ import org.bukkit.entity.Player;
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
+import fr.aumgn.bukkitutils.command.exception.CommandError;
 import fr.aumgn.bukkitutils.util.Util;
 import fr.noogotte.useful_commands.component.ChatComponent;
 
@@ -23,14 +25,18 @@ public class ChatCommands extends UsefulCommands {
         this.component = component;
     }
 
+    public void ensureNotMute(CommandSender sender) {
+        if (sender instanceof Player && component.isMute((Player) sender)) {
+            throw new CommandError("Vous êtes muet.");
+        }
+    }
+
     @Command(name = "me", min = 0, max = 0)
     public void me(CommandSender sender, CommandArgs args) {
-        if (sender instanceof Player && component.isMute((Player) sender)) {
-            return;
-        }
+        ensureNotMute(sender);
 
         String message = args.get(0);
-        String name = nameFor(sender);
+        String name = displayNameFor(sender);
 
         Util.broadcast("useful.chat.me.channel",
                 ChatColor.DARK_PURPLE + "* "
@@ -40,21 +46,47 @@ public class ChatCommands extends UsefulCommands {
 
     @Command(name = "tell", min = 2, max = 2)
     public void tell(CommandSender sender, CommandArgs args) {
-        if (sender instanceof Player && component.isMute((Player) sender)) {
-            return;
+        ensureNotMute(sender);
+
+        List<CommandSender> targets;
+        if (args.get(0).equals(ChatComponent.CONSOLE_MARKER)) {
+            targets = Collections.<CommandSender>singletonList(
+                    Bukkit.getConsoleSender());
+        } else {
+            targets = Collections.<CommandSender>unmodifiableList(
+                    args.getPlayer(0).match());
         }
 
-        List<Player> targets = args.getPlayers(0).match();
-        String message = args.get(1);
+        privateMessage(sender, targets, args.get(1));
 
-        String senderName = nameFor(sender);
+        if (targets.size() == 1) {
+            component.registerConversation(sender, targets.get(0));
+        }
+    }
+
+    @Command(name = "reply", min = 1, max = 1)
+    public void reply(CommandSender sender, CommandArgs args) {
+        ensureNotMute(sender);
+
+        CommandSender target =  component.getConversationTarget(sender);
+        if (target == null) {
+            throw new CommandError("Aucune conversation en cours.");
+        }
+
+        privateMessage(sender, 
+                Collections.singletonList(target),
+                args.get(0));
+    }
+
+    private void privateMessage(CommandSender sender, List<CommandSender> targets, String message) {
+        String senderName = displayNameFor(sender);
         StringBuilder receivers = new StringBuilder();
-        for (Player target : targets) {
+        for (CommandSender target : targets) {
             target.sendMessage(ChatColor.ITALIC.toString() + ChatColor.AQUA
                     + "De " + senderName + ChatColor.AQUA + " : "
                     + ChatColor.WHITE + " " + message);
 
-            receivers.append(target.getDisplayName());
+            receivers.append(displayNameFor(target));
             receivers.append(" ");
 
             if (!(sender instanceof ConsoleCommandSender)
@@ -70,13 +102,13 @@ public class ChatCommands extends UsefulCommands {
         sender.sendMessage("  " + message);
     }
 
-    private String nameFor(CommandSender sender) {
-        if (sender instanceof Player) {
-            return ((Player) sender).getDisplayName();
-        } else if (sender instanceof ConsoleCommandSender) {
+    private String displayNameFor(CommandSender sender) {
+        if (sender instanceof ConsoleCommandSender) {
             return "#Console";
+        } else if (sender instanceof Player) {
+            return ((Player) sender).getDisplayName();
         } else {
-            return "#Inconnu";
+            return "$" + sender.getName();
         }
     }
 
