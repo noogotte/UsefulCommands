@@ -1,7 +1,9 @@
 package fr.noogotte.useful_commands.command;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -73,5 +75,21 @@ public class PlayerInfoCommand extends UsefulCommands {
                         + no);
             }
         }
+    }
+
+    @Command(name = "online")
+    public void onlinePlayers(CommandSender sender, CommandArgs args) {
+    	sender.sendMessage(ChatColor.GREEN + "Joueure en ligne :");
+    	for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+    		sender.sendMessage(ChatColor.BLUE + "  - " + onlinePlayer.getName());
+    	}
+    }
+
+    @Command(name = "operatorlist")
+    public void opList(CommandSender sender, CommandArgs args) {
+    	sender.sendMessage(ChatColor.GREEN + "Joueure OP:");
+    	for(OfflinePlayer opPlayer : Bukkit.getOperators()) {
+    		sender.sendMessage(ChatColor.BLUE + "  - " + opPlayer.getName());
+    	}
     }
 }

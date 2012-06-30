@@ -140,6 +140,16 @@ commands:
         usage: "[player] <duration = 10>"
         aliases: ["burn"]
         permission: "useful.player.burn"
+    "useful online":
+        description: "Montre la liste des joueures"
+        usage: ""
+        aliases: ["who", "online"]
+        permission: "useful.player.online"
+    "useful operatorlist":
+        description: "Montre la liste des ops"
+        usage: ""
+        aliases: ["oplist"]
+        permission: "useful.player.oplist"
 
     # Inventory Commands
     "useful clear":
@@ -374,6 +384,8 @@ permissions:
             - useful.player.rename.other: true
             - useful.player.burn: true
             - useful.player.burn.other: true
+            - useful.player.oplist: true
+            - useful.player.online: true
 
     useful.inventory.*:
         children:
