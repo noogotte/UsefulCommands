@@ -19,6 +19,10 @@ public abstract class Component {
         this.plugin = plugin;
     }
 
+    public UsefulCommandsPlugin getPlugin() {
+        return plugin;
+    }
+
     public abstract String getName();
 
     public List<Commands> getCommands() {

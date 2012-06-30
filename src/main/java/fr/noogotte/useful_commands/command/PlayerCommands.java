@@ -6,7 +6,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -15,17 +14,10 @@ import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.util.Util;
-import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.event.DisplayNameLookupEvent;
 
 @NestedCommands(name = "useful")
 public class PlayerCommands extends UsefulCommands {
-
-    private final UsefulCommandsPlugin plugin;
-
-    public PlayerCommands(UsefulCommandsPlugin plugin) {
-        this.plugin = plugin;
-    }
 
     @Command(name = "gamemode", flags = "cs", min = 0, max = 1)
     public void gamemode(CommandSender sender, CommandArgs args) {
@@ -102,42 +94,6 @@ public class PlayerCommands extends UsefulCommands {
                         + ChatColor.AQUA + sender.getName());
             }
         }
-    }
-
-    @Command(name = "tell", min = 2, max = 2)
-    public void tell(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).value();
-        String message = args.get(1);
-
-        String senderName;
-        if (sender instanceof Player) {
-            senderName = ((Player) sender).getDisplayName();
-        } else if (sender instanceof ConsoleCommandSender) {
-            senderName = "*Console*";
-        } else {
-            senderName = "*Inconnu*";
-        }
-
-        StringBuilder receivers = new StringBuilder();
-        for (Player target : targets) {
-            target.sendMessage(ChatColor.ITALIC.toString() + ChatColor.AQUA
-                    + "De " + senderName + ChatColor.AQUA + " : "
-                    + ChatColor.WHITE + " " + message);
-
-            receivers.append(target.getDisplayName());
-            receivers.append(" ");
-
-            if (!(sender instanceof ConsoleCommandSender)
-                    && plugin.getUsefulConfig().messageInConsole()) {
-                Bukkit.getConsoleSender().sendMessage(
-                        "[MSG] de " + sender.getName() + " à "
-                                + target.getName() + ": " + message);
-            }
-        }
-
-        sender.sendMessage(ChatColor.ITALIC.toString() + ChatColor.AQUA + "A "
-                + receivers + ":");
-        sender.sendMessage("  " + message);
     }
 
     @Command(name = "fly", min = 0, max = 1)

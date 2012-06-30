@@ -62,6 +62,23 @@ commands:
         aliases: ["afk"]
         permission: "useful.afk"
 
+    # Chat Commands :
+    "useful tell":
+        description: "Envoie un message privé."
+        usage: '<target> "<msg...>"'
+        aliases: ["tell", "say"]
+        permission: "useful.chat.tell"
+    "useful mute":
+        description: "Rends muet"
+        usage: "<target...>"
+        aliases: ["mute"]
+        permission: "useful.chat.mute"
+    "useful unmute":
+        description: "Rends non muet"
+        usage: "<target...>"
+        aliases: ["unmute"]
+        permission: "useful.chat.unmute"
+
     # Player commands
     "useful gamemode":
         description: "Change le gamemode."
@@ -83,11 +100,6 @@ commands:
         usage: "<target> [reason...]"
         aliases: ["kick"]
         permission: "useful.player.kick"
-    "useful tell":
-        description: "Envoie un message privé."
-        usage: "<target> <msg...>"
-        aliases: ["tell", "say"]
-        permission: "useful.player.tell"
     "useful fly":
         description: "Active le vol."
         usage: "[target]"
@@ -202,7 +214,7 @@ commands:
         aliases: ["rocket"]
         permission: "useful.fun.rocket"
     "useful strike":
-        description: "Envoi un éclair sur le joueure"
+        description: "Envoi un éclair sur le joueur"
         usage: "<target>"
         aliases: ["strike"]
         permission: "useful.fun.strike"
@@ -307,6 +319,14 @@ permissions:
             - useful.afk: true
             - useful.afk.other: true
 
+    useful.chat.*:
+        children:
+            - useful.chat.tell: true
+            - useful.chat.mute: true
+            - useful.chat.mute.other: true
+            - useful.chat.unmute: true
+            - useful.chat.unmute.other: true
+
     useful.player.*:
         children:
             - useful.player.gamemode: true
@@ -315,7 +335,6 @@ permissions:
             - useful.player.heal.other: true
             - useful.player.info: true
             - useful.player.kick: true
-            - useful.player.tell: true
             - useful.player.fly: true
             - useful.player.fly.other: true
             - useful.player.kill: true
@@ -388,5 +407,5 @@ permissions:
             - useful.spy.command.broadcast: true
             - useful.spy.command.list: true
 
-    useful.tell:
+    useful.chat.tell:
         default: true
