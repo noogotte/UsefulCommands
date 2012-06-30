@@ -48,14 +48,8 @@ public class SpyComponent extends Component implements Listener {
     public void toggleSpyMode(Player player) {
     	if(spy.contains(player)) {
     		spy.remove(player);
-    		for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-    			onlinePlayer.hidePlayer(player);
-    		}
     	} else {
     		spy.add(player);
-    		for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-    			onlinePlayer.showPlayer(player);
-    		}
     	}
     }
     

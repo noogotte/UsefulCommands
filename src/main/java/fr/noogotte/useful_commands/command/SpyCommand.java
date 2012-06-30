@@ -2,6 +2,7 @@ package fr.noogotte.useful_commands.command;
 
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -29,6 +30,9 @@ public class SpyCommand extends UsefulCommands {
         for (Player target : targets) {
         	sp.toggleSpyMode(target);
         	if(sp.isSpy(target)) {
+        		for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+        			onlinePlayer.hidePlayer(target);
+        		}
         		Util.broadcast("useful.spy.command.broadcast", target.getName()
         				+ " est passé(e) en Spy Mode.");
         	    Util.broadcast(ChatColor.YELLOW + target.getName()
@@ -38,6 +42,9 @@ public class SpyCommand extends UsefulCommands {
         				+ " n'est plus en Spy Mode.");
         	    Util.broadcast(ChatColor.YELLOW + target.getName()
         	    		+ " joined the game");
+        		for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+        			onlinePlayer.showPlayer(target);
+        		}
         	}
         }
     }
