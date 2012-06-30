@@ -24,12 +24,12 @@ commands:
         permission: "useful.world.setspawn"
     "useful time":
         description: "Change l'heure."
-        usage: "<day | night> [world]"
+        usage: "<time> [world]"
         aliases: ["time"]
         permission: "useful.world.time"
     "useful weather":
         description: "Change le temps."
-        usage: "<sun | storm> [world]"
+        usage: "[sun | storm] [world]"
         aliases: ["weather"]
         permission: "useful.world.weather"
     "useful spawnmob":

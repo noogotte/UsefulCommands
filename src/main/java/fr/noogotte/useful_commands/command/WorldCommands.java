@@ -16,6 +16,7 @@ import org.bukkit.entity.Player;
 
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
+import fr.aumgn.bukkitutils.command.arg.basic.TimeArg;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.command.exception.CommandError;
 import fr.aumgn.bukkitutils.command.exception.CommandUsageError;
@@ -50,18 +51,9 @@ public class WorldCommands extends UsefulCommands {
 
     @Command(name = "time", min = 1, max = 2)
     public void time(CommandSender sender, CommandArgs args) {
-        String arg = args.get(0);
         List<World> worlds = args.getList(1, World.class).value(sender);
 
-        int time;
-        if (arg.equalsIgnoreCase("day")) {
-            time = 20 * 60;
-        } else if (arg.equalsIgnoreCase("night")) {
-            time = 20 * 60 * 11;
-        } else {
-            throw new CommandUsageError("Argument " + arg + " inconnu.");
-        }
-
+        int time = args.get(0, new TimeArg.Factory()).value();
         for (World world : worlds) {
             world.setTime(time);
             if (time == 20 * 60) {
@@ -74,33 +66,44 @@ public class WorldCommands extends UsefulCommands {
                         ChatColor.AQUA + sender.getName() + ChatColor.GOLD
                                 + " a mis la nuit dans " + ChatColor.AQUA
                                 + world.getName());
+            } else {
+                Util.broadcast("useful.world.time.broadcast",
+                        ChatColor.AQUA + sender.getName() + ChatColor.GOLD
+                                + " a changé l'heure dans " + ChatColor.AQUA
+                                + world.getName());
             }
         }
     }
 
-    @Command(name = "weather", min = 1, max = 2)
+    @Command(name = "weather", min = 0, max = 2)
     public void weather(CommandSender sender, CommandArgs args) {
-        String arg = args.get(0);
         List<World> worlds = args.getList(1, World.class).value(sender);
 
-        boolean storm;
-        if (arg.equalsIgnoreCase("sun")) {
-            storm = false;
-        } else if (arg.equalsIgnoreCase("storm")) {
-            storm = true;
-        } else {
-            throw new CommandUsageError("Argument " + arg + " inconnu.");
+        boolean toggle = args.length() == 0;
+        boolean storm = false;
+        if (!toggle) {
+            String arg = args.get(0);
+            if (arg.equalsIgnoreCase("sun")) {
+                storm = false;
+            } else if (arg.equalsIgnoreCase("storm")) {
+                storm = true;
+            } else {
+                throw new CommandUsageError("Argument " + arg + " inconnu.");
+            }
         }
 
         for (World world : worlds) {
-            world.setStorm(storm);
+            if (toggle) {
+                storm = !world.hasStorm();
+            }
 
-            if (storm == true) {
+            world.setStorm(storm);
+            if (storm) {
                 Util.broadcast("useful.weather.broadcast",
                         ChatColor.AQUA + sender.getName() + ChatColor.GOLD
                                 + " a mis la pluit dans " + ChatColor.AQUA
                                 + world.getName());
-            } else if (storm == false) {
+            } else {
                 Util.broadcast("useful.weather.broadcast",
                         ChatColor.AQUA + sender.getName() + ChatColor.GOLD
                                 + " a arrété la pluit dans " + ChatColor.AQUA
