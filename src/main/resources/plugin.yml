@@ -83,6 +83,11 @@ commands:
         usage: '[-a] [-g=group] [-c=permission] "<message>"'
         aliases: ["broadcast", "br"]
         permission: "useful.chat.broadcast"
+    "useful me":
+        description: "Commande me"
+        usage: '"<message>"'
+        aliases: ["me"]
+        permission: "useful.chat.me"
 
     # Player commands
     "useful gamemode":
@@ -332,11 +337,17 @@ permissions:
             - useful.chat.unmute: true
             - useful.chat.unmute.other: true
             - useful.chat.broadcast: true
+            - useful.chat.me: true
+            - useful.chat.me.channel: true
 
     useful.chat.tell:
         default: true
     useful.chat.broadcast.admin:
         default: op
+    useful.chat.me:
+        default: true
+    useful.chat.me.channel:
+        default: true
 
     useful.player.*:
         children:

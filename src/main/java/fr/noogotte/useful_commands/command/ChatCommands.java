@@ -23,6 +23,24 @@ public class ChatCommands extends UsefulCommands {
         this.component = component;
     }
 
+    @Command(name = "me", min = 0, max = 0)
+    public void me(CommandSender sender, CommandArgs args) {
+        String message = args.get(0);
+        String name;
+        if (sender instanceof Player) {
+            name = ((Player) sender).getName();
+        } else if (sender instanceof ConsoleCommandSender) {
+            name = "Console";
+        } else {
+            name = "Inconnu";
+        }
+
+        Util.broadcast("useful.chat.me.channel",
+                ChatColor.DARK_PURPLE + "* "
+                        + ChatColor.GREEN + name
+                        + ChatColor.DARK_PURPLE + " " + message);
+    }
+
     @Command(name = "tell", min = 2, max = 2)
     public void tell(CommandSender sender, CommandArgs args) {
         if (sender instanceof Player && component.isMute((Player) sender)) {
