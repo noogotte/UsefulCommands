@@ -25,15 +25,12 @@ public class ChatCommands extends UsefulCommands {
 
     @Command(name = "me", min = 0, max = 0)
     public void me(CommandSender sender, CommandArgs args) {
-        String message = args.get(0);
-        String name;
-        if (sender instanceof Player) {
-            name = ((Player) sender).getName();
-        } else if (sender instanceof ConsoleCommandSender) {
-            name = "Console";
-        } else {
-            name = "Inconnu";
+        if (sender instanceof Player && component.isMute((Player) sender)) {
+            return;
         }
+
+        String message = args.get(0);
+        String name = nameFor(sender);
 
         Util.broadcast("useful.chat.me.channel",
                 ChatColor.DARK_PURPLE + "* "
@@ -47,18 +44,10 @@ public class ChatCommands extends UsefulCommands {
             return;
         }
 
-        List<Player> targets = args.getPlayers(0).value();
+        List<Player> targets = args.getPlayers(0).match();
         String message = args.get(1);
 
-        String senderName;
-        if (sender instanceof Player) {
-            senderName = ((Player) sender).getDisplayName();
-        } else if (sender instanceof ConsoleCommandSender) {
-            senderName = "*Console*";
-        } else {
-            senderName = "*Inconnu*";
-        }
-
+        String senderName = nameFor(sender);
         StringBuilder receivers = new StringBuilder();
         for (Player target : targets) {
             target.sendMessage(ChatColor.ITALIC.toString() + ChatColor.AQUA
@@ -79,6 +68,16 @@ public class ChatCommands extends UsefulCommands {
         sender.sendMessage(ChatColor.ITALIC.toString() + ChatColor.AQUA + "A "
                 + receivers + ":");
         sender.sendMessage("  " + message);
+    }
+
+    private String nameFor(CommandSender sender) {
+        if (sender instanceof Player) {
+            return ((Player) sender).getDisplayName();
+        } else if (sender instanceof ConsoleCommandSender) {
+            return "#Console";
+        } else {
+            return "#Inconnu";
+        }
     }
 
     @Command(name = "mute", min = 0, max = 1)

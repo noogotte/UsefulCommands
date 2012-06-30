@@ -65,7 +65,7 @@ commands:
     # Chat Commands :
     "useful tell":
         description: "Envoie un message privé."
-        usage: '<target> "<msg...>"'
+        usage: '<target...> "<msg...>"'
         aliases: ["tell", "say"]
         permission: "useful.chat.tell"
     "useful mute":
