@@ -16,6 +16,7 @@ import fr.aumgn.bukkitutils.gconf.GConfLoadException;
 import fr.aumgn.bukkitutils.gconf.GConfLoader;
 import fr.aumgn.bukkitutils.gconf.typeadapter.DirectionTypeAdapterFactory;
 import fr.noogotte.useful_commands.component.AfkComponent;
+import fr.noogotte.useful_commands.component.ChatComponent;
 import fr.noogotte.useful_commands.component.Component;
 import fr.noogotte.useful_commands.component.FunComponent;
 import fr.noogotte.useful_commands.component.GodComponent;
@@ -41,6 +42,7 @@ public class UsefulCommandsPlugin extends JavaPlugin {
         ComponentRegistration registration = new ComponentRegistration(
                 config, commandsRegistration);
 
+        registration.register(new ChatComponent(this));
         registration.register(new AfkComponent(this));
         registration.register(new FunComponent(this));
         registration.register(new GodComponent(this));
