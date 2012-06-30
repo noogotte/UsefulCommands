@@ -79,7 +79,7 @@ public class PlayerInfoCommand extends UsefulCommands {
 
     @Command(name = "online")
     public void onlinePlayers(CommandSender sender, CommandArgs args) {
-    	sender.sendMessage(ChatColor.GREEN + "Joueure en ligne :");
+    	sender.sendMessage(ChatColor.GREEN + "Joueur en ligne :");
     	for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
     		sender.sendMessage(ChatColor.BLUE + "  - " + onlinePlayer.getName());
     	}
@@ -87,7 +87,7 @@ public class PlayerInfoCommand extends UsefulCommands {
 
     @Command(name = "operatorlist")
     public void opList(CommandSender sender, CommandArgs args) {
-    	sender.sendMessage(ChatColor.GREEN + "Joueure OP:");
+    	sender.sendMessage(ChatColor.GREEN + "Joueur OP:");
     	for(OfflinePlayer opPlayer : Bukkit.getOperators()) {
     		sender.sendMessage(ChatColor.BLUE + "  - " + opPlayer.getName());
     	}

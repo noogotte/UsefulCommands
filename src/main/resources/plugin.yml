@@ -141,7 +141,7 @@ commands:
         aliases: ["burn"]
         permission: "useful.player.burn"
     "useful online":
-        description: "Montre la liste des joueures"
+        description: "Montre la liste des joueurs"
         usage: ""
         aliases: ["who", "online"]
         permission: "useful.player.online"
