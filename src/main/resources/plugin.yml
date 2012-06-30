@@ -65,9 +65,14 @@ commands:
     # Chat Commands :
     "useful tell":
         description: "Envoie un message privé."
-        usage: '<target...> "<msg...>"'
+        usage: '<target...> "<message>"'
         aliases: ["tell", "say"]
         permission: "useful.chat.tell"
+    "useful reply":
+        description: "Réponds à un message privé."
+        usage: '"<message>"'
+        aliases: ["reply", "rp", "r"]
+        permission: "useful.chat.reply"
     "useful mute":
         description: "Rends muet"
         usage: "<target...>"
@@ -342,6 +347,8 @@ permissions:
 
     useful.chat.tell:
         default: true
+        children:
+            - useful.chat.reply: true
     useful.chat.broadcast.admin:
         default: op
     useful.chat.me:
