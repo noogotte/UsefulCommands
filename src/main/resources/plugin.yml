@@ -78,6 +78,11 @@ commands:
         usage: "<target...>"
         aliases: ["unmute"]
         permission: "useful.chat.unmute"
+    "useful broadcast":
+        description: "Diffuse un message"
+        usage: '[-a] [-g=group] [-c=permission] "<message>"'
+        aliases: ["broadcast", "br"]
+        permission: "useful.chat.broadcast"
 
     # Player commands
     "useful gamemode":
@@ -326,6 +331,12 @@ permissions:
             - useful.chat.mute.other: true
             - useful.chat.unmute: true
             - useful.chat.unmute.other: true
+            - useful.chat.broadcast: true
+
+    useful.chat.tell:
+        default: true
+    useful.chat.broadcast.admin:
+        default: op
 
     useful.player.*:
         children:
@@ -406,6 +417,3 @@ permissions:
             - useful.spy.command.spy.other: true
             - useful.spy.command.broadcast: true
             - useful.spy.command.list: true
-
-    useful.chat.tell:
-        default: true

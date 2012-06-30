@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
+import fr.aumgn.bukkitutils.util.Util;
 import fr.noogotte.useful_commands.component.ChatComponent;
 
 @NestedCommands(name = "useful")
@@ -101,6 +102,28 @@ public class ChatCommands extends UsefulCommands {
                         + target.getDisplayName()
                         + ChatColor.AQUA + " n'est plus muet.");
             }
+        }
+    }
+
+    @Command(name = "broadcast", argsFlags="cga", min = 1, max = 1)
+    public void broadcast(CommandSender sender, CommandArgs args) {
+        String message = args.get(0);
+        String channel = null;
+        if (args.hasFlag('a')) {
+            channel = "useful.chat.broadcast.admin";
+        } else if (args.hasFlag('g')) {
+            channel = "group." + args.getArgFlag('g');
+        } else if (args.hasFlag('p')) {
+            channel = args.getArgFlag('p');
+        }
+
+        if (channel == null) {
+            Util.broadcast(message);
+        } else {
+            Util.broadcast(channel, message);
+        }
+        if (sender instanceof ConsoleCommandSender) {
+            sender.sendMessage(message);
         }
     }
 }
