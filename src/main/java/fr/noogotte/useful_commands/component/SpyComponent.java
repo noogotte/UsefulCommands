@@ -37,20 +37,30 @@ public class SpyComponent extends Component implements Listener {
         return Collections.<Commands>singletonList(new SpyCommand(this));
     }
 
-    public void addPlayer(Player player) {
-        spy.add(player);
-    }
-
-    public void removePlayer(Player player) {
-        spy.remove(player);
-    }
-
     public boolean isSpy(Player player) {
         return spy.contains(player);
     }
 
     public HashSet<Player> getSpy() {
         return new HashSet<Player>(spy);
+    }
+    
+    public void toggleSpyMode(Player player) {
+    	if(spy.contains(player)) {
+    		spy.remove(player);
+    		for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+    			onlinePlayer.hidePlayer(player);
+    		}
+    	} else {
+    		spy.add(player);
+    		for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+    			onlinePlayer.showPlayer(player);
+    		}
+    	}
+    }
+    
+    public int getNbSpy() {
+    	return spy.size();
     }
 
     @EventHandler
