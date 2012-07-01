@@ -16,6 +16,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import fr.aumgn.bukkitutils.command.Commands;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.command.SpyCommand;
+import fr.noogotte.useful_commands.event.VisibleCheckEvent;
 
 public class SpyComponent extends Component implements Listener {
 
@@ -79,6 +80,13 @@ public class SpyComponent extends Component implements Listener {
     public void onPlayerPickupItem(PlayerPickupItemEvent event) {
         if (isSpy(event.getPlayer()) && !event.getPlayer().isSneaking()) {
             event.setCancelled(true);
+        }
+    }
+    
+    @EventHandler
+    public void onVisibleCheck(VisibleCheckEvent event) {
+        if (isSpy(event.getPlayer())) {
+            event.setVisible(false);
         }
     }
 }
