@@ -29,6 +29,7 @@ public class AfkCommand extends UsefulCommands {
         for (Player target : targets) {
             if (!afkcomponent.isAfk(target)) {
                 afkcomponent.addPlayer(target);
+                target.setDisplayName("(AFK)" + target.getName());
                 target.setPlayerListName(ChatColor.ITALIC + target.getName());
                 Util.broadcast(ChatColor.GOLD + target.getName()
                         + ChatColor.GREEN + " est maintenant en AFK.");
@@ -36,6 +37,7 @@ public class AfkCommand extends UsefulCommands {
                         + ChatColor.GOLD + " /afk " + ChatColor.GREEN
                         + "pour en resortir");
             } else if (afkcomponent.isAfk(target)) {
+            	target.setDisplayName(target.getName());
                 target.setPlayerListName(target.getName());
                 afkcomponent.removePlayer(target);
                 Util.broadcast(ChatColor.GOLD + target.getName()
