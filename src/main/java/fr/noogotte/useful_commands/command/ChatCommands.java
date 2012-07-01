@@ -31,7 +31,7 @@ public class ChatCommands extends UsefulCommands {
         }
     }
 
-    @Command(name = "me", min = 0, max = 0)
+    @Command(name = "me", min = 1, max = 1)
     public void me(CommandSender sender, CommandArgs args) {
         ensureNotMute(sender);
 
