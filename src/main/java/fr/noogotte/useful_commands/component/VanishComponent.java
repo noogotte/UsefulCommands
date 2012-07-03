@@ -33,7 +33,7 @@ public class VanishComponent extends Component implements Listener {
 
     @Override
     public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new VanishCommand(this));
+        return Collections.<Commands>singletonList(new VanishCommand(this, plugin));
     }
 
     public void addPlayer(Player player) {

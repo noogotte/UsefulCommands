@@ -20,6 +20,6 @@ public class TeleportComponent extends Component {
 
     @Override
     public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new TeleportCommands());
+        return Collections.<Commands>singletonList(new TeleportCommands(plugin));
     }
 }

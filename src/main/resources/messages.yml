@@ -1,0 +1,11 @@
+fun.rocket.sender: {aqua}Vous avez rocket {green}{0}{aqua}.
+fun.rocket.target: {aqua}Rocket !{aqua}
+fun.strike.sender: {aqua}Vous avez foudroyé {green}{0}{aqua}.
+fun.strike.target: {green}Vous avez éte foudroyé.
+afk.broadcast.isAfk: {gold}{0}{green}est maintenant en AFK.
+afk.broadcast.isnotAfk: {gold}{0}{green} n'est plus en AFK.
+afk.target.isAfk: {green}Vous êtes AFK tapez {gold}/afk{green} pour en resortir.
+afk.target.isnotAfk: {green}Vous n'êtes plus en AFK.
+afk.sender.isAfk: {green}Vous avez mis {gold}{0}{green} en Afk
+mute.target.isMute: {green}Vous avez été rendu muet.
+mute.sender.isMute: {green}Vous avez mute {gold}{0}{green}.

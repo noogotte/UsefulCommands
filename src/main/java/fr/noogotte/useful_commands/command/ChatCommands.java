@@ -14,6 +14,7 @@ import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.command.exception.CommandError;
 import fr.aumgn.bukkitutils.util.Util;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.ChatComponent;
 
 @NestedCommands(name = "useful")
@@ -21,7 +22,8 @@ public class ChatCommands extends UsefulCommands {
 
     private final ChatComponent component;
 
-    public ChatCommands(ChatComponent component) {
+    public ChatCommands(ChatComponent component, UsefulCommandsPlugin plugin) {
+    	super(plugin);
         this.component = component;
     }
 
@@ -37,7 +39,6 @@ public class ChatCommands extends UsefulCommands {
 
         String message = args.get(0);
         String name = displayNameFor(sender);
-
         Util.broadcast("useful.chat.me.channel",
                 ChatColor.DARK_PURPLE + "* "
                         + ChatColor.GREEN + name
@@ -123,12 +124,9 @@ public class ChatCommands extends UsefulCommands {
             }
 
             component.mute(target);
-            target.sendMessage(ChatColor.AQUA
-                    + "Vous avez été rendu muet.");
+            target.sendMessage(msg("mute.target.isMute"));
             if (!target.equals(sender)) {
-                sender.sendMessage(ChatColor.GREEN
-                        + target.getDisplayName()
-                        + ChatColor.AQUA + " est maintenant muet.");
+                sender.sendMessage(msg("mute.sender.isMute", target.getDisplayName()));
             }
         }
     }

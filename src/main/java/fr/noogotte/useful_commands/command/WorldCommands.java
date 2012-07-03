@@ -23,11 +23,16 @@ import fr.aumgn.bukkitutils.command.exception.CommandUsageError;
 import fr.aumgn.bukkitutils.geom.Vector;
 import fr.aumgn.bukkitutils.geom.Vector2D;
 import fr.aumgn.bukkitutils.util.Util;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 
 @NestedCommands(name = "useful")
 public class WorldCommands extends UsefulCommands {
 
-    @Command(name = "seed", min = 0, max = 1)
+    public WorldCommands(UsefulCommandsPlugin plugin) {
+		super(plugin);
+	}
+
+	@Command(name = "seed", min = 0, max = 1)
     public void seed(CommandSender sender, CommandArgs args) {
         List<World> worlds = args.getList(0, World.class).matchOr(sender);
 

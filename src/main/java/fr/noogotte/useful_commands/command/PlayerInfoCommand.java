@@ -18,6 +18,7 @@ public class PlayerInfoCommand extends UsefulCommands {
     private final UsefulCommandsPlugin plugin;
 
     public PlayerInfoCommand(UsefulCommandsPlugin plugin) {
+    	super(plugin);
         this.plugin = plugin;
     }
 

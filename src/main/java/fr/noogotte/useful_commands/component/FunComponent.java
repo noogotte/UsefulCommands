@@ -20,6 +20,6 @@ public class FunComponent extends Component {
 
     @Override
     public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new FunCommands());
+        return Collections.<Commands>singletonList(new FunCommands(plugin));
     }
 }

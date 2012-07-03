@@ -62,7 +62,7 @@ public class WarpsComponent extends Component {
 
     @Override
     public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new WarpsCommands(this));
+        return Collections.<Commands>singletonList(new WarpsCommands(this, plugin));
     }
 
     @Override

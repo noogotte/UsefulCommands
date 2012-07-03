@@ -12,10 +12,15 @@ import org.bukkit.entity.Player;
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.event.VisibleCheckEvent;
 
 @NestedCommands(name = "useful")
 public class InfoServerCommands extends UsefulCommands {
+
+	public InfoServerCommands(UsefulCommandsPlugin plugin) {
+		super(plugin);
+	}
 
 	@Command(name = "online")
 	public void onlinePlayers(CommandSender sender, CommandArgs args) {

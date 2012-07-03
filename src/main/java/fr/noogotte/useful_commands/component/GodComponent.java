@@ -34,7 +34,7 @@ public class GodComponent extends Component implements Listener {
 
     @Override
     public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new GodCommand(this));
+        return Collections.<Commands>singletonList(new GodCommand(this, plugin));
     }
 
     public boolean isGod(Entity entity) {

@@ -12,6 +12,7 @@ import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.command.exception.CommandError;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.WarpsComponent;
 import fr.noogotte.useful_commands.component.WarpsComponent.Warp;
 
@@ -20,7 +21,8 @@ public class WarpsCommands extends UsefulCommands {
 
     private WarpsComponent warpscomponent;
 
-    public WarpsCommands(WarpsComponent warpscomponent) {
+    public WarpsCommands(WarpsComponent warpscomponent, UsefulCommandsPlugin plugin) {
+    	super(plugin);
         this.warpscomponent = warpscomponent;
     }
 

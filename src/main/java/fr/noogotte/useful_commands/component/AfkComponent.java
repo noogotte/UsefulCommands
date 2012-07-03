@@ -51,7 +51,7 @@ public class AfkComponent extends Component implements Listener {
 
     @Override
     public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new AfkCommand(this));
+        return Collections.<Commands>singletonList(new AfkCommand(this, plugin));
     }
 
     public void addPlayer(Player player) {

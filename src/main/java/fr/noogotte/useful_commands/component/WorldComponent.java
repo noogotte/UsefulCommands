@@ -20,6 +20,6 @@ public class WorldComponent extends Component {
 
     @Override
     public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new WorldCommands());
+        return Collections.<Commands>singletonList(new WorldCommands(plugin));
     }
 }

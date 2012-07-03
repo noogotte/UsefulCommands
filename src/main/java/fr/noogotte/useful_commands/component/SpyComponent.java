@@ -35,7 +35,7 @@ public class SpyComponent extends Component implements Listener {
 
     @Override
     public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new SpyCommand(this));
+        return Collections.<Commands>singletonList(new SpyCommand(this, plugin));
     }
 
     public boolean isSpy(Player player) {

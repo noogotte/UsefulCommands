@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.VanishComponent;
 
 @NestedCommands(name = "useful")
@@ -17,7 +18,8 @@ public class VanishCommand extends UsefulCommands {
 
     private VanishComponent vanishComponent;
 
-    public VanishCommand(VanishComponent vanishComponent) {
+    public VanishCommand(VanishComponent vanishComponent, UsefulCommandsPlugin plugin) {
+    	super(plugin);
         this.vanishComponent = vanishComponent;
     }
 

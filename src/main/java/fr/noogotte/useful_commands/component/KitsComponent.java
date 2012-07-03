@@ -51,7 +51,7 @@ public class KitsComponent extends Component
 
     @Override
     public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new KitsCommands(this));
+        return Collections.<Commands>singletonList(new KitsCommands(this, plugin));
     }
 
     @Override

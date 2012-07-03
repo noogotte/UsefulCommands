@@ -1,5 +1,8 @@
 package fr.noogotte.useful_commands.command;
 
+import static fr.noogotte.useful_commands.LocationUtil.getDistantLocation;
+import static fr.noogotte.useful_commands.LocationUtil.getTargetBlockLocation;
+
 import java.util.List;
 
 import org.bukkit.ChatColor;
@@ -13,13 +16,16 @@ import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.geom.Direction;
 import fr.aumgn.bukkitutils.geom.Vector;
-
-import static fr.noogotte.useful_commands.LocationUtil.*;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 
 @NestedCommands(name = "useful")
 public class TeleportCommands extends UsefulCommands {
 
-    @Command(name = "teleportation", min = 1, max = 2)
+    public TeleportCommands(UsefulCommandsPlugin plugin) {
+		super(plugin);
+	}
+
+	@Command(name = "teleportation", min = 1, max = 2)
     public void teleportation(Player sender, CommandArgs args) {
         Player to = args.getPlayer(0).value();
         List<Player> targets = args.getPlayers(1)

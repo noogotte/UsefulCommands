@@ -23,9 +23,9 @@ public class PlayerComponent extends Component {
     @Override
     public List<Commands> getCommands() {
         List<Commands> commands = new ArrayList<Commands>();
-        commands.add(new PlayerCommands());
+        commands.add(new PlayerCommands(plugin));
         commands.add(new PlayerInfoCommand(plugin));
-        commands.add(new InfoServerCommands());
+        commands.add(new InfoServerCommands(plugin));
         return commands;
     }
 }

@@ -40,7 +40,7 @@ public class ChatComponent extends Component implements Listener {
 
     @Override
     public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new ChatCommands(this));
+        return Collections.<Commands>singletonList(new ChatCommands(this, plugin));
     }
 
     public void registerConversation(CommandSender sender, CommandSender target) {

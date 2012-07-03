@@ -1,6 +1,8 @@
 package fr.noogotte.useful_commands;
 
+import java.io.File;
 import java.util.List;
+import java.util.Locale;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -15,6 +17,7 @@ import fr.aumgn.bukkitutils.command.CommandsRegistration;
 import fr.aumgn.bukkitutils.gconf.GConfLoadException;
 import fr.aumgn.bukkitutils.gconf.GConfLoader;
 import fr.aumgn.bukkitutils.gconf.typeadapter.DirectionTypeAdapterFactory;
+import fr.aumgn.bukkitutils.localization.Localizable;
 import fr.noogotte.useful_commands.component.AfkComponent;
 import fr.noogotte.useful_commands.component.ChatComponent;
 import fr.noogotte.useful_commands.component.Component;
@@ -30,7 +33,7 @@ import fr.noogotte.useful_commands.component.VanishComponent;
 import fr.noogotte.useful_commands.component.WarpsComponent;
 import fr.noogotte.useful_commands.component.WorldComponent;
 
-public class UsefulCommandsPlugin extends JavaPlugin {
+public class UsefulCommandsPlugin extends JavaPlugin implements Localizable {
 
     private List<Component> components;
     private UsefulConfig config;
@@ -110,4 +113,14 @@ public class UsefulCommandsPlugin extends JavaPlugin {
                 "Cette commande n'est pas activée.");
         return true;
     }
+
+	@Override
+	public Locale getLocale() {
+		return config.getLocale();
+	}
+
+	@Override
+	public File getResourcesFolder() {
+		return new File(getDataFolder(), "locale");
+	}
 }

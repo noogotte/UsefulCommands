@@ -12,6 +12,7 @@ import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.command.exception.CommandError;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.KitsComponent;
 import fr.noogotte.useful_commands.component.kit.Kit;
 
@@ -20,7 +21,8 @@ public class KitsCommands extends UsefulCommands {
 
     private final KitsComponent component;
 
-    public KitsCommands(KitsComponent component) {
+    public KitsCommands(KitsComponent component, UsefulCommandsPlugin plugin) {
+    	super(plugin);
         this.component = component;
     }
 

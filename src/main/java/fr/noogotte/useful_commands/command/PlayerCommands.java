@@ -14,12 +14,17 @@ import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.util.Util;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.event.DisplayNameLookupEvent;
 
 @NestedCommands(name = "useful")
 public class PlayerCommands extends UsefulCommands {
 
-    @Command(name = "gamemode", flags = "cs", min = 0, max = 1)
+    public PlayerCommands(UsefulCommandsPlugin plugin) {
+		super(plugin);
+	}
+
+	@Command(name = "gamemode", flags = "cs", min = 0, max = 1)
     public void gamemode(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
                 .matchWithPermOr("useful.player.gamemode.other", sender);
