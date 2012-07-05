@@ -20,6 +20,6 @@ public class InventoryComponent extends Component {
 
     @Override
     public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new InventoryCommands());
+        return Collections.<Commands>singletonList(new InventoryCommands(plugin));
     }
 }

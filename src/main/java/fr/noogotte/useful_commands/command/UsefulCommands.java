@@ -14,11 +14,11 @@ public class UsefulCommands implements Commands {
 	}
 
 	protected String msg(String key) {
-		return getBundle().getString(key);
+		return getBundle().get(key);
 	}
 
 	protected String msg(String key, Object... arguments) {
-		return getBundle().getString(key, arguments);
+		return getBundle().get(key, arguments);
 	}
 
 	private PluginResourceBundle getBundle() {

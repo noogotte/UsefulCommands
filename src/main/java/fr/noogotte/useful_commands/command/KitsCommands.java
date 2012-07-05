@@ -32,11 +32,11 @@ public class KitsCommands extends UsefulCommands {
         boolean clear = args.hasFlag('c');
 
         if (component.hasNoKit()) {
-            throw new CommandError("Aucun kit de sauvegardé !");
+            throw new CommandError(msg("kit.hasNotAKit_€"));
         }
 
         if (!component.isKit(kitName)) {
-            throw new CommandError("Aucun kit ne porte ce nom : " + kitName);
+            throw new CommandError(msg("kit.isNotAKit_€", kitName));
         }
 
         Kit kit = component.get(kitName);
@@ -52,13 +52,10 @@ public class KitsCommands extends UsefulCommands {
             }
 
             target.getInventory().addItem(stacks);
-            target.sendMessage(ChatColor.GREEN + "Vous avez reçu le kit "
-                    + ChatColor.AQUA + kitName + ChatColor.GREEN + ".");
+            target.sendMessage(msg("kit.give.target", kitName));
 
             if (!sender.equals(target)) {
-                sender.sendMessage(ChatColor.AQUA + target.getDisplayName()
-                        + ChatColor.GREEN + " a recu le kit " + ChatColor.AQUA
-                        + kitName + ChatColor.GREEN + ".");
+                sender.sendMessage(msg("kit.give.sender", kitName, target.getName()));
             }
         }
     }
@@ -66,7 +63,7 @@ public class KitsCommands extends UsefulCommands {
     @Command(name = "kits")
     public void kits(CommandSender sender) {
         if (component.hasNoKit()) {
-            throw new CommandError("Aucun kit de sauvegardé !");
+            throw new CommandError(msg("kit.hasNotAKit_€"));
         }
 
         sender.sendMessage(ChatColor.GREEN + "Kits :");
@@ -91,13 +88,11 @@ public class KitsCommands extends UsefulCommands {
         Kit kit = new Kit(stacks);
 
         if (!args.hasFlag('f') && component.isKit(name)) {
-            throw new CommandError("Un kit portant ce nom existe déjà."
-                    + " Utilisez le flag -f pour le remplacer.");
+            throw new CommandError(msg("kit.kitAlreadyExist_€"));
         }
 
         if (component.addKit(name, kit)) {
-            sender.sendMessage(ChatColor.GREEN + "Kit " + ChatColor.AQUA + name
-                    + ChatColor.GREEN + " enregistré.");
+            sender.sendMessage(msg("kit.add", name));
         } else {
             sender.sendMessage(ChatColor.RED + "Une erreur est survenu.");
         }
@@ -108,16 +103,15 @@ public class KitsCommands extends UsefulCommands {
         String name = args.get(0);
 
         if (component.hasNoKit()) {
-            throw new CommandError("Aucun kit de sauvegardé !");
+            throw new CommandError(msg("kit.hasNotAKit_€"));
         }
 
         if (!component.isKit(name)) {
-            throw new CommandError("Aucun kit ne porte ce nom.");
+            throw new CommandError(msg("kit.isNotAKit_€", name));
         }
 
         if (component.removeKit(name)) {
-            sender.sendMessage(ChatColor.GREEN + "Kit " + ChatColor.AQUA + name
-                    + ChatColor.GREEN + " supprimé.");
+            sender.sendMessage(msg("kit.remove", name));
         } else {
             sender.sendMessage(ChatColor.RED + "Une erreur est survenu.");
         }

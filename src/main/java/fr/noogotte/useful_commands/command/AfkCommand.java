@@ -32,16 +32,18 @@ public class AfkCommand extends UsefulCommands {
         for (Player target : targets) {
             if (!afkcomponent.isAfk(target)) {
                 afkcomponent.addPlayer(target);
-                target.setDisplayName("(AFK)" + target.getName());
                 target.setPlayerListName(ChatColor.ITALIC + target.getName());
                 Util.broadcast(msg("afk.broadcast.isAfk", target.getDisplayName()));
                 target.sendMessage(msg("afk.target.isAfk"));
+                target.setDisplayName("(AFK)" + target.getName());
             } else if (afkcomponent.isAfk(target)) {
             	target.setDisplayName(target.getName());
                 target.setPlayerListName(target.getName());
                 afkcomponent.removePlayer(target);
                 Util.broadcast(msg("afk.broadcast.isnotAfk", target.getDisplayName()));
-                target.sendMessage(msg("afk.target.isAfk"));
+                if (afkcomponent.isAfk(target)) {
+                	target.sendMessage(msg("afk.target.isAfk"));
+                }
             }
 
             if (!sender.equals(target)) {

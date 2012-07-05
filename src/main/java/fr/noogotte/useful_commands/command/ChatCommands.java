@@ -29,7 +29,7 @@ public class ChatCommands extends UsefulCommands {
 
     public void ensureNotMute(CommandSender sender) {
         if (sender instanceof Player && component.isMute((Player) sender)) {
-            throw new CommandError("Vous êtes muet.");
+            throw new CommandError(msg("mute.isMute_€"));
         }
     }
 
@@ -71,7 +71,7 @@ public class ChatCommands extends UsefulCommands {
 
         CommandSender target =  component.getConversationTarget(sender);
         if (target == null) {
-            throw new CommandError("Aucune conversation en cours.");
+            throw new CommandError(msg("reply.hasNoCurrentConversation_€"));
         }
 
         privateMessage(sender, 
@@ -142,12 +142,9 @@ public class ChatCommands extends UsefulCommands {
             }
 
             component.unmute(target);
-            target.sendMessage(ChatColor.AQUA
-                    + "Vous n'êtes plus muet.");
+            target.sendMessage(msg("unmute.target.isnotMute"));
             if (!target.equals(sender)) {
-                sender.sendMessage(ChatColor.GREEN
-                        + target.getDisplayName()
-                        + ChatColor.AQUA + " n'est plus muet.");
+                sender.sendMessage(msg("unmute.sender.isnotMute", target.getDisplayName()));
             }
         }
     }

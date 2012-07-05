@@ -33,9 +33,15 @@ public class InfoServerCommands extends UsefulCommands {
 	        }
 	    }
 
+
 	    sender.sendMessage(ChatColor.GREEN + "Joueur(s) connecté (" + onlinePlayers.size() +  ")" + ":");
 	    for(Player onlinePlayer : onlinePlayers) {
-	        sender.sendMessage(ChatColor.BLUE + "  - " + onlinePlayer.getDisplayName());
+	    	String prefix = "";
+
+	    	if (onlinePlayer.isOp()) {
+	    		prefix = "(OP)";
+	    	}
+	        sender.sendMessage(ChatColor.BLUE + "  - " + prefix + onlinePlayer.getDisplayName());
 	    }
 	}
 

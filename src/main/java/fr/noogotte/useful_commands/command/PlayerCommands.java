@@ -48,12 +48,9 @@ public class PlayerCommands extends UsefulCommands {
                 target.setGameMode(GameMode.CREATIVE);
             }
 
-            target.sendMessage(ChatColor.GREEN + "Vous êtes maintenant en "
-                    + ChatColor.AQUA + target.getGameMode());
+            target.sendMessage(msg("gamemode.target", target.getGameMode()));
             if (!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GREEN + "Vous avez mis "
-                        + ChatColor.AQUA + target.getName() + ChatColor.GREEN
-                        + " en " + ChatColor.AQUA + target.getGameMode());
+                sender.sendMessage(msg("gamemode.sender", target.getDisplayName(), target.getGameMode()));
             }
         }
     }
@@ -73,11 +70,9 @@ public class PlayerCommands extends UsefulCommands {
                 target.setFoodLevel(20);
             }
 
-            target.sendMessage(ChatColor.YELLOW + "Vous voilà soigné et nourri");
+            target.sendMessage(msg("heal.target"));
             if (!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GREEN
-                        + "Vous avez soigné et nourri " + ChatColor.BLUE
-                        + target.getName());
+                sender.sendMessage(msg("heal.sender", target.getDisplayName()));
             }
         }
     }
@@ -89,14 +84,10 @@ public class PlayerCommands extends UsefulCommands {
 
         for (Player target : args.getPlayers(0).match()) {
             if (dontKickOps && target.isOp()) {
-                sender.sendMessage(ChatColor.RED + target.getName()
-                        + " est OP vous ne pouvez pas le kicker "
-                        + "(utilisez \"-o\" pour forcer le kick).");
+                sender.sendMessage(msg("kick.dontKickOp", target.getDisplayName()));
             } else {
                 target.kickPlayer(reason);
-                Util.broadcast(ChatColor.AQUA + target.getName()
-                        + ChatColor.GREEN + " a été kické par "
-                        + ChatColor.AQUA + sender.getName());
+                Util.broadcast(msg("kick.broadcast", target.getName(), sender.getName(), reason));
             }
         }
     }
@@ -114,20 +105,16 @@ public class PlayerCommands extends UsefulCommands {
                 target.setFlying(true);
             }
             if (target.isFlying()) {
-                sender.sendMessage(ChatColor.GREEN
-                        + " Vous pouvez désormais voler !");
+                sender.sendMessage(msg("fly.target.isFlying"));
             } else {
-                sender.sendMessage(ChatColor.GREEN
-                        + " Vous ne pouvez plus voler !");
+                sender.sendMessage(msg("fly.target.isNotFlying"));
             }
 
             if (!sender.equals(target)) {
                 if (target.isFlying()) {
-                    sender.sendMessage(ChatColor.GOLD + target.getName()
-                            + ChatColor.GREEN + " peut maintenant voler !");
+                    sender.sendMessage(msg("fly.sender.isFlying", target.getDisplayName()));
                 } else {
-                    sender.sendMessage(ChatColor.GOLD + target.getName()
-                            + ChatColor.GREEN + " ne peut plus voler !");
+                    sender.sendMessage(msg("fly.target.isNotFlying", target.getDisplayName()));
                 }
             }
         }
@@ -139,11 +126,9 @@ public class PlayerCommands extends UsefulCommands {
                 .matchWithPermOr("useful.player.kill.other", sender);
         for (Player target : targets) {
             target.setHealth(0);
-            sender.sendMessage(ChatColor.GREEN + "Vous vous êtes suicidés !");
 
             if (!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GREEN + "Vous avez tué "
-                        + ChatColor.WHITE + target.getName());
+                sender.sendMessage(msg("kill.sender", target.getDisplayName()));
             }
         }
     }
@@ -159,14 +144,10 @@ public class PlayerCommands extends UsefulCommands {
 
         for (Player target : targets) {
             target.addPotionEffect(newEffect, true);
-            sender.sendMessage(ChatColor.GREEN + "Vous êtes sous influence de "
-                    + ChatColor.GOLD + effect.getName());
+            sender.sendMessage(msg("effect.target", effect.getName().toLowerCase()));
 
             if (!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GOLD + target.getName()
-                        + ChatColor.GREEN + " est désormais sous l'effet de "
-                        + ChatColor.GOLD + effect.getName() + ChatColor.GREEN
-                        + " pour " + effect.getDurationModifier());
+                sender.sendMessage(msg("effect.sender", target.getDisplayName(), effect.getName().toLowerCase(), effect.getDurationModifier()));
             }
         }
     }

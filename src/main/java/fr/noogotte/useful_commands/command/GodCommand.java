@@ -2,7 +2,6 @@ package fr.noogotte.useful_commands.command;
 
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -31,16 +30,15 @@ public class GodCommand extends UsefulCommands {
         for (Player target : targets) {
             if (godComponent.isGod(target)) {
                 if (!sender.equals(target)) {
-                    throw new CommandError(target.getName()
-                            + " est déja en mode dieu.");
+                    throw new CommandError(msg("god.isAlreadyInGodMode.sender_€", target.getDisplayName()));
+                } else {
+                	throw new CommandError(msg("god.isAlreadyInGodMode.target_€"));
                 }
-                throw new CommandError("Vous êtes déja en mode dieu.");
             } else {
                 godComponent.setGod(target);
-                target.sendMessage(ChatColor.BLUE + "Vous êtes en mode dieu.");
+                target.sendMessage(msg("god.target.isGod"));
                 if (!sender.equals(target)) {
-                    sender.sendMessage(ChatColor.GREEN + target.getName()
-                            + ChatColor.BLUE + " est en mode dieu.");
+                    sender.sendMessage(msg("god.sender.isGod", target.getDisplayName()));
                 }
             }
         }
@@ -54,17 +52,15 @@ public class GodCommand extends UsefulCommands {
         for (Player target : targets) {
             if (!godComponent.isGod(target)) {
                 if (!sender.equals(target)) {
-                    throw new CommandError(target.getName()
-                            + " n'est pas en mode dieu.");
+                    throw new CommandError(msg("god.isNotInGodMode.sender_€", target.getDisplayName()));
+                } else {
+                	throw new CommandError(msg("god.isNotInGodMode.target_€"));
                 }
-                throw new CommandError("Vous n'êtes pas en mode dieu.");
             } else {
                 godComponent.removeGod(target);
-                target.sendMessage(ChatColor.BLUE
-                        + "Vous n'êtes plus en mode dieu.");
+                target.sendMessage(msg("god.target.isnotGod"));
                 if (!sender.equals(target)) {
-                    sender.sendMessage(ChatColor.GREEN + target.getName()
-                            + ChatColor.BLUE + " n'est plus en mode dieu.");
+                    sender.sendMessage(msg("god.sender.isnotGod", target.getDisplayName()));
                 }
             }
         }
