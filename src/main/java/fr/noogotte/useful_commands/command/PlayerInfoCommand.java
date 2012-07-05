@@ -1,6 +1,5 @@
 package fr.noogotte.useful_commands.command;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -25,54 +24,45 @@ public class PlayerInfoCommand extends UsefulCommands {
     @Command(name = "playerinfo", min = 1, max = 1)
     public void playerInfo(CommandSender sender, CommandArgs args) {
         Player target = args.getPlayer(0).valueOr(sender);
-        String yes = "Oui";
-        String no = "Non";
+        String reponse;
 
-        sender.sendMessage(ChatColor.GREEN + "" + ChatColor.UNDERLINE
-                + "Info de " + target.getName());
-        sender.sendMessage(ChatColor.GREEN + "Vie : " + ChatColor.AQUA
-                + target.getHealth());
-        sender.sendMessage(ChatColor.GREEN + "Faim : " + ChatColor.AQUA
-                + target.getFoodLevel());
-        sender.sendMessage(ChatColor.GREEN + "IP : " + ChatColor.AQUA
-                + target.getAddress());
+        sender.sendMessage(msg("info.top", target.getDisplayName()));
+        sender.sendMessage(msg("info.health", target.getHealth()));
+        sender.sendMessage(msg("info.hunger", target.getFoodLevel()));
+        sender.sendMessage(msg("info.ip", target.getAddress()));
         Location loc = target.getLocation();
-        sender.sendMessage(ChatColor.GREEN + "Position : (" + ChatColor.AQUA
-                + loc.getBlockX() + ChatColor.GREEN + "," + ChatColor.AQUA
-                + loc.getBlockY() + ChatColor.GREEN + "," + ChatColor.AQUA
-                + loc.getBlockZ() + ChatColor.GREEN + ") dans : "
-                + ChatColor.AQUA + target.getWorld().getName());
-        sender.sendMessage(ChatColor.GREEN + "Gamemode : " + ChatColor.AQUA
-                + target.getGameMode());
-        sender.sendMessage(ChatColor.GREEN + "Expérience : " + ChatColor.AQUA
-                + target.getLevel());
-
-        if (target.isOp()) {
-            sender.sendMessage(ChatColor.GREEN + "Op : " + ChatColor.AQUA + yes);
+        sender.sendMessage(msg("info.position", loc.getBlockX(), loc.getBlockY(), loc.getBlockZ(), target.getWorld().getName()));
+        sender.sendMessage(msg("info.gamemode", target.getGameMode()));
+        sender.sendMessage(msg("info.experience", target.getLevel()));
+        
+        if (target.isOnline()) {
+        	reponse = msg("info.reponse.yes");
         } else {
-            sender.sendMessage(ChatColor.GREEN + "Op : " + ChatColor.AQUA + no);
+        	reponse = msg("info.reponse.no");
         }
+        
+        sender.sendMessage(msg("info.isOp", reponse));
 
         GodComponent godComponent = plugin.getComponent(GodComponent.class);
         if (godComponent != null) {
-            if (godComponent.isGod(target)) {
-                sender.sendMessage(ChatColor.GREEN + "Mode Dieu : "
-                        + ChatColor.AQUA + yes);
-            } else {
-                sender.sendMessage(ChatColor.GREEN + "Mode Dieu : "
-                        + ChatColor.AQUA + no);
-            }
+        	if(godComponent.isGod(target)) {
+        		reponse = msg("info.reponse.yes");
+        	} else {
+        		reponse = msg("info.reponse.no");
+        	}
+
+        	sender.sendMessage(msg("info.isInGodMode", reponse));
         }
 
         AfkComponent afkComponent = plugin.getComponent(AfkComponent.class);
         if (afkComponent != null) {
-            if (afkComponent.isAfk(target)) {
-                sender.sendMessage(ChatColor.GREEN + "AFK : " + ChatColor.AQUA
-                        + yes);
-            } else {
-                sender.sendMessage(ChatColor.GREEN + "AFK : " + ChatColor.AQUA
-                        + no);
-            }
+        	if (afkComponent.isAfk(target)) {
+        		reponse = msg("info.reponse.yes");
+        	} else {
+        		reponse = msg("info.reponse.no");
+        	}
+
+        	sender.sendMessage(msg("info.isAfk", reponse));
         }
     }
 }

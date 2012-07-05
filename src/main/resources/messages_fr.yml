@@ -1,0 +1,103 @@
+#######################################################################################
+# Si aucun {0}, {1}, {2}, {3}, ne prenez pas en compte les commentaires plus haut.    #
+# Pour avoir les messages en français, veuillez mettre fr dans le fichier config.json #
+#######################################################################################
+# {0} = nom du cible
+fun.rocket.sender: "{aqua}Vous avez rocket {green}{0}{aqua}"
+fun.rocket.target: "{aqua}Rocket !{aqua}"
+fun.strike.sender: "{aqua}Vous avez foudroyé {green}{0}{aqua}."
+fun.strike.target: "{green}Vous avez été foudroyé."
+afk.broadcast.isAfk: "{gold}{0}{green} est maintenant en AFK."
+afk.broadcast.isnotAfk: "{gold}{0}{green} n'est plus AFK."
+afk.target.isAfk: "{green}Vous êtes AFK tapez {gold}/afk{green} pour en resortir."
+afk.target.isnotAfk: "{green}Vous n'êtes plus en AFK."
+afk.sender.isAfk: "{green}Vous avez mis {gold}{0}{green} en AFK."
+mute.target.isMute: "{green}Vous avez été rendu muet."
+mute.sender.isMute: "{green}Vous avez mute {gold}{0}{green}."
+mute.isMute_€n: "Vous êtes muet."
+unmute.target.isnotMute: "{green}Vous n'êtes plus muet."
+unmute.sender.isnotMute: "{aqua}{0}{green} n'est plus muet."
+reply.hasNoCurrentConversation_€: "Aucune conversation en cours."
+god.target.isGod: "{blue}Vous êtes en mode dieu."
+god.sender.isGod: "{green}{0}{blue} est en mode dieu."
+god.target.isnotGod: "{blue}Vous n'êtes plus en mode dieu."
+god.sender.isnotGod: "{green}{0}{blue} n'est plus en mode dieu."
+god.isAlreadyInGodMode.sender_€: "{0} est déja en mode dieux"
+god.isAlreadyInGodMode.target_€: "Vous êtes déja en mode dieux."
+god.isNotInGodMode.sender_€: "{0} n'est pas en mode dieux"
+god.isNotInGodMode.target_€: "Vous n'êtes pas en mode dieux."
+clear.target: "{yellow}Clear !"
+clear.sender: "{yellow}Vous avez vidée l'inventaire de {green}{0}"
+# {0} = nombre d'objet et {1} = nom de l'objet
+give.target: "{green}Vous avez reçu {aqua}{0}{green} de {aqua}{1}"
+# {0} = nom de la cible, {1} nombre d'objet et {2} = nom de l'objet
+give.sender: "{green}Vous avez donné à {aqua}{0}{green}: {1}{green} de {2}"
+# {0} = nom de la cible
+open.notify: "{green}Votre inventaire a été ouvert par {aqua}{0}"
+# {0} Info de l'objet
+id.name: "{green}Vous tenez : {aqua}{0}"
+id.id: "{green}Son id est : {aqua}{0}"
+# {0} = nom de l'enchantement et {1} = nom de l'objet
+enchant.error.canNotBeApplied: "{green}L'enchantement {aqua}{0}{green} ne peux pas être apliqué à {aqua}{1}"
+# {0} = level max
+enchant.error.levelIsTooHight: "{green}Le niveau d'enchantement doit être inférieur ou égal à {red}{0}"
+# {0} = nom de l'enchantment et {1} = level
+enchant.add: "{green}Vous avez ajouté {aqua}{0}{green} : {aqua}{1}"
+remove_enchant: "{green}Enchantement(s) enlevé(s)"
+kit.hasNotAKit_€: "Aucun kit de sauvegarder !"
+# {0} = nom d'un kit qui n'existe pas
+kit.isNotAKit_€: "Aucun kit ne porte ce nom : {0}"
+# {0} = nom du kit enregistré
+kit.add: "{green}Kit {aqua}{0}{green} enregistré."
+kit.remove: "{green}Kit {aqua}{0}{green} supprimé."
+# {0} = nom du kit et {1} = nom de la cible
+kit.give.sender: "{green}Vous avez donné {aqua}{0}{green} à {aqua}{1}"
+# {0} = nom du kit
+kit.give.target: "{green}Vous avez reçu le kit {aqua}{0}"
+kit.kitAlreadyExist_€: "Un kit portant ce nom existe déjà. Utilisez le flag -f pour le remplacer."
+# {0} = gamemode de la cible
+gamemode.target: "{green}Vous êtes maintenant en {aqua}{0}"
+# {0} = nom de la cible et {1} = gamemode de la cible
+gamemode.sender: "{aqua}{0}{green} est maintenant en {aqua}{1}"
+heal.target: "{yellow}Vous voilà soigné et nourri"
+# {0} = nom de la cible
+heal.sender: "{yellow}Vous avez soigné et nourri {aqua}{0}"
+# {0} = nom de la cible
+kick.dontKickOp: "{red}{0} est op vous ne pouvez pas le kicker (\"-o\" pour forcer le kick)"
+# {0} = nom de la kicker, {1} = nom de la personne qui a kick {0} et {2} = raison
+kick.broadcast: "{aqua}{0}{green} a été kické par {aqua}{1}{green}. {green}Raison : {aqua}{2}"
+fly.target.isFlying: "{green}Vous pouvez désormais voler !"
+fly.target.isNotFlying: "{green}Vous ne pouvez plus voler !"
+# {0} = nom de la cible
+fly.sender.isFlying: "{green}{0} vole !"
+fly.sender.isNotFlying: "{aqua}{0}{green} ne vole plus !"
+kill.sender: "{green}Vous avez tué {aqua}{0}"
+# {0} = nom de l'effet de potion
+effect.target: "{green}Vous êtes sous l'influence de {aqua}{0}"
+# {0} = nom de la cible, {1} = nom de l'effet et {2} = temps de l'effect
+effect.sender: "{aqua}{0}{green} est désormais sous l'influence de {aqua}{1}{green} pour {aqua}{2}"
+# {0} = nom de base du joueur
+rename.reset.target: "{green}Vous êtes de nouveau connus sous le nom {aqua}{0}"
+# {0} = nom de la cible
+rename.reset.sender: "{green}Vous avez mis {aqua}{0}{green} avec son nom d'origine"
+# {0} = nom voulu
+rename.target: "{green}Vous voilà renommez en {aqua}{0}"
+# {0} = nom de la cible et {1} = nouveau nom de la cible
+rename.sender: "{green}Vous avez renommez {aqua}{0}{green} en {aqua}{1}"
+# {0} = temps en feu
+burn.target: "{green}Vous êtes enflammés pour {aqua}{0}{green} secondes"
+# {0} = nom de la cible et {1} = temps en feu
+burn.sender: "{green}Vous avez enflammé {aqua}{0}{green} pour {aqua}{1}{green} secondes"
+# {0} = nom de le cible
+info.reponse.yes: "Oui"
+info.reponse.no: "Non"
+info.top: "{underline}{green}Info de {0}"
+info.health: "Vie : {0}"
+info.hunger: "Faim : {0}"
+info.ip: "IP : {0}"
+info.position: "Position : {0},{1},{2} dans {3}"
+info.gamemode: "Gamemode : {0}"
+info.experience: "Experience : {0}"
+info.isOp: "Op : {0}"
+info.isInGodMode: "God Mode : {0}"
+info.isAfk: "Afk : {0}"

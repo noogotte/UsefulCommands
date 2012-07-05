@@ -167,9 +167,7 @@ public class PlayerCommands extends UsefulCommands {
 
                 target.setDisplayName(name);
                 target.setPlayerListName(name);
-                target.sendMessage(ChatColor.GREEN
-                        + "Vous êtes de nouveau connus sous le nom "
-                        + ChatColor.GOLD + name);
+                target.sendMessage(msg("rename.reset.target", name));
 
                 if (!sender.equals(target)) {
                     sender.sendMessage(ChatColor.GREEN + "Vous avez mis "
@@ -179,14 +177,10 @@ public class PlayerCommands extends UsefulCommands {
             } else {
                 target.setDisplayName(args.get(0));
                 target.setPlayerListName(args.get(0));
-                target.sendMessage(ChatColor.GREEN + "Vous voilà renommez en "
-                        + ChatColor.GOLD + args.get(0));
+                target.sendMessage(msg("rename.target", args.get(0)));
 
                 if (!sender.equals(target)) {
-                    sender.sendMessage(ChatColor.GREEN + "Vous avez renommez "
-                            + ChatColor.GOLD + target.getName()
-                            + ChatColor.GREEN + " en " + ChatColor.GOLD
-                            + args.get(0));
+                    sender.sendMessage(msg("rename.sender", target.getDisplayName(), args.get(0)));
                 }
             }
         }
@@ -200,14 +194,10 @@ public class PlayerCommands extends UsefulCommands {
 
         for (Player target : targets) {
             target.setFireTicks(duration * 20);
-            target.sendMessage(ChatColor.GREEN + "Vous êtes enflammés pour "
-                    + ChatColor.GOLD + duration + ChatColor.GREEN + " secondes");
+            target.sendMessage(msg("burn.target", duration));
 
             if (!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GREEN + "Vous avez enflammé "
-                        + ChatColor.GOLD + target.getName() + ChatColor.GREEN
-                        + "pour " + ChatColor.GOLD + duration + ChatColor.GREEN
-                        + " secondes");
+                sender.sendMessage(msg("burn.sender", target.getDisplayName(), duration));
             }
         }
     }
