@@ -5,7 +5,6 @@ import static fr.noogotte.useful_commands.LocationUtil.getTargetBlockLocation;
 
 import java.util.List;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -33,12 +32,10 @@ public class TeleportCommands extends UsefulCommands {
 
         for (Player target : targets) {
             target.teleport(to);
-            target.sendMessage(ChatColor.GREEN + "Poof !");
+            target.sendMessage(msg("teleport.target"));
 
             if (!target.equals(sender)) {
-                sender.sendMessage(ChatColor.AQUA + "Vous avez téléporté "
-                        + ChatColor.GREEN + target.getName() + ChatColor.AQUA
-                        + " à " + ChatColor.GREEN + target.getName());
+                sender.sendMessage(msg("teleport.sender", to.getDisplayName(), target.getDisplayName()));
             }
         }
     }
@@ -67,9 +64,8 @@ public class TeleportCommands extends UsefulCommands {
             }
 
             target.teleport(location);
-            target.sendMessage(ChatColor.GREEN + "Poof !");
-            sender.sendMessage(ChatColor.AQUA + "Vous avez téléporté "
-                    + ChatColor.GREEN + target.getName());
+            target.sendMessage(msg("teleport.target"));
+            sender.sendMessage(msg("teleport.sender.bis", target.getDisplayName()));
         }
     }
 
@@ -85,10 +81,9 @@ public class TeleportCommands extends UsefulCommands {
         for (Player target : targets) {
 
             target.teleport(location);
-            target.sendMessage(ChatColor.GREEN + "Poof !");
+            target.sendMessage(msg("teleport.target"));
             if (!sender.equals(target)) {
-                sender.sendMessage(ChatColor.AQUA + "Vous avez téléporté "
-                        + ChatColor.GREEN + target.getName());
+            	sender.sendMessage(msg("teleport.sender.bis", target.getDisplayName()));
             }
         }
     }
@@ -106,10 +101,9 @@ public class TeleportCommands extends UsefulCommands {
             Location location = teleportPos.toLocation(world, dir);
             target.teleport(location);
 
-            sender.sendMessage(ChatColor.GREEN + "Poof !");
+            target.sendMessage(msg("teleport.target"));
             if (!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GREEN + "Vous avez téléporté "
-                        + ChatColor.BLUE + target.getName());
+            	sender.sendMessage(msg("teleport.sender.bis", target.getDisplayName()));
             }
         }
     }
@@ -122,11 +116,9 @@ public class TeleportCommands extends UsefulCommands {
         for (Player target : targets) {
             target.teleport(target.getWorld().getSpawnLocation());
 
-            target.sendMessage(ChatColor.GREEN + "Vous êtes au spawn !");
+            target.sendMessage(msg("spawn.target"));
             if (!sender.equals(target)) {
-                sender.sendMessage(ChatColor.GREEN + "Vous avez téléporté "
-                        + ChatColor.BLUE + target.getName() + ChatColor.GREEN
-                        + " au spawn.");
+                sender.sendMessage(msg("spawn.sender", target.getDisplayName()));
             }
         }
     }

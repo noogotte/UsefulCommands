@@ -37,9 +37,7 @@ public class WorldCommands extends UsefulCommands {
         List<World> worlds = args.getList(0, World.class).matchOr(sender);
 
         for (World world : worlds) {
-            sender.sendMessage(ChatColor.GREEN + "Seed de " + ChatColor.BLUE
-                    + world.getName() + ChatColor.GREEN + " : "
-                    + ChatColor.BLUE + world.getSeed());
+            sender.sendMessage(msg("seed.message", world.getName(), world.getSeed()));
         }
     }
 
@@ -51,7 +49,7 @@ public class WorldCommands extends UsefulCommands {
                 position.getBlockX(),
                 position.getBlockY(),
                 position.getBlockZ());
-        sender.sendMessage(ChatColor.GREEN + "Vous avez défini le spawn !");
+        sender.sendMessage(msg("setspawn.message"));
     }
 
     @Command(name = "time", min = 1, max = 2)
@@ -61,21 +59,15 @@ public class WorldCommands extends UsefulCommands {
         int time = args.get(0, new TimeArg.Factory()).value();
         for (World world : worlds) {
             world.setTime(time);
-            if (time == 20 * 60) {
+            if (time == (24) * 1000) {
                 Util.broadcast("useful.world.time.broadcast",
-                        ChatColor.AQUA + sender.getName() + ChatColor.GOLD
-                                + " a mis le jour dans " + ChatColor.AQUA
-                                + world.getName());
-            } else if (time == 20 * 60 * 11) {
-                Util.broadcast("useful.world.time.broadcast",
-                        ChatColor.AQUA + sender.getName() + ChatColor.GOLD
-                                + " a mis la nuit dans " + ChatColor.AQUA
-                                + world.getName());
+                        msg("time.message.day", sender.getName(), world.getName()));
+            } else if (time == (22 - 8 + 24) * 1000) {
+            	Util.broadcast("useful.world.time.broadcast",
+                        msg("time.message.night", sender.getName(), world.getName()));
             } else {
-                Util.broadcast("useful.world.time.broadcast",
-                        ChatColor.AQUA + sender.getName() + ChatColor.GOLD
-                                + " a changé l'heure dans " + ChatColor.AQUA
-                                + world.getName());
+            	Util.broadcast("useful.world.time.broadcast",
+                        msg("time.message.other", sender.getName(), world.getName()));
             }
         }
     }
@@ -104,15 +96,9 @@ public class WorldCommands extends UsefulCommands {
 
             world.setStorm(storm);
             if (storm) {
-                Util.broadcast("useful.weather.broadcast",
-                        ChatColor.AQUA + sender.getName() + ChatColor.GOLD
-                                + " a mis la pluit dans " + ChatColor.AQUA
-                                + world.getName());
+                Util.broadcast("useful.weather.broadcast", msg("weather.storm", sender.getName(), world.getName()));
             } else {
-                Util.broadcast("useful.weather.broadcast",
-                        ChatColor.AQUA + sender.getName() + ChatColor.GOLD
-                                + " a arrété la pluit dans " + ChatColor.AQUA
-                                + world.getName());
+                Util.broadcast("useful.weather.broadcast", msg("weather.sun", sender.getName(), world.getName()));
             }
         }
     }
@@ -121,8 +107,7 @@ public class WorldCommands extends UsefulCommands {
     public void spawnmob(Player sender, CommandArgs args) {
         EntityType entity = args.getEntityType(0).value();
         if (!entity.isSpawnable() && isNotAMob(entity)) {
-            throw new CommandError(
-                    "Vous ne pouvez pas spawner ce type d'entité");
+            throw new CommandError(msg("entity.isNotAMob"));
         }
 
         int count = args.getInteger(1).valueOr(1);
@@ -158,9 +143,7 @@ public class WorldCommands extends UsefulCommands {
             }
         }
 
-        sender.sendMessage(ChatColor.GREEN + "Vous avez spawn "
-                + ChatColor.GOLD + totalCount + ChatColor.GREEN + " "
-                + entity.getName());
+        sender.sendMessage(msg("spawnmob.message", totalCount, entity.getName()));
     }
 
     @Command(name = "removemob", argsFlags = "wcp", min = 0, max = 2)
@@ -173,8 +156,7 @@ public class WorldCommands extends UsefulCommands {
 
             for (EntityType type : types) {
                 if (isNotAMob(type)) {
-                    throw new CommandError(type.getName()
-                            + " n'est pas un mob.");
+                    throw new CommandError(msg("mob.isNotAMob", type.getName()));
                 }
             }
         }
@@ -190,8 +172,7 @@ public class WorldCommands extends UsefulCommands {
 
             if (args.hasArgFlag('c')) {
                 if (!args.hasArgFlag('w')) {
-                    throw new CommandUsageError(
-                            "Vous devez specifier un monde.");
+                    throw new CommandUsageError(msg("world.miss"));
                 }
                 from = args.get('c', Vector.class).value();
                 world = args.get('w', World.class).value();
@@ -227,8 +208,7 @@ public class WorldCommands extends UsefulCommands {
             entity.remove();
         }
 
-        sender.sendMessage(ChatColor.GREEN + "Vous avez supprimé "
-                + ChatColor.GOLD + count + ChatColor.GREEN + " mobs");
+        sender.sendMessage(msg("removemob.message", count));
     }
 
     @Command(name = "position", min = 0, max = 1)

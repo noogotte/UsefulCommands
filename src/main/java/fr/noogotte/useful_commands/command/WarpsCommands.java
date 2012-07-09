@@ -29,19 +29,18 @@ public class WarpsCommands extends UsefulCommands {
     @Command(name = "setwarp", min = 1, max = 1)
     public void createWarp(Player player, CommandArgs args) {
         if (warpscomponent.isWarp(args.get(0))) {
-            throw new CommandError("Le warp " + args.get(0) + " existe déjà.");
+			throw new CommandError(msg("warp.alreadyExist_€", args.get(0)));
         } else {
             Location location = player.getLocation();
             warpscomponent.addWarp(args.get(0), location);
-            player.sendMessage(ChatColor.GREEN + "Vous avez créé un warp : "
-                    + ChatColor.AQUA + args.get(0));
+			player.sendMessage(msg("warp.created", args.get(0)));
         }
     }
 
     @Command(name = "warp", min = 1, max = 2)
     public void teleportToWarp(CommandSender sender, CommandArgs args) {
         if (!warpscomponent.isWarp(args.get(0))) {
-            throw new CommandError("Le warp " + args.get(0) + " n'existe pas.");
+			throw new CommandError(msg("warp.notExist_€", args.get(0)));
         }
 
         String warpName = args.get(0);
@@ -51,11 +50,10 @@ public class WarpsCommands extends UsefulCommands {
         for (Player target : targets) {
             Warp warp = warpscomponent.getWarp(warpName);
             target.teleport(warp.toLocation());
-            target.sendMessage(ChatColor.GREEN + "Poof !");
+			target.sendMessage(msg("teleport.target"));
 
             if (!sender.equals(target)) {
-                sender.sendMessage(target.getName()
-                        + "a été téléporté au warp : " + warpName);
+				sender.sendMessage(msg("warp.sender", target.getDisplayName(), warpName));
             }
         }
     }
@@ -66,16 +64,14 @@ public class WarpsCommands extends UsefulCommands {
 
         if (all) {
             warpscomponent.clearWarp();
-            sender.sendMessage(ChatColor.RED
-                    + "Vous avez enlevés tous les Warps !");
+			sender.sendMessage(msg("warp.deleteAll"));
         } else {
             if (!warpscomponent.isWarp(args.get(0))) {
                 String arg = args.get(0);
-                throw new CommandError("Le warp " + arg + " n'existe pas.");
+				throw new CommandError(msg("warp.notExist_€", arg));
             } else {
                 warpscomponent.deleteWarp(args.get(0));
-                sender.sendMessage(ChatColor.RED
-                        + "Vous avez supprimé le warp : " + args.get(0));
+				sender.sendMessage(msg("warp.delete", args.get(0)));
             }
         }
     }
@@ -83,7 +79,7 @@ public class WarpsCommands extends UsefulCommands {
     @Command(name = "warps")
     public void warps(CommandSender sender) {
         if (warpscomponent.isEmpty()) {
-            throw new CommandError("Il n'y a pas de warp !");
+			throw new CommandError(msg("warp.list.isEmpty_€"));
         }
 
         sender.sendMessage(ChatColor.GOLD + "Warps : ");
@@ -95,10 +91,10 @@ public class WarpsCommands extends UsefulCommands {
     @Command(name = "warplocation", min = 1, max = 1)
     public void warpLocation(CommandSender sender, CommandArgs args) {
         if (warpscomponent.isEmpty()) {
-            throw new CommandError("Il n'y a pas de warp !");
+			throw new CommandError(msg("warp.list.isEmpty_€"));
         }
         if (!warpscomponent.isWarp(args.get(0))) {
-            throw new CommandError("Le warp " + args.get(0) + " n'existe pas.");
+			throw new CommandError(msg("warp.notExist_€", args.get(0)));
         } else {
             String warpName = args.get(0);
             Warp warp = warpscomponent.getWarp(warpName);

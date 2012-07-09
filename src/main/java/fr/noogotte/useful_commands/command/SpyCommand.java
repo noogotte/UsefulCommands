@@ -35,15 +35,11 @@ public class SpyCommand extends UsefulCommands {
         		for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
         			onlinePlayer.hidePlayer(target);
         		}
-        		Util.broadcast("useful.spy.command.broadcast", target.getName()
-        				+ " est passé(e) en Spy Mode.");
-        	    Util.broadcast(ChatColor.YELLOW + target.getName()
-        	    		+ " left the game");
+        		Util.broadcast("useful.spy.command.broadcast", msg("spy.broadcast.isSpy", target.getDisplayName()));
+        	    Util.broadcast(msg("spy.broadcast.fakeQuitMessage", target.getDisplayName()));
         	} else {
-        		Util.broadcast("useful.spy.command.broadcast", target.getName()
-        				+ " n'est plus en Spy Mode.");
-        	    Util.broadcast(ChatColor.YELLOW + target.getName()
-        	    		+ " joined the game");
+        		Util.broadcast("useful.spy.command.broadcast", msg("spy.broadcast.isSpy", target.getDisplayName()));
+        		Util.broadcast(msg("spy.broadcast.fakeJoinMessage", target.getDisplayName()));
         		for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
         			onlinePlayer.showPlayer(target);
         		}

@@ -34,21 +34,19 @@ public class VanishCommand extends UsefulCommands {
                 for (Player allPlayer : Bukkit.getOnlinePlayers()) {
                     allPlayer.hidePlayer(target);
                 }
-                target.sendMessage(ChatColor.GREEN + "Vous êtes invisible !");
+                target.sendMessage(msg("vanish.target.isNotVisible"));
                 if (!sender.equals(target)) {
-                    sender.sendMessage(ChatColor.GREEN + "Vous avez caché "
-                            + ChatColor.GOLD + target.getName());
+                    sender.sendMessage(msg("vanish.sender.isNotVisible", target.getDisplayName()));
                 }
             } else {
                 vanishComponent.removePlayer(target);
                 for (Player allPlayer : Bukkit.getOnlinePlayers()) {
                     allPlayer.showPlayer(target);
                 }
-                target.sendMessage(ChatColor.GREEN + "Vous êtes visible !");
+                target.sendMessage(msg("vanish.target.isVisible"));
 
                 if (!sender.equals(target)) {
-                    sender.sendMessage(ChatColor.GREEN + "Vous avez montrer "
-                            + ChatColor.GOLD + target.getName());
+                    sender.sendMessage(msg("vanish.sender.isNotVisible" ,target.getName()));
                 }
             }
         }
