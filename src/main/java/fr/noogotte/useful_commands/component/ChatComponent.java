@@ -101,8 +101,8 @@ public class ChatComponent extends Component implements Listener {
     		return;
     	}
 
-        if (isMute(event.getPlayer())) {
-            event.setCancelled(true);
-        }
+    	if (isMute(event.getPlayer())) {
+    		event.setCancelled(true);
+    	}
     }
 }
