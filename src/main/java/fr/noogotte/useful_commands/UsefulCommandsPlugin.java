@@ -20,6 +20,7 @@ import fr.noogotte.useful_commands.component.ChatComponent;
 import fr.noogotte.useful_commands.component.Component;
 import fr.noogotte.useful_commands.component.FunComponent;
 import fr.noogotte.useful_commands.component.GodComponent;
+import fr.noogotte.useful_commands.component.HomeComponent;
 import fr.noogotte.useful_commands.component.InventoryComponent;
 import fr.noogotte.useful_commands.component.KitsComponent;
 import fr.noogotte.useful_commands.component.PlayerComponent;
@@ -54,6 +55,7 @@ public class UsefulCommandsPlugin extends JavaPlugin {
         registration.register(new WorldComponent(this));
         registration.register(new VanishComponent(this));
         registration.register(new SpyComponent(this));
+        registration.register(new HomeComponent(this));
 
         registration.onEnable();
         components = registration.getComponents();

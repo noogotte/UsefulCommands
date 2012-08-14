@@ -300,6 +300,24 @@ commands:
         aliases: ["spylist"]
         permission: "useful.spy.command.list"
 
+    #Home
+    "useful sethome":
+        description: "Definis un home"
+        aliases: ["sethome"]
+        permission: "useful.home.sethome"
+    "useful home":
+        description: "Teleportation à son home"
+        aliases: ["home"]
+        permission: "useful.home.use"
+    "useful deletehome":
+        description: "Supprime un home"
+        aliases: ["deletehome", "delhome"]
+        permission: "useful.home.delhome"
+    "useful homes":
+        description: "Montre la liste des homes"
+        aliases: ["homes"]
+        permission: "useful.home.list"
+
 # Permissions
 permissions:
     useful.*:
@@ -318,6 +336,7 @@ permissions:
             - useful.god.*: true
             - useful.vanish.*: true
             - useful.spy.*: true
+            - useful.home.*: true
 
     useful.world.*:
         children:
@@ -447,3 +466,8 @@ permissions:
             - useful.spy.command.spy.other: true
             - useful.spy.command.broadcast: true
             - useful.spy.command.list: true
+    useful.home.*:
+            - useful.home.list: true
+            - useful.home.delhome: true
+            - useful.home.sethome: true
+            - useful.home.use: true
