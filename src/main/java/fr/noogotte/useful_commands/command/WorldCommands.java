@@ -148,7 +148,7 @@ public class WorldCommands extends UsefulCommands {
         int totalCount = 0;
         for (int i = 0; i < count; i++) {
             for (Location location : locations) {
-                location.getWorld().spawnCreature(location, entity);
+                location.getWorld().spawnEntity(location, entity);
                 totalCount++;
             }
         }

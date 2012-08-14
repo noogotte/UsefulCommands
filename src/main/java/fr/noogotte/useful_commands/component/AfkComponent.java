@@ -23,7 +23,7 @@ import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -184,7 +184,7 @@ public class AfkComponent extends Component implements Listener {
     }
 
     @EventHandler
-    public void onChat(PlayerChatEvent event) {
+    public void onChat(AsyncPlayerChatEvent event) {
         if (isAfk(event.getPlayer())) {
             event.setCancelled(true);
             event.getPlayer().sendMessage(
