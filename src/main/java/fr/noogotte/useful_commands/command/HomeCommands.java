@@ -29,6 +29,7 @@ public class HomeCommands extends UsefulCommands {
 
 		sender.sendMessage(ChatColor.GREEN + "Home définis.");
 		hm.addHome(sender);
+		hm.save();
 	}
 
 	@Command(name = "home")
@@ -40,7 +41,6 @@ public class HomeCommands extends UsefulCommands {
 		Home home = hm.getHome(sender);
 		sender.sendMessage(ChatColor.GREEN + "Poof !");
 		sender.teleport(home.toLocation());
-		hm.save();
 	}
 
 	@Command(name = "deletehome")
@@ -56,7 +56,7 @@ public class HomeCommands extends UsefulCommands {
 
 	@Command(name = "homes")
 	public void homes(Player sender, CommandArgs args) {
-		if( hm.isEmpty()) {
+		if(hm.isEmpty()) {
 			throw new CommandError("Aucun home de sauvegarder !");
 		}
 
