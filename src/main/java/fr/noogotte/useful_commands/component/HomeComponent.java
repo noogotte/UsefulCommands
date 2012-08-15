@@ -29,7 +29,7 @@ public class HomeComponent extends Component {
 		private final Vector position;
 		private final Direction direction;
 
-		public Home(Location location, Player player) {
+		public Home(Location location) {
 			this.worldName = location.getWorld().getName();
 			this.position = new Vector(location);
 			this.direction = Directions.fromLocation(location);
@@ -65,20 +65,20 @@ public class HomeComponent extends Component {
 		return Collections.<Commands>singletonList(new HomeCommands(this));
 	}
 
-	public boolean haveHome(Player player) {
-		return homes.containsKey(player.getName());
+	public boolean haveHome(String player) {
+		return homes.containsKey(player);
 	}
 
-	public Home getHome(Player player) {
-		return homes.get(player.getName());
+	public Home getHome(String player) {
+		return homes.get(player);
 	}
 
-	public void addHome(Player player) {
-		homes.put(player.getName(), new Home(player.getLocation(), player));
+	public void addHome(Player player, String player_) {
+		homes.put(player_, new Home(player.getLocation()));
 	}
 
-	public void deleteHome(Player player) {
-		homes.remove(player.getName());
+	public void deleteHome(String player) {
+		homes.remove(player);
 		save();
 	}
 

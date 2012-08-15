@@ -3,6 +3,7 @@ package fr.noogotte.useful_commands.command;
 import java.util.Map.Entry;
 
 import org.bukkit.ChatColor;
+import org.bukkit.command.CommandException;
 import org.bukkit.entity.Player;
 
 import fr.aumgn.bukkitutils.command.Command;
@@ -23,34 +24,47 @@ public class HomeCommands extends UsefulCommands {
 
 	@Command(name = "sethome")
 	public void setHome(Player sender, CommandArgs args) {
-		if (hm.haveHome(sender)) {
+		if (hm.haveHome(sender.getName())) {
 			throw new CommandError("Vous avez déja définis un home");
 		}
 
 		sender.sendMessage(ChatColor.GREEN + "Home définis.");
-		hm.addHome(sender);
+		hm.addHome(sender, sender.getName());
 		hm.save();
 	}
 
-	@Command(name = "home")
+	@Command(name = "home", max = 1)
 	public void home(Player sender, CommandArgs args) {
-		if(!hm.haveHome(sender)) {
+		String home_name = args.get(0, sender.getName());
+		if(!hm.haveHome(home_name)) {
+			if(home_name != sender.getName()) {
+				throw new CommandError(home_name + " n'a pas de home");
+			}
 			throw new CommandError("Vous n'avez pas de home !");
 		}
 
-		Home home = hm.getHome(sender);
+		if(!sender.hasPermission("useful.home.use" + home_name)) {
+			throw new CommandException("Vous n'avez la permission de vous téléporté au home de " + home_name);
+		}
+
+		Home home = hm.getHome(home_name);
 		sender.sendMessage(ChatColor.GREEN + "Poof !");
 		sender.teleport(home.toLocation());
 	}
 
-	@Command(name = "deletehome")
+	@Command(name = "deletehome", max = 1)
 	public void delHome(Player sender, CommandArgs args) {
-		if (!hm.haveHome(sender)) {
+		String home_name = args.get(0, sender.getName());
+
+		if (!hm.haveHome(home_name)) {
+			if(home_name != sender.getName()) {
+				throw new CommandError(home_name + " n'a pas de home");
+			}
 			throw new CommandError("Vous n'avez pas de home !");
 		}
 
-		sender.sendMessage(ChatColor.GREEN + "Home supprimer.");
-		hm.deleteHome(sender);
+		sender.sendMessage(ChatColor.GREEN + "Home supprimer. (" + home_name + ")");
+		hm.deleteHome(home_name);
 		hm.save();
 	}
 
@@ -60,7 +74,7 @@ public class HomeCommands extends UsefulCommands {
 			throw new CommandError("Aucun home de sauvegarder !");
 		}
 
-		sender.sendMessage(ChatColor.YELLOW +"Warp (" + hm.getNbHome() + "):");
+		sender.sendMessage(ChatColor.YELLOW +"Homes (" + hm.getNbHome() + "):");
 		for (Entry<String, Home> homes : hm.homes()) {
 			sender.sendMessage(ChatColor.YELLOW + " - " + homes.getKey());
 		}
