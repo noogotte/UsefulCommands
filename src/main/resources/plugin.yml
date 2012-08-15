@@ -467,6 +467,7 @@ permissions:
             - useful.spy.command.broadcast: true
             - useful.spy.command.list: true
     useful.home.*:
+        children:
             - useful.home.list: true
             - useful.home.delhome: true
             - useful.home.sethome: true
