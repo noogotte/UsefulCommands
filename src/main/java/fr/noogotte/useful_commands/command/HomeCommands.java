@@ -3,7 +3,6 @@ package fr.noogotte.useful_commands.command;
 import java.util.Map.Entry;
 
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandException;
 import org.bukkit.entity.Player;
 
 import fr.aumgn.bukkitutils.command.Command;
@@ -36,6 +35,7 @@ public class HomeCommands extends UsefulCommands {
 	@Command(name = "home", max = 1)
 	public void home(Player sender, CommandArgs args) {
 		String home_name = args.get(0, sender.getName());
+
 		if(!hm.haveHome(home_name)) {
 			if(home_name != sender.getName()) {
 				throw new CommandError(home_name + " n'a pas de home");
@@ -43,8 +43,10 @@ public class HomeCommands extends UsefulCommands {
 			throw new CommandError("Vous n'avez pas de home !");
 		}
 
-		if(!sender.hasPermission("useful.home.use" + home_name)) {
-			throw new CommandException("Vous n'avez la permission de vous téléporté au home de " + home_name);
+		if(home_name != sender.getName()) {
+			if(!sender.hasPermission("useful.home.use." + home_name) || !sender.hasPermission("useful.home.use.other")){
+				throw new CommandError("Vous n'avez la permission de vous téléporté au home de " + home_name);
+			}
 		}
 
 		Home home = hm.getHome(home_name);
@@ -61,6 +63,12 @@ public class HomeCommands extends UsefulCommands {
 				throw new CommandError(home_name + " n'a pas de home");
 			}
 			throw new CommandError("Vous n'avez pas de home !");
+		}
+
+		if(home_name != sender.getName()) {
+			if(!sender.hasPermission("useful.home.delhome." + home_name)) {
+				throw new CommandError("Vous n'avez la permission de supprimer le home de " + home_name);
+			}
 		}
 
 		sender.sendMessage(ChatColor.GREEN + "Home supprimer. (" + home_name + ")");
