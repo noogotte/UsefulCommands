@@ -1,8 +1,6 @@
 package fr.noogotte.useful_commands;
 
-import java.io.File;
 import java.util.List;
-import java.util.Locale;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -17,7 +15,8 @@ import fr.aumgn.bukkitutils.command.CommandsRegistration;
 import fr.aumgn.bukkitutils.gconf.GConfLoadException;
 import fr.aumgn.bukkitutils.gconf.GConfLoader;
 import fr.aumgn.bukkitutils.gconf.typeadapter.DirectionTypeAdapterFactory;
-import fr.aumgn.bukkitutils.localization.Localizable;
+import fr.aumgn.bukkitutils.localization.Localization;
+import fr.aumgn.bukkitutils.localization.PluginMessages;
 import fr.noogotte.useful_commands.component.AfkComponent;
 import fr.noogotte.useful_commands.component.ChatComponent;
 import fr.noogotte.useful_commands.component.Component;
@@ -33,7 +32,9 @@ import fr.noogotte.useful_commands.component.VanishComponent;
 import fr.noogotte.useful_commands.component.WarpsComponent;
 import fr.noogotte.useful_commands.component.WorldComponent;
 
-public class UsefulCommandsPlugin extends JavaPlugin implements Localizable {
+public class UsefulCommandsPlugin extends JavaPlugin {
+
+    private PluginMessages messages;
 
     private List<Component> components;
     private UsefulConfig config;
@@ -41,6 +42,11 @@ public class UsefulCommandsPlugin extends JavaPlugin implements Localizable {
     @Override
     public void onEnable() {
         config = loadUsefulConfig();
+
+        Localization localization = new Localization(
+                this, config.getLocale(), getDataFolder());
+        messages = localization.get("messages");
+
         CommandsRegistration commandsRegistration =
                 new CommandsRegistration(this, config.getLocale());
         ComponentRegistration registration = new ComponentRegistration(
@@ -62,6 +68,10 @@ public class UsefulCommandsPlugin extends JavaPlugin implements Localizable {
 
         registration.onEnable();
         components = registration.getComponents();
+    }
+
+    public PluginMessages getMessages() {
+        return messages;
     }
 
     public <T extends Component> T getComponent(Class<T> klass) {
@@ -113,14 +123,4 @@ public class UsefulCommandsPlugin extends JavaPlugin implements Localizable {
                 "Cette commande n'est pas activée.");
         return true;
     }
-
-	@Override
-	public Locale getLocale() {
-		return config.getLocale();
-	}
-
-	@Override
-	public File getResourcesFolder() {
-		return new File(getDataFolder(), "locale");
-	}
 }

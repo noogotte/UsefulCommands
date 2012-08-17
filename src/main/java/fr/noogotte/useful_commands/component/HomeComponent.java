@@ -62,7 +62,7 @@ public class HomeComponent extends Component {
 
 	@Override
 	public List<Commands> getCommands() {
-		return Collections.<Commands>singletonList(new HomeCommands(this));
+		return Collections.<Commands>singletonList(new HomeCommands(plugin, this));
 	}
 
 	public boolean haveHome(String player) {

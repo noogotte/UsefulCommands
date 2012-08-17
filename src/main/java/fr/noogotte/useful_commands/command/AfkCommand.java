@@ -18,7 +18,6 @@ public class AfkCommand extends UsefulCommands {
 
     private AfkComponent afkcomponent;
 
-
     public AfkCommand(AfkComponent afkcomponent, UsefulCommandsPlugin plugin) {
     	super(plugin);
         this.afkcomponent = afkcomponent;

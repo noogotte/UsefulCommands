@@ -9,6 +9,7 @@ import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.command.exception.CommandError;
+import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.HomeComponent;
 import fr.noogotte.useful_commands.component.HomeComponent.Home;
 
@@ -17,7 +18,8 @@ public class HomeCommands extends UsefulCommands {
 
 	private HomeComponent hm;
 
-	public HomeCommands(HomeComponent homeComponent) {
+	public HomeCommands(UsefulCommandsPlugin plugin, HomeComponent homeComponent) {
+		super(plugin);
 		this.hm = homeComponent;
 	}
 
