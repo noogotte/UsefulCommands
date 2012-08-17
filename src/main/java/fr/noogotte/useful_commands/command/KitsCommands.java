@@ -39,7 +39,7 @@ public class KitsCommands extends UsefulCommands {
 
         Kit kit = component.get(kitName);
         List<Player> targets = args.getPlayers(1)
-                .match(sender, "useful.kit.give.other");
+                .matchWithPermOr("useful.kit.give.other", sender);
         ItemStack[] stacks = kit.toItemStacks();
 
         for (Player target : targets) {

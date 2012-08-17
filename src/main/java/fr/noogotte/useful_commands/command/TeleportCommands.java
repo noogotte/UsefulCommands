@@ -23,7 +23,7 @@ public class TeleportCommands extends UsefulCommands {
     public void teleportation(Player sender, CommandArgs args) {
         Player to = args.getPlayer(0).value();
         List<Player> targets = args.getPlayers(1)
-                .match(sender, "useful.teleport.teleport.other");
+                .matchWithPermOr("useful.teleport.teleport.other", sender);
 
         for (Player target : targets) {
             target.teleport(to);
@@ -70,7 +70,7 @@ public class TeleportCommands extends UsefulCommands {
     @Command(name = "put", min = 0, max = 1)
     public void put(Player sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.teleport.put.other");
+                .matchWithPermOr("useful.teleport.put.other", sender);
 
         Vector pos = getTargetBlockLocation(sender, 180);
         Direction dir = pos.towards(new Vector(sender));
@@ -90,9 +90,9 @@ public class TeleportCommands extends UsefulCommands {
     @Command(name = "teleport-to", min = 1, max = 3)
     public void teleportTo(CommandSender sender, CommandArgs args) {
         Vector teleportPos = args.getVector(0).value();
-        World world = args.getWorld(1).value(sender);
+        World world = args.getWorld(1).valueOr(sender);
         List<Player> targets = args.getPlayers(2)
-                .match(sender, "useful.teleport.teleportto.other");
+                .matchWithPermOr("useful.teleport.teleportto.other", sender);
 
         for (Player target : targets) {
             Vector currentPos = new Vector(target.getLocation());
@@ -111,7 +111,7 @@ public class TeleportCommands extends UsefulCommands {
     @Command(name = "spawn", min = 0, max = 1)
     public void spawn(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.teleport.spawn.other");
+                .matchWithPermOr("useful.teleport.spawn.other", sender);
 
         for (Player target : targets) {
             target.teleport(target.getWorld().getSpawnLocation());

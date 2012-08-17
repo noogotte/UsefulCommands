@@ -115,7 +115,7 @@ public class ChatCommands extends UsefulCommands {
     @Command(name = "mute", min = 0, max = 1)
     public void mute(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.chat.mute.others");
+                .matchWithPermOr("useful.chat.mute.others", sender);
 
         for (Player target : targets) {
             if (component.isMute(target)) {
@@ -136,7 +136,7 @@ public class ChatCommands extends UsefulCommands {
     @Command(name = "unmute", min = 0, max = 1)
     public void unmute(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.chat.unmute.others");
+                .matchWithPermOr("useful.chat.unmute.others", sender);
 
         for (Player target : targets) {
             if (!component.isMute(target)) {

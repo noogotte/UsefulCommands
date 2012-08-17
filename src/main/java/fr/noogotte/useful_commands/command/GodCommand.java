@@ -24,7 +24,7 @@ public class GodCommand extends UsefulCommands {
     @Command(name = "god", min = 0, max = 1)
     public void god(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.god.other");
+                .matchWithPermOr("useful.god.other", sender);
 
         for (Player target : targets) {
             if (godComponent.isGod(target)) {
@@ -47,7 +47,7 @@ public class GodCommand extends UsefulCommands {
     @Command(name = "ungod", min = 0, max = 1)
     public void ungod(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.ungod.other");
+                .matchWithPermOr("useful.ungod.other", sender);
 
         for (Player target : targets) {
             if (!godComponent.isGod(target)) {

@@ -22,7 +22,7 @@ public class PlayerCommands extends UsefulCommands {
     @Command(name = "gamemode", flags = "cs", min = 0, max = 1)
     public void gamemode(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.player.gamemode.other");
+                .matchWithPermOr("useful.player.gamemode.other", sender);
 
         boolean force = args.hasFlags();
         GameMode gameMode = null;
@@ -56,7 +56,7 @@ public class PlayerCommands extends UsefulCommands {
     @Command(name = "heal", flags = "hf", min = 0, max = 1)
     public void heal(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.player.heal.other");
+                .matchWithPermOr("useful.player.heal.other", sender);
         boolean health = !args.hasFlags() || args.hasFlag('h');
         boolean food = !args.hasFlags() || args.hasFlag('f');
 
@@ -99,7 +99,7 @@ public class PlayerCommands extends UsefulCommands {
     @Command(name = "fly", min = 0, max = 1)
     public void fly(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.player.fly.other");
+                .matchWithPermOr("useful.player.fly.other", sender);
         for (Player target : targets) {
             if (target.isFlying()) {
                 target.setAllowFlight(false);
@@ -131,7 +131,7 @@ public class PlayerCommands extends UsefulCommands {
     @Command(name = "kill", min = 0, max = 1)
     public void kill(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.player.kill.other");
+                .matchWithPermOr("useful.player.kill.other", sender);
         for (Player target : targets) {
             target.setHealth(0);
             sender.sendMessage(ChatColor.GREEN + "Vous vous êtes suicidés !");
@@ -146,11 +146,11 @@ public class PlayerCommands extends UsefulCommands {
     @Command(name = "effect", min = 1, max = 3)
     public void effect(CommandSender sender, CommandArgs args) {
         PotionEffectType effect = args.getPotionEffectType(0).value();
-        Integer duration = args.getInteger(1).value(60);
+        Integer duration = args.getInteger(1).valueOr(60);
         PotionEffect newEffect = new PotionEffect(effect, duration * 20, 1);
 
         List<Player> targets = args.getPlayers(2)
-                .match(sender, "useful.player.effect.other");
+                .matchWithPermOr("useful.player.effect.other", sender);
 
         for (Player target : targets) {
             target.addPotionEffect(newEffect, true);
@@ -169,7 +169,7 @@ public class PlayerCommands extends UsefulCommands {
     @Command(name = "rename", min = 1, max = 2)
     public void rename(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(1)
-                .match(sender, "useful.player.rename.other");
+                .matchWithPermOr("useful.player.rename.other", sender);
         boolean reset = args.get(0).equals("reset");
 
         for (Player target : targets) {
@@ -208,9 +208,9 @@ public class PlayerCommands extends UsefulCommands {
 
     @Command(name = "burn", min = 1, max = 2)
     public void burn(CommandSender sender, CommandArgs args) {
-        int duration = args.getInteger(1).value(10);
+        int duration = args.getInteger(1).valueOr(10);
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.player.burn.other");
+                .matchWithPermOr("useful.player.burn.other", sender);
 
         for (Player target : targets) {
             target.setFireTicks(duration * 20);

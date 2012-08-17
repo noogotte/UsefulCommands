@@ -17,7 +17,7 @@ public class FunCommands extends UsefulCommands {
     @Command(name = "rocket", min = 0, max = 2)
     public void rocket(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.fun.rocket.other");
+                .matchWithPermOr("useful.fun.rocket.other", sender);
 
         for (Player target : targets) {
             target.setVelocity(new Vector(0, 50, 0));
@@ -33,7 +33,7 @@ public class FunCommands extends UsefulCommands {
     @Command(name = "strike", min = 0, max = 1)
     public void strike(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.fun.strike.other");
+                .matchWithPermOr("useful.fun.strike.other", sender);
 
         for (Player target : targets) {
             target.getWorld().strikeLightning(target.getLocation());

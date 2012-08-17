@@ -21,7 +21,7 @@ public class InventoryCommands implements Commands {
     @Command(name = "clear", flags = "qra", min = 0, max = 1)
     public void clear(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.inventory.clear.other");
+                .matchWithPermOr("useful.inventory.clear.other", sender);
         int from = args.hasFlag('q') ? 9 : 0;
         int to = args.hasFlag('r') ? 8 : 35;
         boolean armor = !args.hasFlag('a');
@@ -49,9 +49,9 @@ public class InventoryCommands implements Commands {
     public void give(CommandSender sender, CommandArgs args) {
         ItemType itemType = args.getItemType(0).value();
         List<Player> targets = args.getPlayers(2)
-                .match(sender, "useful.inventory.give.other");
+                .matchWithPermOr("useful.inventory.give.other", sender);
 
-        int amount = args.getInteger(1).value(itemType.getMaxStackSize());
+        int amount = args.getInteger(1).valueOr(itemType.getMaxStackSize());
         ItemStack item = itemType.toItemStack(amount);
 
         if (args.hasFlag('e') && !itemType.getMaterial().isBlock()) {
@@ -78,7 +78,7 @@ public class InventoryCommands implements Commands {
 
     @Command(name = "open", min = 0, max = 1)
     public void openInv(Player sender, CommandArgs args) {
-        Player target = args.getPlayer(0).value(sender);
+        Player target = args.getPlayer(0).valueOr(sender);
 
         if (target.hasPermission("useful.inventory.open.notify")) {
             target.sendMessage(ChatColor.RED
@@ -100,7 +100,7 @@ public class InventoryCommands implements Commands {
     @Command(name = "enchantment", min = 1, max = 2)
     public void enchantment(Player sender, CommandArgs args) {
         Enchantment enchantment = args.getEnchantment(0).value();
-        Integer level = args.getInteger(1).value(1);
+        Integer level = args.getInteger(1).valueOr(1);
 
         if (!enchantment.canEnchantItem(sender.getItemInHand())) {
             sender.sendMessage(ChatColor.GREEN + "L'enchantement "

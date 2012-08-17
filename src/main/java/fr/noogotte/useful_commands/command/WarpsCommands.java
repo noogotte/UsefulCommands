@@ -44,7 +44,7 @@ public class WarpsCommands extends UsefulCommands {
 
         String warpName = args.get(0);
         List<Player> targets = args.getPlayers(1)
-                .match(sender, "useful.warp.tp.other");
+                .matchWithPermOr("useful.warp.tp.other", sender);
 
         for (Player target : targets) {
             Warp warp = warpscomponent.getWarp(warpName);

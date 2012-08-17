@@ -29,7 +29,7 @@ public class WorldCommands extends UsefulCommands {
 
     @Command(name = "seed", min = 0, max = 1)
     public void seed(CommandSender sender, CommandArgs args) {
-        List<World> worlds = args.getList(0, World.class).match(sender);
+        List<World> worlds = args.getList(0, World.class).matchOr(sender);
 
         for (World world : worlds) {
             sender.sendMessage(ChatColor.GREEN + "Seed de " + ChatColor.BLUE
@@ -40,8 +40,8 @@ public class WorldCommands extends UsefulCommands {
 
     @Command(name = "setspawn", min = 0, max = 2)
     public void setSpawn(CommandSender sender, CommandArgs args) {
-        Vector position = args.getVector(0).value(sender);
-        World world = args.getWorld(0).value(sender);
+        Vector position = args.getVector(0).valueOr(sender);
+        World world = args.getWorld(0).valueOr(sender);
         world.setSpawnLocation(
                 position.getBlockX(),
                 position.getBlockY(),
@@ -51,7 +51,7 @@ public class WorldCommands extends UsefulCommands {
 
     @Command(name = "time", min = 1, max = 2)
     public void time(CommandSender sender, CommandArgs args) {
-        List<World> worlds = args.getList(1, World.class).value(sender);
+        List<World> worlds = args.getList(1, World.class).valueOr(sender);
 
         int time = args.get(0, new TimeArg.Factory()).value();
         for (World world : worlds) {
@@ -77,7 +77,7 @@ public class WorldCommands extends UsefulCommands {
 
     @Command(name = "weather", min = 0, max = 2)
     public void weather(CommandSender sender, CommandArgs args) {
-        List<World> worlds = args.getList(1, World.class).value(sender);
+        List<World> worlds = args.getList(1, World.class).valueOr(sender);
 
         boolean toggle = args.length() == 0;
         boolean storm = false;
@@ -120,17 +120,17 @@ public class WorldCommands extends UsefulCommands {
                     "Vous ne pouvez pas spawner ce type d'entité");
         }
 
-        int count = args.getInteger(1).value(1);
+        int count = args.getInteger(1).valueOr(1);
         List<Location> locations = new ArrayList<Location>();
         if (args.hasFlag('t')) {
-            for (Player target : args.getPlayers(2).value(sender)) {
+            for (Player target : args.getPlayers(2).valueOr(sender)) {
                 Location location = getTargetBlockLocation(target, 180)
                         .toLocation(sender.getWorld());
                 locations.add(location);
             }
         } else if (args.hasArgFlag('d')) {
             int distance = args.get('d', Integer.class).value();
-            for (Player target : args.getPlayers(2).value(sender)) {
+            for (Player target : args.getPlayers(2).valueOr(sender)) {
                 Location location = getDistantLocation(target, distance)
                         .toLocation(sender.getWorld());
                 locations.add(location);
@@ -140,7 +140,7 @@ public class WorldCommands extends UsefulCommands {
             Vector pos = pos2D.toHighest(sender.getWorld());
             locations.add(pos.toLocation(sender.getWorld()));
         } else {
-            for (Player target : args.getPlayers(2).value(sender)) {
+            for (Player target : args.getPlayers(2).valueOr(sender)) {
                 locations.add(target.getLocation());
             }
         }
@@ -180,7 +180,7 @@ public class WorldCommands extends UsefulCommands {
         World world = null;
 
         if (hasRadius) {
-            radius = args.getInteger(1).value(1);
+            radius = args.getInteger(1).valueOr(1);
             radius *= radius;
 
             if (args.hasArgFlag('c')) {
@@ -191,7 +191,7 @@ public class WorldCommands extends UsefulCommands {
                 from = args.get('c', Vector.class).value();
                 world = args.get('w', World.class).value();
             } else {
-                Player target = args.get('p', Player.class).value(sender);
+                Player target = args.get('p', Player.class).valueOr(sender);
                 from = new Vector(target);
                 world = target.getWorld();
             }
@@ -199,7 +199,7 @@ public class WorldCommands extends UsefulCommands {
             if (args.hasArgFlag('p')) {
                 world = args.get('p', Player.class).value().getWorld();
             } else {
-                world = args.get('w', World.class).value(sender);
+                world = args.get('w', World.class).valueOr(sender);
             }
         }
 
@@ -228,8 +228,8 @@ public class WorldCommands extends UsefulCommands {
 
     @Command(name = "position", min = 0, max = 1)
     public void getPos(CommandSender sender, CommandArgs args) {
-        List<Player> targets = args.getPlayers(0).match(sender,
-                "useful.world.position.other");
+        List<Player> targets = args.getPlayers(0)
+                .matchWithPermOr("useful.world.position.other", sender);
 
         for (Player target : targets) {
             Location location = target.getLocation();

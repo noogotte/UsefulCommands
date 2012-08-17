@@ -23,7 +23,7 @@ public class PlayerInfoCommand extends UsefulCommands {
 
     @Command(name = "playerinfo", min = 1, max = 1)
     public void playerInfo(CommandSender sender, CommandArgs args) {
-        Player target = args.getPlayer(0).value(sender);
+        Player target = args.getPlayer(0).valueOr(sender);
         String yes = "Oui";
         String no = "Non";
 

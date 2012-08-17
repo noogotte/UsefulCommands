@@ -25,7 +25,7 @@ public class SpyCommand extends UsefulCommands {
     @Command(name = "spy", min = 0, max = 1)
     public void spy(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.spy.command.other");
+                .matchWithPermOr("useful.spy.command.other", sender);
 
         for (Player target : targets) {
         	sp.toggleSpyMode(target);

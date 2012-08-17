@@ -24,7 +24,7 @@ public class VanishCommand extends UsefulCommands {
     @Command(name = "vanish", min = 0, max = 1)
     public void vanish(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
-                .match(sender, "useful.vanish.command.other");
+                .matchWithPermOr("useful.vanish.command.other", sender);
 
         for (Player target : targets) {
             if (!vanishComponent.isVanish(target)) {
