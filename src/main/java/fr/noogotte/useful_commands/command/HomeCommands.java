@@ -26,10 +26,10 @@ public class HomeCommands extends UsefulCommands {
 	@Command(name = "sethome")
 	public void setHome(Player sender, CommandArgs args) {
 		if (hm.haveHome(sender.getName())) {
-			throw new CommandError("Vous avez déja définis un home");
+			throw new CommandError(msg("home.hasAlready_€"));
 		}
 
-		sender.sendMessage(ChatColor.GREEN + "Home définis.");
+		sender.sendMessage(msg("home.define"));
 		hm.addHome(sender, sender.getName());
 		hm.save();
 	}
@@ -40,19 +40,19 @@ public class HomeCommands extends UsefulCommands {
 
 		if(!hm.haveHome(home_name)) {
 			if(home_name != sender.getName()) {
-				throw new CommandError(home_name + " n'a pas de home");
+				throw new CommandError(msg("home.hasNotHome.other_€", home_name));
 			}
-			throw new CommandError("Vous n'avez pas de home !");
+			throw new CommandError(msg("home.hasNotHome_€"));
 		}
 
 		if(home_name != sender.getName()) {
-			if(!sender.hasPermission("useful.home.use." + home_name) || !sender.hasPermission("useful.home.use.other")){
-				throw new CommandError("Vous n'avez la permission de vous téléporté au home de " + home_name);
+			if(sender.hasPermission("useful.home.use.other")){
+				throw new CommandError(msg("home.hasNotPermToUse_€", home_name));
 			}
 		}
 
 		Home home = hm.getHome(home_name);
-		sender.sendMessage(ChatColor.GREEN + "Poof !");
+		sender.sendMessage(msg("teleport.target"));
 		sender.teleport(home.toLocation());
 	}
 
@@ -62,18 +62,18 @@ public class HomeCommands extends UsefulCommands {
 
 		if (!hm.haveHome(home_name)) {
 			if(home_name != sender.getName()) {
-				throw new CommandError(home_name + " n'a pas de home");
+				throw new CommandError(msg("home.hasNotHome.other_€", home_name));
 			}
-			throw new CommandError("Vous n'avez pas de home !");
+			throw new CommandError(msg("home.hasNotHome_€"));
 		}
 
 		if(home_name != sender.getName()) {
-			if(!sender.hasPermission("useful.home.delhome." + home_name)) {
-				throw new CommandError("Vous n'avez la permission de supprimer le home de " + home_name);
+			if(!sender.hasPermission("useful.home.delhome.other")) {
+				throw new CommandError(msg("home.hasNotPermToDel.other_€", home_name));
 			}
 		}
 
-		sender.sendMessage(ChatColor.GREEN + "Home supprimer. (" + home_name + ")");
+		sender.sendMessage(msg("home.del", home_name));
 		hm.deleteHome(home_name);
 		hm.save();
 	}
@@ -81,7 +81,7 @@ public class HomeCommands extends UsefulCommands {
 	@Command(name = "homes")
 	public void homes(Player sender, CommandArgs args) {
 		if(hm.isEmpty()) {
-			throw new CommandError("Aucun home de sauvegarder !");
+			throw new CommandError(msg("home.isEmpty"));
 		}
 
 		sender.sendMessage(ChatColor.YELLOW +"Homes (" + hm.getNbHome() + "):");
