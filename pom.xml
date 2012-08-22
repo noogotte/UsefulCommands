@@ -55,6 +55,13 @@
 			</resource>
 			<resource>
 				<targetPath>.</targetPath>
+				<directory>${basedir}/src/main/resources/</directory>
+				<includes>
+					<include>plugin.yml</include>
+				</includes>
+			</resource>
+			<resource>
+				<targetPath>.</targetPath>
 				<filtering>false</filtering>
 				<directory>${basedir}</directory>
 				<includes>
