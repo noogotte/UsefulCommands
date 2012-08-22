@@ -473,3 +473,9 @@ permissions:
             - useful.home.sethome: true
             - useful.home.use: true
             - useful.home.use.other: true
+            - useful.home.delhome.other: true
+
+    useful.home.use.other:
+        default: op
+    useful.home.delhome.other:
+        default: op
