@@ -46,7 +46,7 @@ public class HomeCommands extends UsefulCommands {
 		}
 
 		if(home_name != sender.getName()) {
-			if(sender.hasPermission("useful.home.use.other")){
+			if(!sender.hasPermission("useful.home.use.other")){
 				throw new CommandError(msg("home.hasNotPermToUse_€", home_name));
 			}
 		}
