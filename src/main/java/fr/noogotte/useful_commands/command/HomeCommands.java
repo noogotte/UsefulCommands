@@ -81,7 +81,7 @@ public class HomeCommands extends UsefulCommands {
 	@Command(name = "homes")
 	public void homes(Player sender, CommandArgs args) {
 		if(hm.isEmpty()) {
-			throw new CommandError(msg("home.isEmpty"));
+			throw new CommandError(msg("home.isEmpty_€"));
 		}
 
 		sender.sendMessage(ChatColor.YELLOW +"Homes (" + hm.getNbHome() + "):");
