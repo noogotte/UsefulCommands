@@ -159,3 +159,7 @@ home.hasNotPermToUse_€: "Vous n'avez la permission de vous téléporter au hom
 home.hasNotPermToDel.other_€: "Vous n'avez la permission de supprimer le home de {0}"
 home.del: "{green}Home supprimer. {blue}{0}"
 home.isEmpty_€: "Aucun home de sauvegarder"
+adventure.isAlreadyInAdventureMode_€.sender: "Vous êtes déja en mode aventure"
+adventure.isAlreadyInAdventureMode_€.target: "{0} est déja en mode aventure"
+adventure.isInAdventureMode.target: "{green}Vous êtes en mode aventure."
+adventure.isInAdventureMode.sender: "Vous avez mis {0} en mode aventure"

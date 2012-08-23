@@ -150,6 +150,11 @@ commands:
         usage: ""
         aliases: ["oplist"]
         permission: "useful.player.oplist"
+    "useful adventure":
+        description: "Active le mode aventure."
+        usage: "[target]"
+        aliases: ["adventure"]
+        permission: "useful.player.adventure"
 
     # Inventory Commands
     "useful clear":
@@ -405,6 +410,8 @@ permissions:
             - useful.player.burn.other: true
             - useful.player.oplist: true
             - useful.player.online: true
+            - useful.player.adventure: true
+            - useful.player.adventure.other: true
 
     useful.inventory.*:
         children:

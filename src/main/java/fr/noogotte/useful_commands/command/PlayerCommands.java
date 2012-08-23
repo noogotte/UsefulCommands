@@ -13,6 +13,7 @@ import org.bukkit.potion.PotionEffectType;
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
+import fr.aumgn.bukkitutils.command.exception.CommandError;
 import fr.aumgn.bukkitutils.util.Util;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.event.DisplayNameLookupEvent;
@@ -42,7 +43,7 @@ public class PlayerCommands extends UsefulCommands {
                 continue;
             }
 
-            if (target.getGameMode() == GameMode.CREATIVE) {
+            if (target.getGameMode() == GameMode.CREATIVE || target.getGameMode() == GameMode.ADVENTURE) {
                 target.setGameMode(GameMode.SURVIVAL);
             } else {
                 target.setGameMode(GameMode.CREATIVE);
@@ -198,6 +199,28 @@ public class PlayerCommands extends UsefulCommands {
 
             if (!sender.equals(target)) {
                 sender.sendMessage(msg("burn.sender", target.getDisplayName(), duration));
+            }
+        }
+    }
+
+    @Command(name = "adventure", min = 0, max = 1)
+    public void adventure(CommandSender sender, CommandArgs args) {
+        List<Player> targets = args.getPlayers(0).matchWithPermOr("useful.player.adventure.other", sender);
+
+        for (Player target : targets) {
+            if (target.getGameMode() != GameMode.ADVENTURE) {
+                target.setGameMode(GameMode.ADVENTURE);
+                target.sendMessage(msg("adventure.isInAdventureMode.target"));
+            } else {
+                if (sender.equals(target)) {
+                    throw new CommandError(msg("adventure.isAlreadyInAdventureMode_€.sender"));
+                } else {
+                    throw new CommandError(msg("adventure.isAlreadyInAdventureMode_€.target", target.getDisplayName()));
+                }
+            }
+
+            if (!sender.equals(target)) {
+                sender.sendMessage(msg("adventure.isInAdventureMode.sender", target.getDisplayName()));
             }
         }
     }
