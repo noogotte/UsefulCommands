@@ -9,8 +9,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import fr.aumgn.bukkitutils.command.Commands;
-import fr.aumgn.bukkitutils.gconf.GConfLoadException;
-import fr.aumgn.bukkitutils.gconf.GConfLoader;
+import fr.aumgn.bukkitutils.gson.GsonLoadException;
+import fr.aumgn.bukkitutils.gson.GsonLoader;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.command.KitsCommands;
 import fr.noogotte.useful_commands.component.kit.Kit;
@@ -29,7 +29,7 @@ public class KitsComponent extends Component
             return;
         }
 
-        GConfLoader loader = plugin.getGConfLoader();
+        GsonLoader loader = plugin.getGConfLoader();
         for (File file : folder.listFiles()) {
             String filename = folder.getName() + File.separator
                     + file.getName();
@@ -37,7 +37,7 @@ public class KitsComponent extends Component
             try {
                 Kit kit = loader.loadOrCreate(filename, Kit.class);
                 kits.put(getKitNameFor(filename), kit);
-            } catch (GConfLoadException exc) {
+            } catch (GsonLoadException exc) {
                 plugin.getLogger().severe(
                         "Unable to read " + filename + " kit file.");
             }
@@ -90,7 +90,7 @@ public class KitsComponent extends Component
     }
 
     private boolean saveKit(String name, Kit kit) {
-        GConfLoader loader = plugin.getGConfLoader();
+        GsonLoader loader = plugin.getGConfLoader();
         File folder = getFolder();
         if (folder == null) {
             return false;
@@ -100,7 +100,7 @@ public class KitsComponent extends Component
         try {
             loader.write(filename, kit);
             return true;
-        } catch (GConfLoadException exc) {
+        } catch (GsonLoadException exc) {
             plugin.getLogger().severe("Unable to save " + filename + ".");
             return false;
         }

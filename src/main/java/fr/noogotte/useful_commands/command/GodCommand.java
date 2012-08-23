@@ -12,7 +12,7 @@ import fr.aumgn.bukkitutils.command.exception.CommandError;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.GodComponent;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class GodCommand extends UsefulCommands {
 
     private GodComponent godComponent;

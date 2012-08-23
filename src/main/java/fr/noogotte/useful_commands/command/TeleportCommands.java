@@ -17,7 +17,7 @@ import fr.aumgn.bukkitutils.geom.Direction;
 import fr.aumgn.bukkitutils.geom.Vector;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class TeleportCommands extends UsefulCommands {
 
     public TeleportCommands(UsefulCommandsPlugin plugin) {

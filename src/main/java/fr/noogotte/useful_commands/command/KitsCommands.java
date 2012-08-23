@@ -16,7 +16,7 @@ import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.KitsComponent;
 import fr.noogotte.useful_commands.component.kit.Kit;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class KitsCommands extends UsefulCommands {
 
     private final KitsComponent component;

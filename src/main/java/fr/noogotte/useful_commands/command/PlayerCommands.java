@@ -18,7 +18,7 @@ import fr.aumgn.bukkitutils.util.Util;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.event.DisplayNameLookupEvent;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class PlayerCommands extends UsefulCommands {
 
     public PlayerCommands(UsefulCommandsPlugin plugin) {

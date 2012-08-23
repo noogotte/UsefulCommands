@@ -13,7 +13,7 @@ import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.HomeComponent;
 import fr.noogotte.useful_commands.component.HomeComponent.Home;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class HomeCommands extends UsefulCommands {
 
 	private HomeComponent hm;

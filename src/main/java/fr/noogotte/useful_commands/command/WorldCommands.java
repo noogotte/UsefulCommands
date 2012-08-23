@@ -25,7 +25,7 @@ import fr.aumgn.bukkitutils.geom.Vector2D;
 import fr.aumgn.bukkitutils.util.Util;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class WorldCommands extends UsefulCommands {
 
     public WorldCommands(UsefulCommandsPlugin plugin) {

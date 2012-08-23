@@ -16,7 +16,7 @@ import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.WarpsComponent;
 import fr.noogotte.useful_commands.component.WarpsComponent.Warp;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class WarpsCommands extends UsefulCommands {
 
     private WarpsComponent warpscomponent;

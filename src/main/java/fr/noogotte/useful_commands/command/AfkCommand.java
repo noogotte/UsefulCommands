@@ -13,7 +13,7 @@ import fr.aumgn.bukkitutils.util.Util;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.AfkComponent;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class AfkCommand extends UsefulCommands {
 
     private AfkComponent afkcomponent;

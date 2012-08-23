@@ -17,7 +17,7 @@ import fr.aumgn.bukkitutils.util.Util;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.ChatComponent;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class ChatCommands extends UsefulCommands {
 
     private final ChatComponent component;

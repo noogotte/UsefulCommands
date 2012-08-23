@@ -14,7 +14,7 @@ import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.itemtype.ItemType;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class InventoryCommands extends UsefulCommands {
 
     public InventoryCommands(UsefulCommandsPlugin plugin) {

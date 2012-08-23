@@ -13,7 +13,7 @@ import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.VanishComponent;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class VanishCommand extends UsefulCommands {
 
     private VanishComponent vanishComponent;

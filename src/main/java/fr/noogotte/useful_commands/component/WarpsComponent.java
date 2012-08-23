@@ -13,11 +13,11 @@ import org.bukkit.World;
 import com.google.gson.reflect.TypeToken;
 
 import fr.aumgn.bukkitutils.command.Commands;
-import fr.aumgn.bukkitutils.gconf.GConfLoadException;
-import fr.aumgn.bukkitutils.gconf.GConfLoader;
 import fr.aumgn.bukkitutils.geom.Direction;
 import fr.aumgn.bukkitutils.geom.Directions;
 import fr.aumgn.bukkitutils.geom.Vector;
+import fr.aumgn.bukkitutils.gson.GsonLoadException;
+import fr.aumgn.bukkitutils.gson.GsonLoader;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.command.WarpsCommands;
 
@@ -44,13 +44,13 @@ public class WarpsComponent extends Component {
 
     public WarpsComponent(UsefulCommandsPlugin plugin) {
         super(plugin);
-        GConfLoader loader = plugin.getGConfLoader();
+        GsonLoader loader = plugin.getGConfLoader();
         warps = new HashMap<String, Warp>();
         try {
             TypeToken<HashMap<String, Warp>> typeToken =
                     new TypeToken<HashMap<String, Warp>>() {};
-            warps.putAll(loader.loadOrCreate("warps.json", typeToken));
-        } catch (GConfLoadException exc) {
+                    warps.putAll(loader.loadOrCreate("warps.json", typeToken));
+        } catch (GsonLoadException exc) {
             plugin.getLogger().severe("Unable to load warps.json.");
         }
     }
@@ -93,10 +93,10 @@ public class WarpsComponent extends Component {
     }
 
     public void save() {
-        GConfLoader loader = plugin.getGConfLoader();
+        GsonLoader loader = plugin.getGConfLoader();
         try {
             loader.write("warps.json", warps);
-        } catch (GConfLoadException exc) {
+        } catch (GsonLoadException exc) {
             plugin.getLogger().severe("Unable to save warps.json.");
         }
     }

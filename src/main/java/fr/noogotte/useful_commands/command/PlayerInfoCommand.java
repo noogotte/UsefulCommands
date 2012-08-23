@@ -11,7 +11,7 @@ import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.AfkComponent;
 import fr.noogotte.useful_commands.component.GodComponent;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class PlayerInfoCommand extends UsefulCommands {
 
     private final UsefulCommandsPlugin plugin;

@@ -14,7 +14,7 @@ import fr.aumgn.bukkitutils.util.Util;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.component.SpyComponent;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class SpyCommand extends UsefulCommands {
 
     private SpyComponent sp;

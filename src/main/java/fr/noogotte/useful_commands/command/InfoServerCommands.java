@@ -15,7 +15,7 @@ import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.event.VisibleCheckEvent;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class InfoServerCommands extends UsefulCommands {
 
 	public InfoServerCommands(UsefulCommandsPlugin plugin) {

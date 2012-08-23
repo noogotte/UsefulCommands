@@ -14,11 +14,11 @@ import org.bukkit.entity.Player;
 import com.google.gson.reflect.TypeToken;
 
 import fr.aumgn.bukkitutils.command.Commands;
-import fr.aumgn.bukkitutils.gconf.GConfLoadException;
-import fr.aumgn.bukkitutils.gconf.GConfLoader;
 import fr.aumgn.bukkitutils.geom.Direction;
 import fr.aumgn.bukkitutils.geom.Directions;
 import fr.aumgn.bukkitutils.geom.Vector;
+import fr.aumgn.bukkitutils.gson.GsonLoadException;
+import fr.aumgn.bukkitutils.gson.GsonLoader;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 import fr.noogotte.useful_commands.command.HomeCommands;
 
@@ -44,13 +44,13 @@ public class HomeComponent extends Component {
 	private final Map<String, Home> homes;
 	public HomeComponent(UsefulCommandsPlugin plugin) {
 		super(plugin);
-		GConfLoader loader = plugin.getGConfLoader();
+		GsonLoader loader = plugin.getGConfLoader();
 		homes = new HashMap<String, Home>();
 		try {
 			TypeToken<HashMap<String, Home>> typeToken =
 					new TypeToken<HashMap<String, Home>>() {};
 					homes.putAll(loader.loadOrCreate("homes.json", typeToken));
-		} catch (GConfLoadException exc) {
+		} catch (GsonLoadException exc) {
 			plugin.getLogger().severe("Unable to load homes.json.");
 		}
 	}
@@ -83,10 +83,10 @@ public class HomeComponent extends Component {
 	}
 
 	public void save() {
-		GConfLoader loader = plugin.getGConfLoader();
+		GsonLoader loader = plugin.getGConfLoader();
 		try {
 			loader.write("homes.json", homes);
-		} catch (GConfLoadException exc) {
+		} catch (GsonLoadException exc) {
 			plugin.getLogger().severe("Unable to save homes.json.");
 		}
 	}

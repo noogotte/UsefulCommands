@@ -11,7 +11,7 @@ import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 
-@NestedCommands(name = "useful")
+@NestedCommands("useful")
 public class FunCommands extends UsefulCommands {
 
     public FunCommands(UsefulCommandsPlugin plugin) {
