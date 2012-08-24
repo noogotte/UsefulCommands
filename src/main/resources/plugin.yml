@@ -323,6 +323,20 @@ commands:
         aliases: ["homes"]
         permission: "useful.home.list"
 
+    #Plugin
+    "useful disable":
+        description: "Désactive un plugin"
+        aliases: ["disable"]
+        permission: "useful.plugin.disable"
+    "useful enable":
+        description: "Active un plugin"
+        aliases: ["enable"]
+        permission: "useful.plugin.enable"
+    "useful info-plugin":
+        description: "Active un plugin"
+        aliases: ["info-plugin"]
+        permission: "useful.plugin.info-plugin"
+
 # Permissions
 permissions:
     useful.*:
@@ -342,6 +356,7 @@ permissions:
             - useful.vanish.*: true
             - useful.spy.*: true
             - useful.home.*: true
+            - useful.plugin*: true
 
     useful.world.*:
         children:
@@ -486,3 +501,8 @@ permissions:
         default: op
     useful.home.delhome.other:
         default: op
+    useful.plugin*:
+        children:
+            - useful.plugin.disable: true
+            - useful.plugin.enable: true
+            - useful.plugin.info-plugin: true

@@ -26,6 +26,7 @@ import fr.noogotte.useful_commands.component.HomeComponent;
 import fr.noogotte.useful_commands.component.InventoryComponent;
 import fr.noogotte.useful_commands.component.KitsComponent;
 import fr.noogotte.useful_commands.component.PlayerComponent;
+import fr.noogotte.useful_commands.component.PluginComponent;
 import fr.noogotte.useful_commands.component.SpyComponent;
 import fr.noogotte.useful_commands.component.TeleportComponent;
 import fr.noogotte.useful_commands.component.VanishComponent;
@@ -65,6 +66,7 @@ public class UsefulCommandsPlugin extends JavaPlugin {
         registration.register(new VanishComponent(this));
         registration.register(new SpyComponent(this));
         registration.register(new HomeComponent(this));
+        registration.register(new PluginComponent(this));
 
         registration.onEnable();
         components = registration.getComponents();
