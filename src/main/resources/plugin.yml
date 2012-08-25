@@ -167,11 +167,11 @@ commands:
         usage: "[-e] <type> [amount] [target]"
         aliases: ["give", "i", "item"]
         permission: "useful.inventory.give"
-    "useful open":
+    "useful openinv":
         description: "Ouvre l'inventaire."
         usage: "[target]"
-        aliases: ["open"]
-        permission: "useful.inventory.open"
+        aliases: ["openinv"]
+        permission: "useful.inventory.openinv"
     "useful id":
         description: "Affiche l'id de l'objet en main."
         usage: ""
@@ -187,6 +187,11 @@ commands:
         usage: "[enchantment]"
         aliases: ["removeenchant", "rmenchant"]
         permission: "useful.inventory.removeenchant"
+    "useful openender":
+        description: "Ouvre l'enderchest"
+        usage: "[target]"
+        aliases: ["openender"]
+        permission: "useful.inventory.openender"
 
     # Warp Commands
     "useful setwarp":
@@ -434,11 +439,13 @@ permissions:
             - useful.inventory.clear.other: true
             - useful.inventory.give: true
             - useful.inventory.give.other: true
-            - useful.inventory.open: true
-            - useful.inventory.open.notify: true
+            - useful.inventory.openinv: true
+            - useful.inventory.openinv.notify: true
             - useful.inventory.id: true
             - useful.inventory.enchant: true
             - useful.inventory.removeenchant: true
+            - useful.inventory.openender: true
+            - useful.inventory.openender.notify: true
 
     useful.warp.*:
         children:

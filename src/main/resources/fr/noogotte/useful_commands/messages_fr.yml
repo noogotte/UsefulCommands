@@ -33,7 +33,7 @@ give.target: "{green}Vous avez reçu {aqua}{0}{green} de {aqua}{1}"
 # {0} = nom de la cible, {1} nombre d'objet et {2} = nom de l'objet
 give.sender: "{green}Vous avez donné à {aqua}{0}{green}: {1}{green} de {2}"
 # {0} = nom de la cible
-open.notify: "{green}Votre inventaire a été ouvert par {aqua}{0}"
+openinv.notify: "{green}Votre inventaire a été ouvert par {aqua}{0}"
 # {0} Info de l'objet
 id.name: "{green}Vous tenez : {aqua}{0}"
 id.id: "{green}Son id est : {aqua}{0}"
@@ -169,3 +169,4 @@ enable_plugin.success: "{green}{0} activé avec succes"
 disable_plugin.isAlreadyDisable_€: "Le plugin \"{0}\" est déja désactivé"
 disable_plugin.success: "{green}{0} désactivé avec succes"
 info_plugin: "{blue}{0}{green}: {blue}{1}"
+openender.notify: "{green}Le contenu de votre EnderChest est regardé par {blue}{0}"

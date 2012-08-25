@@ -72,12 +72,12 @@ public class InventoryCommands extends UsefulCommands {
         }
     }
 
-    @Command(name = "open", min = 0, max = 1)
+    @Command(name = "openinv", min = 0, max = 1)
     public void openInv(Player sender, CommandArgs args) {
         Player target = args.getPlayer(0).valueOr(sender);
 
-        if (target.hasPermission("useful.inventory.open.notify")) {
-            target.sendMessage(msg("open.notify", sender.getDisplayName()));
+        if (target.hasPermission("useful.inventory.openinv.notify")) {
+            target.sendMessage(msg("openinv.notify", sender.getDisplayName()));
         }
         Inventory inventory = target.getInventory();
         sender.openInventory(inventory);
@@ -118,5 +118,16 @@ public class InventoryCommands extends UsefulCommands {
             stack.removeEnchantment(enchantment);
         }
         sender.sendMessage(msg("remove_enchant"));
+    }
+
+    @Command(name = "openender", min = 0, max = 1)
+    public void openEnder(Player sender, CommandArgs args) {
+        Player target = args.getPlayer(0).valueOr(sender);
+
+        if (target.hasPermission("useful.inventory.openender.notify")) {
+            target.sendMessage(msg("openender.notify", sender.getDisplayName()));
+        }
+        Inventory inventory = target.getEnderChest();
+        sender.openInventory(inventory);
     }
 }
