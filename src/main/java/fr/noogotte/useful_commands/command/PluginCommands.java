@@ -25,7 +25,7 @@ public class PluginCommands extends UsefulCommands {
         Plugin pluginToDisable = plugin.getServer().getPluginManager().getPlugin(pluginName);
 
         if (pluginToDisable == null) {
-            throw new CommandError(msg("plugin.isNotAPlugin", pluginToDisable));
+            throw new CommandError(msg("plugin.isNotAPlugin", pluginName));
         }
 
         if (!pluginToDisable.isEnabled()) {
@@ -42,7 +42,7 @@ public class PluginCommands extends UsefulCommands {
         Plugin pluginToEnable = plugin.getServer().getPluginManager().getPlugin(pluginName);
 
         if (pluginToEnable == null) {
-            throw new CommandError("Le plugin \"" + pluginName + "\" n'existe pas !");
+            throw new CommandError(msg("plugin.isNotAPlugin", pluginName));
         }
 
         if (pluginToEnable.isEnabled()) {
@@ -59,7 +59,7 @@ public class PluginCommands extends UsefulCommands {
         Plugin pluginToEnable = plugin.getServer().getPluginManager().getPlugin(pluginName);
 
         if (pluginToEnable == null) {
-            throw new CommandError("Le plugin \"" + pluginName + "\" n'existe pas !");
+            throw new CommandError(msg("plugin.isNotAPlugin", pluginName));
         }
 
         String enableOrDisable;
