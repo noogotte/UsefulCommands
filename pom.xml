@@ -48,7 +48,7 @@
 		<resources>
 			<resource>
 				<targetPath>fr/noogotte/useful_commands</targetPath>
-				<directory>${basedir}/src/main/resources/fr/noogotte/useful_commands</directory>
+				<directory>${basedir}/src/main/resources/messages</directory>
 				<includes>
 					<include>*</include>
 				</includes>
