@@ -1,8 +1,6 @@
 package fr.noogotte.useful_commands.component;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.bukkit.ChatColor;
@@ -50,8 +48,8 @@ public class AfkComponent extends Component implements Listener {
     }
 
     @Override
-    public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new AfkCommand(this, plugin));
+    public Commands[] getCommands() {
+        return new Commands[] { new AfkCommand(this, plugin) };
     }
 
     public void addPlayer(Player player) {

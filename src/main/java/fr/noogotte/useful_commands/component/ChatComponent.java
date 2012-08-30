@@ -1,9 +1,7 @@
 package fr.noogotte.useful_commands.component;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -39,8 +37,8 @@ public class ChatComponent extends Component implements Listener {
     }
 
     @Override
-    public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new ChatCommands(this, plugin));
+    public Commands[] getCommands() {
+        return new Commands[] { new ChatCommands(this, plugin) };
     }
 
     public void registerConversation(CommandSender sender, CommandSender target) {

@@ -1,8 +1,6 @@
 package fr.noogotte.useful_commands.component;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
@@ -34,8 +32,8 @@ public class SpyComponent extends Component implements Listener {
     }
 
     @Override
-    public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new SpyCommand(this, plugin));
+    public Commands[] getCommands() {
+        return new Commands[] { new SpyCommand(this, plugin) };
     }
 
     public boolean isSpy(Player player) {

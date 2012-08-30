@@ -1,8 +1,5 @@
 package fr.noogotte.useful_commands.component;
 
-import java.util.Collections;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -25,8 +22,8 @@ public abstract class Component {
 
     public abstract String getName();
 
-    public List<Commands> getCommands() {
-        return Collections.<Commands>emptyList();
+    public Commands[] getCommands() {
+        return new Commands[0];
     }
 
     public void onEnable() {

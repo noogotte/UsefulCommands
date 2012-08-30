@@ -1,10 +1,8 @@
 package fr.noogotte.useful_commands.component;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -50,8 +48,8 @@ public class KitsComponent extends Component
     }
 
     @Override
-    public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new KitsCommands(this, plugin));
+    public Commands[] getCommands() {
+        return new Commands[] { new KitsCommands(this, plugin) };
     }
 
     @Override

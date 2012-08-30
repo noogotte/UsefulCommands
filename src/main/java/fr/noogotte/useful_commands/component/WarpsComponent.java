@@ -1,8 +1,6 @@
 package fr.noogotte.useful_commands.component;
 
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -61,8 +59,8 @@ public class WarpsComponent extends Component {
     }
 
     @Override
-    public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new WarpsCommands(this, plugin));
+    public Commands[] getCommands() {
+        return new Commands[] { new WarpsCommands(this, plugin) };
     }
 
     @Override

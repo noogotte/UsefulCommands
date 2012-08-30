@@ -1,8 +1,6 @@
 package fr.noogotte.useful_commands.component;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
@@ -32,8 +30,8 @@ public class VanishComponent extends Component implements Listener {
     }
 
     @Override
-    public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new VanishCommand(this, plugin));
+    public Commands[] getCommands() {
+        return new Commands[] { new VanishCommand(this, plugin) };
     }
 
     public void addPlayer(Player player) {

@@ -1,8 +1,6 @@
 package fr.noogotte.useful_commands.component;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.bukkit.entity.Entity;
@@ -33,8 +31,8 @@ public class GodComponent extends Component implements Listener {
     }
 
     @Override
-    public List<Commands> getCommands() {
-        return Collections.<Commands>singletonList(new GodCommand(this, plugin));
+    public Commands[] getCommands() {
+        return new Commands[] { new GodCommand(this, plugin) };
     }
 
     public boolean isGod(Entity entity) {
