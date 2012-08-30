@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Locale;
 import java.util.Set;
 
+import fr.aumgn.bukkitutils.util.Util;
 import fr.noogotte.useful_commands.component.Component;
 
 public class UsefulConfig {
@@ -13,14 +14,7 @@ public class UsefulConfig {
     private boolean msgInConsole = true;
 
     public Locale getLocale() {
-        String[] splitted = lang.split("_");
-        if (splitted.length == 0) {
-            return Locale.getDefault();
-        } else if (splitted.length == 1) {
-            return new Locale(splitted[0]);
-        } else {
-            return new Locale(splitted[0], splitted[1]);
-        }
+        return Util.parseLocale(lang);
     }
 
     public boolean isEnabled(Component component) {

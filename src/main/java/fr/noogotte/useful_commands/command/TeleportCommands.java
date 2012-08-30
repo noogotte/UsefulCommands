@@ -21,10 +21,10 @@ import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 public class TeleportCommands extends UsefulCommands {
 
     public TeleportCommands(UsefulCommandsPlugin plugin) {
-		super(plugin);
-	}
+        super(plugin);
+    }
 
-	@Command(name = "teleportation", min = 1, max = 2)
+    @Command(name = "teleportation", min = 1, max = 2)
     public void teleportation(Player sender, CommandArgs args) {
         Player to = args.getPlayer(0).value();
         List<Player> targets = args.getPlayers(1)
@@ -83,7 +83,7 @@ public class TeleportCommands extends UsefulCommands {
             target.teleport(location);
             target.sendMessage(msg("teleport.target"));
             if (!sender.equals(target)) {
-            	sender.sendMessage(msg("teleport.sender.bis", target.getDisplayName()));
+                sender.sendMessage(msg("teleport.sender.bis", target.getDisplayName()));
             }
         }
     }
@@ -103,7 +103,7 @@ public class TeleportCommands extends UsefulCommands {
 
             target.sendMessage(msg("teleport.target"));
             if (!sender.equals(target)) {
-            	sender.sendMessage(msg("teleport.sender.bis", target.getDisplayName()));
+                sender.sendMessage(msg("teleport.sender.bis", target.getDisplayName()));
             }
         }
     }

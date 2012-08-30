@@ -62,14 +62,7 @@ public class PluginCommands extends UsefulCommands {
             throw new CommandError(msg("plugin.isNotAPlugin", pluginName));
         }
 
-        String enableOrDisable;
-
-        if (pluginToEnable.isEnabled()) {
-            enableOrDisable = "Enable";
-        } else {
-            enableOrDisable = "Disable";
-        }
-
-        sender.sendMessage(msg("info_plugin", pluginToEnable.getName(), enableOrDisable));
+        sender.sendMessage(msg("info_plugin", pluginToEnable.getName(),
+                pluginToEnable.isEnabled() ? "Enable" : "Disable"));
     }
 }

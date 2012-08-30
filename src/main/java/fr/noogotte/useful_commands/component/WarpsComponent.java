@@ -42,7 +42,7 @@ public class WarpsComponent extends Component {
 
     public WarpsComponent(UsefulCommandsPlugin plugin) {
         super(plugin);
-        GsonLoader loader = plugin.getGConfLoader();
+        GsonLoader loader = plugin.getGsonLoader();
         warps = new HashMap<String, Warp>();
         try {
             TypeToken<HashMap<String, Warp>> typeToken =
@@ -91,7 +91,7 @@ public class WarpsComponent extends Component {
     }
 
     public void save() {
-        GsonLoader loader = plugin.getGConfLoader();
+        GsonLoader loader = plugin.getGsonLoader();
         try {
             loader.write("warps.json", warps);
         } catch (GsonLoadException exc) {

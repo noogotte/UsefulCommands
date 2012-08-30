@@ -23,7 +23,7 @@ public class ChatCommands extends UsefulCommands {
     private final ChatComponent component;
 
     public ChatCommands(ChatComponent component, UsefulCommandsPlugin plugin) {
-    	super(plugin);
+        super(plugin);
         this.component = component;
     }
 

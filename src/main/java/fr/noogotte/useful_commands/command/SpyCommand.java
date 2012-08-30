@@ -20,7 +20,7 @@ public class SpyCommand extends UsefulCommands {
     private SpyComponent sp;
 
     public SpyCommand(SpyComponent spyComponent, UsefulCommandsPlugin plugin) {
-    	super(plugin);
+        super(plugin);
         this.sp = spyComponent;
     }
 
@@ -30,20 +30,20 @@ public class SpyCommand extends UsefulCommands {
                 .matchWithPermOr("useful.spy.command.other", sender);
 
         for (Player target : targets) {
-        	sp.toggleSpyMode(target);
-        	if(sp.isSpy(target)) {
-        		for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-        			onlinePlayer.hidePlayer(target);
-        		}
-        		Util.broadcast("useful.spy.command.broadcast", msg("spy.broadcast.isSpy", target.getDisplayName()));
-        	    Util.broadcast(msg("spy.broadcast.fakeQuitMessage", target.getDisplayName()));
-        	} else {
-        		Util.broadcast("useful.spy.command.broadcast", msg("spy.broadcast.isSpy", target.getDisplayName()));
-        		Util.broadcast(msg("spy.broadcast.fakeJoinMessage", target.getDisplayName()));
-        		for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-        			onlinePlayer.showPlayer(target);
-        		}
-        	}
+            sp.toggleSpyMode(target);
+            if(sp.isSpy(target)) {
+                for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+                    onlinePlayer.hidePlayer(target);
+                }
+                Util.broadcast("useful.spy.command.broadcast", msg("spy.broadcast.isSpy", target.getDisplayName()));
+                Util.broadcast(msg("spy.broadcast.fakeQuitMessage", target.getDisplayName()));
+            } else {
+                Util.broadcast("useful.spy.command.broadcast", msg("spy.broadcast.isSpy", target.getDisplayName()));
+                Util.broadcast(msg("spy.broadcast.fakeJoinMessage", target.getDisplayName()));
+                for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+                    onlinePlayer.showPlayer(target);
+                }
+            }
         }
     }
 

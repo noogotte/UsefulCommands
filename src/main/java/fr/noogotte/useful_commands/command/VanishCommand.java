@@ -19,7 +19,7 @@ public class VanishCommand extends UsefulCommands {
     private VanishComponent vanishComponent;
 
     public VanishCommand(VanishComponent vanishComponent, UsefulCommandsPlugin plugin) {
-    	super(plugin);
+        super(plugin);
         this.vanishComponent = vanishComponent;
     }
 

@@ -22,10 +22,10 @@ import fr.noogotte.useful_commands.event.DisplayNameLookupEvent;
 public class PlayerCommands extends UsefulCommands {
 
     public PlayerCommands(UsefulCommandsPlugin plugin) {
-		super(plugin);
-	}
+        super(plugin);
+    }
 
-	@Command(name = "gamemode", flags = "cs", min = 0, max = 1)
+    @Command(name = "gamemode", flags = "cs", min = 0, max = 1)
     public void gamemode(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
                 .matchWithPermOr("useful.player.gamemode.other", sender);

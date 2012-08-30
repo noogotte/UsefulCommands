@@ -18,7 +18,7 @@ public class GodCommand extends UsefulCommands {
     private GodComponent godComponent;
 
     public GodCommand(GodComponent godComponent, UsefulCommandsPlugin plugin) {
-    	super(plugin);
+        super(plugin);
         this.godComponent = godComponent;
     }
 
@@ -32,7 +32,7 @@ public class GodCommand extends UsefulCommands {
                 if (!sender.equals(target)) {
                     throw new CommandError(msg("god.isAlreadyInGodMode.sender_€", target.getDisplayName()));
                 } else {
-                	throw new CommandError(msg("god.isAlreadyInGodMode.target_€"));
+                    throw new CommandError(msg("god.isAlreadyInGodMode.target_€"));
                 }
             } else {
                 godComponent.setGod(target);
@@ -54,7 +54,7 @@ public class GodCommand extends UsefulCommands {
                 if (!sender.equals(target)) {
                     throw new CommandError(msg("god.isNotInGodMode.sender_€", target.getDisplayName()));
                 } else {
-                	throw new CommandError(msg("god.isNotInGodMode.target_€"));
+                    throw new CommandError(msg("god.isNotInGodMode.target_€"));
                 }
             } else {
                 godComponent.removeGod(target);

@@ -18,10 +18,10 @@ import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 public class InventoryCommands extends UsefulCommands {
 
     public InventoryCommands(UsefulCommandsPlugin plugin) {
-		super(plugin);
-	}
+        super(plugin);
+    }
 
-	@Command(name = "clear", flags = "qra", min = 0, max = 1)
+    @Command(name = "clear", flags = "qra", min = 0, max = 1)
     public void clear(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
                 .matchWithPermOr("useful.inventory.clear.other", sender);

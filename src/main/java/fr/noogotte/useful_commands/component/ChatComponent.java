@@ -95,12 +95,12 @@ public class ChatComponent extends Component implements Listener {
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onChat(AsyncPlayerChatEvent event) {
 
-    	if (event.getMessage().equalsIgnoreCase("/unmute")) {
-    		return;
-    	}
+        if (event.getMessage().equalsIgnoreCase("/unmute")) {
+            return;
+        }
 
-    	if (isMute(event.getPlayer())) {
-    		event.setCancelled(true);
-    	}
+        if (isMute(event.getPlayer())) {
+            event.setCancelled(true);
+        }
     }
 }

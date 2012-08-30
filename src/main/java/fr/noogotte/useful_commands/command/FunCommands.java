@@ -15,10 +15,10 @@ import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 public class FunCommands extends UsefulCommands {
 
     public FunCommands(UsefulCommandsPlugin plugin) {
-		super(plugin);
-	}
+        super(plugin);
+    }
 
-	@Command(name = "rocket", min = 0, max = 2)
+    @Command(name = "rocket", min = 0, max = 2)
     public void rocket(CommandSender sender, CommandArgs args) {
         List<Player> targets = args.getPlayers(0)
                 .matchWithPermOr("useful.fun.rocket.other", sender);

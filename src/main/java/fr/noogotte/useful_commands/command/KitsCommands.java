@@ -22,7 +22,7 @@ public class KitsCommands extends UsefulCommands {
     private final KitsComponent component;
 
     public KitsCommands(KitsComponent component, UsefulCommandsPlugin plugin) {
-    	super(plugin);
+        super(plugin);
         this.component = component;
     }
 

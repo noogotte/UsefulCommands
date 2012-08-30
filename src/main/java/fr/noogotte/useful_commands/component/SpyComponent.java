@@ -43,17 +43,17 @@ public class SpyComponent extends Component implements Listener {
     public HashSet<Player> getSpy() {
         return new HashSet<Player>(spy);
     }
-    
+
     public void toggleSpyMode(Player player) {
-    	if(spy.contains(player)) {
-    		spy.remove(player);
-    	} else {
-    		spy.add(player);
-    	}
+        if(spy.contains(player)) {
+            spy.remove(player);
+        } else {
+            spy.add(player);
+        }
     }
-    
+
     public int getNbSpy() {
-    	return spy.size();
+        return spy.size();
     }
 
     @EventHandler
@@ -80,7 +80,7 @@ public class SpyComponent extends Component implements Listener {
             event.setCancelled(true);
         }
     }
-    
+
     @EventHandler
     public void onVisibleCheck(VisibleCheckEvent event) {
         if (isSpy(event.getPlayer())) {

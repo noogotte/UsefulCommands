@@ -18,38 +18,38 @@ import fr.noogotte.useful_commands.event.VisibleCheckEvent;
 @NestedCommands("useful")
 public class InfoServerCommands extends UsefulCommands {
 
-	public InfoServerCommands(UsefulCommandsPlugin plugin) {
-		super(plugin);
-	}
+    public InfoServerCommands(UsefulCommandsPlugin plugin) {
+        super(plugin);
+    }
 
-	@Command(name = "online")
-	public void onlinePlayers(CommandSender sender, CommandArgs args) {
-	    List<Player> onlinePlayers = new ArrayList<Player>();
-	    for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
-	        VisibleCheckEvent event = new VisibleCheckEvent(onlinePlayer);
-	        Bukkit.getPluginManager().callEvent(event);
-	        if(event.isVisible()) {
-	            onlinePlayers.add(onlinePlayer);
-	        }
-	    }
+    @Command(name = "online")
+    public void onlinePlayers(CommandSender sender, CommandArgs args) {
+        List<Player> onlinePlayers = new ArrayList<Player>();
+        for(Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            VisibleCheckEvent event = new VisibleCheckEvent(onlinePlayer);
+            Bukkit.getPluginManager().callEvent(event);
+            if(event.isVisible()) {
+                onlinePlayers.add(onlinePlayer);
+            }
+        }
 
 
-	    sender.sendMessage(ChatColor.GREEN + "Joueur(s) connecté (" + onlinePlayers.size() +  ")" + ":");
-	    for(Player onlinePlayer : onlinePlayers) {
-	    	String prefix = "";
+        sender.sendMessage(ChatColor.GREEN + "Joueur(s) connecté (" + onlinePlayers.size() +  ")" + ":");
+        for(Player onlinePlayer : onlinePlayers) {
+            String prefix = "";
 
-	    	if (onlinePlayer.isOp()) {
-	    		prefix = "(OP)";
-	    	}
-	        sender.sendMessage(ChatColor.BLUE + "  - " + prefix + onlinePlayer.getDisplayName());
-	    }
-	}
+            if (onlinePlayer.isOp()) {
+                prefix = "(OP)";
+            }
+            sender.sendMessage(ChatColor.BLUE + "  - " + prefix + onlinePlayer.getDisplayName());
+        }
+    }
 
     @Command(name = "operatorlist")
     public void opList(CommandSender sender, CommandArgs args) {
-    	sender.sendMessage(ChatColor.GREEN + "Joueur(s) OP (" + Bukkit.getOperators().size() +  ")" + ":");
-    	for(OfflinePlayer opPlayer : Bukkit.getOperators()) {
-    		sender.sendMessage(ChatColor.BLUE + "  - " + opPlayer.getName());
-    	}
+        sender.sendMessage(ChatColor.GREEN + "Joueur(s) OP (" + Bukkit.getOperators().size() +  ")" + ":");
+        for(OfflinePlayer opPlayer : Bukkit.getOperators()) {
+            sender.sendMessage(ChatColor.BLUE + "  - " + opPlayer.getName());
+        }
     }
 }

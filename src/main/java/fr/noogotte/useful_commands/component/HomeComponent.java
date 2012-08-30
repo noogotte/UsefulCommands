@@ -22,91 +22,87 @@ import fr.noogotte.useful_commands.command.HomeCommands;
 
 public class HomeComponent extends Component {
 
-	public static class Home {
-		private final String worldName;
-		private final Vector position;
-		private final Direction direction;
+    public static class Home {
+        private final String worldName;
+        private final Vector position;
+        private final Direction direction;
 
-		public Home(Location location) {
-			this.worldName = location.getWorld().getName();
-			this.position = new Vector(location);
-			this.direction = Directions.fromLocation(location);
-		}
+        public Home(Location location) {
+            this.worldName = location.getWorld().getName();
+            this.position = new Vector(location);
+            this.direction = Directions.fromLocation(location);
+        }
 
-		public Location toLocation() {
-			World world = Bukkit.getWorld(worldName);
-			return position.toLocation(world, direction);
-		}
-	}
+        public Location toLocation() {
+            World world = Bukkit.getWorld(worldName);
+            return position.toLocation(world, direction);
+        }
+    }
 
-	private final Map<String, Home> homes;
-	public HomeComponent(UsefulCommandsPlugin plugin) {
-		super(plugin);
-		GsonLoader loader = plugin.getGConfLoader();
-		homes = new HashMap<String, Home>();
-		try {
-			TypeToken<HashMap<String, Home>> typeToken =
-					new TypeToken<HashMap<String, Home>>() {};
-					homes.putAll(loader.loadOrCreate("homes.json", typeToken));
-		} catch (GsonLoadException exc) {
-			plugin.getLogger().severe("Unable to load homes.json.");
-		}
-	}
+    private final Map<String, Home> homes;
+    public HomeComponent(UsefulCommandsPlugin plugin) {
+        super(plugin);
+        GsonLoader loader = plugin.getGsonLoader();
+        homes = new HashMap<String, Home>();
+        try {
+            TypeToken<HashMap<String, Home>> typeToken =
+                    new TypeToken<HashMap<String, Home>>() {};
+                    homes.putAll(loader.loadOrCreate("homes.json", typeToken));
+        } catch (GsonLoadException exc) {
+            plugin.getLogger().severe("Unable to load homes.json.");
+        }
+    }
 
-	@Override
-	public String getName() {
-		return "home";
-	}
+    @Override
+    public String getName() {
+        return "home";
+    }
 
-	@Override
-	public Commands[] getCommands() {
-	    return new Commands[] { new HomeCommands(plugin, this) };
-	}
+    @Override
+    public Commands[] getCommands() {
+        return new Commands[] { new HomeCommands(plugin, this) };
+    }
 
-	public boolean haveHome(String player) {
-		return homes.containsKey(player);
-	}
+    public boolean haveHome(String player) {
+        return homes.containsKey(player);
+    }
 
-	public Home getHome(String player) {
-		return homes.get(player);
-	}
+    public Home getHome(String player) {
+        return homes.get(player);
+    }
 
-	public void addHome(Player player, String player_) {
-		homes.put(player_, new Home(player.getLocation()));
-	}
+    public void addHome(Player player) {
+        homes.put(player.getName(), new Home(player.getLocation()));
+    }
 
-	public void deleteHome(String player) {
-		homes.remove(player);
-		save();
-	}
+    public void deleteHome(String player) {
+        homes.remove(player);
+        save();
+    }
 
-	public void save() {
-		GsonLoader loader = plugin.getGConfLoader();
-		try {
-			loader.write("homes.json", homes);
-		} catch (GsonLoadException exc) {
-			plugin.getLogger().severe("Unable to save homes.json.");
-		}
-	}
+    public void save() {
+        GsonLoader loader = plugin.getGsonLoader();
+        try {
+            loader.write("homes.json", homes);
+        } catch (GsonLoadException exc) {
+            plugin.getLogger().severe("Unable to save homes.json.");
+        }
+    }
 
-	public Iterable<Entry<String, Home>> homes() {
-		return homes.entrySet();
-	}
+    public Iterable<Entry<String, Home>> homes() {
+        return homes.entrySet();
+    }
 
-	public boolean isEmpty() {
-		return homes.isEmpty();
-	}
+    public boolean isEmpty() {
+        return homes.isEmpty();
+    }
 
-	public void clearHomes() {
-		homes.clear();
-	}
+    public int getNbHome() {
+        return homes.size();
+    }
 
-	public int getNbHome() {
-		return homes.size();
-	}
-
-	@Override
-	public void onDisable() {
-		save();
-	}
+    @Override
+    public void onDisable() {
+        save();
+    }
 }

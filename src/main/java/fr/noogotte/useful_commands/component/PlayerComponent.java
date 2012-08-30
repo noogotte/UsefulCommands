@@ -20,9 +20,9 @@ public class PlayerComponent extends Component {
     @Override
     public Commands[] getCommands() {
         return new Commands[] { 
-            new PlayerCommands(plugin),
-            new PlayerInfoCommand(plugin),
-            new InfoServerCommands(plugin)
+                new PlayerCommands(plugin),
+                new PlayerInfoCommand(plugin),
+                new InfoServerCommands(plugin)
         };
     }
 }

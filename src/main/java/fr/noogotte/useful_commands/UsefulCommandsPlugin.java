@@ -93,7 +93,7 @@ public class UsefulCommandsPlugin extends JavaPlugin {
     }
 
     private UsefulConfig loadUsefulConfig() {
-        GsonLoader loader = getGConfLoader();
+        GsonLoader loader = getGsonLoader();
         try {
             return loader.loadOrCreate("config.json", UsefulConfig.class);
         } catch (GsonLoadException exc) {
@@ -110,7 +110,7 @@ public class UsefulCommandsPlugin extends JavaPlugin {
         }
     }
 
-    public GsonLoader getGConfLoader() {
+    public GsonLoader getGsonLoader() {
         Gson gson = new GsonBuilder()
                 .registerTypeAdapterFactory(new DirectionTypeAdapterFactory())
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES)

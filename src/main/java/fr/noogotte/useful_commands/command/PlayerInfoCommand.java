@@ -17,7 +17,7 @@ public class PlayerInfoCommand extends UsefulCommands {
     private final UsefulCommandsPlugin plugin;
 
     public PlayerInfoCommand(UsefulCommandsPlugin plugin) {
-    	super(plugin);
+        super(plugin);
         this.plugin = plugin;
     }
 
@@ -34,35 +34,35 @@ public class PlayerInfoCommand extends UsefulCommands {
         sender.sendMessage(msg("info.position", loc.getBlockX(), loc.getBlockY(), loc.getBlockZ(), target.getWorld().getName()));
         sender.sendMessage(msg("info.gamemode", target.getGameMode()));
         sender.sendMessage(msg("info.experience", target.getLevel()));
-        
+
         if (target.isOnline()) {
-        	reponse = msg("info.reponse.yes");
+            reponse = msg("info.reponse.yes");
         } else {
-        	reponse = msg("info.reponse.no");
+            reponse = msg("info.reponse.no");
         }
-        
+
         sender.sendMessage(msg("info.isOp", reponse));
 
         GodComponent godComponent = plugin.getComponent(GodComponent.class);
         if (godComponent != null) {
-        	if(godComponent.isGod(target)) {
-        		reponse = msg("info.reponse.yes");
-        	} else {
-        		reponse = msg("info.reponse.no");
-        	}
+            if(godComponent.isGod(target)) {
+                reponse = msg("info.reponse.yes");
+            } else {
+                reponse = msg("info.reponse.no");
+            }
 
-        	sender.sendMessage(msg("info.isInGodMode", reponse));
+            sender.sendMessage(msg("info.isInGodMode", reponse));
         }
 
         AfkComponent afkComponent = plugin.getComponent(AfkComponent.class);
         if (afkComponent != null) {
-        	if (afkComponent.isAfk(target)) {
-        		reponse = msg("info.reponse.yes");
-        	} else {
-        		reponse = msg("info.reponse.no");
-        	}
+            if (afkComponent.isAfk(target)) {
+                reponse = msg("info.reponse.yes");
+            } else {
+                reponse = msg("info.reponse.no");
+            }
 
-        	sender.sendMessage(msg("info.isAfk", reponse));
+            sender.sendMessage(msg("info.isAfk", reponse));
         }
     }
 }

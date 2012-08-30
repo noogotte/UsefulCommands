@@ -46,7 +46,7 @@ public class AfkCommand extends UsefulCommands {
             }
 
             if (!sender.equals(target)) {
-            	sender.sendMessage(msg("afk.sender.isAfk", target.getDisplayName()));
+                sender.sendMessage(msg("afk.sender.isAfk", target.getDisplayName()));
             }
         }
     }

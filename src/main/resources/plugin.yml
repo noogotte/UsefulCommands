@@ -1,6 +1,7 @@
-name: UsefulCommands
-version: 1.0.0
-description: Useful Commands for Server
+name: ${project.name}
+version: ${project.version}-b${BUILD_NUMBER}
+description: ${project.description}
+
 author: noogotte
 main: fr.noogotte.useful_commands.UsefulCommandsPlugin
 
@@ -495,6 +496,7 @@ permissions:
             - useful.spy.command.spy.other: true
             - useful.spy.command.broadcast: true
             - useful.spy.command.list: true
+
     useful.home.*:
         children:
             - useful.home.list: true
@@ -504,11 +506,7 @@ permissions:
             - useful.home.use.other: true
             - useful.home.delhome.other: true
 
-    useful.home.use.other:
-        default: op
-    useful.home.delhome.other:
-        default: op
-    useful.plugin*:
+    useful.plugin.*:
         children:
             - useful.plugin.disable: true
             - useful.plugin.enable: true

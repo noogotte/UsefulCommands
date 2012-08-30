@@ -27,7 +27,7 @@ public class KitsComponent extends Component
             return;
         }
 
-        GsonLoader loader = plugin.getGConfLoader();
+        GsonLoader loader = plugin.getGsonLoader();
         for (File file : folder.listFiles()) {
             String filename = folder.getName() + File.separator
                     + file.getName();
@@ -88,7 +88,7 @@ public class KitsComponent extends Component
     }
 
     private boolean saveKit(String name, Kit kit) {
-        GsonLoader loader = plugin.getGConfLoader();
+        GsonLoader loader = plugin.getGsonLoader();
         File folder = getFolder();
         if (folder == null) {
             return false;

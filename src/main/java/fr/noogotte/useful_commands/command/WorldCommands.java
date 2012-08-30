@@ -29,10 +29,10 @@ import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 public class WorldCommands extends UsefulCommands {
 
     public WorldCommands(UsefulCommandsPlugin plugin) {
-		super(plugin);
-	}
+        super(plugin);
+    }
 
-	@Command(name = "seed", min = 0, max = 1)
+    @Command(name = "seed", min = 0, max = 1)
     public void seed(CommandSender sender, CommandArgs args) {
         List<World> worlds = args.getList(0, World.class).matchOr(sender);
 
@@ -63,10 +63,10 @@ public class WorldCommands extends UsefulCommands {
                 Util.broadcast("useful.world.time.broadcast",
                         msg("time.message.day", sender.getName(), world.getName()));
             } else if (time == (22 - 8 + 24) * 1000) {
-            	Util.broadcast("useful.world.time.broadcast",
+                Util.broadcast("useful.world.time.broadcast",
                         msg("time.message.night", sender.getName(), world.getName()));
             } else {
-            	Util.broadcast("useful.world.time.broadcast",
+                Util.broadcast("useful.world.time.broadcast",
                         msg("time.message.other", sender.getName(), world.getName()));
             }
         }
