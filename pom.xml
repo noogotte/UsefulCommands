@@ -27,7 +27,7 @@
 	<repositories>
 		<repository>
 			<id>aumgn-repo</id>
-			<url>http://aumgn.fr/maven</url>
+			<url>http://maven.aumgn.fr/</url>
 		</repository>
 	</repositories>
 
