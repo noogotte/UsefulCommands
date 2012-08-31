@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
+import fr.aumgn.bukkitutils.command.exception.CommandError;
 import fr.aumgn.bukkitutils.itemtype.ItemType;
 import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 
@@ -129,5 +130,21 @@ public class InventoryCommands extends UsefulCommands {
         }
         Inventory inventory = target.getEnderChest();
         sender.openInventory(inventory);
+    }
+
+    @Command(name = "durability")
+    public void durability(Player sender, CommandArgs args) {
+        Short durability = sender.getItemInHand().getDurability();
+        Short maxDurability = sender.getItemInHand().getType().getMaxDurability();
+
+        if (sender.getItemInHand().getType().isBlock()) {
+            throw new CommandError(msg("durability.isNotAnItem_€", sender.getItemInHand().getType()));
+        }
+
+        if (sender.getItemInHand().getDurability() == 0) {
+            throw new CommandError(msg("durability", maxDurability.intValue() + 1));
+        }
+
+        sender.sendMessage(msg("durability", (maxDurability.intValue() + 1) - durability.intValue()));
     }
 }

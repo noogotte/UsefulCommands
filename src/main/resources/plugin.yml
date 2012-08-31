@@ -193,6 +193,11 @@ commands:
         usage: "[target]"
         aliases: ["openender"]
         permission: "useful.inventory.openender"
+    "useful durability":
+        description: "Montre la durabilitée de l'objet"
+        usage: ""
+        aliases: ["durability"]
+        permission: "useful.inventory.durability"
 
     # Warp Commands
     "useful setwarp":
