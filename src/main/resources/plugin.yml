@@ -198,6 +198,11 @@ commands:
         usage: ""
         aliases: ["durability"]
         permission: "useful.inventory.durability"
+    "useful setdurability":
+        description: "Définis la durabilitée de l'objet"
+        usage: ""
+        aliases: ["setdurability"]
+        permission: "useful.inventory.setdurability"
 
     # Warp Commands
     "useful setwarp":
@@ -452,6 +457,8 @@ permissions:
             - useful.inventory.removeenchant: true
             - useful.inventory.openender: true
             - useful.inventory.openender.notify: true
+            - useful.inventory.durability: true
+            - useful.inventory.setdurability: true
 
     useful.warp.*:
         children:

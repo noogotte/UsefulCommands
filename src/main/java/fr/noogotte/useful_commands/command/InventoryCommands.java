@@ -134,17 +134,42 @@ public class InventoryCommands extends UsefulCommands {
 
     @Command(name = "durability")
     public void durability(Player sender, CommandArgs args) {
-        Short durability = sender.getItemInHand().getDurability();
-        Short maxDurability = sender.getItemInHand().getType().getMaxDurability();
+        Short durability = (short) (sender.getItemInHand().getDurability() + 1);
+        Short maxDurability = (short) (sender.getItemInHand().getType().getMaxDurability() + 1);
 
         if (sender.getItemInHand().getType().isBlock()) {
             throw new CommandError(msg("durability.isNotAnItem_€", sender.getItemInHand().getType()));
         }
 
-        if (sender.getItemInHand().getDurability() == 0) {
-            throw new CommandError(msg("durability", maxDurability.intValue() + 1));
+        if (sender.getItemInHand().getType().getMaxDurability() == 0) {
+            throw new CommandError(msg("durability.isNotAnItemWithDurability_€"));
         }
 
-        sender.sendMessage(msg("durability", (maxDurability.intValue() + 1) - durability.intValue()));
+        if (sender.getItemInHand().getDurability() == 0) {
+            throw new CommandError(msg("durability", maxDurability));
+        }
+
+        sender.sendMessage(msg("durability", maxDurability - durability + 1));
+    }
+
+    @Command(name = "setdurability", min = 1, max = 1)
+    public void setDurability(Player sender, CommandArgs args) {
+        Short maxDurability = (short) (sender.getItemInHand().getType().getMaxDurability() + 1);
+        Short durability = args.getShort(0).value();
+
+        if (sender.getItemInHand().getType().isBlock()) {
+            throw new CommandError(msg("durability.isNotAnItem_€", sender.getItemInHand().getType()));
+        }
+
+        if (sender.getItemInHand().getType().getMaxDurability() == 0) {
+            throw new CommandError(msg("durability.isNotAnItemWithDurability_€"));
+        }
+
+        if (sender.getItemInHand().getDurability() == 0) {
+            throw new CommandError(msg("durability", maxDurability));
+        }
+
+        sender.getItemInHand().setDurability((short) (maxDurability - durability));
+        sender.sendMessage(msg("setdurability", durability));
     }
 }
