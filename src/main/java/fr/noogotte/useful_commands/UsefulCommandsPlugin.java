@@ -1,6 +1,7 @@
 package fr.noogotte.useful_commands;
 
 import java.util.List;
+import java.util.Locale;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -44,10 +45,8 @@ public class UsefulCommandsPlugin extends JavaPlugin {
     public void onEnable() {
         config = loadUsefulConfig();
 
-        Localization localization = new Localization(
-                this, config.getLocale(), getDataFolder());
+        Localization localization = new Localization(this, this.getDataFolder(), this.config.getLocale(), Locale.FRANCE);      
         messages = localization.get("messages");
-
         CommandsRegistration commandsRegistration =
                 new CommandsRegistration(this, config.getLocale());
         ComponentRegistration registration = new ComponentRegistration(

@@ -16,7 +16,6 @@ import org.bukkit.entity.Player;
 
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
-import fr.aumgn.bukkitutils.command.arg.basic.TimeArg;
 import fr.aumgn.bukkitutils.command.args.CommandArgs;
 import fr.aumgn.bukkitutils.command.exception.CommandError;
 import fr.aumgn.bukkitutils.command.exception.CommandUsageError;
@@ -34,7 +33,7 @@ public class WorldCommands extends UsefulCommands {
 
     @Command(name = "seed", min = 0, max = 1)
     public void seed(CommandSender sender, CommandArgs args) {
-        List<World> worlds = args.getList(0, World.class).matchOr(sender);
+        List<World> worlds = args.getWorlds(0).valueOr(sender);
 
         for (World world : worlds) {
             sender.sendMessage(msg("seed.message", world.getName(), world.getSeed()));
@@ -54,9 +53,9 @@ public class WorldCommands extends UsefulCommands {
 
     @Command(name = "time", min = 1, max = 2)
     public void time(CommandSender sender, CommandArgs args) {
-        List<World> worlds = args.getList(1, World.class).valueOr(sender);
+        List<World> worlds = args.getWorlds(1).valueOr(sender);
 
-        int time = args.get(0, new TimeArg.Factory()).value();
+        int time = args.getTime(0).value();
         for (World world : worlds) {
             world.setTime(time);
             if (time == (24) * 1000) {
@@ -74,7 +73,7 @@ public class WorldCommands extends UsefulCommands {
 
     @Command(name = "weather", min = 0, max = 2)
     public void weather(CommandSender sender, CommandArgs args) {
-        List<World> worlds = args.getList(1, World.class).valueOr(sender);
+        List<World> worlds = args.getWorlds(1).valueOr(sender);    
 
         boolean toggle = args.length() == 0;
         boolean storm = false;
@@ -119,7 +118,7 @@ public class WorldCommands extends UsefulCommands {
                 locations.add(location);
             }
         } else if (args.hasArgFlag('d')) {
-            int distance = args.get('d', Integer.class).value();
+            int distance = args.getInteger('d').value();
             for (Player target : args.getPlayers(2).valueOr(sender)) {
                 Location location = getDistantLocation(target, distance)
                         .toLocation(sender.getWorld());
@@ -174,18 +173,18 @@ public class WorldCommands extends UsefulCommands {
                 if (!args.hasArgFlag('w')) {
                     throw new CommandUsageError(msg("world.miss"));
                 }
-                from = args.get('c', Vector.class).value();
-                world = args.get('w', World.class).value();
+                from = args.getVector('c').value();
+                world = args.getWorld('w').value();
             } else {
-                Player target = args.get('p', Player.class).valueOr(sender);
+                Player target = args.getPlayer('p').valueOr(sender);
                 from = new Vector(target);
                 world = target.getWorld();
             }
         } else {
             if (args.hasArgFlag('p')) {
-                world = args.get('p', Player.class).value().getWorld();
+                world = args.getPlayer('p').valueOr(sender).getWorld();
             } else {
-                world = args.get('w', World.class).valueOr(sender);
+                world = args.getWorld('w').valueOr(sender);
             }
         }
 

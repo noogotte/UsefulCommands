@@ -156,9 +156,9 @@ public class ChatCommands extends UsefulCommands {
         if (args.hasFlag('a')) {
             channel = "useful.chat.broadcast.admin";
         } else if (args.hasFlag('g')) {
-            channel = "group." + args.getArgFlag('g');
+            channel = "group." + args.get('g');
         } else if (args.hasFlag('p')) {
-            channel = args.getArgFlag('p');
+            channel = args.get('p');
         }
 
         if (channel == null) {

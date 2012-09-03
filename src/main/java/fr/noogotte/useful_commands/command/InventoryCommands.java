@@ -112,7 +112,7 @@ public class InventoryCommands extends UsefulCommands {
         if (args.length() == 0) {
             enchantments = stack.getEnchantments().keySet();
         } else {
-            enchantments = args.getList(0, Enchantment.class).value();
+            enchantments = args.getEnchantments(0).value();
         }
 
         for (Enchantment enchantment : enchantments) {
