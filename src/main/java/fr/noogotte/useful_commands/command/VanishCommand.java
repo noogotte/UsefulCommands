@@ -43,10 +43,10 @@ public class VanishCommand extends UsefulCommands {
                 for (Player allPlayer : Bukkit.getOnlinePlayers()) {
                     allPlayer.showPlayer(target);
                 }
-                target.sendMessage(msg("vanish.target.isVisible"));
+                target.sendMessage(msg("vanish.target.isVisible", target.getName()));
 
                 if (!sender.equals(target)) {
-                    sender.sendMessage(msg("vanish.sender.isNotVisible" ,target.getName()));
+                    sender.sendMessage(msg("vanish.sender.isNotVisible" , target.getName()));
                 }
             }
         }
