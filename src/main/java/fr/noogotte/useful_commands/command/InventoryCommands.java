@@ -7,6 +7,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
@@ -172,4 +173,24 @@ public class InventoryCommands extends UsefulCommands {
         sender.getItemInHand().setDurability((short) (maxDurability - durability));
         sender.sendMessage(msg("setdurability", durability));
     }
+
+    @Command(name = "renameitem", min = 1, max = 1)
+    public void renameItem(Player sender, CommandArgs args) {
+        ItemStack stack = sender.getItemInHand();
+
+        if (stack.getTypeId() == 0) {
+            throw new CommandError("Item can not be null or empty");
+        }
+
+        if (stack.getAmount() != 1) {
+            throw new CommandError("Item amount can not be more than 1");
+        }
+
+        ItemMeta meta = (ItemMeta) stack.getItemMeta();
+        String newItemName = args.get(0);
+        meta.setDisplayName(newItemName);
+        stack.setItemMeta(meta);
+        sender.sendMessage(msg("renameitem", stack.getType(), newItemName));
+    }
+    
 }

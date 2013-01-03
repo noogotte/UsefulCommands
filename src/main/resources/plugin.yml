@@ -203,6 +203,11 @@ commands:
         usage: ""
         aliases: ["setdurability"]
         permission: "useful.inventory.setdurability"
+    "useful giveCustom":
+        description: "Définis le nom de l'objet"
+        usage: ""
+        aliases: ["renameitem", "ri"]
+        permission: "useful.inventory.renameitem"
 
     # Warp Commands
     "useful setwarp":
@@ -459,6 +464,7 @@ permissions:
             - useful.inventory.openender.notify: true
             - useful.inventory.durability: true
             - useful.inventory.setdurability: true
+            - useful.inventory.renameitem: true
 
     useful.warp.*:
         children:
