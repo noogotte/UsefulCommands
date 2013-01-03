@@ -1,6 +1,6 @@
-name: ${project.name}
-version: ${project.version}-b${BUILD_NUMBER}
-description: ${project.description}
+name: Useful Commands
+version: 1.0.0-SNAPSHOT-bCustom
+description: Useful commands for server
 
 author: noogotte
 main: fr.noogotte.useful_commands.UsefulCommandsPlugin
@@ -203,11 +203,16 @@ commands:
         usage: ""
         aliases: ["setdurability"]
         permission: "useful.inventory.setdurability"
-    "useful giveCustom":
+    "useful renameitem":
         description: "Définis le nom de l'objet"
         usage: ""
         aliases: ["renameitem", "ri"]
         permission: "useful.inventory.renameitem"
+    "useful setskull":
+        description: "Définis le propriétaire d'un crane"
+        usage: ""
+        aliases: ["setskull", "skull"]
+        permission: "useful.inventory.setskull"
 
     # Warp Commands
     "useful setwarp":
@@ -465,6 +470,7 @@ permissions:
             - useful.inventory.durability: true
             - useful.inventory.setdurability: true
             - useful.inventory.renameitem: true
+            - useful.inventory.setskull: true
 
     useful.warp.*:
         children:

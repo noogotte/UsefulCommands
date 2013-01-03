@@ -2,12 +2,14 @@ package fr.noogotte.useful_commands.command;
 
 import java.util.List;
 
+import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import fr.aumgn.bukkitutils.command.Command;
 import fr.aumgn.bukkitutils.command.NestedCommands;
@@ -192,5 +194,23 @@ public class InventoryCommands extends UsefulCommands {
         stack.setItemMeta(meta);
         sender.sendMessage(msg("renameitem", stack.getType(), newItemName));
     }
-    
+
+    @Command(name="setskull", min=1, max=1)
+    public void setSkullOwner(Player sender, CommandArgs args) {
+        ItemStack stack = sender.getItemInHand();
+
+        if (stack.getType() != Material.SKULL_ITEM) {
+            throw new CommandError("Item must be an Human's skull");
+        }
+
+        if (stack.getData().getData() != 3) {
+            throw new CommandError("Only Human's skull is accepted");
+        }
+
+        SkullMeta meta = (SkullMeta)stack.getItemMeta();
+        String ownerName = args.get(0);
+        meta.setOwner(ownerName);
+        stack.setItemMeta(meta);
+        sender.sendMessage(msg("setskull", ownerName));
+    }
 }
