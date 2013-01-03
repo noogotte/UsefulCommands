@@ -219,10 +219,15 @@ commands:
         aliases: ["setlore", "slore"]
         permission: "useful.inventory.setlore"
     "useful setarmorcolor":
-        description: "Définis la description d'un objet"
+        description: "Définis la couleur d'une armure en cuir"
         usage: ""
         aliases: ["setarmorcolor", "sac"]
         permission: "useful.inventory.setarmorcolor"
+    "useful setauthor":
+        description: "Définis l'auteur"
+        usage: ""
+        aliases: ["setauthor", "author"]
+        permission: "useful.inventory.setauthor"
 
     # Warp Commands
     "useful setwarp":
@@ -483,6 +488,7 @@ permissions:
             - useful.inventory.setskull: true
             - useful.inventory.setlore: true
             - useful.inventory.setarmorcolor: true
+            - useful.inventory.setauthor: true
 
     useful.warp.*:
         children:

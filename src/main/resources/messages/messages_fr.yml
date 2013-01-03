@@ -180,3 +180,4 @@ renameitem: "{green}Votre objet {blue}{0}{green} a été renommé en {blue}{1}{g
 setskull: "{green}Le propriétaire de la tête est maintenant {blue}{0}{green}."
 setlore: "{green}Description définis."
 setarmorcolor: "{green}Couleur de l'armure définis."
+setauthor: "{green}Autheur de ce livre définis à : {blue}{0}{green}."

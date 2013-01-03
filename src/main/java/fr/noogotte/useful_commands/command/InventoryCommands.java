@@ -9,6 +9,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -260,5 +261,21 @@ public class InventoryCommands extends UsefulCommands {
                 || mat == Material.LEATHER_CHESTPLATE
                 || mat == Material.LEATHER_HELMET
                 || mat == Material.LEATHER_LEGGINGS;
+    }
+
+    @Command(name="setauthor", min = 1, max = 1)
+    public void setAuthor(Player sender, CommandArgs args) {
+        ItemStack stack = sender.getItemInHand();
+
+        if (stack.getType() != Material.WRITTEN_BOOK) {
+            throw new CommandError("Item must be a Written Book");
+        }
+
+        BookMeta meta = (BookMeta) stack.getItemMeta();
+
+        String author = args.get(0);
+        meta.setAuthor(author);
+        stack.setItemMeta(meta);
+        sender.sendMessage(msg("setauthor", author));
     }
 }
