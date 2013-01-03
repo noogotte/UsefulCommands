@@ -214,7 +214,7 @@ public class InventoryCommands extends UsefulCommands {
         sender.sendMessage(msg("setlore"));
     }
 
-    @Command(name="setskull", min=1, max=1)
+    @Command(name="setskull", min = 1, max = 1)
     public void setSkullOwner(Player sender, CommandArgs args) {
         ItemStack stack = sender.getItemInHand();
 
