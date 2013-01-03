@@ -195,6 +195,25 @@ public class InventoryCommands extends UsefulCommands {
         sender.sendMessage(msg("renameitem", stack.getType(), newItemName));
     }
 
+    @Command(name = "setlore", min = 1, max = -1)
+    public void setLore(Player sender, CommandArgs args) {
+        ItemStack stack = sender.getItemInHand();
+
+        if (stack.getTypeId() == 0) {
+            throw new CommandError("Item can not be null or empty");
+        }
+
+        if (stack.getAmount() != 1) {
+            throw new CommandError("Item amount can not be more than 1");
+        }
+
+        ItemMeta meta = (ItemMeta) stack.getItemMeta();
+        List<String> lore = args.asList();
+        meta.setLore(lore);
+        stack.setItemMeta(meta);
+        sender.sendMessage(msg("setlore"));
+    }
+
     @Command(name="setskull", min=1, max=1)
     public void setSkullOwner(Player sender, CommandArgs args) {
         ItemStack stack = sender.getItemInHand();

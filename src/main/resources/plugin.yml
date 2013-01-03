@@ -213,6 +213,11 @@ commands:
         usage: ""
         aliases: ["setskull", "skull"]
         permission: "useful.inventory.setskull"
+    "useful setlore":
+        description: "Définis la description d'un objet"
+        usage: ""
+        aliases: ["setlore", "slore"]
+        permission: "useful.inventory.setlore"
 
     # Warp Commands
     "useful setwarp":
@@ -471,6 +476,7 @@ permissions:
             - useful.inventory.setdurability: true
             - useful.inventory.renameitem: true
             - useful.inventory.setskull: true
+            - useful.inventory.setlore: true
 
     useful.warp.*:
         children:

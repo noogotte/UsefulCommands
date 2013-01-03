@@ -178,3 +178,4 @@ durability.isNotAnItemWithDurability_€: "Cette item n'a pas de barre d'utilisa
 setdurability: "{green}Votre item a désormait {blue}{0}{green} coup(s)"
 renameitem: "{green}Votre objet {blue}{0}{green} a été renommé en {blue}{1}{green}."
 setskull: "{green}Le propriétaire de la tête est maintenant {blue}{0}{green}."
+setlore: "{green}Description définis."
