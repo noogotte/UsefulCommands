@@ -2,6 +2,7 @@ package fr.noogotte.useful_commands.command;
 
 import java.util.List;
 
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
@@ -9,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import fr.aumgn.bukkitutils.command.Command;
@@ -226,10 +228,37 @@ public class InventoryCommands extends UsefulCommands {
             throw new CommandError("Only Human's skull is accepted");
         }
 
-        SkullMeta meta = (SkullMeta)stack.getItemMeta();
+        SkullMeta meta = (SkullMeta) stack.getItemMeta();
         String ownerName = args.get(0);
         meta.setOwner(ownerName);
         stack.setItemMeta(meta);
         sender.sendMessage(msg("setskull", ownerName));
+    }
+
+    @Command(name="setarmorcolor", min = 3, max = 3)
+    public void setArmorColor(Player sender, CommandArgs args) {
+        ItemStack stack = sender.getItemInHand();
+
+        if (!isLeatherArmor(stack.getType())) {
+            throw new CommandError("Item must be an leather armor");
+        }
+
+        LeatherArmorMeta meta = (LeatherArmorMeta) stack.getItemMeta();
+
+        int red = args.getInteger(0).value();
+        int green = args.getInteger(1).value();
+        int blue = args.getInteger(2).value();
+        Color color = Color.fromRGB(red, green, blue);
+
+        meta.setColor(color);
+        stack.setItemMeta(meta);
+        sender.sendMessage(msg("setarmorcolor"));
+    }
+
+    private boolean isLeatherArmor(Material mat) {
+        return mat == Material.LEATHER_BOOTS
+                || mat == Material.LEATHER_CHESTPLATE
+                || mat == Material.LEATHER_HELMET
+                || mat == Material.LEATHER_LEGGINGS;
     }
 }
