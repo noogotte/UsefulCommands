@@ -278,4 +278,36 @@ public class InventoryCommands extends UsefulCommands {
         stack.setItemMeta(meta);
         sender.sendMessage(msg("setauthor", author));
     }
+
+    @Command(name="setpages", min = 1, max = -1)
+    public void setPages(Player sender, CommandArgs args) {
+        ItemStack stack = sender.getItemInHand();
+
+        if (stack.getType() != Material.WRITTEN_BOOK) {
+            throw new CommandError("Item must be a Written Book");
+        }
+
+        BookMeta meta = (BookMeta) stack.getItemMeta();
+
+        List<String> pages = args.asList();
+        meta.setPages(pages);
+        stack.setItemMeta(meta);
+        sender.sendMessage(msg("setpages"));
+    }
+
+    @Command(name="settitle", min = 1, max = 1)
+    public void setTitle(Player sender, CommandArgs args) {
+        ItemStack stack = sender.getItemInHand();
+
+        if (stack.getType() != Material.WRITTEN_BOOK) {
+            throw new CommandError("Item must be a Written Book");
+        }
+
+        BookMeta meta = (BookMeta) stack.getItemMeta();
+
+        String title = args.get(0);
+        meta.setTitle(title);
+        stack.setItemMeta(meta);
+        sender.sendMessage(msg("settitle"));
+    }
 }

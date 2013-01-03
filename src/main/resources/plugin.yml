@@ -228,6 +228,16 @@ commands:
         usage: ""
         aliases: ["setauthor", "author"]
         permission: "useful.inventory.setauthor"
+    "useful setpages":
+        description: "Définis les pages"
+        usage: ""
+        aliases: ["setpages", "pages"]
+        permission: "useful.inventory.setpages"
+    "useful settitle":
+        description: "Définis le titre du livre"
+        usage: ""
+        aliases: ["settitle", "title"]
+        permission: "useful.inventory.setpages"
 
     # Warp Commands
     "useful setwarp":
@@ -489,6 +499,8 @@ permissions:
             - useful.inventory.setlore: true
             - useful.inventory.setarmorcolor: true
             - useful.inventory.setauthor: true
+            - useful.inventory.setpages: true
+            - useful.inventory.settitle: true
 
     useful.warp.*:
         children:
