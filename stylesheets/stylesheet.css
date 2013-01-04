@@ -272,7 +272,7 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 640px;
+  max-width: 940px;
   padding: 20px 10px;
   margin: 0 auto;
 }
@@ -338,7 +338,7 @@ Full-Width Styles
   height:70px;
   text-indent: -5000px;
   overflow: hidden;
-  background: url(../images/sprite_download.png) no-repeat bottom left;
+  background: url(../images/sprite_download.png) no-repeat bottom right;
 }
 
 .tar_download_link {
@@ -348,16 +348,16 @@ Full-Width Styles
   height:70px;
   text-indent: -5000px;
   overflow: hidden;
-  background: url(../images/sprite_download.png) no-repeat bottom right;
+  background: url(../images/sprite_download.png) no-repeat bottom left;
   margin-left: 10px;
 }
 
 .zip_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat top left;
+  background: url(../images/sprite_download.png) no-repeat top right;
 }
 
 .tar_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat top right;
+  background: url(../images/sprite_download.png) no-repeat top left;
 }
 
 #main_content_wrap {
@@ -374,58 +374,43 @@ Full-Width Styles
   background: #212121;
 }
 
+#footer_wrap footer div {
+  float: right;
+}
 
+table.category {
+    width: 100%;
+}
 
-/*******************************************************************************
-Small Device Styles
-*******************************************************************************/
+table.category .name {
+    width: 20%;
+}
 
-@media screen and (max-width: 480px) {
-  body {
-    font-size:14px;
-  }
+table.category .permission {
+    width: 20%;
+}
 
-  #downloads {
-    display: none;
-  }
+table.category .aliases {
+    width: 60%;
+}
 
-  .inner {
-    min-width: 320px;
-    max-width: 480px;
-  }
+table.category .usage {
+    width: 60%;
+}
 
-  #project_title {
-  font-size: 32px;
-  }
+table.category td.name {
+    border-left: 2px solid;
+}
 
-  h1 {
-    font-size: 28px;
-  }
+table.category td.aliases {
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    border-top: 2px solid;
+}
 
-  h2 {
-    font-size: 24px;
-  }
-
-  h3 {
-    font-size: 21px;
-  }
-
-  h4 {
-    font-size: 18px;
-  }
-
-  h5 {
-    font-size: 14px;
-  }
-
-  h6 {
-    font-size: 12px;
-  }
-
-  code, pre {
-    min-width: 320px;
-    max-width: 480px;
-    font-size: 11px;
-  }
-
+table.category td.description {
+    border-left: 2px solid; 
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    background-color: rgb(249, 249, 249);
 }
