@@ -33,114 +33,209 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
 	  <p>UsefulCommands est divisé en composant, chaque omposant à un lot de commande.</p>
-    <p>Pour chaque commande, je ne met qu'un seul aliase mais il peut en avoir plusieurs (CF plugin.yml)</p>
-	<h2>Composant "World"</h2>
+    <p>Pour chaque commande, je ne met qu'un seul aliase mais il peut y en avoir plusieurs (CF plugin.yml)</p>
+	
+    <h2>Composant "World"</h2>
 
   <table class="category world">
     
     <thead>
       <tr>
-	<th class="name">Nom</th>
-	<th class="permission">Permission</th>
-	<th class="usage">Utilisation</th>
-	<th class="aliases">Aliases</th>
+	      <th class="name">Nom</th>
+	      <th class="permission">Permission</th>
+	      <th class="usage">Utilisation</th>
+	      <th class="aliases">Alias</th>
       </tr>
     </thead>
 
     <tbody>
-      
-        <tr class="command">
-          <td class="name">
-	    useful seed
-            
-	  </td>
+      <tr class="command">
+          <td class="name">useful seed</td>
           <td class="permission">useful.world.seed</td>
           <td class="usage">/useful seed [world]</td>
-		  <td class="aliases">seed</td>
-        </tr>
-        <tr class="description-row">
-          <td class="description" colspan="3">
-	    Montre le seed du monde en argument ou par défaut le monde du joueur
-	  </td>
-        </tr>
+		      <td class="aliases">seed</td>
+      </tr>
+      <tr class="description-row">
+          <td class="description" colspan="3">Montre le seed d'un monde</td>
+      </tr>
       
         <tr class="command">
-          <td class="name">
-	    useful setspawn
-            
-	  </td>
+          <td class="name">useful setspawn</td>
           <td class="permission">useful.world.setspawn</td>
           <td class="usage">/useful setspawn</td>
-		  <td class="aliases">setspawn</td>
+		      <td class="aliases">setspawn</td>
         </tr>
         <tr class="description-row">
-          <td class="description" colspan="3">
-	    Définis le monde à l'emplacement du joueur
-	  </td>
+          <td class="description" colspan="3">Définis l'emplacement du spawn à l'emplacement du joueur</td>
         </tr>
 
-		<tr class="command">
-          <td class="name">
-	    useful time
-            
-	  </td>
+		  <tr class="command">
+          <td class="name">useful time</td>
           <td class="permission">useful.world.time</td>
           <td class="usage">/useful time &lt;time&gt [world]</td>
-		  <td class="aliases">time</td>
-        </tr>
-        <tr class="description-row">
+		      <td class="aliases">time</td>
+      </tr>
+      <tr class="description-row">
           <td class="description" colspan="3">
-	    Définis l'heure avec [day | night] ou [0 à 24] 
-
-	  </td>
-        </tr>
+            Définis l'heure avec [day | night] ou [0 à 24]</td>
+      </tr>
 
 		<tr class="command">
-          <td class="name">
-	    useful weather
-            
-	  </td>
+          <td class="name">useful weather</td>
           <td class="permission">useful.world.weather</td>
           <td class="usage">/useful weather [sun | storm] [world]</td>
-		  <td class="aliases">weather</td>
-        </tr>
+		      <td class="aliases">weather</td>
+    </tr>
         <tr class="description-row">
-          <td class="description" colspan="3">
-	    Définis la méteo.
-	  </td>
+          <td class="description" colspan="3">Définis la méteo.</td>
         </tr>
 
 	  <tr class="command">
-          <td class="name">
-	    useful spawnmob
-            
-	  </td>
+          <td class="name">useful spawnmob</td>
           <td class="permission">useful.world.spawnmob</td>
           <td class="usage">/useful spawnmob [-tp] [-d=&lt;distance&gt] &lt;mob...&gt [target]</td>
 		      <td class="aliases">spawnmob</td>
         </tr>
         <tr class="description-row">
-          <td class="description" colspan="3">
-	    Spawn un ou plusieurs mob(s)
-	  </td>
+          <td class="description" colspan="3">Spawn un ou plusieurs mob(s)</td>
         </tr>
 
     <tr class="command">
-          <td class="name">
-      useful removemob
-            
-    </td>
+          <td class="name">useful removemob</td>
           <td class="permission">useful.world.removemob</td>
           <td class="usage">/useful removemob <type> [radius] [-w=&lt;world&gt [-c=&lt;x,y,z&gt]] [-p=&lt;player&gt]</td>
           <td class="aliases">removemob</td>
         </tr>
         <tr class="description-row">
-          <td class="description" colspan="3">
-      Supprime un ou plusieurs mob(s)
-    </td>
+          <td class="description" colspan="3">Supprime un ou plusieurs mob(s)</td>
         </tr>
     </tbody>
 
+  </table>
+
+  <h2>Composant "God"</h2>
+
+  <table class="category god">
+    
+    <thead>
+      <tr>
+          <th class="name">Nom</th>
+          <th class="permission">Permission</th>
+          <th class="usage">Utilisation</th>
+          <th class="aliases">Alias</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      
+      <tr class="command">
+          <td class="name">useful god</td>
+          <td class="permission">useful.god</td>
+          <td class="usage">/useful god &lt;target&gt</td>
+          <td class="aliases">god</td>
+      </tr>
+      <tr class="description-row">
+          <td class="description" colspan="3">Met en mode Dieu</td>
+      <tr class="command">
+          <td class="name">useful ungod</td>
+          <td class="permission">useful.ungod</td>
+          <td class="usage">/useful ungod &lt;target&gt</td>
+          <td class="aliases">ungod</td>
+      </tr>
+      <tr class="description-row">
+          <td class="description" colspan="3">Enleve le mode Dieu</td>
+  </tbody>
+  </table>
+
+  <h2>Composant "Afk"</h2>
+  <table class="category afk">
+    
+    <thead>
+      <tr>
+        <th class="name">Nom</th>
+        <th class="permission">Permission</th>
+        <th class="usage">Utilisation</th>
+        <th class="aliases">Alias</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      
+      <tr class="command">
+      <td class="name">useful afk</td>
+          <td class="permission">useful.afk</td>
+          <td class="usage">/useful afk &lt;target&gt</td>
+          <td class="aliases">afk</td>
+      </tr>
+      <tr class="description-row">
+          <td class="description" colspan="3">Toggle le mode afk</td>
+      </tr>
+  </tbody>
+  </table>
+
+  <h2>Composant "Chat"</h2>
+  <table class="category chat">
+    
+    <thead>
+      <tr>
+         <th class="name">Nom</th>
+         <th class="permission">Permission</th>
+         <th class="usage">Utilisation</th>
+        <th class="aliases">Alias</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      
+      <tr class="command">
+          <td class="name">useful tell</td>
+          <td class="permission">useful.chat.tell/td>
+          <td class="usage">/useful tell &lt;target...&gt "&lt;message&gt"</td>
+          <td class="aliases">tell</td></tr>
+      <tr class="description-row">
+          <td class="description" colspan="3">Envoie un message privé.</td>
+      </tr>
+      <tr class="command">
+          <td class="name">useful reply</td>
+          <td class="permission">useful.chat.reply/td>
+          <td class="usage">/useful reply "&lt;message&gt"</td>
+          <td class="aliases">reply</td></tr>
+      <tr class="description-row">
+          <td class="description" colspan="3">Envoie un message privé.</td>
+      </tr>
+      <tr class="command">
+          <td class="name">useful mute</td>
+          <td class="permission">useful.chat.mute/td>
+          <td class="usage">/useful mute &lt;target...&gt</td>
+          <td class="aliases">mute</td></tr>
+      <tr class="description-row">
+          <td class="description" colspan="3">Rends muet</td>
+      </tr>
+      <tr class="command">
+          <td class="name">useful unmute</td>
+          <td class="permission">useful.chat.unmute/td>
+          <td class="usage">/useful unmute &lt;target...&gt</td>
+          <td class="aliases">unmute</td></tr>
+      <tr class="description-row">
+          <td class="description" colspan="3">Rends non muet</td>
+      </tr>
+      <tr class="command">
+          <td class="name">useful broadcast</td>
+          <td class="permission">useful.chat.broadcast/td>
+          <td class="usage">/useful broadcast [-a] [-g=group] [-c=permission] "&lt;message&gt"</td>
+          <td class="aliases">broadcast</td></tr>
+      <tr class="description-row">
+          <td class="description" colspan="3">Diffuse un message</td>
+      </tr>
+      <tr class="command">
+          <td class="name">useful me</td>
+          <td class="permission">useful.chat.me/td>
+          <td class="usage">/useful me "&lt;message&gt"</td>
+          <td class="aliases">me</td></tr>
+      <tr class="description-row">
+          <td class="description" colspan="3">Commande me</td>
+      </tr>
+    </tbody>
   </table>
 
 	  <p><a href="index.html">Retour à la page principale</a></p>
