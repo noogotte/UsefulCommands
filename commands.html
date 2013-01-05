@@ -37,7 +37,7 @@
 	
     <h2>Composant "World"</h2>
 
-  <table class="category world">
+  <table class="category world" id="world">
     
     <thead>
       <tr>
@@ -115,7 +115,7 @@
 
   <h2>Composant "God"</h2>
 
-  <table class="category god">
+  <table class="category god" id="god">
     
     <thead>
       <tr>
@@ -148,7 +148,7 @@
   </table>
 
   <h2>Composant "Afk"</h2>
-  <table class="category afk">
+  <table class="category afk" id="afk">
     
     <thead>
       <tr>
@@ -174,7 +174,7 @@
   </table>
 
   <h2>Composant "Chat"</h2>
-  <table class="category chat">
+  <table class="category chat" id="chat">
     
     <thead>
       <tr>
@@ -239,7 +239,7 @@
   </table>
 
   <h2>Composant "Player"</h2>
-  <table class="category player">
+  <table class="category player" id="player">
     
     <thead>
       <tr>
@@ -352,7 +352,7 @@
   </table>
 
   <h2>Composant "Inventory"</h2>
-  <table class="category inventory">
+  <table class="category inventory" id="inventory">
     
     <thead>
       <tr>
@@ -522,7 +522,7 @@
   </table>
 
   <h2>Composant "Warp"</h2>
-  <table class="category warp">
+  <table class="category warp" id="warp">
     
     <thead>
       <tr>
@@ -584,7 +584,7 @@
   </table>
 
   <h2>Composant "Kit"</h2>
-    <table class="category kit">
+    <table class="category kit" id="kit">
     
     <thead>
       <tr>
@@ -635,39 +635,83 @@
     </tbody>
   </table>
 
-<h2>Composant "Fun"</h2>
-<table class="category fun">
+  <h2>Composant "Fun"</h2>
+  <table class="category fun" id="fun">
     
-    <thead>
-      <tr>
-        <th class="name">Nom</th>
-        <th class="permission">Permission</th>
-        <th class="usage">Utilisation</th>
-        <th class="aliases">Alias</th>
-      </tr>
-    </thead>
+      <thead>
+        <tr>
+          <th class="name">Nom</th>
+          <th class="permission">Permission</th>
+          <th class="usage">Utilisation</th>
+          <th class="aliases">Alias</th>
+        </tr>
+      </thead>
 
-    <tbody>
+      <tbody>
+        <tr class="command">
+          <td class="name">useful rocket</td>
+          <td class="permission">useful.fun.rocket</td>
+          <td class="usage">/useful rocket [target...]</td>
+          <td class="aliases">rocket</td>
+      </tr>
+      <tr class="description-row">
+          <td class="description" colspan="3">Rocket le joueur</td>
+      </tr>
       <tr class="command">
-        <td class="name">useful rocket</td>
-        <td class="permission">useful.fun.rocket</td>
-        <td class="usage">/useful rocket [target...]</td>
-        <td class="aliases">rocket</td>
-    </tr>
-    <tr class="description-row">
-        <td class="description" colspan="3">Rocket le joueur</td>
-    </tr>
-    <tr class="command">
         <td class="name">useful strike</td>
         <td class="permission">useful.fun.strike</td>
         <td class="usage">/useful strike [target...]</td>
         <td class="aliases">strike</td>
-    </tr>
-    <tr class="description-row">
+      </tr>
+      <tr class="description-row">
         <td class="description" colspan="3">Envoi un éclair sur le joueur</td>
-    </tr>
-  </tbody>
-</table>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Composant "Teleport"</h2>
+  <table class="category tp" id="teleport">
+    
+      <thead>
+        <tr>
+          <th class="name">Nom</th>
+          <th class="permission">Permission</th>
+          <th class="usage">Utilisation</th>
+          <th class="aliases">Alias</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr class="command">
+          <td class="name">useful teleportation</td>
+          <td class="permission">useful.teleport.teleport</td>
+          <td class="usage">/useful teleport &lt;target&gt;| &lt;player&gt; &lt;target&gt;</td>
+          <td class="aliases">teleport</td>
+      </tr>
+      <tr class="description-row">
+          <td class="description" colspan="3">Téléporte un joueur à un autre ou téléport le joueur à un autre</td>
+      </tr>
+      <tr class="command">
+        <td class="name">useful summon</td>
+        <td class="permission">useful.teleport.summon</td>
+        <td class="usage">/useful summon [-t] [-d=&lt;distance&gt] &lt;players...&gt [distance]</td>
+        <td class="aliases">summon</td>
+      </tr>
+      <tr class="description-row">
+        <td class="description" colspan="3">Téléporte un joueur à vous</td>
+      </tr>
+      <tr class="command">
+        <td class="name">useful put</td>
+        <td class="permission">useful.teleport.put</td>
+        <td class="usage">/useful summon [-t] [-d=&lt;distance&gt] &lt;players...&gt [distance]</td>
+        <td class="aliases">summon</td>
+      </tr>
+      <tr class="description-row">
+        <td class="description" colspan="3">Téléporte un joueur à vous</td>
+      </tr>
+    </tbody>
+  </table>
+
 
 	  <p><a href="index.html">Retour à la page principale</a></p>
       </section>
