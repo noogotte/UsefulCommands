@@ -12,6 +12,7 @@ public class UsefulConfig {
     private String lang = Locale.FRANCE.toString();
     private Set<String> disabled = Collections.<String> emptySet();
     private boolean msgInConsole = true;
+    private int cooldownBeforeKick = 1;
 
     public Locale getLocale() {
         return Util.parseLocale(lang);
@@ -23,5 +24,9 @@ public class UsefulConfig {
 
     public boolean messageInConsole() {
         return msgInConsole;
+    }
+
+    public int getCooldownBeforeKick() {
+        return cooldownBeforeKick * 20 * 60;
     }
 }
