@@ -63,6 +63,8 @@ public class AfkCommand extends UsefulCommands {
             public void run() {
                 if(afkcomponent.isAfk(player)) {
                     player.kickPlayer(msg("afk.kickAfterCoolDown"));
+                    afkcomponent.getPlugin().getLogger().info(
+                            msg("afk.kickAfterCooldown.console", player.getName()));
                 }
             }
         };
