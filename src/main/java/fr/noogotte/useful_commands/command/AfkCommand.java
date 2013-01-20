@@ -36,7 +36,8 @@ public class AfkCommand extends UsefulCommands {
                 Util.broadcast(msg("afk.broadcast.isAfk", target.getDisplayName()));
                 target.sendMessage(msg("afk.target.isAfk"));
                 target.setDisplayName("(AFK)" + target.getName());
-                int cooldown = afkcomponent.getPlugin().getUsefulConfig().getCooldownBeforeKick();
+                int cooldown = afkcomponent.getPlugin()
+                        .getUsefulConfig().getDelayBeforeKick();
                 if (cooldown != 0) {
                     Bukkit.getScheduler().scheduleSyncDelayedTask(afkcomponent.getPlugin(),
                         kickAfterAfkCoolDown(target), cooldown);
