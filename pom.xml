@@ -114,6 +114,9 @@
 
 		<profile>
 			<id>standalone</id>
+            <properties>
+				<finalName>${project.name}-${project.version}-Standalone</finalName>
+			</properties>
 			<build>
 				<plugins>
 					<plugin>
