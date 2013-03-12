@@ -43,6 +43,11 @@ commands:
         usage: "<type> [radius] [-w=<world> [-c=<x,y,z>]] [-p=<player>]"
         aliases: ["removemob", "rmmob"]
         permission: "useful.world.removemob"
+    "useful player-time":
+        description: "Défini le temps d'un joueur"
+        usage: "<time> [players...] -r"
+        aliases: ["playertime", "ptime"]
+        permission: "useful.world.player-time.other"
 
     # God Command
     "useful god":
@@ -421,6 +426,8 @@ permissions:
             - useful.world.removemob: true
             - useful.world.position: true
             - useful.world.position.other: true
+            - useful.world.player-time: true
+            - useful.world.player-time.other: true
 
     useful.god.*:
         children:

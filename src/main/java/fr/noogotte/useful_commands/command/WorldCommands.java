@@ -27,11 +27,8 @@ import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 @NestedCommands("useful")
 public class WorldCommands extends UsefulCommands {
 
-    private UsefulCommandsPlugin plugin;
-
     public WorldCommands(UsefulCommandsPlugin plugin) {
         super(plugin);
-        this.plugin = plugin;
     }
 
     @Command(name = "seed", min = 0, max = 1)
@@ -83,7 +80,7 @@ public class WorldCommands extends UsefulCommands {
         }
     }
 
-    public String worldTimeToString(long time) {
+    private String worldTimeToString(long time) {
         int hours = (int) ((time / 1000 + 8) % 24);
         int minutes = (int) (60 * (time % 1000) / 1000);
         return String.format("%02d:%02d",
@@ -249,6 +246,32 @@ public class WorldCommands extends UsefulCommands {
                     + location.getPitch());
             sender.sendMessage(ChatColor.AQUA + "Yaw: " + ChatColor.GREEN
                     + location.getYaw());
+        }
+    }
+
+    @Command(name = "player-time", min = 0, max = 2, flags = "r")
+    public void playerTime(CommandSender sender, CommandArgs args) {
+        if (args.length() == 0) {
+            throw new CommandError(msg("player-time._€"));
+        }
+        List<Player> targets = args.getPlayers(1)
+                .matchWithPermOr("useful.world.player-time.other", sender);
+        boolean reset = args.hasFlag('r');
+        for (Player target : targets) {
+            if (reset) {
+                target.resetPlayerTime();
+                target.sendMessage(msg("player-time.reset.target"));
+                if(!sender.equals(target)) {
+                    sender.sendMessage(msg("player-time.reset.sender", target.getName()));
+                }
+            } else {
+                long time = args.getTime(0).value();
+                target.setPlayerTime(time, false);
+                target.sendMessage(msg("player-time.set.target", worldTimeToString(time)));
+                if(!sender.equals(target)) {
+                    sender.sendMessage(msg("player-time.set.sender", target.getName(), worldTimeToString(time)));
+                }
+            }
         }
     }
 
