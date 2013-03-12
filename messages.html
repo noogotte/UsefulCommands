@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Usefulcommands : Useful commands for server" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <title>Usefulcommands - Installation</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/noogotte/UsefulCommands">Regarder sur GitHub</a>
+
+          <h1 id="project_title">Usefulcommands</h1>
+          <h2 id="project_tagline">Commandes utiles pour serveur Minecraft</h2>
+
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>Comment configurer les messages</h2>
+        <p>Si aucun {0}, {1}, {2}, {3}, ne prenez pas en compte les commentaires plus haut.</p>
+        <p>Pour avoir les messages en français, veuillez mettre fr dans le fichier config.json</p>
+        <p><strong>{0} = nom de la cible</strong></p>
+        <p><code>fun.rocket.sender: "{aqua}Vous avez rocket {green}{0}{aqua}"</code></p>
+        <p><code>fun.rocket.target: "{aqua}Rocket !{aqua}"</code></p>
+        <p><code>fun.strike.sender: "{aqua}Vous avez foudroyé {green}{0}{aqua}."</code></p>
+        <p><code>fun.strike.target: "{green}Vous avez été foudroyé."</code></p>
+        <p><code>fun.strike.msg: "{green}Vous avez foudroyé un bloc."</code></p>
+        <p><code>fun.isNotAHuman_€: "Vous devez être en jeu !"</code></p>
+        <p><code>afk.broadcast.isAfk: "{gold}{0}{green} est maintenant en AFK."</code></p>
+        <p><code>afk.broadcast.isnotAfk: "{gold}{0}{green} n'est plus AFK."</code></p>
+        <p><code>afk.target.isAfk: "{green}Vous êtes AFK tapez {gold}/afk{green} pour en resortir."</code></p>
+        <p><code>afk.target.isnotAfk: "{green}Vous n'êtes plus en AFK."</code></p>
+        <p><code>afk.kickAfterCoolDown: "{red}Kicker pour avoir été trop longtemps AFK"</code></p>
+        <p><code>afk.kickAfterCooldown.console: "{0} a été kické(e) pour avoir été trop longtemps afk"</code></p>
+        <p><code>afk.sender.isAfk: "{green}Vous avez mis {gold}{0}{green} en AFK."</code></p>
+        <p><code>mute.target.isMute: "{green}Vous avez été rendu muet."</code></p>
+        <p><code>mute.sender.isMute: "{green}Vous avez mute {gold}{0}{green}."</code></p>
+        <p><code>mute.isMute_€: "Vous êtes muet."</code></p>
+        <p><code>unmute.target.isnotMute: "{green}Vous n'êtes plus muet."</code></p>
+        <p><code>unmute.sender.isnotMute: "{aqua}{0}{green} n'est plus muet."</code></p>
+        <p><code>reply.hasNoCurrentConversation_€: "Aucune conversation en cours."</code></p>
+        <p><code>god.target.isGod: "{blue}Vous êtes en mode dieu."</code></p>
+        <p><code>god.sender.isGod: "{green}{0}{blue} est en mode dieu."</code></p>
+        <p><code>god.target.isnotGod: "{blue}Vous n'êtes plus en mode dieu."</code></p>
+        <p><code>god.sender.isnotGod: "{green}{0}{blue} n'est plus en mode dieu."</code></p>
+        <p><code>god.isAlreadyInGodMode.sender_€: "{0} est déja en mode dieux"</code></p>
+        <p><code>god.isAlreadyInGodMode.target_€: "Vous êtes déja en mode dieux."</code></p>
+        <p><code>god.isNotInGodMode.sender_€: "{0} n'est pas en mode dieux"</code></p>
+        <p><code>god.isNotInGodMode.target_€: "Vous n'êtes pas en mode dieux."</code></p>
+        <p><code>clear.target: "{yellow}Clear !"</code></p>
+        <p><code>clear.sender: "{yellow}Vous avez vidée l'inventaire de {green}{0}"</code></p>
+        <p><strong>{0} = nombre d'objet et {1} = nom de l'objet</strong></p>
+        <p><code>give.target: "{green}Vous avez reçu {aqua}{0}{green} de {aqua}{1}"</code></p>
+        <p><strong>{0} = nom de la cible, {1} nombre d'objet et {2} = nom de l'objet</strong></p>
+        <p><code>give.sender: "{green}Vous avez donné à {aqua}{0}{green}: {1}{green} de {2}"</code></p>
+        <p><strong>{0} = nom de la cible</strong></p>
+        <p><code>openinv.notify: "{green}Votre inventaire a été ouvert par {aqua}{0}"</code></p>
+        <p><strong>{0} Info de l'objet</strong></p>
+        <p><code>id.name: "{green}Vous tenez : {aqua}{0}"</code></p>
+        <p><code>id.id: "{green}Son id est : {aqua}{0}"</code></p>
+        <p><strong>{0} = nom de l'enchantement et {1} = nom de l'objet</strong></p>
+        <p><code>enchant.error.canNotBeApplied: "{green}L'enchantement {aqua}{0}{green} ne peux pas être apliqué à {aqua}{1}"</code></p>
+        <p><strong>{0} = level max</strong></p>
+        <p><code>enchant.error.levelIsTooHight: "{green}Le niveau d'enchantement doit être inférieur ou égal à {red}{0}"</code></p>
+        <p><strong>{0} = nom de l'enchantment et {1} = level</strong></p>
+        <p><code>enchant.add: "{green}Vous avez ajouté {aqua}{0}{green} : {aqua}{1}"</code></p>
+        <p><code>remove_enchant: "{green}Enchantement(s) enlevé(s)"</code></p>
+        <p><code>kit.hasNotAKit_€: "Aucun kit de sauvegarder !"</code></p>
+        <p><strong>{0} = nom d'un kit qui n'existe pas</strong></p>
+        <p><code>kit.isNotAKit_€: "Aucun kit ne porte ce nom : {0}"</code></p>
+        <p><strong>{0} = nom du kit enregistré</strong></p>
+        <p><code>kit.add: "{green}Kit {aqua}{0}{green} enregistré."</code></p>
+        <p><code>kit.remove: "{green}Kit {aqua}{0}{green} supprimé."</code></p>
+        <p><strong>{0} = nom du kit et {1} = nom de la cible</strong></p>
+        <p><code>kit.give.sender: "{green}Vous avez donné {aqua}{0}{green} à {aqua}{1}"</code></p>
+        <p><strong>{0} = nom du kit</strong></p>
+        <p><code>kit.give.target: "{green}Vous avez reçu le kit {aqua}{0}"</code></p>
+        <p><code>kit.kitAlreadyExist_€: "Un kit portant ce nom existe déjà. Utilisez le flag -f pour le remplacer."</code></p>
+        <p><strong>{0} = gamemode de la cible</strong></p>
+        <p><code>gamemode.target: "{green}Vous êtes maintenant en {aqua}{0}"</code></p>
+        <p><strong>{0} = nom de la cible et {1} = gamemode de la cible</strong></p>
+        <p><code>gamemode.sender: "{aqua}{0}{green} est maintenant en {aqua}{1}"</code></p>
+        <p><code>heal.target: "{yellow}Vous voilà soigné et nourri"</code></p>
+        <p><strong>{0} = nom de la cible</strong></p>
+        <p><code>heal.sender: "{yellow}Vous avez soigné et nourri {aqua}{0}"</code></p>
+        <p><strong>{0} = nom de la cible</strong></p>
+        <p><code>kick.dontKickOp: "{red}{0} est op vous ne pouvez pas le kicker (\"-o\" pour forcer le kick)"</code></p>
+        <p><strong>{0} = nom de la kicker, {1} = nom de la personne qui a kick {0} et {2} = raison</strong></p>
+        <p><code>kick.broadcast: "{aqua}{0}{green} a été kické par {aqua}{1}{green}. {green}Raison : {aqua}{2}"</code></p>
+        <p><code>fly.target.isFlying: "{green}Vous pouvez désormais voler !"</code></p>
+        <p><code>fly.target.isNotFlying: "{green}Vous ne pouvez plus voler !"</code></p>
+        <p><strong>{0} = nom de la cible</strong></p>
+        <p><code>fly.sender.isFlying: "{green}{0} vole !"</code></p>
+        <p><code>fly.sender.isNotFlying: "{aqua}{0}{green} ne vole plus !"</code></p>
+        <p><code>kill.sender: "{green}Vous avez tué {aqua}{0}"</code></p>
+        <p><strong>{0} = nom de l'effet de potion</strong></p>
+        <p><code>effect.target: "{green}Vous êtes sous l'influence de {aqua}{0}"</code></p>
+        <p><strong>{0} = nom de la cible, {1} = nom de l'effet et {2} = temps de l'effect</strong></p>
+        <p><code>effect.sender: "{aqua}{0}{green} est désormais sous l'influence de {aqua}{1}{green} pour {aqua}{2}"</code></p>
+        <p><strong>{0} = nom de base du joueur</strong></p>
+        <p><code>rename.reset.target: "{green}Vous êtes de nouveau connus sous le nom {aqua}{0}"</code></p>
+        <p><strong>{0} = nom de la cible</strong></p>
+        <p><code>rename.reset.sender: "{green}Vous avez mis {aqua}{0}{green} avec son nom d'origine"</code></p>
+        <p><strong>{0} = nom voulu</strong></p>
+        <p><code>rename.target: "{green}Vous voilà renommez en {aqua}{0}"</code></p>
+        <p><strong>{0} = nom de la cible et {1} = nouveau nom de la cible</strong></p>
+        <p><code>rename.sender: "{green}Vous avez renommez {aqua}{0}{green} en {aqua}{1}"</code></p>
+        <p><strong>{0} = temps en feu</strong></p>
+        <p><code>burn.target: "{green}Vous êtes enflammés pour {aqua}{0}{green} secondes"</code></p>
+        <p><strong>{0} = nom de la cible et {1} = temps en feu</strong></p>
+        <p><code>burn.sender: "{green}Vous avez enflammé {aqua}{0}{green} pour {aqua}{1}{green} secondes"</code></p>
+        <p><code>info.reponse.yes: "Oui"</code></p>
+        <p><code>info.reponse.no: "Non"</code></p>
+        <p><strong>{0} = nom de le cible</strong></p>
+        <p><code>info.top: "{underline}{green}Info de {0}"</code></p>
+        <p><strong>{0} = nombre de coeur restant</strong></p>
+        <p><code>info.health: "{green}Vie : {0}"</code></p>
+        <p><strong>{0} = barre de faim</strong></p>
+        <p><code>info.hunger: "{green}Faim : {0}"</code></p>
+        <p><strong>{0} = adresse IP</strong></p>
+        <p><code>info.ip: "{green}IP : {0}"</code></p>
+        <p><strong>{0} = X, {1} = Y, {2} = Z et {3} = nom du monde</strong></p>
+        <p><strong>{0} = gamemode du joueur</strong></p>
+        <p><code>info.gamemode: "{green}Gamemode : {0}"</code></p>
+        <p><strong>{0} = nombre de coeur restant</strong></p>
+        <p><code>info.experience: "{green}Experience : {0}"</code></p>
+        <p><strong>{0} = soit info.reponse.yes ou info.reponse.no</strong></p>
+        <p><code>info.isOp: "{green}Op : {0}"</code></p>
+        <p><code>info.isInGodMode: "{green}God Mode : {0}"</code></p>
+        <p><code>info.isAfk: "{green} Afk : {0}"</code></p>
+        <p><strong>{0} = nom de la cible</strong></p>
+        <p><code>spy.broadcast.isSpy: "{aqua}{0}{green} est passé(e) en Spy Mode."</code></p>
+        <p><code>spy.broadcast.fakeQuitMessage: "{yellow}{0} left the game"</code></p>
+        <p><code>spy.broadcast.isNotSpy: "{aqua}{0}{green} n'est plus en Spy Mode."</code></p>
+        <p><code>spy.broadcast.fakeJoinMessage: "{yellow}{0} joined the game"</code></p>
+        <p><code>teleport.target: "{green}Poof !"</code></p>
+        <p><strong>{0} = Joueur tp à {1}</strong></p>
+        <p><code>teleport.sender: "Vous avez téléporté {0} à {1}"</code></p>
+        <p><strong>{0} = nom de la cible</strong></p>
+        <p><code>teleport.sender.bis: "{blue}Vous avez téléporté {0}"</code></p>
+        <p><code>spawn.target: "{green}Vous êtes au spawn"</code></p>
+        <p><strong>{0} = nom de la cible</strong></p>
+        <p><code>spawn.sender: "{green}Vous avez téléporté {aqua}{0}{green} au spawn"</code></p>
+        <p><code>vanish.target.isNotVisible: "{green}Vous êtes invisible"</code></p>
+        <p><strong>{0} = nom de la cible</strong></p>
+        <p><code>vanish.sender.isNotVisible: "{aqua}{0}{green} est devenu invisible"</code></p>
+        <p><code>vanish.sender.isVisible: "{blue}Vous êtes visibles"</code></p>
+        <p><code>vanish.target.isVisible: "{aqua}{0}{green} est devenu visible"</code></p>
+        <p><strong>{0} = nom du warp</strong></p>
+        <p><code>warp.alreadyExist_€: "Le warp {0} existe déjà."</code></p>
+        <p><code>warp.notExist_€: "Le warp {0} n'existe pas."</code></p>
+        <p><code>warp.created: "{green}Vous avez crée un warp: {0}"</code></p>
+        <p><strong>{0} = nom de la cible et {1} nom du warp</strong></p>
+        <p><code>warp.sender: "{blue}{0}{green} a été téléporté au warp : {blue}{1}"</code></p>
+        <p><code>warp.deleteAll: "{green}Vous avez enlevés tous les Warps !"</code></p>
+        <p><strong>{0} = nom du warp</strong></p>
+        <p><code>warp.delete: "{green}Vous avez supprimé le warp : {blue}{0}"</code></p>
+        <p><code>warp.list.isEmpty_€: "Il n'y a aucun warp de sauvegardé !"</code></p>
+        <p><strong>{0} = nom du monde et {1} = seed</strong></p>
+        <p><code>seed.message: "{green}Seed de {blue}{0}{green} : {blue}{1}"</code></p>
+        <p><code>setspawn.message: "{green}Vous avez défini le spawn !"</code></p>
+        <p><strong>{0} = sender et {1} = nom du monde</strong></p>
+        <p><code>time.message.day: "{blue}{0}{green} a mis le jour dans {blue}{1}"</code></p>
+        <p><code>time.message.night: "{blue}{0}{green} a mis la nuit dans {blue}{1}"</code></p>
+        <p><code>time.message.other: "{blue}{0}{green} a changé l'heure dans {blue}{1}"</code></p>
+        <p><strong>{1} = nom du monde et {1} = heure du monde</strong></p>
+        <p><code>time.message.sendCurrentTime: "{green}Heure de : {red}{0}{green}({red}{1}{green})"</code></p>
+        <p><strong>{0} = sender et {1} = nom du monde</strong></p>
+        <p><code>weather.sun: "{green}{0}{green} a mis le beau temps dans {blue}{1}"</code></p>
+        <p><code>weather.storm: "{green}{0}{green} a mis la pluit dans {blue}{1}"</code></p>
+        <p><code>entity.isNotAMob: "{green}Vous ne pouvez pas spawner ce type d'entité"</code></p>
+        <p><strong># {0} = total du nombre d'entitée spawner et {1} = nom de l'entitée</strong></p>
+        <p><code>spawnmob.message: "{green}Vous avez spawn {blue}{0}{green} de {blue}{1}"</code></p>
+        <p><code>mob.isNotAMob: "{blue}{0}{green} n'est pas un mob"</code></p>
+        <p><code>world.miss: "{green}Vous devez specifier un monde."</code></p>
+        <p><code>removemob.message: "{green}Vous avez supprimé {blue}{0}{green} mobs"</code></p>
+        <p><code>home.hasAlready_€: "Vous avez déja définis un home"</code></p>
+        <p><code>home.define: "{green}Home défini."</code></p>
+        <p><code>home.hasNotHome.other_€: "{0} n'a pas de home"</code></p>
+        <p><strong>{0} = nom du home</strong></p>
+        <p><code>home.hasNotHome_€: "Vous n'avez pas de home"</code></p>
+        <p><code>home.hasNotPermToUse_€: "Vous n'avez la permission de vous téléporter au home de {0}"</code></p>
+        <p><code>home.hasNotPermToDel.other_€: "Vous n'avez la permission de supprimer le home de {0}"</code></p>
+        <p><code>home.del: "{green}Home supprimer. {blue}{0}"</code></p>
+        <p><code>home.isEmpty_€: "Aucun home de sauvegarder"</code></p>
+        <p><strong>{0} = cible</strong></p>
+        <p><code>adventure.isAlreadyInAdventureMode_€.sender: "Vous êtes déja en mode aventure"</code></p>
+        <p><code>adventure.isAlreadyInAdventureMode_€.target: "{0} est déja en mode aventure"</code></p>
+        <p><code>adventure.isInAdventureMode.target: "{green}Vous êtes en mode aventure."</code></p>
+        <p><code>adventure.isInAdventureMode.sender: "Vous avez mis {0} en mode aventure"</code></p>
+        <p><strong>{0} = nom du plugin</strong></p>
+        <p><code>plugin.isNotAPlugin: "Le plugin \"{0}\" n'existe pas !"</code></p>
+        <p><code>enable_plugin.isAlreadyEnable_€: "Le plugin \"{0}\" est déja activé"</code></p>
+        <p><code>enable_plugin.success: "{green}{0} activé avec succes"</code></p>
+        <p><code>disable_plugin.isAlreadyDisable_€: "Le plugin \"{0}\" est déja désactivé"</code></p>
+        <p><code>disable_plugin.success: "{green}{0} désactivé avec succes"</code></p>
+        <p><strong>{0} = activé ou non</strong></p>
+        <p><code>info_plugin: "{blue}{0}{green}: {blue}{1}"</code></p>
+        <p><strong>{0} = sender</strong></p>
+        <p><code>openender.notify: "{green}Le contenu de votre EnderChest est regardé par {blue}{0}"</code></p>
+        <p><strong>{0} = nombre de coup qui reste</strong></p>
+        <p><code>durability: "{green}Il reste {blue}{0}{green} coup(s) à votre objet."</code></p>
+        <p><strong>{0} = nom de l'item</strong></p>
+        <p><code>durability.isNotAnItem_€: "{0} n'est pas un item."</code></p>
+        <p><code>durability.isNotAnItemWithDurability_€: "Cette item n'a pas de barre d'utilisation."</code></p>
+        <p><strong>{0} = nombre de coup qui reste</strong></p>
+        <p><code>setdurability: "{green}Votre item a désormait {blue}{0}{green} coup(s)"</code></p>
+        <p><strong>{0} = nombre de l'objet en main et {1} = data modifier</strong></p>
+        <p><code>renameitem: "{green}Votre objet {blue}{0}{green} a été renommé en {blue}{1}{green}."</code></p>
+        <p><code>setskull: "{green}Le propriétaire de la tête est maintenant {blue}{0}{green}."</code></p>
+        <p><code>setlore: "{green}Description définis."</code></p>
+        <p><code>setarmorcolor: "{green}Couleur de l'armure définis."</code></p>
+        <p><code>setauthor: "{green}Autheur de ce livre définis à : {blue}{0}{green}."</code></p>
+        <p><code>setpages: "{green}Pages ajoutées."</code></p>
+        <p><code>settitle: "{green}Titre définis."</code></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Usefulcommands mis à jour par <a href="https://github.com/noogotte">noogotte</a> & <a href="https://github.com/aumgn">aumgn</a></p>
+      </footer>
+    </div>
+
+  </body>
+</html>
