@@ -6,7 +6,6 @@ import static fr.noogotte.useful_commands.LocationUtil.getTargetBlockLocation;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
