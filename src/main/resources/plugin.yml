@@ -25,7 +25,7 @@ commands:
         permission: "useful.world.setspawn"
     "useful time":
         description: "Change l'heure."
-        usage: "<time> [world]"
+        usage: "<time> [world] -i"
         aliases: ["time"]
         permission: "useful.world.time"
     "useful weather":

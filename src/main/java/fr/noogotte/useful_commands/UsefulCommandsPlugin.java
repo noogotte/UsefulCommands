@@ -37,7 +37,6 @@ import fr.noogotte.useful_commands.component.WorldComponent;
 public class UsefulCommandsPlugin extends JavaPlugin {
 
     private PluginMessages messages;
-
     private List<Component> components;
     private UsefulConfig config;
 

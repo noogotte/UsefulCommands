@@ -6,6 +6,7 @@ import static fr.noogotte.useful_commands.LocationUtil.getTargetBlockLocation;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.Validate;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -27,8 +28,11 @@ import fr.noogotte.useful_commands.UsefulCommandsPlugin;
 @NestedCommands("useful")
 public class WorldCommands extends UsefulCommands {
 
+    private UsefulCommandsPlugin plugin;
+
     public WorldCommands(UsefulCommandsPlugin plugin) {
         super(plugin);
+        this.plugin = plugin;
     }
 
     @Command(name = "seed", min = 0, max = 1)
@@ -51,24 +55,41 @@ public class WorldCommands extends UsefulCommands {
         sender.sendMessage(msg("setspawn.message"));
     }
 
-    @Command(name = "time", min = 1, max = 2)
+    @Command(name = "time", min = 0, max = 2, flags = "i")
     public void time(CommandSender sender, CommandArgs args) {
         List<World> worlds = args.getWorlds(1).valueOr(sender);
 
-        int time = args.getTime(0).value();
-        for (World world : worlds) {
-            world.setTime(time);
-            if (time == (24) * 1000) {
-                Util.broadcast("useful.world.time.broadcast",
-                        msg("time.message.day", sender.getName(), world.getName()));
-            } else if (time == (22 - 8 + 24) * 1000) {
-                Util.broadcast("useful.world.time.broadcast",
-                        msg("time.message.night", sender.getName(), world.getName()));
-            } else {
-                Util.broadcast("useful.world.time.broadcast",
-                        msg("time.message.other", sender.getName(), world.getName()));
+        if (args.hasFlag('i') || args.length() == 0) {
+            for (World world : worlds) {
+                sender.sendMessage(msg("time.message.sendCurrentTime", world.getName(), worldTimeToString(world.getTime())));
             }
         }
+
+        if (args.length() != 0) {
+            int time = args.getTime(0).value();
+            for (World world : worlds) {
+                world.setTime(time);
+                if (time == (24) * 1000) {
+                    Util.broadcast("useful.world.time.broadcast",
+                            msg("time.message.day", sender.getName(), world.getName()));
+                }
+                else if (time == (22 - 8 + 24) * 1000) {
+                    Util.broadcast("useful.world.time.broadcast",
+                            msg("time.message.night", sender.getName(), world.getName()));
+                } else {
+                    Util.broadcast("useful.world.time.broadcast",
+                            msg("time.message.other", sender.getName(), world.getName()));
+                }
+            }
+        }
+    }
+
+    public String worldTimeToString(long time) {
+        int hours = (int) ((time / 1000 + 8) % 24);
+        int minutes = (int) (60 * (time % 1000) / 1000);
+        return String.format("%02d:%02d",
+                hours, minutes, (hours % 12) == 0 ? 12 : hours % 12, minutes,
+                        hours < 12 ? "am" : "pm");
     }
 
     @Command(name = "weather", min = 0, max = 2)
