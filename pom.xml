@@ -5,7 +5,7 @@
 
 	<groupId>fr.noogotte</groupId>
 	<artifactId>usefulcommands</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 
 	<name>Useful Commands</name>
 	<description>Useful commands for server</description>
