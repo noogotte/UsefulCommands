@@ -170,7 +170,7 @@ commands:
         permission: "useful.inventory.clear"
     "useful give":
         description: "Donne x objets."
-        usage: "[-e] [-n="Name"] <type> [amount] [target]"
+        usage: "[-e] [-n=Name] <type> [amount] [target]"
         aliases: ["give", "i", "item"]
         permission: "useful.inventory.give"
     "useful openinv":
