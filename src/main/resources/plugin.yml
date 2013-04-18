@@ -462,6 +462,8 @@ permissions:
         default: true
     useful.chat.me.channel:
         default: true
+    useful.player.changemmobspawner:
+        default: op
 
     useful.player.*:
         children:
@@ -485,6 +487,7 @@ permissions:
             - useful.player.online: true
             - useful.player.adventure: true
             - useful.player.adventure.other: true
+            - useful.player.changemmobspawner: true
 
     useful.inventory.*:
         children:
