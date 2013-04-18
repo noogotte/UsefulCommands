@@ -53,7 +53,7 @@ public class InventoryCommands extends UsefulCommands {
         }
     }
 
-    @Command(name = "give", flags = "e", min = 1, max = 3)
+    @Command(name = "give", flags = "e", argsFlags = "n", min = 1, max = 3)
     public void give(CommandSender sender, CommandArgs args) {
         ItemType itemType = args.getItemType(0).value();
         List<Player> targets = args.getPlayers(2)
@@ -61,6 +61,7 @@ public class InventoryCommands extends UsefulCommands {
 
         int amount = args.getInteger(1).valueOr(itemType.getMaxStackSize());
         ItemStack item = itemType.toItemStack(amount);
+        String name = args.get('n');
 
         if (args.hasFlag('e') && !itemType.getMaterial().isBlock()) {
             for (Enchantment enchantment : Enchantment.values()) {
@@ -68,6 +69,12 @@ public class InventoryCommands extends UsefulCommands {
                     item.addEnchantment(enchantment, enchantment.getMaxLevel());
                 }
             }
+        }
+
+        if (args.hasArgFlag('n')) {
+            ItemMeta meta = item.getItemMeta();
+            meta.setDisplayName(name);
+            item.setItemMeta(meta);
         }
 
         for (Player target : targets) {
